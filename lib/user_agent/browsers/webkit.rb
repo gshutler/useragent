@@ -2,7 +2,7 @@ class UserAgent
   module Browsers
     module Webkit
       def self.extend?(agent)
-        agent["Safari"]
+        agent.detect { |useragent| useragent.product == "Safari" }
       end
 
       def browser
@@ -10,7 +10,7 @@ class UserAgent
       end
 
       def build
-        self[browser].version
+        safari.version
       end
 
       BuildVersions = {
@@ -25,7 +25,8 @@ class UserAgent
 
       # Prior to Safari 3, the user agent did not include a version number
       def version
-        (self["Version"] && self["Version"].version) || BuildVersions[build]
+        version_part = detect { |useragent| useragent.product == "Version" }
+        (version_part && version_part.version) || BuildVersions[build]
       end
 
       def platform
@@ -33,7 +34,7 @@ class UserAgent
       end
 
       def webkit
-        self["AppleWebKit"]
+        detect { |useragent| useragent.product == "AppleWebKit" }
       end
 
       def security

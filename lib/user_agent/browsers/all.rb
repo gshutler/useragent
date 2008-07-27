@@ -24,15 +24,6 @@ class UserAgent
         join(" ")
       end
 
-      def [](product)
-        each do |user_agent|
-          if user_agent.product.to_s.downcase == product.to_s.downcase
-            return user_agent
-          end
-        end
-        nil
-      end
-
       def application
         first
       end
@@ -45,9 +36,18 @@ class UserAgent
         application.version
       end
 
-      def method_missing(method, *args, &block)
-        self[method] || super
+      def respond_to?(symbol)
+        detect_product(symbol) ? true : super
       end
+
+      def method_missing(method, *args, &block)
+        detect_product(method) || super
+      end
+
+      private
+        def detect_product(product)
+          detect { |useragent| useragent.product.to_s.downcase == product.to_s.downcase }
+        end
     end
   end
 end

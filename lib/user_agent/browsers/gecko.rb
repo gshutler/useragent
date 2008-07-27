@@ -11,12 +11,11 @@ class UserAgent
       ).freeze unless defined? GeckoBrowsers
 
       def browser
-        GeckoBrowsers.each { |browser| return browser if self[browser] }
-        super
+        GeckoBrowsers.detect { |browser| respond_to?(browser) } || super
       end
 
       def version
-        self[browser].version || super
+        send(browser).version || super
       end
 
       def platform
