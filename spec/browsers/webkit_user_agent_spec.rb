@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
-describe "WebKit browser", :shared => true do
+describe "Safari browser", :shared => true do
   it "should return 'Safari' as its browser" do
     @useragent.browser.should == "Safari"
   end
@@ -15,7 +15,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) A
     @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/526.9 (KHTML, like Gecko) Version/4.0dp1 Safari/526.8")
   end
 
-  it_should_behave_like "WebKit browser"
+  it_should_behave_like "Safari browser"
 
   it "should return '526.8' as its build" do
     @useragent.build.should == "526.8"
@@ -47,7 +47,7 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en) AppleWebKit/5
     @useragent = UserAgent.parse("Mozilla/5.0 (Windows; U; Windows NT 5.1; en) AppleWebKit/526.9 (KHTML, like Gecko) Version/4.0dp1 Safari/526.8")
   end
 
-  it_should_behave_like "WebKit browser"
+  it_should_behave_like "Safari browser"
 
   it "should return '526.8' as its build" do
     @useragent.build.should == "526.8"
@@ -79,7 +79,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) A
     @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.18")
   end
 
-  it_should_behave_like "WebKit browser"
+  it_should_behave_like "Safari browser"
 
   it "should return '525.18' as its build" do
     @useragent.build.should == "525.18"
@@ -151,7 +151,7 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en) AppleWebKit/5
     @useragent = UserAgent.parse("Mozilla/5.0 (Windows; U; Windows NT 5.1; en) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.18")
   end
 
-  it_should_behave_like "WebKit browser"
+  it_should_behave_like "Safari browser"
 
   it "should return '525.18' as its build" do
     @useragent.build.should == "525.18"
@@ -183,7 +183,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en) AppleWebKit
     @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en) AppleWebKit/419 (KHTML, like Gecko) Safari/419.3")
   end
 
-  it_should_behave_like "WebKit browser"
+  it_should_behave_like "Safari browser"
 
   it "should return '419.3' as its build" do
     @useragent.build.should == "419.3"
@@ -215,7 +215,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/3
     @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/312.8 (KHTML, like Gecko) Safari/312.6")
   end
 
-  it_should_behave_like "WebKit browser"
+  it_should_behave_like "Safari browser"
 
   it "should return '312.6' as its build" do
     @useragent.build.should == "312.6"
@@ -247,7 +247,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/1
     @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/125.5.7 (KHTML, like Gecko) Safari/125.12")
   end
 
-  it_should_behave_like "WebKit browser"
+  it_should_behave_like "Safari browser"
 
   it "should return '125.12' as its build" do
     @useragent.build.should == "125.12"
@@ -279,7 +279,7 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit
     @useragent = UserAgent.parse("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/4A102 Safari/419")
   end
 
-  it_should_behave_like "WebKit browser"
+  it_should_behave_like "Safari browser"
 
   it "should return '419' as its build" do
     @useragent.build.should == "419"
@@ -311,7 +311,7 @@ describe "UserAgent: 'Mozilla/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/4
     @useragent = UserAgent.parse("Mozilla/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/4A102 Safari/419")
   end
 
-  it_should_behave_like "WebKit browser"
+  it_should_behave_like "Safari browser"
 
   it "should return '419' as its build" do
     @useragent.build.should == "419"
@@ -335,5 +335,39 @@ describe "UserAgent: 'Mozilla/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/4
 
   it "should return 'en' as its localization" do
     @useragent.localization.should == "en"
+  end
+end
+
+describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.0.2 Safari/525.13'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.0.2 Safari/525.13")
+  end
+
+  it "should return 'Chrome' as its browser" do
+    @useragent.browser.should == "Chrome"
+  end
+
+  it "should return '525.13' as its build" do
+    @useragent.build.should == "525.13"
+  end
+
+  it "should return '0.0.2' as its version" do
+    @useragent.version.should == "0.0.2"
+  end
+
+  it "should return '525.13' as its webkit version" do
+    @useragent.webkit.version.should == "525.13"
+  end
+
+  it "should return 'Windows' as its platform" do
+    @useragent.platform.should == "Windows"
+  end
+
+  it "should return 'Windows XP' as its os" do
+    @useragent.os.should == "Windows XP"
+  end
+
+  it "should return 'en-US' as its localization" do
+    @useragent.localization.should == "en-US"
   end
 end

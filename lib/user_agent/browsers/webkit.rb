@@ -6,7 +6,11 @@ class UserAgent
       end
 
       def browser
-        "Safari"
+        if detect_product("Chrome")
+          "Chrome"
+        else
+          "Safari"
+        end
       end
 
       def build
@@ -25,8 +29,13 @@ class UserAgent
 
       # Prior to Safari 3, the user agent did not include a version number
       def version
-        version_part = detect { |useragent| useragent.product == "Version" }
-        (version_part && version_part.version) || BuildVersions[build]
+        if browser == "Chrome"
+          chrome.version
+        elsif product = detect_product("Version")
+          product.version
+        else
+          BuildVersions[build]
+        end
       end
 
       def platform
