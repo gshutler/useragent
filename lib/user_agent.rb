@@ -30,7 +30,7 @@ class UserAgent
       raise ArgumentError, "expected a value for product"
     end
 
-    if version && version.any?
+    if version && !version.empty?
       @version = version
     end
 
