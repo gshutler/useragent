@@ -15,7 +15,7 @@ class UserAgent
     while m = string.match(MATCHER)
       agent = new(m[1], m[2], m[4])
       agents << agent
-      string = string.sub(agent.to_s, '').strip
+      string = string.sub(m[0], '').strip
     end
     Browsers.extend(agents)
     agents
