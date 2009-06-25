@@ -183,6 +183,11 @@ describe UserAgent, ".parse" do
     useragent = UserAgent.new("Mozilla", "5.0", ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"])
     UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us)").application.should == useragent
   end
+  
+  it "should parse a single product, version, and comment, with space-padded semicolons" do
+    useragent = UserAgent.new("Mozilla", "5.0", ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"])
+    UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3 ; en-us; )").application.should == useragent
+  end
 
   it "should parse a single product and comment" do
     useragent = UserAgent.new("Mozilla", nil, ["Macintosh"])
