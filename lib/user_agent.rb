@@ -1,6 +1,6 @@
-require "#{File.dirname(__FILE__)}/user_agent/comparable"
-require "#{File.dirname(__FILE__)}/user_agent/browsers"
-require "#{File.dirname(__FILE__)}/user_agent/operating_systems"
+require 'user_agent/comparable'
+require 'user_agent/browsers'
+require 'user_agent/operating_systems'
 
 class UserAgent
   # http://www.texsoft.it/index.php?m=sw.php.useragent

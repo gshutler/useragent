@@ -1,6 +1,8 @@
-Dir["#{File.dirname(__FILE__)}/browsers/*.rb"].each do |browser|
-  require browser
-end
+require 'user_agent/browsers/all'
+require 'user_agent/browsers/gecko'
+require 'user_agent/browsers/internet_explorer'
+require 'user_agent/browsers/opera'
+require 'user_agent/browsers/webkit'
 
 class UserAgent
   module Browsers
