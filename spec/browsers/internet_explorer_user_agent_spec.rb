@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper.rb'
+require 'user_agent'
 
 describe "Internet Explorer browser", :shared => true do
   it "should return 'Internet Explorer' as its browser" do

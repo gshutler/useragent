@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'user_agent'
 
 describe UserAgent do
   it "should require a product" do

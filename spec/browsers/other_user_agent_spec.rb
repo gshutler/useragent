@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper.rb'
+require 'user_agent'
 
 describe "UserAgent: 'amaya/9.51 libwww/5.4.0'" do
   before do
