@@ -10,7 +10,7 @@ class UserAgent
       "Windows 98"      => "Windows 98",
       "Windows 95"      => "Windows 95",
       "Windows CE"      => "Windows CE"
-    }.freeze unless defined? Windows
+    }.freeze
 
     def self.normalize_os(os)
       Windows[os] || os

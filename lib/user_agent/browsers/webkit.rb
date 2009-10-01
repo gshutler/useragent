@@ -25,7 +25,7 @@ class UserAgent
         "416.13" => "2.0.2",
         "417.9.3" => "2.0.3",
         "419.3" => "2.0.4"
-      }.freeze unless defined? BuildVersions
+      }.freeze
 
       # Prior to Safari 3, the user agent did not include a version number
       def version

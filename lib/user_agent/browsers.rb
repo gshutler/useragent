@@ -10,7 +10,7 @@ class UserAgent
       "N" => :none,
       "U" => :strong,
       "I" => :weak
-    }.freeze unless defined? Security
+    }.freeze
 
     def self.all
       [InternetExplorer, Webkit, Opera, Gecko]

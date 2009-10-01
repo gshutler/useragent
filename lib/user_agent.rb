@@ -8,7 +8,7 @@ class UserAgent
     ^([^/\s]+)        # Product
     /?([^\s]*)        # Version
     (\s\(([^\)]*)\))? # Comment
-  }x.freeze unless defined? MATCHER
+  }x.freeze
 
   def self.parse(string)
     agents = []

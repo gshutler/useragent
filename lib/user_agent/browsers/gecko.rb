@@ -8,7 +8,7 @@ class UserAgent
       GeckoBrowsers = %w(
         Firefox
         Camino
-      ).freeze unless defined? GeckoBrowsers
+      ).freeze
 
       def browser
         GeckoBrowsers.detect { |browser| respond_to?(browser) } || super
