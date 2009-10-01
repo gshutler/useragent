@@ -12,7 +12,7 @@ class UserAgent
       end
 
       def version
-        application.comment[1].to_s.sub("MSIE ", "")
+        application.comment[1].sub("MSIE ", "")
       end
 
       def compatibility
