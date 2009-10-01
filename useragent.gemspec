@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ["Joshua Peek"]
   s.files = [
     "README.rdoc",
-    "MIT-LICENSE",
+    "LICENSE",
     "lib/user_agent",
     "lib/user_agent/browsers",
     "lib/user_agent/browsers/all.rb",
