@@ -32,6 +32,8 @@ class UserAgent
 
     if version && !version.empty?
       @version = version
+    else
+      @version = nil
     end
 
     if comment.respond_to?(:split)
