@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.has_rdoc = false
   s.authors = ["Joshua Peek"]
   s.files = [
-    "README.rdoc",
+    "README",
     "LICENSE",
     "lib/user_agent",
     "lib/user_agent/browsers",
