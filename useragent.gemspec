@@ -5,6 +5,7 @@ Gem::Specification.new do |s|
   s.summary = "HTTP User Agent parser"
   s.email = "josh@joshpeek.com"
   s.homepage = "http://github.com/josh/useragent"
+  s.rubyforge_project = "useragent"
   s.description = "UserAgent is a Ruby library that parses and compares HTTP User Agents."
   s.has_rdoc = false
   s.authors = ["Joshua Peek"]
