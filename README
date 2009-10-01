@@ -18,4 +18,4 @@ Example
   SupportedBrowsers.detect { |browser| user_agent >= browser }
 
 
-Copyright (c) 2008 Joshua Peek, released under the MIT license
+Copyright (c) 2009 Joshua Peek, released under the MIT license
