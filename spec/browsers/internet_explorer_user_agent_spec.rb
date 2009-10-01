@@ -18,6 +18,22 @@ describe "Internet Explorer browser", :shared => true do
   end
 end
 
+describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0)'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0)")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "should return '8.0' as its version" do
+    @useragent.version.should == "8.0"
+  end
+
+  it "should return 'Windows Vista' as its os" do
+    @useragent.os.should == "Windows Vista"
+  end
+end
+
 describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)'" do
   before do
     @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)")
