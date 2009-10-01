@@ -4,7 +4,8 @@ class UserAgent
       def self.extend?(agent)
         agent.application &&
           agent.application.comment &&
-          agent.application.comment[0] == "compatible"
+          agent.application.comment[0] == "compatible" &&
+          agent.application.comment[1] =~ /MSIE/
       end
 
       def browser
