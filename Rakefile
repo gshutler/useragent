@@ -27,4 +27,5 @@ task :default => :spec
 
 Spec::Rake::SpecTask.new do |t|
   t.libs << 'lib'
+  t.warning = true
 end
