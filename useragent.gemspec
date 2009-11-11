@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'useragent'
-  s.version     = '0.1.0'
-  s.date        = '2009-10-01'
+  s.version     = '0.1.1'
+  s.date        = '2009-11-11'
   s.summary     = 'HTTP User Agent parser'
   s.description = <<-EOS
     UserAgent is a Ruby library that parses and compares HTTP User Agents.
