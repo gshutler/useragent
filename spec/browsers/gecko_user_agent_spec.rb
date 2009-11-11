@@ -217,7 +217,7 @@ describe 'UserAgent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1) Gecko/200
     @useragent.browser.should == "Iceweasel"
   end
   
-  it "should return '1.6' as its version" do
+  it "should return '2.0' as its version" do
     @useragent.version.should == "2.0"
   end
   
@@ -237,4 +237,35 @@ describe 'UserAgent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1) Gecko/200
     @useragent.localization.should == "en-US"
   end
   
+end
+
+describe 'UserAgent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.1.4) Gecko/20091017 SeaMonkey/2.0' do
+  before do
+    @useragent = UserAgent.parse('Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.1.4) Gecko/20091017 SeaMonkey/2.0')
+  end
+
+  it "should return 'Seamonkey' as its browser" do
+    @useragent.browser.should == "Seamonkey"
+  end
+
+  it "should return '2.0' as its version" do
+    @useragent.version.should == "2.0"
+  end
+
+  it "should return '20091017' as its gecko version" do
+    @useragent.gecko.version.should == "20091017"
+  end
+
+  it "should return 'Macintosh' as its platform" do
+    @useragent.platform.should == "Macintosh"
+  end
+
+  it "should return 'Intel Mac OS X 10.6' as its os" do
+    @useragent.os.should == "Intel Mac OS X 10.6"
+  end
+
+  it "should return 'en-US' as its localization" do
+    @useragent.localization.should == "en-US"
+  end
+
 end

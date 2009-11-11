@@ -9,6 +9,7 @@ class UserAgent
         Firefox
         Camino
         Iceweasel
+        Seamonkey
       ).freeze
 
       def browser
