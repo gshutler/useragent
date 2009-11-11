@@ -8,6 +8,7 @@ class UserAgent
       GeckoBrowsers = %w(
         Firefox
         Camino
+        Iceweasel
       ).freeze
 
       def browser
