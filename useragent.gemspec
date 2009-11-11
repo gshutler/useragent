@@ -8,8 +8,6 @@ Gem::Specification.new do |s|
   EOS
 
   s.files = [
-    'README',
-    'LICENSE',
     'lib/user_agent/browsers/all.rb',
     'lib/user_agent/browsers/gecko.rb',
     'lib/user_agent/browsers/internet_explorer.rb',
