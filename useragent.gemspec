@@ -7,18 +7,7 @@ Gem::Specification.new do |s|
     UserAgent is a Ruby library that parses and compares HTTP User Agents.
   EOS
 
-  s.files = [
-    'lib/user_agent/browsers/all.rb',
-    'lib/user_agent/browsers/gecko.rb',
-    'lib/user_agent/browsers/internet_explorer.rb',
-    'lib/user_agent/browsers/opera.rb',
-    'lib/user_agent/browsers/webkit.rb',
-    'lib/user_agent/browsers.rb',
-    'lib/user_agent/comparable.rb',
-    'lib/user_agent/operating_systems.rb',
-    'lib/user_agent.rb',
-    'lib/useragent.rb'
-  ]
+  s.files = Dir['lib/**/*.rb']
 
   s.author   = 'Joshua Peek'
   s.email    = 'josh@joshpeek.com'
