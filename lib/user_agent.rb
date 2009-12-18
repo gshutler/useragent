@@ -1,8 +1,8 @@
-class UserAgent
-  autoload :Browsers, 'user_agent/browsers'
-  autoload :Comparable, 'user_agent/comparable'
-  autoload :OperatingSystems, 'user_agent/operating_systems'
+require 'user_agent/comparable'
+require 'user_agent/browsers'
+require 'user_agent/operating_systems'
 
+class UserAgent
   # http://www.texsoft.it/index.php?m=sw.php.useragent
   MATCHER = %r{
     ^([^/\s]+)        # Product
