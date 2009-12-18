@@ -113,3 +113,47 @@ describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.1)'" do
     @useragent.os.should == "Windows XP"
   end
 end
+
+describe "Non-Chrome Frame browsers" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.1)")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "shouldn't pose as chromeframe" do
+    @useragent.chromeframe.should be_nil
+  end
+end 
+
+describe "Chrome Frame installs before version 4.0" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; chromeframe)")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "should return true as chromeframe" do
+    @useragent.chromeframe.should be_true
+  end
+  
+  it "shouldn't have a version" do
+    @useragent.chromeframe.should_not respond_to(:version)
+  end
+end
+
+describe "Chrome Frame from version 4.0 on" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) chromeframe/4.0")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "should return true as chromeframe" do
+    @useragent.chromeframe.should be_true
+  end
+  
+  it "should have a version" do
+    @useragent.chromeframe.version.should == "4.0"
+  end
+end
