@@ -210,6 +210,70 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en) AppleWebKit
   end
 end
 
+describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-us) AppleWebKit/412.6 (KHTML, like Gecko) Safari/412.2'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-us) AppleWebKit/412.6 (KHTML, like Gecko) Safari/412.2")
+  end
+
+  it_should_behave_like "Safari browser"
+
+  it "should return '412.2' as its build" do
+    @useragent.build.should == "412.2"
+  end
+
+  it "should return '2.0' as its version" do
+    @useragent.version.should == "2.0"
+  end
+
+  it "should return '412.6' as its webkit version" do
+    @useragent.webkit.version.should == "412.6"
+  end
+
+  it "should return 'Macintosh' as its platform" do
+    @useragent.platform.should == "Macintosh"
+  end
+
+  it "should return 'Intel Mac OS X' as its os" do
+    @useragent.os.should == "PPC Mac OS X"
+  end
+
+  it "should return 'en' as its localization" do
+    @useragent.localization.should == "en-us"
+  end
+end
+
+describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/412.6.2 (KHTML, like Gecko) Safari/412.2.2'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/412.6.2 (KHTML, like Gecko) Safari/412.2.2")
+  end
+
+  it_should_behave_like "Safari browser"
+
+  it "should return '412.2.2' as its build" do
+    @useragent.build.should == "412.2.2"
+  end
+
+  it "should return '2.0' as its version" do
+    @useragent.version.should == "2.0"
+  end
+
+  it "should return '412.6.2' as its webkit version" do
+    @useragent.webkit.version.should == "412.6.2"
+  end
+
+  it "should return 'Macintosh' as its platform" do
+    @useragent.platform.should == "Macintosh"
+  end
+
+  it "should return 'Intel Mac OS X' as its os" do
+    @useragent.os.should == "PPC Mac OS X"
+  end
+
+  it "should return 'en' as its localization" do
+    @useragent.localization.should == "en"
+  end
+end
+
 describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/312.8 (KHTML, like Gecko) Safari/312.6'" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/312.8 (KHTML, like Gecko) Safari/312.6")
@@ -242,6 +306,166 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/3
   end
 end
 
+describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; fr-ch) AppleWebKit/312.1.1 (KHTML, like Gecko) Safari/312'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; PPC Mac OS X; fr-ch) AppleWebKit/312.1.1 (KHTML, like Gecko) Safari/312")
+  end
+
+  it_should_behave_like "Safari browser"
+
+  it "should return '312' as its build" do
+    @useragent.build.should == "312"
+  end
+
+  it "should return '1.3' as its version" do
+    @useragent.version.should == "1.3"
+  end
+
+  it "should return '312.1.1' as its webkit version" do
+    @useragent.webkit.version.should == "312.1.1"
+  end
+
+  it "should return 'Macintosh' as its platform" do
+    @useragent.platform.should == "Macintosh"
+  end
+
+  it "should return 'PPC Mac OS X' as its os" do
+    @useragent.os.should == "PPC Mac OS X"
+  end
+
+  it "should return 'en' as its localization" do
+    @useragent.localization.should == "fr-ch"
+  end
+end
+
+describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; es-es) AppleWebKit/312.5.2 (KHTML, like Gecko) Safari/312.3.3'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; PPC Mac OS X; es-es) AppleWebKit/312.5.2 (KHTML, like Gecko) Safari/312.3.3")
+  end
+
+  it_should_behave_like "Safari browser"
+
+  it "should return '312.3.3' as its build" do
+    @useragent.build.should == "312.3.3"
+  end
+
+  it "should return '1.3.1' as its version" do
+    @useragent.version.should == "1.3.1"
+  end
+
+  it "should return '312.5.2' as its webkit version" do
+    @useragent.webkit.version.should == "312.5.2"
+  end
+
+  it "should return 'Macintosh' as its platform" do
+    @useragent.platform.should == "Macintosh"
+  end
+
+  it "should return 'PPC Mac OS X' as its os" do
+    @useragent.os.should == "PPC Mac OS X"
+  end
+
+  it "should return 'en' as its localization" do
+    @useragent.localization.should == "es-es"
+  end
+end
+
+describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; fr) AppleWebKit/312.5.1 (KHTML, like Gecko) Safari/312.3.1'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; PPC Mac OS X; fr) AppleWebKit/312.5.1 (KHTML, like Gecko) Safari/312.3.1")
+  end
+
+  it_should_behave_like "Safari browser"
+
+  it "should return '312.3.1' as its build" do
+    @useragent.build.should == "312.3.1"
+  end
+
+  it "should return '1.3.1' as its version" do
+    @useragent.version.should == "1.3.1"
+  end
+
+  it "should return '312.5.1' as its webkit version" do
+    @useragent.webkit.version.should == "312.5.1"
+  end
+
+  it "should return 'Macintosh' as its platform" do
+    @useragent.platform.should == "Macintosh"
+  end
+
+  it "should return 'PPC Mac OS X' as its os" do
+    @useragent.os.should == "PPC Mac OS X"
+  end
+
+  it "should return 'en' as its localization" do
+    @useragent.localization.should == "fr"
+  end
+end
+
+describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-us) AppleWebKit/312.5 (KHTML, like Gecko) Safari/312.3'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-us) AppleWebKit/312.5 (KHTML, like Gecko) Safari/312.3")
+  end
+
+  it_should_behave_like "Safari browser"
+
+  it "should return '312.3' as its build" do
+    @useragent.build.should == "312.3"
+  end
+
+  it "should return '1.3.1' as its version" do
+    @useragent.version.should == "1.3.1"
+  end
+
+  it "should return '312.5' as its webkit version" do
+    @useragent.webkit.version.should == "312.5"
+  end
+
+  it "should return 'Macintosh' as its platform" do
+    @useragent.platform.should == "Macintosh"
+  end
+
+  it "should return 'PPC Mac OS X' as its os" do
+    @useragent.os.should == "PPC Mac OS X"
+  end
+
+  it "should return 'en' as its localization" do
+    @useragent.localization.should == "en-us"
+  end
+end
+
+describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-us) AppleWebKit/124 (KHTML, like Gecko) Safari/125'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-us) AppleWebKit/124 (KHTML, like Gecko) Safari/125")
+  end
+
+  it_should_behave_like "Safari browser"
+
+  it "should return '125' as its build" do
+    @useragent.build.should == "125"
+  end
+
+  it "should return '1.2' as its version" do
+    @useragent.version.should == "1.2"
+  end
+
+  it "should return '124' as its webkit version" do
+    @useragent.webkit.version.should == "124"
+  end
+
+  it "should return 'Macintosh' as its platform" do
+    @useragent.platform.should == "Macintosh"
+  end
+
+  it "should return 'PPC Mac OS X' as its os" do
+    @useragent.os.should == "PPC Mac OS X"
+  end
+
+  it "should return 'en' as its localization" do
+    @useragent.localization.should == "en-us"
+  end
+end
+
 describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/125.5.7 (KHTML, like Gecko) Safari/125.12'" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/125.5.7 (KHTML, like Gecko) Safari/125.12")
@@ -271,6 +495,38 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/1
 
   it "should return 'en' as its localization" do
     @useragent.localization.should == "en"
+  end
+end
+
+describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; fr-fr) AppleWebKit/85.7 (KHTML, like Gecko) Safari/85.5'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; PPC Mac OS X; fr-fr) AppleWebKit/85.7 (KHTML, like Gecko) Safari/85.5")
+  end
+
+  it_should_behave_like "Safari browser"
+
+  it "should return '85.5' as its build" do
+    @useragent.build.should == "85.5"
+  end
+
+  it "should return '1.0' as its version" do
+    @useragent.version.should == "1.0"
+  end
+
+  it "should return '85.7' as its webkit version" do
+    @useragent.webkit.version.should == "85.7"
+  end
+
+  it "should return 'Macintosh' as its platform" do
+    @useragent.platform.should == "Macintosh"
+  end
+
+  it "should return 'PPC Mac OS X' as its os" do
+    @useragent.os.should == "PPC Mac OS X"
+  end
+
+  it "should return 'en' as its localization" do
+    @useragent.localization.should == "fr-fr"
   end
 end
 
