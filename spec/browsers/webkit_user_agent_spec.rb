@@ -18,7 +18,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) A
   it_should_behave_like "Safari browser"
 
   it "should return '526.8' as its build" do
-    @useragent.build.should == "526.8"
+    @useragent.build.should == "526.9"
   end
 
   it "should return '4.0dp1' as its version" do
@@ -50,7 +50,7 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en) AppleWebKit/5
   it_should_behave_like "Safari browser"
 
   it "should return '526.8' as its build" do
-    @useragent.build.should == "526.8"
+    @useragent.build.should == "526.9"
   end
 
   it "should return '4.0dp1' as its version" do
@@ -186,7 +186,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en) AppleWebKit
   it_should_behave_like "Safari browser"
 
   it "should return '419.3' as its build" do
-    @useragent.build.should == "419.3"
+    @useragent.build.should == "419"
   end
 
   it "should return '2.0.4' as its version" do
@@ -218,7 +218,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-us) AppleWebKi
   it_should_behave_like "Safari browser"
 
   it "should return '412.2' as its build" do
-    @useragent.build.should == "412.2"
+    @useragent.build.should == "412.6"
   end
 
   it "should return '2.0' as its version" do
@@ -250,7 +250,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/4
   it_should_behave_like "Safari browser"
 
   it "should return '412.2.2' as its build" do
-    @useragent.build.should == "412.2.2"
+    @useragent.build.should == "412.6.2"
   end
 
   it "should return '2.0' as its version" do
@@ -282,7 +282,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/3
   it_should_behave_like "Safari browser"
 
   it "should return '312.6' as its build" do
-    @useragent.build.should == "312.6"
+    @useragent.build.should == "312.8"
   end
 
   it "should return '1.3.2' as its version" do
@@ -314,7 +314,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; fr-ch) AppleWebKi
   it_should_behave_like "Safari browser"
 
   it "should return '312' as its build" do
-    @useragent.build.should == "312"
+    @useragent.build.should == "312.1.1"
   end
 
   it "should return '1.3' as its version" do
@@ -346,7 +346,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; es-es) AppleWebKi
   it_should_behave_like "Safari browser"
 
   it "should return '312.3.3' as its build" do
-    @useragent.build.should == "312.3.3"
+    @useragent.build.should == "312.5.2"
   end
 
   it "should return '1.3.1' as its version" do
@@ -378,7 +378,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; fr) AppleWebKit/3
   it_should_behave_like "Safari browser"
 
   it "should return '312.3.1' as its build" do
-    @useragent.build.should == "312.3.1"
+    @useragent.build.should == "312.5.1"
   end
 
   it "should return '1.3.1' as its version" do
@@ -410,7 +410,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-us) AppleWebKi
   it_should_behave_like "Safari browser"
 
   it "should return '312.3' as its build" do
-    @useragent.build.should == "312.3"
+    @useragent.build.should == "312.5"
   end
 
   it "should return '1.3.1' as its version" do
@@ -442,7 +442,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-us) AppleWebKi
   it_should_behave_like "Safari browser"
 
   it "should return '125' as its build" do
-    @useragent.build.should == "125"
+    @useragent.build.should == "124"
   end
 
   it "should return '1.2' as its version" do
@@ -474,7 +474,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/1
   it_should_behave_like "Safari browser"
 
   it "should return '125.12' as its build" do
-    @useragent.build.should == "125.12"
+    @useragent.build.should == "125.5.7"
   end
 
   it "should return '1.2.4' as its version" do
@@ -506,7 +506,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; fr-fr) AppleWebKi
   it_should_behave_like "Safari browser"
 
   it "should return '85.5' as its build" do
-    @useragent.build.should == "85.5"
+    @useragent.build.should == "85.7"
   end
 
   it "should return '1.0' as its version" do
@@ -538,7 +538,7 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit
   it_should_behave_like "Safari browser"
 
   it "should return '419' as its build" do
-    @useragent.build.should == "419"
+    @useragent.build.should == "420.1"
   end
 
   it "should return '3.0' as its version" do
@@ -570,7 +570,7 @@ describe "UserAgent: 'Mozilla/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/4
   it_should_behave_like "Safari browser"
 
   it "should return '419' as its build" do
-    @useragent.build.should == "419"
+    @useragent.build.should == "420.1"
   end
 
   it "should return '3.0' as its version" do
@@ -621,6 +621,40 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKi
 
   it "should return 'Windows XP' as its os" do
     @useragent.os.should == "Windows XP"
+  end
+
+  it "should return 'en-US' as its localization" do
+    @useragent.localization.should == "en-US"
+  end
+end
+
+describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.2 (KHTML, like Gecko) Chrome/6.0'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.2 (KHTML, like Gecko) Chrome/6.0")
+  end
+
+  it "should return 'Chrome' as its browser" do
+    @useragent.browser.should == "Chrome"
+  end
+
+  it "should return '533.2' as its build" do
+    @useragent.build.should == "533.2"
+  end
+
+  it "should return '6.0' as its version" do
+    @useragent.version.should == "6.0"
+  end
+
+  it "should return '533.2' as its webkit version" do
+    @useragent.webkit.version.should == "533.2"
+  end
+
+  it "should return 'Windows' as its platform" do
+    @useragent.platform.should == "Windows"
+  end
+
+  it "should return 'Windows 7' as its os" do
+    @useragent.os.should == "Windows 7"
   end
 
   it "should return 'en-US' as its localization" do
