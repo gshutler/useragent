@@ -10,6 +10,38 @@ describe "Safari browser", :shared => true do
   end
 end
 
+describe "UserAgent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16")
+  end
+
+  it_should_behave_like "Safari browser"
+
+  it "should return '533.16' as its build" do
+    @useragent.build.should == "533.16"
+  end
+
+  it "should return '5.0' as its version" do
+    @useragent.version.should == "5.0"
+  end
+
+  it "should return '533.16' as its webkit version" do
+    @useragent.webkit.version.should == "533.16"
+  end
+
+  it "should return 'Macintosh' as its platform" do
+    @useragent.platform.should == "Macintosh"
+  end
+
+  it "should return 'Intel Mac OS X 10_6_3' as its os" do
+    @useragent.os.should == "Intel Mac OS X 10_6_3"
+  end
+
+  it "should return 'en-us' as its localization" do
+    @useragent.localization.should == "en-us"
+  end
+end
+
 describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/526.9 (KHTML, like Gecko) Version/4.0dp1 Safari/526.8'" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/526.9 (KHTML, like Gecko) Version/4.0dp1 Safari/526.8")
