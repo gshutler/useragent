@@ -53,6 +53,8 @@ class UserAgent
       def version
         if browser == "Chrome"
           chrome.version
+        elsif os =~ /CPU (?:iPhone |iPod )?OS ([\d_]+) like Mac OS X/
+          $1.gsub(/_/, '.')
         elsif product = detect_product("Version")
           product.version
         else
