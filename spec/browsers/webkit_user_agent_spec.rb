@@ -723,6 +723,70 @@ describe "UserAgent: Mozilla/5.0 (iPod; U; CPU iPhone OS 3_1_3 like Mac OS X; en
   end
 end
 
+describe "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-us) AppleWebKit/533.19.4 (KHTML, like Gecko) Version/5.0.3 Safari/533.19.4" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-us) AppleWebKit/533.19.4 (KHTML, like Gecko) Version/5.0.3 Safari/533.19.4")
+  end
+
+  it_should_behave_like "Safari browser"
+
+  it "should return '533.19.4' as its build" do
+    @useragent.build.should == "533.19.4"
+  end
+
+  it "should return '5.0.3' as its version" do
+    @useragent.version.should == "5.0.3"
+  end
+
+  it "should return '533.19.4' as its webkit version" do
+    @useragent.webkit.version.should == "533.19.4"
+  end
+
+  it "should return 'Macintosh' as its platform" do
+    @useragent.platform.should == "Macintosh"
+  end
+
+  it "should return 'Intel Mac OS X 10_6_5' as its os" do
+    @useragent.os.should == "Intel Mac OS X 10_6_5"
+  end
+
+  it "should return 'en' as its localization" do
+    @useragent.localization.should == "en-us"
+  end
+end
+
+describe "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8B117 Safari/6531.22.7" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8B117 Safari/6531.22.7")
+  end
+
+  it_should_behave_like "Safari browser"
+
+  it "should return '532.9' as its build" do
+    @useragent.build.should == "532.9"
+  end
+
+  it "should return '4.1' as its version" do
+    @useragent.version.should == "4.1"
+  end
+
+  it "should return '532.9' as its webkit version" do
+    @useragent.webkit.version.should == "532.9"
+  end
+
+  it "should return 'iPhone' as its platform" do
+    @useragent.platform.should == "iPhone"
+  end
+
+  it "should return 'CPU iPhone OS 4_1 like Mac OS X'" do
+    @useragent.os.should == "CPU iPhone OS 4_1 like Mac OS X"
+  end
+
+  it "should return 'en' as its localization" do
+    @useragent.localization.should == "en-us"
+  end
+end
+
 describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.0.2 Safari/525.13'" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.0.2 Safari/525.13")
@@ -784,6 +848,40 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKi
 
   it "should return 'Windows 7' as its os" do
     @useragent.os.should == "Windows 7"
+  end
+
+  it "should return 'en-US' as its localization" do
+    @useragent.localization.should == "en-US"
+  end
+end
+
+describe "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.231 Safari/534.10" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.231 Safari/534.10")
+  end
+
+  it "should return 'Chrome' as its browser" do
+    @useragent.browser.should == "Chrome"
+  end
+
+  it "should return '534.10' as its build" do
+    @useragent.build.should == "534.10"
+  end
+
+  it "should return '8.0.552.231' as its version" do
+    @useragent.version.should == "8.0.552.231"
+  end
+
+  it "should return '534.10' as its webkit version" do
+    @useragent.webkit.version.should == "534.10"
+  end
+
+  it "should return 'Macintosh' as its platform" do
+    @useragent.platform.should == "Macintosh"
+  end
+
+  it "should return 'Intel Mac OS X 10_6_5' as its os" do
+    @useragent.os.should == "Intel Mac OS X 10_6_5"
   end
 
   it "should return 'en-US' as its localization" do
