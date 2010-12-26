@@ -1,7 +1,7 @@
-require 'spec/rake/spectask'
+require 'rspec/core/rake_task'
 
 task :default => :spec
 
-Spec::Rake::SpecTask.new do |t|
-  t.warning = true
+RSpec::Core::RakeTask.new do |t|
+  t.ruby_opts = ["-w"]
 end

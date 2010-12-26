@@ -1,6 +1,6 @@
 require 'user_agent'
 
-describe "Safari browser", :shared => true do
+shared_examples_for "Safari browser" do
   it "should return 'Safari' as its browser" do
     @useragent.browser.should == "Safari"
   end
