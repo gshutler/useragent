@@ -124,7 +124,7 @@ describe "Non-Chrome Frame browsers" do
   it "shouldn't pose as chromeframe" do
     @useragent.chromeframe.should be_nil
   end
-end 
+end
 
 describe "Chrome Frame installs before version 4.0" do
   before do
@@ -136,7 +136,7 @@ describe "Chrome Frame installs before version 4.0" do
   it "should return true as chromeframe" do
     @useragent.chromeframe.should be_true
   end
-  
+
   it "shouldn't have a version" do
     @useragent.chromeframe.should_not respond_to(:version)
   end
@@ -152,7 +152,7 @@ describe "Chrome Frame from version 4.0 on" do
   it "should return true as chromeframe" do
     @useragent.chromeframe.should be_true
   end
-  
+
   it "should have a version" do
     @useragent.chromeframe.version.should == "4.0"
   end
