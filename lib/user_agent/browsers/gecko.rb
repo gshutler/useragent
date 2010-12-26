@@ -25,11 +25,12 @@ class UserAgent
       end
 
       def security
-        Security[application.comment[1]]
+        Security[application.comment[1]] || :strong
       end
 
       def os
-        OperatingSystems.normalize_os(application.comment[2])
+        i = application.comment[1] == 'U' ? 2 : 1
+        OperatingSystems.normalize_os(application.comment[i])
       end
 
       def localization
