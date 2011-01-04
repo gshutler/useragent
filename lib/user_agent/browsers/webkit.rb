@@ -5,6 +5,10 @@ class UserAgent
         agent.detect { |useragent| useragent.product == "Safari" || useragent.product == "Chrome" }
       end
 
+      def webkit?
+        true
+      end
+
       def browser
         if os =~ /Android/
           'Android'

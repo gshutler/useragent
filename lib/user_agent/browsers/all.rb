@@ -44,6 +44,10 @@ class UserAgent
         detect_product(method) || super
       end
 
+      def webkit?
+        false
+      end
+
       private
         def detect_product(product)
           detect { |useragent| useragent.product.to_s.downcase == product.to_s.downcase }
