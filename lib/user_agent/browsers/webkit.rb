@@ -6,14 +6,14 @@ class UserAgent
       end
 
       def browser
-        if detect_product("Chrome")
-          "Chrome"
-        elsif os =~ /Android/
+        if os =~ /Android/
           'Android'
+        elsif detect_product('Chrome')
+          'Chrome'
         elsif platform == 'webOS'
           'webOS Browser'
         else
-          "Safari"
+          'Safari'
         end
       end
 
@@ -55,12 +55,12 @@ class UserAgent
 
       # Prior to Safari 3, the user agent did not include a version number
       def version
-        if browser == "Chrome"
-          chrome.version
-        elsif os =~ /CPU (?:iPhone |iPod )?OS ([\d_]+) like Mac OS X/
+        if os =~ /CPU (?:iPhone |iPod )?OS ([\d_]+) like Mac OS X/
           $1.gsub(/_/, '.')
-        elsif product = detect_product("Version")
+        elsif product = detect_product('Version')
           product.version
+        elsif browser == 'Chrome'
+          chrome.version
         else
           BuildVersions[build]
         end
