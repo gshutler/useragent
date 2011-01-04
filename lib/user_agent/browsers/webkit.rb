@@ -14,8 +14,8 @@ class UserAgent
           'Android'
         elsif detect_product('Chrome')
           'Chrome'
-        elsif platform == 'webOS'
-          'webOS'
+        elsif platform == 'webOS' || platform == 'BlackBerry'
+          platform
         else
           'Safari'
         end

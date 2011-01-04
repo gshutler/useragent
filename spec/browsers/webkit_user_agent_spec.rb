@@ -1035,3 +1035,35 @@ describe "UserAgent: 'Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Nexus O
 
   it { @useragent.should be_mobile }
 end
+
+describe "UserAgent: 'Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en) AppleWebKit/534.1+ (KHTML, Like Gecko) Version/6.0.0.141 Mobile Safari/534.1+'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en) AppleWebKit/534.1+ (KHTML, Like Gecko) Version/6.0.0.141 Mobile Safari/534.1+")
+  end
+
+  it "should return 'BlackBerry' as its browser" do
+    @useragent.browser.should == "BlackBerry"
+  end
+
+  it "should return '534.1+' as its build" do
+    @useragent.build.should == "534.1+"
+  end
+
+  it "should return '6.0.0.141' as its version" do
+    @useragent.version.should == "6.0.0.141"
+  end
+
+  it "should return '534.1+' as its webkit version" do
+    @useragent.webkit.version.should == "534.1+"
+  end
+
+  it "should return 'BlackBerry' as its platform" do
+    @useragent.platform.should == "BlackBerry"
+  end
+
+  it "should return 'BlackBerry 9800' as its os" do
+    @useragent.os.should == "BlackBerry 9800"
+  end
+
+  it { @useragent.should be_mobile }
+end
