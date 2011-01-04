@@ -48,6 +48,16 @@ class UserAgent
         false
       end
 
+      def mobile?
+        if browser == 'webOS'
+          true
+        elsif detect_product('Mobile')
+          true
+        else
+          false
+        end
+      end
+
       private
         def detect_product(product)
           detect { |useragent| useragent.product.to_s.downcase == product.to_s.downcase }

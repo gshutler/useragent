@@ -9,7 +9,8 @@ shared_examples_for "Firefox browser" do
     @useragent.security.should == :strong
   end
 
-    it { @useragent.should_not be_webkit }
+  it { @useragent.should_not be_webkit }
+
 end
 
 describe 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b8) Gecko/20100101 Firefox/4.0b8' do
@@ -38,6 +39,8 @@ describe 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b8) Gecko/20100101 
   it "should return nil as its localization" do
     @useragent.localization.should be_nil
   end
+
+  it { @useragent.should_not be_mobile }
 end
 
 describe 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13' do
@@ -66,6 +69,8 @@ describe 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.13) Ge
   it "should return 'en-US' as its localization" do
     @useragent.localization.should == "en-US"
   end
+
+  it { @useragent.should_not be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008070206 Firefox/3.0.1'" do
@@ -94,6 +99,8 @@ describe "UserAgent: 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/
   it "should return 'en-US' as its localization" do
     @useragent.localization.should == "en-US"
   end
+
+  it { @useragent.should_not be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14'" do

@@ -15,7 +15,7 @@ class UserAgent
         elsif detect_product('Chrome')
           'Chrome'
         elsif platform == 'webOS'
-          'webOS Browser'
+          'webOS'
         else
           'Safari'
         end

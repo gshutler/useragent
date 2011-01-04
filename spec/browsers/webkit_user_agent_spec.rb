@@ -42,6 +42,8 @@ describe "UserAgent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us) Ap
   it "should return 'en-us' as its localization" do
     @useragent.localization.should == "en-us"
   end
+
+  it { @useragent.should_not be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/526.9 (KHTML, like Gecko) Version/4.0dp1 Safari/526.8'" do
@@ -74,6 +76,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) A
   it "should return 'en-us' as its localization" do
     @useragent.localization.should == "en-us"
   end
+
+  it { @useragent.should_not be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en) AppleWebKit/526.9 (KHTML, like Gecko) Version/4.0dp1 Safari/526.8'" do
@@ -106,6 +110,8 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en) AppleWebKit/5
   it "should return 'en' as its localization" do
     @useragent.localization.should == "en"
   end
+
+  it { @useragent.should_not be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.18'" do
@@ -594,6 +600,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit
   it "should return 'en' as its localization" do
     @useragent.localization.should == "en"
   end
+
+  it { @useragent.should be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/4A102 Safari/419'" do
@@ -626,6 +634,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/4
   it "should return 'en' as its localization" do
     @useragent.localization.should == "en"
   end
+
+  it { @useragent.should be_mobile }
 end
 
 describe "UserAgent: Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B367 Safari/531.21.10" do
@@ -658,8 +668,9 @@ describe "UserAgent: Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) Appl
   it "should return 'en-us' as its localization" do
     @useragent.localization.should == "en-us"
   end
-end
 
+  it { @useragent.should be_mobile }
+end
 
 describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_3 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7E18 Safari/528.16'" do
   before do
@@ -723,6 +734,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPod; U; CPU iPhone OS 3_1_3 like Mac OS X; e
   it "should return 'en' as its localization" do
     @useragent.localization.should == "en-us"
   end
+
+  it { @useragent.should be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-us) AppleWebKit/533.19.4 (KHTML, like Gecko) Version/5.0.3 Safari/533.19.4'" do
@@ -755,6 +768,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-us) A
   it "should return 'en' as its localization" do
     @useragent.localization.should == "en-us"
   end
+
+  it { @useragent.should_not be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8B117 Safari/6531.22.7'" do
@@ -787,6 +802,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; e
   it "should return 'en' as its localization" do
     @useragent.localization.should == "en-us"
   end
+
+  it { @useragent.should be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.0.2 Safari/525.13'" do
@@ -896,8 +913,8 @@ describe "UserAgent: 'Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHT
     @useragent = UserAgent.parse("Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Version/1.0 Safari/532.2 Pre/1.1")
   end
 
-  it "should return 'webOS Browser' as its browser" do
-    @useragent.browser.should == "webOS Browser"
+  it "should return 'webOS' as its browser" do
+    @useragent.browser.should == "webOS"
   end
 
   it "should return '532.2' as its build" do
@@ -919,6 +936,8 @@ describe "UserAgent: 'Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHT
   it "should return 'Palm Pre 1.1' as its os" do
     @useragent.os.should == "Palm Pre 1.1"
   end
+
+  it { @useragent.should be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Version/1.0 Safari/532.2 Pixi/1.1'" do
@@ -926,8 +945,8 @@ describe "UserAgent: 'Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHT
     @useragent = UserAgent.parse("Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Version/1.0 Safari/532.2 Pixi/1.1")
   end
 
-  it "should return 'webOS Browser' as its browser" do
-    @useragent.browser.should == "webOS Browser"
+  it "should return 'webOS' as its browser" do
+    @useragent.browser.should == "webOS"
   end
 
   it "should return '532.2' as its build" do
@@ -949,6 +968,8 @@ describe "UserAgent: 'Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHT
   it "should return 'Palm Pixi 1.1' as its os" do
     @useragent.os.should == "Palm Pixi 1.1"
   end
+
+  it { @useragent.should be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Linux; U; Android 1.5; de-; HTC Magic Build/PLAT-RC33) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1'" do
@@ -979,6 +1000,8 @@ describe "UserAgent: 'Mozilla/5.0 (Linux; U; Android 1.5; de-; HTC Magic Build/P
   it "should return 'Android 1.5' as its os" do
     @useragent.os.should == "Android 1.5"
   end
+
+  it { @useragent.should be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Nexus One Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17 Chrome/4.1.249.1025'" do
@@ -1009,4 +1032,6 @@ describe "UserAgent: 'Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Nexus O
   it "should return 'Android 2.1-update1' as its os" do
     @useragent.os.should == "Android 2.1-update1"
   end
+
+  it { @useragent.should be_mobile }
 end
