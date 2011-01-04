@@ -8,6 +8,8 @@ class UserAgent
       def browser
         if detect_product("Chrome")
           "Chrome"
+        elsif os =~ /Android/
+          'Android'
         elsif platform == 'webOS'
           'webOS Browser'
         else

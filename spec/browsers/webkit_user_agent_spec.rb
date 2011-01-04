@@ -948,3 +948,38 @@ describe "UserAgent: 'Mozilla/5.0 (webOS/1.4.0; U; en-US) AppleWebKit/532.2 (KHT
     @useragent.os.should == "Palm Pixi 1.1"
   end
 end
+
+
+
+
+
+
+describe "UserAgent: 'Mozilla/5.0 (Linux; U; Android 1.5; de-; HTC Magic Build/PLAT-RC33) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Linux; U; Android 1.5; de-; HTC Magic Build/PLAT-RC33) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1")
+  end
+
+  it "should return 'Android' as its browser" do
+    @useragent.browser.should == "Android"
+  end
+
+  it "should return '528.5+' as its build" do
+    @useragent.build.should == "528.5+"
+  end
+
+  it "should return '3.1.2' as its version" do
+    @useragent.version.should == "3.1.2"
+  end
+
+  it "should return '528.5+' as its webkit version" do
+    @useragent.webkit.version.should == "528.5+"
+  end
+
+  it "should return 'Linux' as its platform" do
+    @useragent.platform.should == "Linux"
+  end
+
+  it "should return 'Android 1.5' as its os" do
+    @useragent.os.should == "Android 1.5"
+  end
+end
