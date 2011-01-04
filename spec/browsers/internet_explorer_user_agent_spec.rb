@@ -32,6 +32,8 @@ describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0)'" do
   it "should return 'Windows Vista' as its os" do
     @useragent.os.should == "Windows Vista"
   end
+
+  it { @useragent.should_not be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)'" do
@@ -112,6 +114,24 @@ describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.1)'" do
   it "should return 'Windows XP' as its os" do
     @useragent.os.should == "Windows XP"
   end
+end
+
+describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.0; Trident/3.1; IEMobile/7.0; SAMSUNG; SGH-i917)'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.0; Trident/3.1; IEMobile/7.0; SAMSUNG; SGH-i917)")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "should return '7.0' as its version" do
+    @useragent.version.should == "7.0"
+  end
+
+  it "should return 'Windows Phone OS 7.0' as its os" do
+    @useragent.os.should == "Windows Phone OS 7.0"
+  end
+
+  it { @useragent.should be_mobile }
 end
 
 describe "Non-Chrome Frame browsers" do
