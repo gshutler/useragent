@@ -8,6 +8,8 @@ class UserAgent
       def browser
         if detect_product("Chrome")
           "Chrome"
+        elsif platform == 'webOS'
+          'webOS Browser'
         else
           "Safari"
         end
@@ -63,7 +65,11 @@ class UserAgent
       end
 
       def platform
-        application.comment[0]
+        if application.comment[0] =~ /webOS/
+          'webOS'
+        else
+          application.comment[0]
+        end
       end
 
       def webkit
@@ -75,7 +81,11 @@ class UserAgent
       end
 
       def os
-        OperatingSystems.normalize_os(application.comment[2])
+        if platform == 'webOS'
+          "Palm #{last.product} #{last.version}"
+        else
+          OperatingSystems.normalize_os(application.comment[2])
+        end
       end
 
       def localization
