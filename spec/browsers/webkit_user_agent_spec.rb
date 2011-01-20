@@ -806,6 +806,74 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; e
   it { @useragent.should be_mobile }
 end
 
+describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Mobile/8A306'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Mobile/8A306")
+  end
+
+  it_should_behave_like "Safari browser"
+
+  it "should return '532.9' as its build" do
+    @useragent.build.should == "532.9"
+  end
+
+  it "should return '4.0.1' as its version" do
+    @useragent.version.should == "4.0.1"
+  end
+
+  it "should return '532.9' as its webkit version" do
+    @useragent.webkit.version.should == "532.9"
+  end
+
+  it "should return 'iPhone' as its platform" do
+    @useragent.platform.should == "iPhone"
+  end
+
+  it "should return 'CPU iPhone OS 4_0_1 like Mac OS X'" do
+    @useragent.os.should == "CPU iPhone OS 4_0_1 like Mac OS X"
+  end
+
+  it "should return 'en' as its localization" do
+    @useragent.localization.should == "en-us"
+  end
+
+  it { @useragent.should be_mobile }
+end
+
+describe "UserAgent: 'Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_0_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A306 Safari/6531.22.7'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_0_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A306 Safari/6531.22.7")
+  end
+
+  it_should_behave_like "Safari browser"
+
+  it "should return '532.9' as its build" do
+    @useragent.build.should == "532.9"
+  end
+
+  it "should return '4.0.1' as its version" do
+    @useragent.version.should == "4.0.1"
+  end
+
+  it "should return '532.9' as its webkit version" do
+    @useragent.webkit.version.should == "532.9"
+  end
+
+  it "should return 'iPhone' as its platform" do
+    @useragent.platform.should == "iPhone Simulator"
+  end
+
+  it "should return 'CPU iPhone OS 4_0_1 like Mac OS X'" do
+    @useragent.os.should == "CPU iPhone OS 4_0_1 like Mac OS X"
+  end
+
+  it "should return 'en' as its localization" do
+    @useragent.localization.should == "en-us"
+  end
+
+  it { @useragent.should be_mobile }
+end
+
 describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.0.2 Safari/525.13'" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.0.2 Safari/525.13")
