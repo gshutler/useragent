@@ -12,7 +12,7 @@ class UserAgent
 
   def self.parse(string)
     agents = []
-    while m = string.match(MATCHER)
+    while m = string.to_s.match(MATCHER)
       agents << new(m[1], m[2], m[4])
       string = string.sub(m[0], '').strip
     end

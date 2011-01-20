@@ -169,6 +169,10 @@ describe UserAgent, ".parse" do
     UserAgent.parse("").should be_empty
   end
 
+  it "should parse nil" do
+    UserAgent.parse(nil).should be_empty
+  end
+
   it "should parse a single product" do
     useragent = UserAgent.new("Mozilla")
     UserAgent.parse("Mozilla").application.should == useragent
@@ -183,7 +187,7 @@ describe UserAgent, ".parse" do
     useragent = UserAgent.new("Mozilla", "5.0", ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"])
     UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us)").application.should == useragent
   end
-  
+
   it "should parse a single product, version, and comment, with space-padded semicolons" do
     useragent = UserAgent.new("Mozilla", "5.0", ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"])
     UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3 ; en-us; )").application.should == useragent
