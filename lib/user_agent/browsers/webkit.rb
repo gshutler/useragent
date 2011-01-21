@@ -95,8 +95,14 @@ class UserAgent
       end
 
       def localization
-        application.comment[3]
+        # TODO: Ensure that this is common to all webOS UserAgent
+        if platform == 'webOS'
+          application.comment[2]
+        else
+          application.comment[3]
+        end
       end
+
     end
   end
 end
