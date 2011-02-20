@@ -1,6 +1,7 @@
 require 'user_agent/comparable'
 require 'user_agent/browsers'
 require 'user_agent/operating_systems'
+require 'user_agent/version'
 
 class UserAgent
   # http://www.texsoft.it/index.php?m=sw.php.useragent
@@ -30,7 +31,7 @@ class UserAgent
     end
 
     if version && !version.empty?
-      @version = version
+      @version = Version.new(version)
     else
       @version = nil
     end

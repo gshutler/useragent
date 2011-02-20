@@ -338,3 +338,77 @@ describe UserAgent::Browsers::All, "#>=" do
     @ie_7.should >= @ie_6
   end
 end
+
+describe UserAgent::Version do
+  it "should be eql if versions are the same" do
+    UserAgent::Version.new("5.0").should eql(UserAgent::Version.new("5.0"))
+  end
+
+  it "should not be eql if versions are the different" do
+    UserAgent::Version.new("9.0").should_not eql(UserAgent::Version.new("5.0"))
+  end
+
+  it "should be == if versions are the same" do
+    UserAgent::Version.new("5.0").should == UserAgent::Version.new("5.0")
+  end
+
+  it "should be == if versions are the same string" do
+    UserAgent::Version.new("5.0").should == "5.0"
+  end
+
+  it "should not be == if versions are the different" do
+    UserAgent::Version.new("9.0").should_not == UserAgent::Version.new("5.0")
+  end
+
+  it "should not be == to nil" do
+    UserAgent::Version.new("9.0").should_not == nil
+  end
+
+  it "should not be == to []" do
+    UserAgent::Version.new("9.0").should_not == []
+  end
+
+  it "should be < if version is less" do
+    UserAgent::Version.new("9.0").should < UserAgent::Version.new("10.0")
+  end
+
+  it "should be < if version is less and a string" do
+    UserAgent::Version.new("9.0").should < "10.0"
+  end
+
+  it "should not be < if version is greater" do
+    UserAgent::Version.new("9.0").should_not > UserAgent::Version.new("10.0")
+  end
+
+  it "should be <= if version is less" do
+    UserAgent::Version.new("9.0").should <= UserAgent::Version.new("10.0")
+  end
+
+  it "should not be <= if version is greater" do
+    UserAgent::Version.new("9.0").should_not >= UserAgent::Version.new("10.0")
+  end
+
+  it "should be <= if version is same" do
+    UserAgent::Version.new("9.0").should <= UserAgent::Version.new("9.0")
+  end
+
+  it "should be > if version is greater" do
+    UserAgent::Version.new("1.0").should > UserAgent::Version.new("0.9")
+  end
+
+  it "should not be > if version is less" do
+    UserAgent::Version.new("0.0.1").should_not > UserAgent::Version.new("10.0")
+  end
+
+  it "should be >= if version is greater" do
+    UserAgent::Version.new("10.0").should >= UserAgent::Version.new("4.0")
+  end
+
+  it "should not be >= if version is less" do
+    UserAgent::Version.new("0.9").should_not >= UserAgent::Version.new("1.0")
+  end
+
+  it "should raise ArgumentError if other is nil" do
+    lambda { UserAgent::Version.new("9.0").should < nil }.should raise_error(ArgumentError, "comparison of Version with nil failed")
+  end
+end

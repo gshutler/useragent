@@ -942,7 +942,7 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKi
   end
 end
 
-describe "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.231 Safari/534.10" do
+describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.231 Safari/534.10'" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.231 Safari/534.10")
   end
@@ -973,6 +973,50 @@ describe "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/5
 
   it "should return 'en-US' as its localization" do
     @useragent.localization.should == "en-US"
+  end
+end
+
+describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.639.0 Safari/534.16'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.639.0 Safari/534.16")
+  end
+
+  it "should return 'Chrome' as its browser" do
+    @useragent.browser.should == "Chrome"
+  end
+
+  it "should return '534.16' as its build" do
+    @useragent.build.should == "534.16"
+  end
+
+  it "should return '10.0.639.0' as its version" do
+    @useragent.version.should == "10.0.639.0"
+  end
+
+  it "should return '534.16' as its webkit version" do
+    @useragent.webkit.version.should == "534.16"
+  end
+
+  it "should return 'Macintosh' as its platform" do
+    @useragent.platform.should == "Macintosh"
+  end
+
+  it "should return 'Intel Mac OS X 10_6_5' as its os" do
+    @useragent.os.should == "Intel Mac OS X 10_6_5"
+  end
+
+  it "should return 'en-US' as its localization" do
+    @useragent.localization.should == "en-US"
+  end
+
+  it "should be greater than Chrome 8.0" do
+    other = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.231 Safari/534.10")
+    @useragent.should > other
+  end
+
+  it "should not be less than Chrome 8.0" do
+    other = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.231 Safari/534.10")
+    @useragent.should_not < other
   end
 end
 
