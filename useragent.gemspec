@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
     "lib/user_agent/browsers/webkit.rb",
     "lib/user_agent/comparable.rb",
     "lib/user_agent/operating_systems.rb",
+    "lib/user_agent/version.rb",
     "lib/useragent.rb",
     "LICENSE",
     "README.rdoc"
