@@ -25,10 +25,14 @@ class UserAgent
       end
 
       # Before version 4.0, Chrome Frame declared itself (unversioned) in a comment;
-      # as of 4.0 it declares itself as a separate product with a version.
+      # as of 4.0 it can declare itself versioned in a comment
+      # or as a separate product with a version
 
       def chromeframe
-        application.comment.include?("chromeframe") || detect_product("chromeframe")
+        cf = application.comment.include?("chromeframe") || detect_product("chromeframe")
+        return cf if cf
+        cf_comment = application.comment.detect{|c| c['chromeframe/']}
+        cf_comment ? UserAgent.new(*cf_comment.split('/', 2)) : nil
       end
 
       def platform
