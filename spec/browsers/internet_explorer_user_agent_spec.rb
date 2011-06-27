@@ -163,17 +163,35 @@ describe "Chrome Frame installs before version 4.0" do
 end
 
 describe "Chrome Frame from version 4.0 on" do
-  before do
-    @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) chromeframe/4.0")
+  context "as separate product" do
+    before do
+      @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) chromeframe/4.0")
+    end
+
+    it_should_behave_like "Internet Explorer browser"
+
+    it "should return true as chromeframe" do
+      @useragent.chromeframe.should be_true
+    end
+
+    it "should have a version" do
+      @useragent.chromeframe.version.should == "4.0"
+    end
   end
 
-  it_should_behave_like "Internet Explorer browser"
+  context "as versioned comment" do
+    before do
+      @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; chromeframe/4.0)")
+    end
 
-  it "should return true as chromeframe" do
-    @useragent.chromeframe.should be_true
-  end
+    it_should_behave_like "Internet Explorer browser"
 
-  it "should have a version" do
-    @useragent.chromeframe.version.should == "4.0"
+    it "should return true as chromeframe" do
+      @useragent.chromeframe.should be_true
+    end
+
+    it "should have a version" do
+      @useragent.chromeframe.version.should == "4.0"
+    end
   end
 end
