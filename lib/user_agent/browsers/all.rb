@@ -51,6 +51,8 @@ class UserAgent
       def mobile?
         if browser == 'webOS'
           true
+        elsif platform == 'Symbian'
+          true
         elsif detect_product('Mobile')
           true
         elsif application.comment.detect { |k, v| k =~ /^IEMobile/ }

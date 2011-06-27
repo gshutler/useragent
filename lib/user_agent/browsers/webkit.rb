@@ -14,8 +14,8 @@ class UserAgent
           'Android'
         elsif detect_product('Chrome')
           'Chrome'
-        elsif platform == 'webOS' || platform == 'BlackBerry'
-          platform
+        elsif platform == 'webOS' || platform == 'BlackBerry'  || platform == 'Symbian'
+          platform 
         else
           'Safari'
         end
@@ -71,9 +71,16 @@ class UserAgent
 
         Version.new(str) if str
       end
+      
+      def application
+         apps = self.reject{|agent| agent.comment.nil? || agent.comment.empty?} 
+         apps.first 
+      end
 
-      def platform
-        if application.comment[0] =~ /webOS/
+      def platform                                                                                                       
+        if application.comment[0] =~ /Symbian/
+        'Symbian'             
+        elsif application.comment[0] =~ /webOS/
           'webOS'
         else
           application.comment[0]
@@ -91,6 +98,8 @@ class UserAgent
       def os
         if platform == 'webOS'
           "Palm #{last.product} #{last.version}"
+        elsif platform == 'Symbian'
+          application.comment[0]
         else
           OperatingSystems.normalize_os(application.comment[2])
         end
