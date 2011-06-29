@@ -21,7 +21,8 @@ class UserAgent
       end
 
       def platform
-        application.comment[0]
+        platform = application.comment[0]
+        platform == 'compatible' ? nil : platform
       end
 
       def security
