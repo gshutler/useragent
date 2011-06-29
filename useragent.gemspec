@@ -1,7 +1,6 @@
 Gem::Specification.new do |s|
-  s.name      = "useragent"
-  s.version   = "0.3.1"
-  s.date      = "2011-02-20"
+  s.name    = "useragent"
+  s.version = "0.3.1"
 
   s.homepage    = "http://github.com/josh/useragent"
   s.summary     = "HTTP User Agent parser"
