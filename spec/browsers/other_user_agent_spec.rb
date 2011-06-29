@@ -65,3 +65,18 @@ describe "UserAgent: 'amaya/9.51 libwww/5.4.0'" do
     @useragent.libwww.version.should == "5.4.0"
   end
 end
+
+describe "UserAgent: 'Rails Testing'" do
+  before do
+    @useragent = UserAgent.parse("Rails Testing")
+  end
+
+  it "should return 'Rails' as its browser" do
+    @useragent.browser.should == "Rails"
+  end
+
+  it { @useragent.version.should be_nil }
+  it { @useragent.platform.should be_nil }
+  it { @useragent.os.should be_nil }
+  it { @useragent.should_not be_mobile }
+end

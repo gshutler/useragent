@@ -36,6 +36,14 @@ class UserAgent
         application.version
       end
 
+      def platform
+        nil
+      end
+
+      def os
+        nil
+      end
+
       def respond_to?(symbol)
         detect_product(symbol) ? true : super
       end
@@ -55,7 +63,8 @@ class UserAgent
           true
         elsif detect_product('Mobile')
           true
-        elsif application.comment.detect { |k, v| k =~ /^IEMobile/ }
+        elsif application.comment &&
+            application.comment.detect { |k, v| k =~ /^IEMobile/ }
           true
         else
           false
