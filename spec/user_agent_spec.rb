@@ -5,7 +5,7 @@ describe UserAgent do
     lambda { UserAgent.new(nil) }.should raise_error(ArgumentError, "expected a value for product")
   end
 
-  it "should split comment to any array if a string is passed in" do
+  it "should split comment to an array if a string is passed in" do
     useragent = UserAgent.new("Mozilla", "5.0", "Macintosh; U; Intel Mac OS X 10_5_3; en-us")
     useragent.comment.should == ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"]
   end
