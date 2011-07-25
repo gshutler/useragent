@@ -24,6 +24,30 @@ describe "UserAgent: nil" do
   it { @useragent.should_not be_mobile }
 end
 
+describe "UserAgent: ''" do
+  before do
+    @useragent = UserAgent.parse('')
+  end
+
+  it "should return 'Mozilla' as its browser" do
+    @useragent.browser.should == "Mozilla"
+  end
+
+  it "should return '4.0' as its version" do
+    @useragent.version.should == "4.0"
+  end
+
+  it "should return nil as its platform" do
+    @useragent.platform.should == nil
+  end
+
+  it "should return nil as its os" do
+    @useragent.os.should == nil
+  end
+
+  it { @useragent.should_not be_mobile }
+end
+
 describe "UserAgent: 'Mozilla/4.0 (compatible)'" do
   before do
     @useragent = UserAgent.parse("Mozilla/4.0 (compatible)")
