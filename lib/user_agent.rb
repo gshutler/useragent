@@ -21,7 +21,7 @@ class UserAgent
     agents = []
     while m = string.to_s.match(MATCHER)
       agents << new(m[1], m[2], m[4])
-      string = string.sub(m[0], '').strip
+      string = string[m[0].length..-1].strip
     end
     Browsers.extend(agents)
     agents
