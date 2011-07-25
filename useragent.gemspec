@@ -24,6 +24,9 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
 
+  s.add_development_dependency "rake"
+  s.add_development_dependency "rspec"
+
   s.author = "Joshua Peek"
   s.email  = "josh@joshpeek.com"
 end
