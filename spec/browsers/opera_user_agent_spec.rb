@@ -57,3 +57,27 @@ describe "UserAgent: 'Opera/9.27 (Windows NT 5.1; U; en)'" do
     @useragent.localization.should == "en"
   end
 end
+
+describe "UserAgent: 'Opera/9.80'" do
+  before do
+    @useragent = UserAgent.parse("Opera/9.80")
+  end
+
+  it_should_behave_like "Opera browser"
+
+  it "should return '9.80' as its version" do
+    @useragent.version.should == "9.80"
+  end
+
+  it "should return nil as its platform" do
+    @useragent.platform.should be_nil
+  end
+
+  it "should return nil as its os" do
+    @useragent.os.should be_nil
+  end
+
+  it "should return nil as its localization" do
+    @useragent.localization.should be_nil
+  end
+end

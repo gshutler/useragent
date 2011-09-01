@@ -6,7 +6,9 @@ class UserAgent
       end
 
       def platform
-        if application.comment[0] =~ /Windows/
+        if application.comment.nil?
+          nil
+        elsif application.comment[0] =~ /Windows/
           "Windows"
         else
           application.comment[0]
@@ -14,7 +16,9 @@ class UserAgent
       end
 
       def security
-        if platform == "Macintosh"
+        if application.comment.nil?
+          :strong
+        elsif platform == "Macintosh"
           Security[application.comment[2]]
         else
           Security[application.comment[1]]
@@ -22,7 +26,9 @@ class UserAgent
       end
 
       def os
-        if application.comment[0] =~ /Windows/
+        if application.comment.nil?
+          nil
+        elsif application.comment[0] =~ /Windows/
           OperatingSystems.normalize_os(application.comment[0])
         else
           application.comment[1]
@@ -30,7 +36,9 @@ class UserAgent
       end
 
       def localization
-        if platform == "Macintosh"
+        if application.comment.nil?
+          nil
+        elsif platform == "Macintosh"
           application.comment[3]
         else
           application.comment[2]
