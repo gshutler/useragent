@@ -15,7 +15,7 @@ class UserAgent
         elsif detect_product('Chrome')
           'Chrome'
         elsif platform == 'webOS' || platform == 'BlackBerry'  || platform == 'Symbian'
-          platform 
+          platform
         else
           'Safari'
         end
@@ -71,15 +71,16 @@ class UserAgent
 
         Version.new(str) if str
       end
-      
+
       def application
-         apps = self.reject{|agent| agent.comment.nil? || agent.comment.empty?} 
-         apps.first 
+         self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
       end
 
-      def platform                                                                                                       
-        if application.comment[0] =~ /Symbian/
-        'Symbian'             
+      def platform
+        if application.nil?
+          nil
+        elsif application.comment[0] =~ /Symbian/
+        'Symbian'
         elsif application.comment[0] =~ /webOS/
           'webOS'
         else
@@ -100,20 +101,22 @@ class UserAgent
           "Palm #{last.product} #{last.version}"
         elsif platform == 'Symbian'
           application.comment[0]
-        else
+        elsif application
           OperatingSystems.normalize_os(application.comment[2])
+        else
+          nil
         end
       end
 
       def localization
-        # TODO: Ensure that this is common to all webOS UserAgent
-        if platform == 'webOS'
+        if application.nil?
+          nil
+        elsif platform == 'webOS'
           application.comment[2]
         else
           application.comment[3]
         end
       end
-
     end
   end
 end

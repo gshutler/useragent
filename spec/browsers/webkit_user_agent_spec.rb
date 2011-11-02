@@ -942,6 +942,40 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKi
   end
 end
 
+describe "UserAgent: 'Mozilla/5.0 AppleWebKit/534.10 Chrome/8.0.552.215 Safari/534.10'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 AppleWebKit/534.10 Chrome/8.0.552.215 Safari/534.10")
+  end
+
+  it "should return 'Chrome' as its browser" do
+    @useragent.browser.should == "Chrome"
+  end
+
+  it "should return '534.10' as its build" do
+    @useragent.build.should == "534.10"
+  end
+
+  it "should return '8.0.552.215' as its version" do
+    @useragent.version.should == "8.0.552.215"
+  end
+
+  it "should return '534.10' as its webkit version" do
+    @useragent.webkit.version.should == "534.10"
+  end
+
+  it "should return nil as its platform" do
+    @useragent.platform.should be_nil
+  end
+
+  it "should return nil as its os" do
+    @useragent.os.should be_nil
+  end
+
+  it "should return nil as its localization" do
+    @useragent.localization.should be_nil
+  end
+end
+
 describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.231 Safari/534.10'" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.231 Safari/534.10")
@@ -1184,25 +1218,25 @@ describe "UserAgent: SonyEricssonU8i/R2EA; Mozilla/5.0 (SymbianOS/9.4; U; Series
    before do
     @useragent = UserAgent.parse("SonyEricssonU8i/R2EA; Mozilla/5.0 (SymbianOS/9.4; U; Series60/5.0 Profile/MIDP-2.1 Configuration/CLDC-1.1) AppleWebKit/525 (KHTML, like Gecko) Version/3.0 Safari/525")
   end
-  
+
   it "should return 'SymbianOS' as its browser" do
-   @useragent.browser.should == "Symbian"   
-  end 
-  
-  it "should return '3.0' as its version" do
-     @useragent.version.should == "3.0" 
+   @useragent.browser.should == "Symbian"
   end
-  
+
+  it "should return '3.0' as its version" do
+     @useragent.version.should == "3.0"
+  end
+
   it "should return '525' as its build" do
     @useragent.build.should == "525"
-  end 
-  
+  end
+
   it "should return 'SymbianOS' as its platform" do
     @useragent.platform.should == "Symbian"
   end
   it "should return 'SymbianOS/9.4' as its os " do
-    @useragent.os.should == "SymbianOS/9.4" 
+    @useragent.os.should == "SymbianOS/9.4"
   end
-  
-  it { @useragent.should be_mobile }  
+
+  it { @useragent.should be_mobile }
 end
