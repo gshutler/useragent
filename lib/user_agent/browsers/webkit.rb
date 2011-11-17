@@ -102,7 +102,7 @@ class UserAgent
         elsif platform == 'Symbian'
           application.comment[0]
         elsif application
-          OperatingSystems.normalize_os(application.comment[2])
+        application.comment[2].nil? ? OperatingSystems.normalize_os(application.comment[1]) :  OperatingSystems.normalize_os(application.comment[2]) 
         else
           nil
         end
