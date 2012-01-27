@@ -1240,3 +1240,59 @@ describe "UserAgent: SonyEricssonU8i/R2EA; Mozilla/5.0 (SymbianOS/9.4; U; Series
 
   it { @useragent.should be_mobile }
 end
+
+describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.1.1 Safari/534.51.22" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.1.1 Safari/534.51.22")
+  end
+
+  it "should return 'Safari' as its browser" do
+    @useragent.browser.should == "Safari"
+  end
+
+  it "should return nil as its security" do
+    @useragent.security.should be_nil
+  end
+
+  it { @useragent.should be_webkit }
+
+  it "should return '534.51.22' as its build" do
+    @useragent.build.should == "534.51.22"
+  end
+
+  it "should return '5.1.1' as its version" do
+    @useragent.version.should == "5.1.1"
+  end
+
+  it "should return '534.51.22' as its webkit version" do
+    @useragent.webkit.version.should == "534.51.22"
+  end
+
+  it "should return 'Macintosh' as its platform" do
+    @useragent.platform.should == "Macintosh"
+  end
+
+  it "should return 'Intel Mac OS X 10_7_2' as its os" do
+    @useragent.os.should == "Intel Mac OS X 10_7_2"
+  end
+
+  it "should return nil as its localization" do
+    @useragent.localization.should be_nil
+  end
+
+  it { @useragent.should_not be_mobile }
+end
+
+describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.52.7 (KHTML, like Gecko)" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.52.7 (KHTML, like Gecko)")
+  end
+
+  it "should return 'Safari' as its browser" do
+    @useragent.browser.should == "Safari"
+  end
+
+  it "should return '5.1.2' as its version" do
+    @useragent.version.should == "5.1.2"
+  end
+end
