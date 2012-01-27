@@ -1282,3 +1282,17 @@ describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (
 
   it { @useragent.should_not be_mobile }
 end
+
+describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.52.7 (KHTML, like Gecko)" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.52.7 (KHTML, like Gecko)")
+  end
+
+  it "should return 'Safari' as its browser" do
+    @useragent.browser.should == "Safari"
+  end
+
+  it "should return '5.1.2' as its version" do
+    @useragent.version.should == "5.1.2"
+  end
+end
