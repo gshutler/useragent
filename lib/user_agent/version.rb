@@ -52,12 +52,11 @@ class UserAgent
       case other
       when Version
         if @comparable
-          to_a.zip(other.to_a).each do |a, b|
-            if b.nil?
-              return -1
-            elsif a.nil?
-              return 1
-            elsif a.is_a?(String) && b.is_a?(Integer)
+          ([0]*6).zip(to_a, other.to_a).each do |dump, a, b|
+            a ||= 0
+            b ||= 0
+
+            if a.is_a?(String) && b.is_a?(Integer)
               return -1
             elsif a.is_a?(Integer) && b.is_a?(String)
               return 1

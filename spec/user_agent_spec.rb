@@ -364,6 +364,10 @@ describe UserAgent::Version do
     UserAgent::Version.new("9.0").should < UserAgent::Version.new("10.0")
   end
 
+  it "should be < if version is less" do
+    UserAgent::Version.new("4").should < UserAgent::Version.new("4.1")
+  end
+
   it "should be < if version is less and a string" do
     UserAgent::Version.new("9.0").should < "10.0"
   end
@@ -386,6 +390,10 @@ describe UserAgent::Version do
 
   it "should be > if version is greater" do
     UserAgent::Version.new("1.0").should > UserAgent::Version.new("0.9")
+  end
+
+  it "should be > if version is greater" do
+    UserAgent::Version.new("4.1").should > UserAgent::Version.new("4")
   end
 
   it "should not be > if version is less" do
