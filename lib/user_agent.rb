@@ -11,6 +11,14 @@ class UserAgent
     (\s\(([^\)]*)\))? # Comment
   }x.freeze
 
+  # http://my.opera.com/community/openweb/idopera/
+  OPERA_MATCHER = %r{
+    ^([^/\s]+)            # Product
+    /?([^\s]*)            # Old Version
+    (\s\(([^\)]*)\))?     # Comment
+    .*(Version/([^/\s]+)) # Version
+  }x.freeze
+
   DEFAULT_USER_AGENT = "Mozilla/4.0 (compatible)"
 
   def self.parse(string)
@@ -19,6 +27,18 @@ class UserAgent
     end
 
     agents = []
+
+    # Opera has a different user agent since version 10
+    # Check for that version and then continue matching
+    product = string.to_s.match(MATCHER)[1]
+    if product && product == "Opera" && string =~ /Version\/\d+/
+      match = string.to_s.match(OPERA_MATCHER)
+      agents << new(match[1], match[6], match[4])
+      # Trim the string based on the original matcher and continue
+      standard_match = string.to_s.match(MATCHER)
+      string = string[standard_match[0].length..-1].strip
+    end
+
     while m = string.to_s.match(MATCHER)
       agents << new(m[1], m[2], m[4])
       string = string[m[0].length..-1].strip
