@@ -5,6 +5,14 @@ class UserAgent
         agent.application && agent.application.product == "Opera"
       end
 
+      def version
+        if product = detect_product('Version')
+          product.version
+        else
+          super
+        end
+      end
+
       def platform
         if application.comment.nil?
           nil
