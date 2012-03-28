@@ -18,13 +18,10 @@ class UserAgent
       string = DEFAULT_USER_AGENT
     end
 
-    agents = UserAgent::Browsers::Opera.parse(string)
-    if agents.nil?
-      agents = []
-      while m = string.to_s.match(MATCHER)
-        agents << new(m[1], m[2], m[4])
-        string = string[m[0].length..-1].strip
-      end
+    agents = []
+    while m = string.to_s.match(MATCHER)
+      agents << new(m[1], m[2], m[4])
+      string = string[m[0].length..-1].strip
     end
     Browsers.extend(agents)
     agents
