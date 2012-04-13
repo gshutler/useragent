@@ -408,10 +408,6 @@ describe UserAgent::Version do
     UserAgent::Version.new("0.9").should_not >= UserAgent::Version.new("1.0")
   end
 
-  it "should be >= if version is greater" do
-    UserAgent::Version.new("4.0b6pre").should >= UserAgent::Version.new("4.0")
-  end
-
   it "should raise ArgumentError if other is nil" do
     lambda { UserAgent::Version.new("9.0").should < nil }.should raise_error(ArgumentError, "comparison of Version with nil failed")
   end
