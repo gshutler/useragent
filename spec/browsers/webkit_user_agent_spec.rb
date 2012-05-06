@@ -874,6 +874,40 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_0_1 like
   it { @useragent.should be_mobile }
 end
 
+describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19")
+  end
+
+  it "should return 'Chrome' as its browser" do
+    @useragent.browser.should == "Chrome"
+  end
+
+  it "should return '525.19' as its build" do
+    @useragent.build.should == "525.19"
+  end
+
+  it "should return '18.0.1025.168' as its version" do
+    @useragent.version.should == "18.0.1025.168"
+  end
+
+  it "should return '525.19' as its webkit version" do
+    @useragent.webkit.version.should == "525.19"
+  end
+
+  it "should return 'Windows' as its platform" do
+    @useragent.platform.should == "Windows"
+  end
+
+  it "should return 'Windows 7' as its os" do
+    @useragent.os.should == "Windows 7"
+  end
+
+  it "should return nil as its localization" do
+    @useragent.localization.should be_nil
+  end
+end
+
 describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.0.2 Safari/525.13'" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.0.2 Safari/525.13")
