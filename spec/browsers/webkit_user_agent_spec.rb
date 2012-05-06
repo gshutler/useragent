@@ -883,16 +883,16 @@ describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KH
     @useragent.browser.should == "Chrome"
   end
 
-  it "should return '525.19' as its build" do
-    @useragent.build.should == "525.19"
+  it "should return '535.19' as its build" do
+    @useragent.build.should == "535.19"
   end
 
   it "should return '18.0.1025.168' as its version" do
     @useragent.version.should == "18.0.1025.168"
   end
 
-  it "should return '525.19' as its webkit version" do
-    @useragent.webkit.version.should == "525.19"
+  it "should return '535.19' as its webkit version" do
+    @useragent.webkit.version.should == "535.19"
   end
 
   it "should return 'Windows' as its platform" do

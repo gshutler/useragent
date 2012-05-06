@@ -81,9 +81,11 @@ class UserAgent
         if application.nil?
           nil
         elsif application.comment[0] =~ /Symbian/
-        'Symbian'
+          'Symbian'
         elsif application.comment[0] =~ /webOS/
           'webOS'
+        elsif application.comment[0] =~ /Windows/
+          'Windows'
         else
           application.comment[0]
         end
@@ -103,7 +105,13 @@ class UserAgent
         elsif platform == 'Symbian'
           application.comment[0]
         elsif application
-        application.comment[2].nil? ? OperatingSystems.normalize_os(application.comment[1]) :  OperatingSystems.normalize_os(application.comment[2]) 
+          if application.comment[0] =~ /Windows NT/
+            OperatingSystems.normalize_os(application.comment[0])
+          elsif application.comment[2].nil?
+            OperatingSystems.normalize_os(application.comment[1])
+          else
+            OperatingSystems.normalize_os(application.comment[2])
+          end
         else
           nil
         end
