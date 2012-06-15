@@ -2,8 +2,26 @@
 
 UserAgent is a Ruby library that parses and compares HTTP User Agents.
 
+=== Installation
 
-=== Example
+  gem install useragent
+
+=== Examples
+
+==== Reporting
+
+  string = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5'
+  user_agent = UserAgent.parse(string)	
+  user_agent.browser
+  # => 'Chrome'
+  user_agent.version
+  # => '19.0.1084.56'
+  user_agent.platform
+  # => 'Macintosh'
+  user_agent.mobile?
+  # => false
+
+==== Comparison
 
   Browser = Struct.new(:browser, :version)
   SupportedBrowsers = [
