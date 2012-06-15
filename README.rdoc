@@ -13,7 +13,7 @@ UserAgent is a Ruby library that parses and compares HTTP User Agents.
   string = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5'
   user_agent = UserAgent.parse(string)	
   user_agent.browser
-	-> 'Chrome'
+    -> 'Chrome'
   user_agent.version
     -> '19.0.1084.56'
   user_agent.platform
