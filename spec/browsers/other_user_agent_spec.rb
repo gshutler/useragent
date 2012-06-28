@@ -22,6 +22,7 @@ describe "UserAgent: nil" do
   end
 
   it { @useragent.should_not be_mobile }
+  it { @useragent.should_not be_bot }
 end
 
 describe "UserAgent: ''" do
@@ -46,6 +47,7 @@ describe "UserAgent: ''" do
   end
 
   it { @useragent.should_not be_mobile }
+  it { @useragent.should_not be_bot }
 end
 
 describe "UserAgent: 'Mozilla/4.0 (compatible)'" do
@@ -70,6 +72,7 @@ describe "UserAgent: 'Mozilla/4.0 (compatible)'" do
   end
 
   it { @useragent.should_not be_mobile }
+  it { @useragent.should_not be_bot }
 end
 
 describe "UserAgent: 'Mozilla/5.0'" do
@@ -94,6 +97,7 @@ describe "UserAgent: 'Mozilla/5.0'" do
   end
 
   it { @useragent.should_not be_mobile }
+  it { @useragent.should_not be_bot }
 end
 
 describe "UserAgent: 'amaya/9.51 libwww/5.4.0'" do

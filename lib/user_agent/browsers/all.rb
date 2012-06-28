@@ -71,6 +71,21 @@ class UserAgent
         end
       end
 
+      def bot?
+        # Match common case when bots refer to themselves as bots in
+        # the application comment. There are no standards for how bots
+        # should call themselves so its not an exhaustive method.
+        #
+        # If you want to expand the scope, override the method and
+        # provide your own regexp. Any patches to future extend this
+        # list will be rejected.
+        if comment = application.comment
+          comment.any? { |c| c =~ /bot/i }
+        else
+          false
+        end
+      end
+
       private
         def detect_product(product)
           detect { |useragent| useragent.product.to_s.downcase == product.to_s.downcase }
