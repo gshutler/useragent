@@ -18,6 +18,24 @@ shared_examples_for "Internet Explorer browser" do
   end
 end
 
+describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "should return '10.0' as its version" do
+    @useragent.version.should == "10.0"
+  end
+
+  it "should return 'Windows 8' as its os" do
+    @useragent.os.should == "Windows 8"
+  end
+
+  it { @useragent.should_not be_mobile }
+end
+
 describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)'" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)")
@@ -29,7 +47,7 @@ describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident
     @useragent.version.should == "9.0"
   end
 
-  it "should return 'Windows Vista' as its os" do
+  it "should return 'Windows 7' as its os" do
     @useragent.os.should == "Windows 7"
   end
 
