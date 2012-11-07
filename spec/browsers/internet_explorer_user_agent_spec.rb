@@ -36,6 +36,44 @@ describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Triden
   it { @useragent.should_not be_mobile }
 end
 
+describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.2; ARM; Trident/6.0; Touch; .NET4.0E; .NET4.0C; Tablet PC 2.0)'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.2; ARM; Trident/6.0; Touch; .NET4.0E; .NET4.0C; Tablet PC 2.0)")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "should return '7.0' as its version" do
+    @useragent.version.should == "7.0"
+  end
+
+  it "should return 'Windows 8' as its os" do
+    @useragent.os.should == "Windows 8"
+  end
+
+  it { @useragent.should be_compatibility_view }
+  it { @useragent.should_not be_mobile }
+end
+
+describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; ARM; Trident/6.0; Touch)'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; ARM; Trident/6.0; Touch)")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "should return '10.0' as its version" do
+    @useragent.version.should == "10.0"
+  end
+
+  it "should return 'Windows 8' as its os" do
+    @useragent.os.should == "Windows 8"
+  end
+
+  it { @useragent.should_not be_compatibility_view }
+  it { @useragent.should_not be_mobile }
+end
+
 describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)'" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)")
@@ -54,21 +92,41 @@ describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident
   it { @useragent.should_not be_mobile }
 end
 
-describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0)'" do
+describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)'" do
   before do
-    @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0)")
+    @useragent = UserAgent.parse("Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)")
   end
 
   it_should_behave_like "Internet Explorer browser"
 
-  it "should return '8.0' as its version" do
-    @useragent.version.should == "8.0"
+  it "should return '9.0' as its version" do
+    @useragent.version.should == "9.0"
   end
 
-  it "should return 'Windows Vista' as its os" do
-    @useragent.os.should == "Windows Vista"
+  it "should return 'Windows 7' as its os" do
+    @useragent.os.should == "Windows 7"
   end
 
+  it { @useragent.should_not be_compatibility_view }
+  it { @useragent.should_not be_mobile }
+end
+
+describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C)' Compat View" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C)")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "should return '7.0' as its version" do
+    @useragent.version.should == "7.0"
+  end
+
+  it "should return 'Windows 7' as its os" do
+    @useragent.os.should == "Windows 7"
+  end
+
+  it { @useragent.should be_compatibility_view }
   it { @useragent.should_not be_mobile }
 end
 
