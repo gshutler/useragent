@@ -1,4 +1,5 @@
 require 'user_agent'
+require 'ostruct'
 
 describe UserAgent do
   it "should require a product" do
@@ -410,5 +411,11 @@ describe UserAgent::Version do
 
   it "should raise ArgumentError if other is nil" do
     lambda { UserAgent::Version.new("9.0").should < nil }.should raise_error(ArgumentError, "comparison of Version with nil failed")
+  end
+  
+  context "comparing with structs" do
+    it "should not be < if products are the same and version is greater" do
+      UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)").should_not < OpenStruct.new(browser: "Internet Explorer", version: "7.0")
+    end
   end
 end
