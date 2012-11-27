@@ -415,7 +415,7 @@ describe UserAgent::Version do
   
   context "comparing with structs" do
     it "should not be < if products are the same and version is greater" do
-      UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)").should_not < OpenStruct.new(browser: "Internet Explorer", version: "7.0")
+      UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)").should_not < OpenStruct.new(:browser => "Internet Explorer", :version => "7.0")
     end
   end
 end
