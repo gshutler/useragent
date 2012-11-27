@@ -6,7 +6,7 @@ class UserAgent
       def <=>(other)
         if respond_to?(:browser) && other.respond_to?(:browser) &&
             browser == other.browser
-          version <=> other.version
+          Gem::Version.new(version) <=> Gem::Version.new(other.version)
         else
           false
         end
