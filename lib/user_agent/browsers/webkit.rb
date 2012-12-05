@@ -86,6 +86,8 @@ class UserAgent
           'webOS'
         elsif application.comment[0] =~ /Windows/
           'Windows'
+        elsif application.comment[0] == 'BB10'
+          'BlackBerry'
         else
           application.comment[0]
         end
