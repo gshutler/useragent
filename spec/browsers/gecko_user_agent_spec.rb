@@ -32,8 +32,8 @@ describe 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b8) Gecko/20100101 
     @useragent.platform.should == "Macintosh"
   end
 
-  it "should return 'Intel Mac OS X 10.6' as its os" do
-    @useragent.os.should == "Intel Mac OS X 10.6"
+  it "should return 'OS X 10.6' as its os" do
+    @useragent.os.should == "OS X 10.6"
   end
 
   it "should return nil as its localization" do
@@ -62,8 +62,8 @@ describe 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.13) Ge
     @useragent.platform.should == "Macintosh"
   end
 
-  it "should return 'Intel Mac OS X 10.6' as its os" do
-    @useragent.os.should == "Intel Mac OS X 10.6"
+  it "should return 'OS X 10.6' as its os" do
+    @useragent.os.should == "OS X 10.6"
   end
 
   it "should return 'en-US' as its localization" do
@@ -122,8 +122,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1
     @useragent.platform.should == "Macintosh"
   end
 
-  it "should return 'Intel Mac OS X' as its os" do
-    @useragent.os.should == "Intel Mac OS X"
+  it "should return 'OS X' as its os" do
+    @useragent.os.should == "OS X"
   end
 
   it "should return 'en-US' as its localization" do
@@ -179,7 +179,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:
   end
 
   it "should return 'PPC Mac OS X Mach-O' as its os" do
-    @useragent.os.should == "PPC Mac OS X Mach-O"
+    @useragent.os.should == "OS X"
   end
 
   it "should return 'en-US' as its localization" do
@@ -264,8 +264,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en; rv:1.8.1.14
     @useragent.platform.should == "Macintosh"
   end
 
-  it "should return 'Intel Mac OS X' as its os" do
-    @useragent.os.should == "Intel Mac OS X"
+  it "should return 'OS X' as its os" do
+    @useragent.os.should == "OS X"
   end
 
   it "should return 'en' as its localization" do
@@ -324,8 +324,8 @@ describe 'UserAgent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1
     @useragent.platform.should == "Macintosh"
   end
 
-  it "should return 'Intel Mac OS X 10.6' as its os" do
-    @useragent.os.should == "Intel Mac OS X 10.6"
+  it "should return 'OS X 10.6' as its os" do
+    @useragent.os.should == "OS X 10.6"
   end
 
   it "should return 'en-US' as its localization" do
