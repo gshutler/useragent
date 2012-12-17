@@ -1189,8 +1189,9 @@ describe "UserAgent: 'Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Nexus O
     @useragent = UserAgent.parse("Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Nexus One Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17 Chrome/4.1.249.1025")
   end
 
-  it "should return 'Android' as its browser" do
-    @useragent.browser.should == "Android"
+  # Isn't it Chrome?
+  it "should return 'Chrome' as its browser" do
+    @useragent.browser.should == "Chrome"
   end
 
   it "should return '530.17' as its build" do
@@ -1211,6 +1212,27 @@ describe "UserAgent: 'Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Nexus O
 
   it "should return 'Android 2.1-update1' as its os" do
     @useragent.os.should == "Android 2.1-update1"
+  end
+
+  it { @useragent.should be_mobile }
+end
+
+# Google Nexus 7 with Chrome browser
+describe "Mozilla/5.0 (Linux; Android 4.2; Nexus 7 Build/JOP40C) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Linux; Android 4.2; Nexus 7 Build/JOP40C) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19")
+  end
+
+  it "should return 'Chrome' as its browser" do
+    @useragent.browser.should == "Chrome"
+  end
+
+  it "should return 'Linux' as its platform" do
+    @useragent.platform.should == "Linux"
+  end
+
+  it "should return 'Android 4.2' as its os" do
+    @useragent.os.should == "Android 4.2"
   end
 
   it { @useragent.should be_mobile }

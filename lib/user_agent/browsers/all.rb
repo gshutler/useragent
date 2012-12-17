@@ -61,6 +61,8 @@ class UserAgent
           true
         elsif platform == 'Symbian'
           true
+        elsif os =~ /Android/
+          true
         elsif detect_product('Mobile')
           true
         elsif application && application.comment &&
