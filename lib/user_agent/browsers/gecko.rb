@@ -22,7 +22,13 @@ class UserAgent
 
       def platform
         if comment = application.comment
-          comment[0] == 'compatible' ? nil : comment[0]
+          if comment[0] == 'compatible'
+            nil
+          elsif comment[1] == 'WOW64' || comment[1] == 'Win64'
+            'Windows'
+          else
+            comment[0]
+          end
         end
       end
 
@@ -32,7 +38,12 @@ class UserAgent
 
       def os
         if comment = application.comment
-          i = comment[1] == 'U' ? 2 : 1
+          i = case comment[1]
+          when 'U'; 2
+          when 'WOW64', 'Win64'; 0
+          else 1
+          end
+
           OperatingSystems.normalize_os(comment[i])
         end
       end
