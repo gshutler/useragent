@@ -215,6 +215,34 @@ describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.1; Win64; rv:16.0.1) Gecko/20121
   end
 end
 
+describe 'Mozilla/5.0 (Windows NT 5.1; rv:17.0) Gecko/20100101 Firefox/17.0' do
+  before do
+    @useragent = UserAgent.parse('Mozilla/5.0 (Windows NT 5.1; rv:17.0) Gecko/20100101 Firefox/17.0')
+  end
+
+  it_should_behave_like "Firefox browser"
+
+  it "should return '17.0' as its version" do
+    @useragent.version.should == "17.0"
+  end
+
+  it "should return '20100101' as its gecko version" do
+    @useragent.gecko.version.should == "20100101"
+  end
+
+  it "should return 'Windows' as its platform" do
+    @useragent.platform.should == "Windows"
+  end
+
+  it "should return 'Windows XP' as its os" do
+    @useragent.os.should == "Windows XP"
+  end
+
+  it "should return nil as its localization" do
+    @useragent.localization.should be_nil
+  end
+end
+
 describe 'UserAgent: Mozilla/5.0 (Windows NT 6.1; rv:17.0) Gecko/20100101 Firefox/17.0' do
   before do
     @useragent = UserAgent.parse('Mozilla/5.0 (Windows NT 6.1; rv:17.0) Gecko/20100101 Firefox/17.0')
