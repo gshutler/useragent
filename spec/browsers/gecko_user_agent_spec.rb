@@ -444,3 +444,13 @@ describe 'UserAgent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1
     @useragent.localization.should == "en-US"
   end
 end
+
+describe 'Mozilla/5.0 (Android; Mobile; rv:19.0) Gecko/19.0 Firefox/19.0' do
+  before do
+    @useragent = UserAgent.parse('Mozilla/5.0 (Android; Mobile; rv:19.0) Gecko/19.0 Firefox/19.0')
+  end
+
+  it "should return true for mobile?" do
+    @useragent.mobile?.should be_true
+  end
+end
