@@ -111,12 +111,10 @@ class UserAgent
             OperatingSystems.normalize_os(application.comment[0])
           elsif application.comment[2].nil?
             OperatingSystems.normalize_os(application.comment[1])
+          elsif application.comment[1] =~ /Android/
+            OperatingSystems.normalize_os(application.comment[1])
           else
-            if application.comment[1] =~ /Android/
-              OperatingSystems.normalize_os(application.comment[1])
-            else
-              OperatingSystems.normalize_os(application.comment[2])
-            end
+            OperatingSystems.normalize_os(application.comment[2])
           end
         else
           nil
