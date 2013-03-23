@@ -33,6 +33,11 @@ describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Triden
     @useragent.os.should == "Windows 8"
   end
 
+  it "should have a higher version number than IE9" do
+    @useragent.version.should >
+      UserAgent.parse('Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.2; ARM; Trident/6.0; Touch; .NET4.0E; .NET4.0C; Tablet PC 2.0)').version
+  end
+
   it { @useragent.should_not be_mobile }
 end
 
