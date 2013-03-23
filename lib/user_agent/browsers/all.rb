@@ -63,6 +63,8 @@ class UserAgent
           true
         elsif detect_product('Mobile') || detect_comment('Mobile')
           true
+        elsif os =~ /Android/
+          true
         elsif application && application.comment &&
             application.comment.detect { |k, v| k =~ /^IEMobile/ }
           true
