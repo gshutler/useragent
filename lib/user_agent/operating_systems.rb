@@ -15,19 +15,19 @@ class UserAgent
     }.freeze
 
     def self.normalize_os(os)
-      Windows[os] || detect_mac_os_x(os) || os
+      Windows[os] || normalize_mac_os_x(os) || os
     end
 
     private
-    def self.detect_mac_os_x(os)
-      if os =~ /(?:Intel|PPC) Mac OS X\s*([0-9_\.]+)?/
-        if $1.nil?
-          "OS X"
-        else
-          version = $1.gsub('_', '.')
-          "OS X #{version}"
+      def self.normalize_mac_os_x(os)
+        if os =~ /(?:Intel|PPC) Mac OS X\s*([0-9_\.]+)?/
+          if $1.nil?
+            "OS X"
+          else
+            version = $1.gsub('_', '.')
+            "OS X #{version}"
+          end
         end
       end
-    end
   end
 end
