@@ -454,3 +454,27 @@ describe 'Mozilla/5.0 (Android; Mobile; rv:19.0) Gecko/19.0 Firefox/19.0' do
     @useragent.mobile?.should be_true
   end
 end
+
+describe 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:x.x.x) Gecko/20041107 Firefox/x.x' do
+  before do
+    @useragent = UserAgent.parse('Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:x.x.x) Gecko/20041107 Firefox/x.x')
+  end
+
+  it_should_behave_like "Firefox browser"
+
+  it "should return 'x.x' as its version" do
+    @useragent.version.should == "x.x"
+  end
+
+  it "should return '20041107' as its gecko version" do
+    @useragent.gecko.version.should == "20041107"
+  end
+
+  it "should return 'Windows' as its platform" do
+    @useragent.platform.should == "Windows"
+  end
+
+  it "should return 'Windows XP' as its os" do
+    @useragent.os.should == "Windows XP"
+  end
+end
