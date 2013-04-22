@@ -409,10 +409,34 @@ describe UserAgent::Version do
     UserAgent::Version.new("0.9").should_not >= UserAgent::Version.new("1.0")
   end
 
-  it "should raise ArgumentError if other is nil" do
-    lambda { UserAgent::Version.new("9.0").should < nil }.should raise_error(ArgumentError, "comparison of Version with nil failed")
+  it "should not be > if version is invalid" do
+    UserAgent::Version.new("x.x").should_not > UserAgent::Version.new("1.0")
   end
-  
+
+  it "should be < if version is invalid" do
+    UserAgent::Version.new("x.x").should < UserAgent::Version.new("1.0")
+  end
+
+  it "should be > when compared with invalid" do
+    UserAgent::Version.new("1.0").should > UserAgent::Version.new("x.x")
+  end
+
+  it "should not be < when compared with invalid" do
+    UserAgent::Version.new("1.0").should_not < UserAgent::Version.new("x.x")
+  end
+
+  it "should not be > if both versions are invalid" do
+    UserAgent::Version.new("a.a").should_not > UserAgent::Version.new("b.b")
+  end
+
+  it "should be < if both versions are invalid" do
+    UserAgent::Version.new("a.a").should < UserAgent::Version.new("b.b")
+  end
+
+  it "should raise ArgumentError if other is nil" do
+    lambda { UserAgent::Version.new("9.0").should < nil }.should raise_error(ArgumentError, "comparison of UserAgent::Version with nil failed")
+  end
+
   context "comparing with structs" do
     it "should not be < if products are the same and version is greater" do
       UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)").should_not < OpenStruct.new(:browser => "Internet Explorer", :version => "7.0")

@@ -67,13 +67,15 @@ class UserAgent
             end
           end
           0
+        elsif to_s == other.to_s
+          return 0
         else
-          to_s == other.to_s ? 0 : nil
+          return -1
         end
       when String
         self <=> self.class.new(other)
       else
-        raise ArgumentError, "comparison of Version with #{other.inspect} failed"
+        nil
       end
     end
 
