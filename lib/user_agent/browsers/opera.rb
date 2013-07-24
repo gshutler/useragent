@@ -28,9 +28,19 @@ class UserAgent
           :strong
         elsif platform == "Macintosh"
           Security[application.comment[2]]
+        elsif mini?
+          Security[application.comment[-2]]
         else
           Security[application.comment[1]]
         end
+      end
+
+      def mini?
+        /Opera Mini/ === application
+      end
+
+      def mobile?
+        mini?
       end
 
       def os
