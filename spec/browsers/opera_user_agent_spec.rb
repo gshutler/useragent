@@ -129,3 +129,23 @@ describe "UserAgent: 'Opera/9.80 (Windows NT 6.0; U; en) Presto/2.2.15 Version/1
     @useragent.localization.should == "en"
   end
 end
+
+describe "UserAgent: 'Opera/9.80 (J2ME/MIDP; Opera Mini/9 (Compatible; MSIE:9.0; iPhone; BlackBerry9700; AppleWebKit/24.746; U; en) Presto/2.5.25 Version/10.54'" do
+  before do
+    @useragent = UserAgent.parse("Opera/9.80 (J2ME/MIDP; Opera Mini/9 (Compatible; MSIE:9.0; iPhone; BlackBerry9700; AppleWebKit/24.746; U; en) Presto/2.5.25 Version/10.54'")
+  end
+
+  it_should_behave_like "Opera browser"
+
+  it { @useragent.should be_mobile }
+end
+
+describe "UserAgent: 'Opera/9.80 (J2ME/MIDP; Opera Mini/9.80 (J2ME/23.377; U; en) Presto/2.5.25 Version/10.54'" do
+  before do
+    @useragent = UserAgent.parse("Opera/9.80 (J2ME/MIDP; Opera Mini/9.80 (J2ME/23.377; U; en) Presto/2.5.25 Version/10.54")
+  end
+
+  it_should_behave_like "Opera browser"
+
+  it { @useragent.should be_mobile }
+end
