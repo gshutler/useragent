@@ -443,34 +443,3 @@ describe UserAgent::Version do
     end
   end
 end
-
-
-describe UserAgent::Browsers::All, "#mobile?" do
-  before do
-    @ie_7 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)")
-    @firefox = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14")
-    @opera_classic  = UserAgent.parse("Opera/9.27 (Windows NT 5.1; U; en)")
-    @opera_mini = UserAgent.parse("Opera/9.80 (J2ME/MIDP; Opera Mini/9.80 (J2ME/23.377; U; en) Presto/2.5.25 Version/10.54")
-    @iphone = UserAgent.parse("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/4A102 Safari/419")
-  end
-
-  it "should be false for Internet Explorer" do
-    @ie_7.should_not be_mobile
-  end
-
-  it "should be false for Firefox" do
-    @firefox.should_not be_mobile
-  end
-
-  it "should be false for Opera" do
-    @opera_classic.should_not be_mobile
-  end
-
-  it "should be true for Opera mini" do
-    @opera_mini.should be_mobile
-  end
-
-  it "should be true for iPhone" do
-    @iphone.should be_mobile
-  end
-end
