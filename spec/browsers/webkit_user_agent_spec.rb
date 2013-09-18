@@ -1396,3 +1396,35 @@ describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHT
     @useragent.os.should == "OS X 10.8.2"
   end
 end
+
+describe "UserAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/28.0.1500.16 Mobile/10B329 Safari/8536.25'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/28.0.1500.16 Mobile/10B329 Safari/8536.25")
+  end
+
+  it "should return 'Chrome' as its browser" do
+    @useragent.browser.should == "Chrome"
+  end
+
+  it "should return '536.26' as its build" do
+    @useragent.build.should == "536.26"
+  end
+
+  it "should return '28.0.1500.16' as its version" do
+    @useragent.version.should == "28.0.1500.16"
+  end
+
+  it "should return '536.26' as its webkit version" do
+    @useragent.webkit.version.should == "536.26"
+  end
+
+  it "should return 'iPhone' as its platform" do
+    @useragent.platform.should == "iPhone"
+  end
+
+  it "should return 'CPU iPhone OS 6_1_3 like Mac OS X' as its os" do
+    @useragent.os.should == "CPU iPhone OS 6_1_3 like Mac OS X"
+  end
+
+  it { @useragent.should be_mobile }
+end
