@@ -88,6 +88,8 @@ class UserAgent
         # list will be rejected.
         elsif comment = application.comment
           comment.any? { |c| c =~ /bot/i }
+        elsif product = application.product
+          product.include?('bot')
         else
           false
         end
