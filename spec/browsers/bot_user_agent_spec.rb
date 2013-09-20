@@ -13,3 +13,11 @@ describe "UserAgent: 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com
 
   it { @useragent.should be_bot }
 end
+
+describe "UserAgent: 'Twitterbot/1.0'" do
+  before do
+    @useragent = UserAgent.parse("Twitterbot/1.0")
+  end
+
+  it { @useragent.should be_bot}
+end
