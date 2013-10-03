@@ -103,6 +103,32 @@ describe "UserAgent: 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/
   it { @useragent.should_not be_mobile }
 end
 
+describe "UserAgent: 'Mozilla/5.0 (X11; Linux x86_64; rv:27.0) Gecko/20100101 Firefox/27.0'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (X11; Linux x86_64; rv:27.0) Gecko/20100101 Firefox/27.0")
+  end
+
+  it_should_behave_like "Firefox browser"
+
+  it "should return '27.0' as its version" do
+    @useragent.version.should == "27.0"
+  end
+
+  it "should return '20100101' as its gecko version" do
+    @useragent.gecko.version.should == "20100101"
+  end
+
+  it "should return 'X11' as its platform" do
+    @useragent.platform.should == "X11"
+  end
+
+  it "should return 'Linux x86_64' as its os" do
+    @useragent.os.should == "Linux x86_64"
+  end
+
+  it { @useragent.should_not be_mobile }
+end
+
 describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14'" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14")
