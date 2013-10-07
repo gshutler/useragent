@@ -295,36 +295,6 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKi
   end
 end
 
-describe "UserAgent: 'Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Nexus One Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17 Chrome/4.1.249.1025'" do
-  before do
-    @useragent = UserAgent.parse("Mozilla/5.0 (Linux; U; Android 2.1-update1; en-us; Nexus One Build/ERE27) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17 Chrome/4.1.249.1025")
-  end
-
-  it_should_behave_like "Chrome browser"
-
-  it "should return '530.17' as its build" do
-    @useragent.build.should == "530.17"
-  end
-
-  it "should return '4.0' as its version" do
-    @useragent.version.should == "4.0"
-  end
-
-  it "should return '530.17' as its webkit version" do
-    @useragent.webkit.version.should == "530.17"
-  end
-
-  it "should return 'Linux' as its platform" do
-    @useragent.platform.should == "Linux"
-  end
-
-  it "should return 'Android 2.1-update1' as its os" do
-    @useragent.os.should == "Android 2.1-update1"
-  end
-
-  it { @useragent.should be_mobile }
-end
-
 describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.0.2 Safari/525.13'" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.0.2 Safari/525.13")

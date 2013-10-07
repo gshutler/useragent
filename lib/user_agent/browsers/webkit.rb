@@ -6,9 +6,7 @@ class UserAgent
       end
 
       def browser
-        if detect_product('Chrome') || detect_product("CriOS")
-          'Chrome'
-        elsif os =~ /Android/
+        if os =~ /Android/
           'Android'
         elsif platform == 'BlackBerry'
           platform
@@ -60,12 +58,6 @@ class UserAgent
           $1.gsub(/_/, '.')
         elsif product = detect_product('Version')
           product.version
-        elsif browser == 'Chrome'
-          if detect_product("chrome")
-            chrome.version
-          elsif detect_product("crios")
-            crios.version
-          end
         else
           BuildVersions[build.to_s]
         end
