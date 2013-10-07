@@ -14,7 +14,7 @@ class UserAgent
           'Chrome'
         elsif os =~ /Android/
           'Android'
-        elsif platform == 'BlackBerry'  || platform == 'Symbian'
+        elsif platform == 'BlackBerry'
           platform
         else
           'Safari'
@@ -84,8 +84,6 @@ class UserAgent
       def platform
         if application.nil?
           nil
-        elsif application.comment[0] =~ /Symbian/
-          'Symbian'
         elsif application.comment[0] =~ /Windows/
           'Windows'
         elsif application.comment[0] == 'BB10'
@@ -104,9 +102,7 @@ class UserAgent
       end
 
       def os
-        if platform == 'Symbian'
-          application.comment[0]
-        elsif application
+        if application
           if application.comment[0] =~ /Windows NT/
             OperatingSystems.normalize_os(application.comment[0])
           elsif application.comment[2].nil?

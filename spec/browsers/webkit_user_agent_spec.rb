@@ -1271,33 +1271,6 @@ describe "UserAgent: 'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.3+ (KHTML, like 
   it { @useragent.should be_mobile }
 end
 
-describe "UserAgent: SonyEricssonU8i/R2EA; Mozilla/5.0 (SymbianOS/9.4; U; Series60/5.0 Profile/MIDP-2.1 Configuration/CLDC-1.1) AppleWebKit/525 (KHTML, like Gecko) Version/3.0 Safari/525" do
-   before do
-    @useragent = UserAgent.parse("SonyEricssonU8i/R2EA; Mozilla/5.0 (SymbianOS/9.4; U; Series60/5.0 Profile/MIDP-2.1 Configuration/CLDC-1.1) AppleWebKit/525 (KHTML, like Gecko) Version/3.0 Safari/525")
-  end
-
-  it "should return 'SymbianOS' as its browser" do
-   @useragent.browser.should == "Symbian"
-  end
-
-  it "should return '3.0' as its version" do
-     @useragent.version.should == "3.0"
-  end
-
-  it "should return '525' as its build" do
-    @useragent.build.should == "525"
-  end
-
-  it "should return 'SymbianOS' as its platform" do
-    @useragent.platform.should == "Symbian"
-  end
-  it "should return 'SymbianOS/9.4' as its os " do
-    @useragent.os.should == "SymbianOS/9.4"
-  end
-
-  it { @useragent.should be_mobile }
-end
-
 describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.1.1 Safari/534.51.22" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.1.1 Safari/534.51.22")

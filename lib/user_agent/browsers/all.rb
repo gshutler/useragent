@@ -57,9 +57,7 @@ class UserAgent
       end
 
       def mobile?
-        if platform == 'Symbian'
-          true
-        elsif detect_product('Mobile') || detect_comment('Mobile')
+        if detect_product('Mobile') || detect_comment('Mobile')
           true
         elsif os =~ /Android/
           true
