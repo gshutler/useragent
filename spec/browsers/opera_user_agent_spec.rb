@@ -4,9 +4,26 @@ shared_examples_for "Opera browser" do
   it "should return 'Opera' as its browser" do
     @useragent.browser.should == "Opera"
   end
+end
 
-  it "should return :strong as its security" do
-    @useragent.security.should == :strong
+# http://www.useragentstring.com/Opera12.14_id_19612.php
+describe "UserAgent: 'Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.14'" do
+  before do
+    @useragent = UserAgent.parse("Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.14")
+  end
+
+  it_should_behave_like "Opera browser"
+
+  it "should return '12.14' as its version" do
+    @useragent.version.should == "12.14"
+  end
+
+  it "should return 'Windows' as its platform" do
+    @useragent.platform.should == "Windows"
+  end
+
+  it "should return 'Windows Vista' as its os" do
+    @useragent.os.should == "Windows Vista"
   end
 end
 
@@ -148,4 +165,30 @@ describe "UserAgent: 'Opera/9.80 (J2ME/MIDP; Opera Mini/9.80 (J2ME/23.377; U; en
   it_should_behave_like "Opera browser"
 
   it { @useragent.should be_mobile }
+end
+
+# http://www.useragentstring.com/Opera%20Mini9.80_id_17936.php
+describe "UserAgent: 'Opera/9.80 (J2ME/MIDP; Opera Mini/9.80 (S60; SymbOS; Opera Mobi/23.348; U; en) Presto/2.5.25 Version/10.54'" do
+  before do
+    @useragent = UserAgent.parse("Opera/9.80 (J2ME/MIDP; Opera Mini/9.80 (S60; SymbOS; Opera Mobi/23.348; U; en) Presto/2.5.25 Version/10.54")
+  end
+
+  it_should_behave_like "Opera browser"
+
+  it "should return '9.80' as its version" do
+    @useragent.version.should == "9.80"
+  end
+end
+
+# http://www.useragentstring.com/Opera%20Mini7.1.32694_id_19147.php
+describe "UserAgent: 'Opera/9.80 (iPhone; Opera Mini/7.1.32694/27.1407; U; en) Presto/2.8.119 Version/11.10'" do
+  before do
+    @useragent = UserAgent.parse("Opera/9.80 (iPhone; Opera Mini/7.1.32694/27.1407; U; en) Presto/2.8.119 Version/11.10")
+  end
+
+  it_should_behave_like "Opera browser"
+
+  it "should return '7.1.32694' as its version" do
+    @useragent.version.should == "7.1.32694"
+  end
 end

@@ -2,11 +2,14 @@ class UserAgent
   module Browsers
     module Opera
       def self.extend?(agent)
-        agent.application && agent.application.product == "Opera"
+        agent.first.product == 'Opera' ||
+          (agent.application && agent.application.product == 'Opera')
       end
 
       def version
-        if product = detect_product('Version')
+        if mini?
+          application.comment[1][/Opera Mini\/([\d\.]+)/, 1]
+        elsif product = detect_product('Version')
           product.version
         else
           super
@@ -35,10 +38,6 @@ class UserAgent
         end
       end
 
-      def mini?
-        /Opera Mini/ === application
-      end
-
       def mobile?
         mini?
       end
@@ -62,6 +61,11 @@ class UserAgent
           application.comment[2]
         end
       end
+
+      private
+        def mini?
+          /Opera Mini/ === application
+        end
     end
   end
 end
