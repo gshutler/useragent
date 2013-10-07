@@ -14,7 +14,7 @@ class UserAgent
           'Chrome'
         elsif os =~ /Android/
           'Android'
-        elsif platform == 'webOS' || platform == 'BlackBerry'  || platform == 'Symbian'
+        elsif platform == 'BlackBerry'  || platform == 'Symbian'
           platform
         else
           'Safari'
@@ -86,8 +86,6 @@ class UserAgent
           nil
         elsif application.comment[0] =~ /Symbian/
           'Symbian'
-        elsif application.comment[0] =~ /webOS/
-          'webOS'
         elsif application.comment[0] =~ /Windows/
           'Windows'
         elsif application.comment[0] == 'BB10'
@@ -106,9 +104,7 @@ class UserAgent
       end
 
       def os
-        if platform == 'webOS'
-          "Palm #{last.product} #{last.version}"
-        elsif platform == 'Symbian'
+        if platform == 'Symbian'
           application.comment[0]
         elsif application
           if application.comment[0] =~ /Windows NT/
@@ -128,8 +124,6 @@ class UserAgent
       def localization
         if application.nil?
           nil
-        elsif platform == 'webOS'
-          application.comment[2]
         else
           application.comment[3]
         end

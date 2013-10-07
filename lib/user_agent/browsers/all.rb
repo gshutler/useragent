@@ -57,9 +57,7 @@ class UserAgent
       end
 
       def mobile?
-        if browser == 'webOS'
-          true
-        elsif platform == 'Symbian'
+        if platform == 'Symbian'
           true
         elsif detect_product('Mobile') || detect_comment('Mobile')
           true
