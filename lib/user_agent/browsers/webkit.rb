@@ -5,10 +5,6 @@ class UserAgent
         agent.detect { |useragent| useragent.product == 'AppleWebKit' }
       end
 
-      def webkit?
-        true
-      end
-
       def browser
         if detect_product('Chrome') || detect_product("CriOS")
           'Chrome'

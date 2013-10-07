@@ -4,8 +4,6 @@ shared_examples_for "Chrome browser" do
   it "should return 'Chrome' as its browser" do
     @useragent.browser.should == "Chrome"
   end
-
-  it { @useragent.should be_webkit }
 end
 
 # http://www.useragentstring.com/Chrome30.0.1599.17_id_19721.php

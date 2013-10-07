@@ -8,9 +8,6 @@ shared_examples_for "Firefox browser" do
   it "should return :strong as its security" do
     @useragent.security.should == :strong
   end
-
-  it { @useragent.should_not be_webkit }
-
 end
 
 describe 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b8) Gecko/20100101 Firefox/4.0b8' do

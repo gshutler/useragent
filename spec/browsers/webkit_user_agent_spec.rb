@@ -8,8 +8,6 @@ shared_examples_for "Safari browser" do
   it "should return :strong as its security" do
     @useragent.security.should == :strong
   end
-
-  it { @useragent.should be_webkit }
 end
 
 describe "UserAgent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16" do
@@ -982,8 +980,6 @@ describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (
   it "should return nil as its security" do
     @useragent.security.should be_nil
   end
-
-  it { @useragent.should be_webkit }
 
   it "should return '534.51.22' as its build" do
     @useragent.build.should == "534.51.22"

@@ -52,10 +52,6 @@ class UserAgent
         detect_product(method) || super
       end
 
-      def webkit?
-        false
-      end
-
       def mobile?
         if detect_product('Mobile') || detect_comment('Mobile')
           true
