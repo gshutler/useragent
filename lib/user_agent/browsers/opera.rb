@@ -2,7 +2,7 @@ class UserAgent
   module Browsers
     module Opera
       def self.extend?(agent)
-        agent.first.product == 'Opera' ||
+        (agent.first && agent.first.product == 'Opera') ||
           (agent.application && agent.application.product == 'Opera')
       end
 

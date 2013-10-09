@@ -168,3 +168,13 @@ describe "UserAgent: 'check_http/v1.4.15 (nagios-plugins 1.4.15)'" do
   it { @useragent.os.should be_nil }
   it { @useragent.should_not be_mobile }
 end
+
+describe "UserAgent: '/WebTest.pm'" do
+  before do
+    @useragent = UserAgent.parse("/WebTest.pm")
+  end
+
+  it "should return nil as its browser" do
+    @useragent.browser.should == nil
+  end
+end
