@@ -1,6 +1,7 @@
 class UserAgent
   module OperatingSystems
     Windows = {
+      "Windows NT 6.3"  => "Windows 8.1",
       "Windows NT 6.2"  => "Windows 8",
       "Windows NT 6.1"  => "Windows 7",
       "Windows NT 6.0"  => "Windows Vista",
