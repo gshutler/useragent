@@ -326,3 +326,31 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKi
     @useragent.localization.should == "en-US"
   end
 end
+
+describe "UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.62 Safari/537.36" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.62 Safari/537.36")
+  end
+
+  it_should_behave_like "Chrome browser"
+
+  it "should return '537.36' as its build" do
+    @useragent.build.should == "537.36"
+  end
+
+  it "should return '29.0.1547.62' as its version" do
+    @useragent.version.should == "29.0.1547.62"
+  end
+
+  it "should return '537.36' as its webkit version" do
+    @useragent.webkit.version.should == "537.36"
+  end
+
+  it "should return 'X11' as its platform" do
+    @useragent.platform.should == "X11"
+  end
+
+  it "should return 'Linux x86_64' as its os" do
+    @useragent.os.should == "Linux x86_64"
+  end
+end
