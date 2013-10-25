@@ -18,13 +18,12 @@ class UserAgent
       string = DEFAULT_USER_AGENT
     end
 
-    agents = []
+    agents = Browsers::Base.new
     while m = string.to_s.match(MATCHER)
       agents << new(m[1], m[2], m[4])
       string = string[m[0].length..-1].strip
     end
     Browsers.extend(agents)
-    agents
   end
 
   attr_reader :product, :version, :comment

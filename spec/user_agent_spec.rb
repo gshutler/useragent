@@ -192,7 +192,7 @@ describe UserAgent, ".parse" do
   end
 end
 
-describe UserAgent::Browsers::All, "#<" do
+describe UserAgent::Browsers::Base, "#<" do
   before do
     @ie_7 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)")
     @ie_6 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)")
@@ -220,7 +220,7 @@ describe UserAgent::Browsers::All, "#<" do
   end
 end
 
-describe UserAgent::Browsers::All, "#<=" do
+describe UserAgent::Browsers::Base, "#<=" do
   before do
     @ie_7 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)")
     @ie_6 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)")
@@ -248,7 +248,7 @@ describe UserAgent::Browsers::All, "#<=" do
   end
 end
 
-describe UserAgent::Browsers::All, "#==" do
+describe UserAgent::Browsers::Base, "#==" do
   before do
     @ie_7 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)")
     @ie_6 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)")
@@ -276,7 +276,7 @@ describe UserAgent::Browsers::All, "#==" do
   end
 end
 
-describe UserAgent::Browsers::All, "#>" do
+describe UserAgent::Browsers::Base, "#>" do
   before do
     @ie_7 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)")
     @ie_6 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)")
@@ -304,7 +304,7 @@ describe UserAgent::Browsers::All, "#>" do
   end
 end
 
-describe UserAgent::Browsers::All, "#>=" do
+describe UserAgent::Browsers::Base, "#>=" do
   before do
     @ie_7 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)")
     @ie_6 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)")

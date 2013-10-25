@@ -1,6 +1,6 @@
 class UserAgent
   module Browsers
-    module Gecko
+    class Gecko < Base
       def self.extend?(agent)
         agent.application && agent.application.product == "Mozilla"
       end

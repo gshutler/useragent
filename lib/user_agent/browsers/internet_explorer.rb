@@ -1,6 +1,6 @@
 class UserAgent
   module Browsers
-    module InternetExplorer
+    class InternetExplorer < Base
       def self.extend?(agent)
         agent.application &&
           agent.application.comment &&

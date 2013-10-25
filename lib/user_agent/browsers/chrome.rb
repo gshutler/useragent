@@ -1,6 +1,6 @@
 class UserAgent
   module Browsers
-    module Chrome
+    class Chrome < Base
       def self.extend?(agent)
         agent.detect { |useragent|
           useragent.product == 'Chrome' ||
