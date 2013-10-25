@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.files = [
     "lib/user_agent.rb",
     "lib/user_agent/browsers.rb",
-    "lib/user_agent/browsers/all.rb",
+    "lib/user_agent/browsers/base.rb",
     "lib/user_agent/browsers/chrome.rb",
     "lib/user_agent/browsers/gecko.rb",
     "lib/user_agent/browsers/internet_explorer.rb",
