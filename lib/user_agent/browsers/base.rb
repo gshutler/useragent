@@ -1,6 +1,6 @@
 class UserAgent
   module Browsers
-    module All
+    class Base < Array
       include Comparable
 
       def <=>(other)

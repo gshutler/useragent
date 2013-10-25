@@ -1,4 +1,4 @@
-require 'user_agent/browsers/all'
+require 'user_agent/browsers/base'
 require 'user_agent/browsers/chrome'
 require 'user_agent/browsers/gecko'
 require 'user_agent/browsers/internet_explorer'
@@ -18,10 +18,10 @@ class UserAgent
     end
 
     def self.extend(array)
-      array.extend(All)
       all.each do |extension|
-        return array.extend(extension) if extension.extend?(array)
+        return extension.new(array) if extension.extend?(array)
       end
+      array
     end
   end
 end

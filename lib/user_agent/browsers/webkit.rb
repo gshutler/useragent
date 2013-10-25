@@ -1,6 +1,6 @@
 class UserAgent
   module Browsers
-    module Webkit
+    class Webkit < Base
       def self.extend?(agent)
         agent.detect { |useragent| useragent.product == 'AppleWebKit' }
       end
