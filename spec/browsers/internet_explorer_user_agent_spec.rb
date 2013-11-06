@@ -8,14 +8,6 @@ shared_examples_for "Internet Explorer browser" do
   it "should return 'Windows' as its platform" do
     @useragent.platform.should == "Windows"
   end
-
-  it "should return 'compatible' as its compatibility" do
-    @useragent.compatibility.should == "compatible"
-  end
-
-  it "should be compatible" do
-    @useragent.should be_compatible
-  end
 end
 
 describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)'" do

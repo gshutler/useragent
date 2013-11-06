@@ -16,14 +16,6 @@ class UserAgent
         Version.new(application.comment[1].sub("MSIE ", ""))
       end
 
-      def compatibility
-        application.comment[0]
-      end
-
-      def compatible?
-        compatibility == "compatible"
-      end
-
       def compatibility_view?
         version == "7.0" && application.comment.detect { |c| c['Trident/'] }
       end
