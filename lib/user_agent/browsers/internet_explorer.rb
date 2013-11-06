@@ -13,7 +13,9 @@ class UserAgent
       end
 
       def version
-        Version.new(application.comment[1].sub("MSIE ", ""))
+        if version = application.comment[1][/MSIE ([\d\.]+)/, 1]
+          Version.new(version)
+        end
       end
 
       def compatibility_view?
