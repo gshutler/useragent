@@ -4,7 +4,7 @@ class UserAgent
       def self.extend?(agent)
         agent.application &&
           agent.application.comment &&
-          agent.application.comment[1] =~ /MSIE/
+          agent.application.comment[1] =~ /MSIE|Trident/
       end
 
       def browser
@@ -12,7 +12,8 @@ class UserAgent
       end
 
       def version
-        if version = application.comment[1][/MSIE ([\d\.]+)/, 1]
+        if version = application.comment[1][/MSIE ([\d\.]+)/, 1] ||
+                     application.comment[2][/rv:([\d\.]+)/, 1]
           Version.new(version)
         end
       end
@@ -36,7 +37,11 @@ class UserAgent
       end
 
       def os
-        OperatingSystems.normalize_os(application.comment[2])
+        if version >= Version.new('11.0')
+          OperatingSystems.normalize_os(application.comment[0])
+        else
+          OperatingSystems.normalize_os(application.comment[2])
+        end
       end
     end
   end
