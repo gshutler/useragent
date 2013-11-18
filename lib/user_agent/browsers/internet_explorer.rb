@@ -13,8 +13,7 @@ class UserAgent
       end
 
       def version
-        if version = application.comment.join('; ')[/MSIE ([\d\.]+)/, 1] ||
-                     application.comment.join('; ')[/rv:([\d\.]+)/, 1]
+        if version = application.comment.join('; ')[/(MSIE\s|rv:)([\d\.]+)/, 2]
           Version.new(version)
         end
       end
