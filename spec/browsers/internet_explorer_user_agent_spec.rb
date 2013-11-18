@@ -10,6 +10,27 @@ shared_examples_for "Internet Explorer browser" do
   end
 end
 
+describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "should return '11.0' as its version", :focus => true do
+    @useragent.version.should == "11.0"
+  end
+
+  it "should return 'Windows 8.1' as its os" do
+    @useragent.os.should == "Windows 8.1"
+  end
+
+  it "should have a higher version number than IE10" do
+    @useragent.version.should >
+      UserAgent.parse('Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)').version
+  end
+end
+
 describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)'" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)")
