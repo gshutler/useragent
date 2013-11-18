@@ -21,13 +21,29 @@ describe "UserAgent: Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gec
     @useragent.version.should == "11.0"
   end
 
-  it "should return 'Windows 8.1' as its os" do
+  it "should return 'Windows 7' as its os" do
     @useragent.os.should == "Windows 7"
   end
 
   it "should have a higher version number than IE10" do
     @useragent.version.should >
       UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)").version
+  end
+end
+
+describe "UserAgent: Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "should return '11.0' as its version" do
+    @useragent.version.should == "11.0"
+  end
+
+  it "should return 'Windows 8.1' as its os" do
+    @useragent.os.should == "Windows 8.1"
   end
 end
 
@@ -42,13 +58,8 @@ describe "UserAgent: Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) l
     @useragent.version.should == "11.0"
   end
 
-  it "should return 'Windows 8.1' as its os" do
+  it "should return 'Windows 7' as its os" do
     @useragent.os.should == "Windows 7"
-  end
-
-  it "should have a higher version number than IE10" do
-    @useragent.version.should >
-      UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)").version
   end
 end
 
