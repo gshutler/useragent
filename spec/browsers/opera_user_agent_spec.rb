@@ -192,3 +192,15 @@ describe "UserAgent: 'Opera/9.80 (iPhone; Opera Mini/7.1.32694/27.1407; U; en) P
     @useragent.version.should == "7.1.32694"
   end
 end
+
+describe "Opera/9.80 (BREW Opera Mini/6.0.3/27.2354 U es) Presto/2.8.119 240X320 Samsung SCH-U485" do
+  before do
+    @useragent = UserAgent.parse("Opera/9.80 (BREW Opera Mini/6.0.3/27.2354 U es) Presto/2.8.119 240X320 Samsung SCH-U485")
+  end
+
+  it_should_behave_like "Opera browser"
+
+  it "should return '6.0.3' as its version" do
+    @useragent.version.should == "6.0.3"
+  end
+end
