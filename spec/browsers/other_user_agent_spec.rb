@@ -6,23 +6,23 @@ describe "UserAgent: nil" do
   end
 
   it "should return 'Mozilla' as its browser" do
-    @useragent.browser.should == "Mozilla"
+    expect(@useragent.browser).to eq("Mozilla")
   end
 
   it "should return '4.0' as its version" do
-    @useragent.version.should == "4.0"
+    expect(@useragent.version).to eq("4.0")
   end
 
   it "should return nil as its platform" do
-    @useragent.platform.should == nil
+    expect(@useragent.platform).to eq(nil)
   end
 
   it "should return nil as its os" do
-    @useragent.os.should == nil
+    expect(@useragent.os).to eq(nil)
   end
 
-  it { @useragent.should_not be_mobile }
-  it { @useragent.should_not be_bot }
+  it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).not_to be_bot }
 end
 
 describe "UserAgent: ''" do
@@ -31,23 +31,23 @@ describe "UserAgent: ''" do
   end
 
   it "should return 'Mozilla' as its browser" do
-    @useragent.browser.should == "Mozilla"
+    expect(@useragent.browser).to eq("Mozilla")
   end
 
   it "should return '4.0' as its version" do
-    @useragent.version.should == "4.0"
+    expect(@useragent.version).to eq("4.0")
   end
 
   it "should return nil as its platform" do
-    @useragent.platform.should == nil
+    expect(@useragent.platform).to eq(nil)
   end
 
   it "should return nil as its os" do
-    @useragent.os.should == nil
+    expect(@useragent.os).to eq(nil)
   end
 
-  it { @useragent.should_not be_mobile }
-  it { @useragent.should_not be_bot }
+  it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).not_to be_bot }
 end
 
 describe "UserAgent: 'Mozilla/4.0 (compatible)'" do
@@ -56,23 +56,23 @@ describe "UserAgent: 'Mozilla/4.0 (compatible)'" do
   end
 
   it "should return 'Mozilla' as its browser" do
-    @useragent.browser.should == "Mozilla"
+    expect(@useragent.browser).to eq("Mozilla")
   end
 
   it "should return '4.0' as its version" do
-    @useragent.version.should == "4.0"
+    expect(@useragent.version).to eq("4.0")
   end
 
   it "should return nil as its platform" do
-    @useragent.platform.should == nil
+    expect(@useragent.platform).to eq(nil)
   end
 
   it "should return nil as its os" do
-    @useragent.os.should == nil
+    expect(@useragent.os).to eq(nil)
   end
 
-  it { @useragent.should_not be_mobile }
-  it { @useragent.should_not be_bot }
+  it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).not_to be_bot }
 end
 
 describe "UserAgent: 'Mozilla/5.0'" do
@@ -81,23 +81,23 @@ describe "UserAgent: 'Mozilla/5.0'" do
   end
 
   it "should return 'Mozilla' as its browser" do
-    @useragent.browser.should == "Mozilla"
+    expect(@useragent.browser).to eq("Mozilla")
   end
 
   it "should return '5.0' as its version" do
-    @useragent.version.should == "5.0"
+    expect(@useragent.version).to eq("5.0")
   end
 
   it "should return nil as its platform" do
-    @useragent.platform.should == nil
+    expect(@useragent.platform).to eq(nil)
   end
 
   it "should return nil as its os" do
-    @useragent.os.should == nil
+    expect(@useragent.os).to eq(nil)
   end
 
-  it { @useragent.should_not be_mobile }
-  it { @useragent.should_not be_bot }
+  it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).not_to be_bot }
 end
 
 describe "UserAgent: 'amaya/9.51 libwww/5.4.0'" do
@@ -106,15 +106,15 @@ describe "UserAgent: 'amaya/9.51 libwww/5.4.0'" do
   end
 
   it "should return 'amaya' as its browser" do
-    @useragent.browser.should == "amaya"
+    expect(@useragent.browser).to eq("amaya")
   end
 
   it "should return '9.51' as its version" do
-    @useragent.version.should == "9.51"
+    expect(@useragent.version).to eq("9.51")
   end
 
   it "should return '5.4.0' as its libwww version" do
-    @useragent.libwww.version.should == "5.4.0"
+    expect(@useragent.libwww.version).to eq("5.4.0")
   end
 end
 
@@ -124,13 +124,13 @@ describe "UserAgent: 'Rails Testing'" do
   end
 
   it "should return 'Rails' as its browser" do
-    @useragent.browser.should == "Rails"
+    expect(@useragent.browser).to eq("Rails")
   end
 
-  it { @useragent.version.should be_nil }
-  it { @useragent.platform.should be_nil }
-  it { @useragent.os.should be_nil }
-  it { @useragent.should_not be_mobile }
+  it { expect(@useragent.version).to be_nil }
+  it { expect(@useragent.platform).to be_nil }
+  it { expect(@useragent.os).to be_nil }
+  it { expect(@useragent).not_to be_mobile }
 end
 
 describe "UserAgent: 'Python-urllib/2.7'" do
@@ -139,16 +139,16 @@ describe "UserAgent: 'Python-urllib/2.7'" do
   end
 
   it "should return 'Python-urllib' as its browser" do
-    @useragent.browser.should == "Python-urllib"
+    expect(@useragent.browser).to eq("Python-urllib")
   end
 
   it "should return '2.7' as its version" do
-    @useragent.version.should == "2.7"
+    expect(@useragent.version).to eq("2.7")
   end
 
-  it { @useragent.platform.should be_nil }
-  it { @useragent.os.should be_nil }
-  it { @useragent.should_not be_mobile }
+  it { expect(@useragent.platform).to be_nil }
+  it { expect(@useragent.os).to be_nil }
+  it { expect(@useragent).not_to be_mobile }
 end
 
 describe "UserAgent: 'check_http/v1.4.15 (nagios-plugins 1.4.15)'" do
@@ -157,16 +157,16 @@ describe "UserAgent: 'check_http/v1.4.15 (nagios-plugins 1.4.15)'" do
   end
 
   it "should return 'check_http' as its browser" do
-    @useragent.browser.should == "check_http"
+    expect(@useragent.browser).to eq("check_http")
   end
 
   it "should return 'v1.4.15' as its version" do
-    @useragent.version.should == "v1.4.15"
+    expect(@useragent.version).to eq("v1.4.15")
   end
 
-  it { @useragent.platform.should be_nil }
-  it { @useragent.os.should be_nil }
-  it { @useragent.should_not be_mobile }
+  it { expect(@useragent.platform).to be_nil }
+  it { expect(@useragent.os).to be_nil }
+  it { expect(@useragent).not_to be_mobile }
 end
 
 describe "UserAgent: '/WebTest.pm'" do
@@ -175,6 +175,6 @@ describe "UserAgent: '/WebTest.pm'" do
   end
 
   it "should return nil as its browser" do
-    @useragent.browser.should == nil
+    expect(@useragent.browser).to eq(nil)
   end
 end

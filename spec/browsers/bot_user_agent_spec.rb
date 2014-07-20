@@ -3,7 +3,7 @@ describe "UserAgent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google
     @useragent = UserAgent.parse("Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
   end
 
-  it { @useragent.should be_bot }
+  it { expect(@useragent).to be_bot }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)'" do
@@ -11,7 +11,7 @@ describe "UserAgent: 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com
     @useragent = UserAgent.parse("Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)")
   end
 
-  it { @useragent.should be_bot }
+  it { expect(@useragent).to be_bot }
 end
 
 describe "UserAgent: 'Twitterbot/1.0'" do
@@ -19,5 +19,5 @@ describe "UserAgent: 'Twitterbot/1.0'" do
     @useragent = UserAgent.parse("Twitterbot/1.0")
   end
 
-  it { @useragent.should be_bot}
+  it { expect(@useragent).to be_bot}
 end

@@ -2,11 +2,11 @@ require 'user_agent'
 
 shared_examples_for "Firefox browser" do
   it "should return 'Firefox' as its browser" do
-    @useragent.browser.should == "Firefox"
+    expect(@useragent.browser).to eq("Firefox")
   end
 
   it "should return :strong as its security" do
-    @useragent.security.should == :strong
+    expect(@useragent.security).to eq(:strong)
   end
 end
 
@@ -18,26 +18,26 @@ describe 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0b8) Gecko/20100101 
   it_should_behave_like "Firefox browser"
 
   it "should return '4.0b8' as its version" do
-    @useragent.version.should == "4.0b8"
+    expect(@useragent.version).to eq("4.0b8")
   end
 
   it "should return '20100101' as its gecko version" do
-    @useragent.gecko.version.should == "20100101"
+    expect(@useragent.gecko.version).to eq("20100101")
   end
 
   it "should return 'Macintosh' as its platform" do
-    @useragent.platform.should == "Macintosh"
+    expect(@useragent.platform).to eq("Macintosh")
   end
 
   it "should return 'OS X 10.6' as its os" do
-    @useragent.os.should == "OS X 10.6"
+    expect(@useragent.os).to eq("OS X 10.6")
   end
 
   it "should return nil as its localization" do
-    @useragent.localization.should be_nil
+    expect(@useragent.localization).to be_nil
   end
 
-  it { @useragent.should_not be_mobile }
+  it { expect(@useragent).not_to be_mobile }
 end
 
 describe 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13' do
@@ -48,26 +48,26 @@ describe 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.13) Ge
   it_should_behave_like "Firefox browser"
 
   it "should return '3.6.13' as its version" do
-    @useragent.version.should == "3.6.13"
+    expect(@useragent.version).to eq("3.6.13")
   end
 
   it "should return '20101203' as its gecko version" do
-    @useragent.gecko.version.should == "20101203"
+    expect(@useragent.gecko.version).to eq("20101203")
   end
 
   it "should return 'Macintosh' as its platform" do
-    @useragent.platform.should == "Macintosh"
+    expect(@useragent.platform).to eq("Macintosh")
   end
 
   it "should return 'OS X 10.6' as its os" do
-    @useragent.os.should == "OS X 10.6"
+    expect(@useragent.os).to eq("OS X 10.6")
   end
 
   it "should return 'en-US' as its localization" do
-    @useragent.localization.should == "en-US"
+    expect(@useragent.localization).to eq("en-US")
   end
 
-  it { @useragent.should_not be_mobile }
+  it { expect(@useragent).not_to be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008070206 Firefox/3.0.1'" do
@@ -78,26 +78,26 @@ describe "UserAgent: 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/
   it_should_behave_like "Firefox browser"
 
   it "should return '3.0.1' as its version" do
-    @useragent.version.should == "3.0.1"
+    expect(@useragent.version).to eq("3.0.1")
   end
 
   it "should return '2008070206' as its gecko version" do
-    @useragent.gecko.version.should == "2008070206"
+    expect(@useragent.gecko.version).to eq("2008070206")
   end
 
   it "should return 'X11' as its platform" do
-    @useragent.platform.should == "X11"
+    expect(@useragent.platform).to eq("X11")
   end
 
   it "should return 'Linux i686' as its os" do
-    @useragent.os.should == "Linux i686"
+    expect(@useragent.os).to eq("Linux i686")
   end
 
   it "should return 'en-US' as its localization" do
-    @useragent.localization.should == "en-US"
+    expect(@useragent.localization).to eq("en-US")
   end
 
-  it { @useragent.should_not be_mobile }
+  it { expect(@useragent).not_to be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (X11; Linux x86_64; rv:27.0) Gecko/20100101 Firefox/27.0'" do
@@ -108,22 +108,22 @@ describe "UserAgent: 'Mozilla/5.0 (X11; Linux x86_64; rv:27.0) Gecko/20100101 Fi
   it_should_behave_like "Firefox browser"
 
   it "should return '27.0' as its version" do
-    @useragent.version.should == "27.0"
+    expect(@useragent.version).to eq("27.0")
   end
 
   it "should return '20100101' as its gecko version" do
-    @useragent.gecko.version.should == "20100101"
+    expect(@useragent.gecko.version).to eq("20100101")
   end
 
   it "should return 'X11' as its platform" do
-    @useragent.platform.should == "X11"
+    expect(@useragent.platform).to eq("X11")
   end
 
   it "should return 'Linux x86_64' as its os" do
-    @useragent.os.should == "Linux x86_64"
+    expect(@useragent.os).to eq("Linux x86_64")
   end
 
-  it { @useragent.should_not be_mobile }
+  it { expect(@useragent).not_to be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14'" do
@@ -134,23 +134,23 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1
   it_should_behave_like "Firefox browser"
 
   it "should return '2.0.0.14' as its version" do
-    @useragent.version.should == "2.0.0.14"
+    expect(@useragent.version).to eq("2.0.0.14")
   end
 
   it "should return '20080404' as its gecko version" do
-    @useragent.gecko.version.should == "20080404"
+    expect(@useragent.gecko.version).to eq("20080404")
   end
 
   it "should return 'Macintosh' as its platform" do
-    @useragent.platform.should == "Macintosh"
+    expect(@useragent.platform).to eq("Macintosh")
   end
 
   it "should return 'OS X' as its os" do
-    @useragent.os.should == "OS X"
+    expect(@useragent.os).to eq("OS X")
   end
 
   it "should return 'en-US' as its localization" do
-    @useragent.localization.should == "en-US"
+    expect(@useragent.localization).to eq("en-US")
   end
 end
 
@@ -162,23 +162,23 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1
   it_should_behave_like "Firefox browser"
 
   it "should return '2.0.0.14' as its version" do
-    @useragent.version.should == "2.0.0.14"
+    expect(@useragent.version).to eq("2.0.0.14")
   end
 
   it "should return '20080404' as its gecko version" do
-    @useragent.gecko.version.should == "20080404"
+    expect(@useragent.gecko.version).to eq("20080404")
   end
 
   it "should return 'Windows' as its platform" do
-    @useragent.platform.should == "Windows"
+    expect(@useragent.platform).to eq("Windows")
   end
 
   it "should return 'Windows XP' as its os" do
-    @useragent.os.should == "Windows XP"
+    expect(@useragent.os).to eq("Windows XP")
   end
 
   it "should return 'en-US' as its localization" do
-    @useragent.localization.should == "en-US"
+    expect(@useragent.localization).to eq("en-US")
   end
 end
 
@@ -190,23 +190,23 @@ describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:16.0.1) Gecko/20121
   it_should_behave_like "Firefox browser"
 
   it "should return '16.0.1' as its version" do
-    @useragent.version.should == "16.0.1"
+    expect(@useragent.version).to eq("16.0.1")
   end
 
   it "should return '20121011' as its gecko version" do
-    @useragent.gecko.version.should == "20121011"
+    expect(@useragent.gecko.version).to eq("20121011")
   end
 
   it "should return 'Windows' as its platform" do
-    @useragent.platform.should == "Windows"
+    expect(@useragent.platform).to eq("Windows")
   end
 
   it "should return 'Windows 7' as its os" do
-    @useragent.os.should == "Windows 7"
+    expect(@useragent.os).to eq("Windows 7")
   end
 
   it "should return nil as its localization" do
-    @useragent.localization.should be_nil
+    expect(@useragent.localization).to be_nil
   end
 end
 
@@ -218,23 +218,23 @@ describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.1; Win64; rv:16.0.1) Gecko/20121
   it_should_behave_like "Firefox browser"
 
   it "should return '16.0.1' as its version" do
-    @useragent.version.should == "16.0.1"
+    expect(@useragent.version).to eq("16.0.1")
   end
 
   it "should return '20121011' as its gecko version" do
-    @useragent.gecko.version.should == "20121011"
+    expect(@useragent.gecko.version).to eq("20121011")
   end
 
   it "should return 'Windows' as its platform" do
-    @useragent.platform.should == "Windows"
+    expect(@useragent.platform).to eq("Windows")
   end
 
   it "should return 'Windows 7' as its os" do
-    @useragent.os.should == "Windows 7"
+    expect(@useragent.os).to eq("Windows 7")
   end
 
   it "should return nil as its localization" do
-    @useragent.localization.should be_nil
+    expect(@useragent.localization).to be_nil
   end
 end
 
@@ -246,23 +246,23 @@ describe 'Mozilla/5.0 (Windows NT 5.1; rv:17.0) Gecko/20100101 Firefox/17.0' do
   it_should_behave_like "Firefox browser"
 
   it "should return '17.0' as its version" do
-    @useragent.version.should == "17.0"
+    expect(@useragent.version).to eq("17.0")
   end
 
   it "should return '20100101' as its gecko version" do
-    @useragent.gecko.version.should == "20100101"
+    expect(@useragent.gecko.version).to eq("20100101")
   end
 
   it "should return 'Windows' as its platform" do
-    @useragent.platform.should == "Windows"
+    expect(@useragent.platform).to eq("Windows")
   end
 
   it "should return 'Windows XP' as its os" do
-    @useragent.os.should == "Windows XP"
+    expect(@useragent.os).to eq("Windows XP")
   end
 
   it "should return nil as its localization" do
-    @useragent.localization.should be_nil
+    expect(@useragent.localization).to be_nil
   end
 end
 
@@ -274,23 +274,23 @@ describe 'UserAgent: Mozilla/5.0 (Windows NT 6.1; rv:17.0) Gecko/20100101 Firefo
   it_should_behave_like "Firefox browser"
 
   it "should return '17.0' as its version" do
-    @useragent.version.should == "17.0"
+    expect(@useragent.version).to eq("17.0")
   end
 
   it "should return '20100101' as its gecko version" do
-    @useragent.gecko.version.should == "20100101"
+    expect(@useragent.gecko.version).to eq("20100101")
   end
 
   it "should return 'Windows' as its platform" do
-    @useragent.platform.should == "Windows"
+    expect(@useragent.platform).to eq("Windows")
   end
 
   it "should return 'Windows 7' as its os" do
-    @useragent.os.should == "Windows 7"
+    expect(@useragent.os).to eq("Windows 7")
   end
 
   it "should return nil as its localization" do
-    @useragent.localization.should be_nil
+    expect(@useragent.localization).to be_nil
   end
 end
 
@@ -302,23 +302,23 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:
   it_should_behave_like "Firefox browser"
 
   it "should return '1.5.0.12' as its version" do
-    @useragent.version.should == "1.5.0.12"
+    expect(@useragent.version).to eq("1.5.0.12")
   end
 
   it "should return '20070508' as its gecko version" do
-    @useragent.gecko.version.should == "20070508"
+    expect(@useragent.gecko.version).to eq("20070508")
   end
 
   it "should return 'Macintosh' as its platform" do
-    @useragent.platform.should == "Macintosh"
+    expect(@useragent.platform).to eq("Macintosh")
   end
 
   it "should return 'PPC Mac OS X Mach-O' as its os" do
-    @useragent.os.should == "OS X"
+    expect(@useragent.os).to eq("OS X")
   end
 
   it "should return 'en-US' as its localization" do
-    @useragent.localization.should == "en-US"
+    expect(@useragent.localization).to eq("en-US")
   end
 end
 
@@ -330,23 +330,23 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.1
   it_should_behave_like "Firefox browser"
 
   it "should return '1.5.0.12' as its version" do
-    @useragent.version.should == "1.5.0.12"
+    expect(@useragent.version).to eq("1.5.0.12")
   end
 
   it "should return '20070508' as its gecko version" do
-    @useragent.gecko.version.should == "20070508"
+    expect(@useragent.gecko.version).to eq("20070508")
   end
 
   it "should return 'Windows' as its platform" do
-    @useragent.platform.should == "Windows"
+    expect(@useragent.platform).to eq("Windows")
   end
 
   it "should return 'Windows XP' as its os" do
-    @useragent.os.should == "Windows XP"
+    expect(@useragent.os).to eq("Windows XP")
   end
 
   it "should return 'en-US' as its localization" do
-    @useragent.localization.should == "en-US"
+    expect(@useragent.localization).to eq("en-US")
   end
 end
 
@@ -358,23 +358,23 @@ describe "UserAgent: 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.4) Gecko/
   it_should_behave_like "Firefox browser"
 
   it "should return '1.5.0.4' as its version" do
-    @useragent.version.should == "1.5.0.4"
+    expect(@useragent.version).to eq("1.5.0.4")
   end
 
   it "should return '20060612' as its gecko version" do
-    @useragent.gecko.version.should == "20060612"
+    expect(@useragent.gecko.version).to eq("20060612")
   end
 
   it "should return 'X11' as its platform" do
-    @useragent.platform.should == "X11"
+    expect(@useragent.platform).to eq("X11")
   end
 
   it "should return 'Linux i686' as its os" do
-    @useragent.os.should == "Linux i686"
+    expect(@useragent.os).to eq("Linux i686")
   end
 
   it "should return 'en-US' as its localization" do
-    @useragent.localization.should == "en-US"
+    expect(@useragent.localization).to eq("en-US")
   end
 end
 
@@ -384,27 +384,27 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en; rv:1.8.1.14
   end
 
   it "should return 'Camino' as its browser" do
-    @useragent.browser.should == "Camino"
+    expect(@useragent.browser).to eq("Camino")
   end
 
   it "should return '1.6' as its version" do
-    @useragent.version.should == "1.6"
+    expect(@useragent.version).to eq("1.6")
   end
 
   it "should return '20080409' as its gecko version" do
-    @useragent.gecko.version.should == "20080409"
+    expect(@useragent.gecko.version).to eq("20080409")
   end
 
   it "should return 'Macintosh' as its platform" do
-    @useragent.platform.should == "Macintosh"
+    expect(@useragent.platform).to eq("Macintosh")
   end
 
   it "should return 'OS X' as its os" do
-    @useragent.os.should == "OS X"
+    expect(@useragent.os).to eq("OS X")
   end
 
   it "should return 'en' as its localization" do
-    @useragent.localization.should == "en"
+    expect(@useragent.localization).to eq("en")
   end
 end
 
@@ -414,27 +414,27 @@ describe 'UserAgent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1) Gecko/200
   end
 
   it "should return 'Iceweasel' as its browser" do
-    @useragent.browser.should == "Iceweasel"
+    expect(@useragent.browser).to eq("Iceweasel")
   end
 
   it "should return '2.0' as its version" do
-    @useragent.version.should == "2.0"
+    expect(@useragent.version).to eq("2.0")
   end
 
   it "should return '20061024' as its gecko version" do
-    @useragent.gecko.version.should == "20061024"
+    expect(@useragent.gecko.version).to eq("20061024")
   end
 
   it "should return 'X11' as its platform" do
-    @useragent.platform.should == "X11"
+    expect(@useragent.platform).to eq("X11")
   end
 
   it "should return 'Linux i686' as its os" do
-    @useragent.os.should == "Linux i686"
+    expect(@useragent.os).to eq("Linux i686")
   end
 
   it "should return 'en-US' as its localization" do
-    @useragent.localization.should == "en-US"
+    expect(@useragent.localization).to eq("en-US")
   end
 end
 
@@ -444,27 +444,27 @@ describe 'UserAgent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1
   end
 
   it "should return 'Seamonkey' as its browser" do
-    @useragent.browser.should == "Seamonkey"
+    expect(@useragent.browser).to eq("Seamonkey")
   end
 
   it "should return '2.0' as its version" do
-    @useragent.version.should == "2.0"
+    expect(@useragent.version).to eq("2.0")
   end
 
   it "should return '20091017' as its gecko version" do
-    @useragent.gecko.version.should == "20091017"
+    expect(@useragent.gecko.version).to eq("20091017")
   end
 
   it "should return 'Macintosh' as its platform" do
-    @useragent.platform.should == "Macintosh"
+    expect(@useragent.platform).to eq("Macintosh")
   end
 
   it "should return 'OS X 10.6' as its os" do
-    @useragent.os.should == "OS X 10.6"
+    expect(@useragent.os).to eq("OS X 10.6")
   end
 
   it "should return 'en-US' as its localization" do
-    @useragent.localization.should == "en-US"
+    expect(@useragent.localization).to eq("en-US")
   end
 end
 
@@ -474,7 +474,7 @@ describe 'Mozilla/5.0 (Android; Mobile; rv:19.0) Gecko/19.0 Firefox/19.0' do
   end
 
   it "should return true for mobile?" do
-    @useragent.mobile?.should be_true
+    expect(@useragent.mobile?).to be_truthy
   end
 end
 
@@ -486,18 +486,18 @@ describe 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:x.x.x) Gecko/200411
   it_should_behave_like "Firefox browser"
 
   it "should return 'x.x' as its version" do
-    @useragent.version.should == "x.x"
+    expect(@useragent.version).to eq("x.x")
   end
 
   it "should return '20041107' as its gecko version" do
-    @useragent.gecko.version.should == "20041107"
+    expect(@useragent.gecko.version).to eq("20041107")
   end
 
   it "should return 'Windows' as its platform" do
-    @useragent.platform.should == "Windows"
+    expect(@useragent.platform).to eq("Windows")
   end
 
   it "should return 'Windows XP' as its os" do
-    @useragent.os.should == "Windows XP"
+    expect(@useragent.os).to eq("Windows XP")
   end
 end
