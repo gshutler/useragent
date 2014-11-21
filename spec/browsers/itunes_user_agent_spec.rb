@@ -4,6 +4,10 @@ shared_examples "iTunes" do
   it "should return 'iTunes' as its browser" do
     expect(@useragent.browser).to eq("iTunes")
   end
+
+  it "should return nil as its security" do
+    expect(@useragent.security).to be_nil
+  end
 end
 
 shared_examples "it runs on" do |platform, os|
@@ -94,4 +98,25 @@ describe "UserAgent: iTunes/12.0.1 (Macintosh; OS X 10.10.1) AppleWebKit/0600.1.
   it_behaves_like "it runs on", "Macintosh", "OS X 10.10.1"
   it_behaves_like "it has version number", "12.0.1"
   it_behaves_like "it has WebKit build number", "0600.1.25"
+end
+
+describe "UserAgent: iTunes/10.7 Downcast/2.8.26.1005" do
+  before do
+    @useragent = UserAgent.parse("iTunes/10.7 Downcast/2.8.26.1005")
+  end
+
+  it_behaves_like "iTunes"
+  it_behaves_like "it has version number", "10.7"
+
+  it "should return nil for WebKit build number" do
+    expect(@useragent.build).to be_nil
+  end
+
+  it "should return nil for the OS" do
+    expect(@useragent.os).to be_nil
+  end
+
+  it "should return nil for the platform" do
+    expect(@useragent.platform).to be_nil
+  end
 end
