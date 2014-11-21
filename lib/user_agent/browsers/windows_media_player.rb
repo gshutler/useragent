@@ -114,7 +114,6 @@ class UserAgent
       #   NSPlayer/11.0.6002.18005
       #   NSPlayer/11.0.6002.18049 WMFSDK/11.0
       #   Windows-Media-Player/11.0.6002.18311
-      #   NSPlayer/11.00.6002.18392 WMFSDK/11.00.6002.18392
       # 
       # Windows 8.1 with Windows Media Player 12::
       #   NSPlayer/12.00.9600.17031 WMFSDK/12.00.9600.17031
