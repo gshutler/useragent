@@ -28,6 +28,11 @@ class UserAgent
         nil
       end
 
+      # @return [nil, Version] The WebKit version in use if we have it
+      def build
+        webkit ? super : nil
+      end  
+
       # Parses the operating system in use.
       # 
       # @return [String] The operating system
@@ -57,11 +62,15 @@ class UserAgent
       # 
       # @return [String] The operating system
       def full_os
-        full_os = application.comment[1]
+        if application && application.comment && application.comment.length > 1
+          full_os = application.comment[1]
 
-        full_os = "#{full_os})" if full_os =~ /\(Build [0-9][0-9][0-9][0-9]\z/ # The regex chops the ) off :(
+          full_os = "#{full_os})" if full_os =~ /\(Build [0-9][0-9][0-9][0-9]\z/ # The regex chops the ) off :(
         
-        return full_os
+          full_os
+        else
+          nil
+        end
       end
     end
   end
