@@ -50,7 +50,7 @@ shared_examples "Windows Media Player Classic" do
   end
 end
 
-shared_examples "it isn't using WMFSDK" do
+shared_examples "Windows Media Player isn't using WMFSDK" do
   it "should return nil as its WMFSDK version" do
     expect(@useragent.wmfsdk_version).to be_nil
   end
@@ -72,13 +72,13 @@ shared_examples "it isn't using WMFSDK" do
   end
 end
 
-shared_examples "it runs on" do |os|
+shared_examples "Windows Media Player runs on" do |os|
   it "should return '#{os}' as its OS" do
     expect(@useragent.os).to eq(os)
   end
 end
 
-shared_examples "it has version number" do |version|
+shared_examples "Windows Media Player has version number" do |version|
   it "should return '#{version}' as its version" do
     expect(@useragent.version).to eq(version)
   end
@@ -107,9 +107,9 @@ end
     end
 
     it_behaves_like "Windows Media Player Classic"
-    it_behaves_like "it isn't using WMFSDK"
-    it_behaves_like "it runs on", "Windows 9x"
-    it_behaves_like "it has version number", win9x_wmp6
+    it_behaves_like "Windows Media Player isn't using WMFSDK"
+    it_behaves_like "Windows Media Player runs on", "Windows 9x"
+    it_behaves_like "Windows Media Player has version number", win9x_wmp6
   end
 end
 
@@ -120,9 +120,9 @@ end
     end
 
     it_behaves_like "Windows Media Player Classic"
-    it_behaves_like "it isn't using WMFSDK"
-    it_behaves_like "it runs on", "Windows 98"
-    it_behaves_like "it has version number", win98_wmp6
+    it_behaves_like "Windows Media Player isn't using WMFSDK"
+    it_behaves_like "Windows Media Player runs on", "Windows 98"
+    it_behaves_like "Windows Media Player has version number", win98_wmp6
   end
 end
 
@@ -133,9 +133,9 @@ end
     end
 
     it_behaves_like "Windows Media Player"
-    it_behaves_like "it isn't using WMFSDK"
-    it_behaves_like "it runs on", "Windows 98"
-    it_behaves_like "it has version number", win98_wmp71
+    it_behaves_like "Windows Media Player isn't using WMFSDK"
+    it_behaves_like "Windows Media Player runs on", "Windows 98"
+    it_behaves_like "Windows Media Player has version number", win98_wmp71
   end
 end
 
@@ -145,9 +145,9 @@ describe "UserAgent: Windows-Media-Player/9.00.00.2980" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it isn't using WMFSDK"
-  it_behaves_like "it runs on", "Windows 98/2000"
-  it_behaves_like "it has version number", "9.00.00.2980"
+  it_behaves_like "Windows Media Player isn't using WMFSDK"
+  it_behaves_like "Windows Media Player runs on", "Windows 98/2000"
+  it_behaves_like "Windows Media Player has version number", "9.00.00.2980"
 end
 
 describe "UserAgent: NSPlayer/9.0.0.2980 WMFSDK/9.0" do
@@ -156,8 +156,8 @@ describe "UserAgent: NSPlayer/9.0.0.2980 WMFSDK/9.0" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it runs on", "Windows 98/2000"
-  it_behaves_like "it has version number", "9.0.0.2980"
+  it_behaves_like "Windows Media Player runs on", "Windows 98/2000"
+  it_behaves_like "Windows Media Player has version number", "9.0.0.2980"
 
   it "should return '9.0' as its WMFSDK version" do
     expect(@useragent.wmfsdk_version).to eq("9.0")
@@ -174,9 +174,9 @@ describe "UserAgent: NSPlayer/4.1.0.3938" do
   end
 
   it_behaves_like "Windows Media Player Classic"
-  it_behaves_like "it isn't using WMFSDK"
-  it_behaves_like "it runs on", "Windows 2000"
-  it_behaves_like "it has version number", "4.1.0.3938"
+  it_behaves_like "Windows Media Player isn't using WMFSDK"
+  it_behaves_like "Windows Media Player runs on", "Windows 2000"
+  it_behaves_like "Windows Media Player has version number", "4.1.0.3938"
 end
 
 describe "UserAgent: NSPlayer/9.0.0.3268" do
@@ -185,9 +185,9 @@ describe "UserAgent: NSPlayer/9.0.0.3268" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it isn't using WMFSDK"
-  it_behaves_like "it runs on", "Windows 2000"
-  it_behaves_like "it has version number", "9.0.0.3268"
+  it_behaves_like "Windows Media Player isn't using WMFSDK"
+  it_behaves_like "Windows Media Player runs on", "Windows 2000"
+  it_behaves_like "Windows Media Player has version number", "9.0.0.3268"
 end
 
 describe "UserAgent: NSPlayer/9.0.0.3268 WMFSDK/9.0" do
@@ -196,8 +196,8 @@ describe "UserAgent: NSPlayer/9.0.0.3268 WMFSDK/9.0" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it runs on", "Windows 2000"
-  it_behaves_like "it has version number", "9.0.0.3268"
+  it_behaves_like "Windows Media Player runs on", "Windows 2000"
+  it_behaves_like "Windows Media Player has version number", "9.0.0.3268"
 
   it "should return '9.0' as its WMFSDK version" do
     expect(@useragent.wmfsdk_version).to eq("9.0")
@@ -214,8 +214,8 @@ describe "UserAgent: NSPlayer/9.0.0.3270 WMFSDK/9.0" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it runs on", "Windows 2000"
-  it_behaves_like "it has version number", "9.0.0.3270"
+  it_behaves_like "Windows Media Player runs on", "Windows 2000"
+  it_behaves_like "Windows Media Player has version number", "9.0.0.3270"
 
   it "should return '9.0' as its WMFSDK version" do
     expect(@useragent.wmfsdk_version).to eq("9.0")
@@ -232,9 +232,9 @@ describe "UserAgent: Windows-Media-Player/9.00.00.3367" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it isn't using WMFSDK"
-  it_behaves_like "it runs on", "Windows 2000"
-  it_behaves_like "it has version number", "9.00.00.3367"
+  it_behaves_like "Windows Media Player isn't using WMFSDK"
+  it_behaves_like "Windows Media Player runs on", "Windows 2000"
+  it_behaves_like "Windows Media Player has version number", "9.00.00.3367"
 end
 
 describe "UserAgent: NSPlayer/4.1.0.3936" do
@@ -243,9 +243,9 @@ describe "UserAgent: NSPlayer/4.1.0.3936" do
   end
 
   it_behaves_like "Windows Media Player Classic"
-  it_behaves_like "it isn't using WMFSDK"
-  it_behaves_like "it runs on", "Windows XP"
-  it_behaves_like "it has version number", "4.1.0.3936"
+  it_behaves_like "Windows Media Player isn't using WMFSDK"
+  it_behaves_like "Windows Media Player runs on", "Windows XP"
+  it_behaves_like "Windows Media Player has version number", "4.1.0.3936"
 end
 
 describe "UserAgent: NSPlayer/9.0.0.4503" do
@@ -254,9 +254,9 @@ describe "UserAgent: NSPlayer/9.0.0.4503" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it isn't using WMFSDK"
-  it_behaves_like "it runs on", "Windows XP"
-  it_behaves_like "it has version number", "9.0.0.4503"
+  it_behaves_like "Windows Media Player isn't using WMFSDK"
+  it_behaves_like "Windows Media Player runs on", "Windows XP"
+  it_behaves_like "Windows Media Player has version number", "9.0.0.4503"
 end
 
 describe "UserAgent: NSPlayer/9.0.0.4503 WMFSDK/9.0" do
@@ -265,8 +265,8 @@ describe "UserAgent: NSPlayer/9.0.0.4503 WMFSDK/9.0" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it runs on", "Windows XP"
-  it_behaves_like "it has version number", "9.0.0.4503"
+  it_behaves_like "Windows Media Player runs on", "Windows XP"
+  it_behaves_like "Windows Media Player has version number", "9.0.0.4503"
 
   it "should return '9.0' as its WMFSDK version" do
     expect(@useragent.wmfsdk_version).to eq("9.0")
@@ -283,9 +283,9 @@ describe "UserAgent: Windows-Media-Player/9.00.00.4503" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it runs on", "Windows XP"
-  it_behaves_like "it isn't using WMFSDK"
-  it_behaves_like "it has version number", "9.00.00.4503"
+  it_behaves_like "Windows Media Player runs on", "Windows XP"
+  it_behaves_like "Windows Media Player isn't using WMFSDK"
+  it_behaves_like "Windows Media Player has version number", "9.00.00.4503"
 end
 
 describe "UserAgent: NSPlayer/10.0.0.3802" do
@@ -294,9 +294,9 @@ describe "UserAgent: NSPlayer/10.0.0.3802" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it runs on", "Windows XP"
-  it_behaves_like "it isn't using WMFSDK"
-  it_behaves_like "it has version number", "10.0.0.3802"
+  it_behaves_like "Windows Media Player runs on", "Windows XP"
+  it_behaves_like "Windows Media Player isn't using WMFSDK"
+  it_behaves_like "Windows Media Player has version number", "10.0.0.3802"
 end
 
 describe "UserAgent: NSPlayer/10.0.0.3802 WMFSDK/10.0" do
@@ -305,8 +305,8 @@ describe "UserAgent: NSPlayer/10.0.0.3802 WMFSDK/10.0" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it runs on", "Windows XP"
-  it_behaves_like "it has version number", "10.0.0.3802"
+  it_behaves_like "Windows Media Player runs on", "Windows XP"
+  it_behaves_like "Windows Media Player has version number", "10.0.0.3802"
 
   it "should return '10.0' as its WMFSDK version" do
     expect(@useragent.wmfsdk_version).to eq("10.0")
@@ -323,9 +323,9 @@ describe "UserAgent: Windows-Media-Player/10.00.00.3802" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it runs on", "Windows XP"
-  it_behaves_like "it isn't using WMFSDK"
-  it_behaves_like "it has version number", "10.00.00.3802"
+  it_behaves_like "Windows Media Player runs on", "Windows XP"
+  it_behaves_like "Windows Media Player isn't using WMFSDK"
+  it_behaves_like "Windows Media Player has version number", "10.00.00.3802"
 end
 
 describe "UserAgent: NSPlayer/11.0.5721.5262" do
@@ -334,9 +334,9 @@ describe "UserAgent: NSPlayer/11.0.5721.5262" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it isn't using WMFSDK"
-  it_behaves_like "it runs on", "Windows XP"
-  it_behaves_like "it has version number", "11.0.5721.5262"
+  it_behaves_like "Windows Media Player isn't using WMFSDK"
+  it_behaves_like "Windows Media Player runs on", "Windows XP"
+  it_behaves_like "Windows Media Player has version number", "11.0.5721.5262"
 end
 
 describe "UserAgent: NSPlayer/11.0.5721.5262 WMFSDK/11.0" do
@@ -345,8 +345,8 @@ describe "UserAgent: NSPlayer/11.0.5721.5262 WMFSDK/11.0" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it runs on", "Windows XP"
-  it_behaves_like "it has version number", "11.0.5721.5262"
+  it_behaves_like "Windows Media Player runs on", "Windows XP"
+  it_behaves_like "Windows Media Player has version number", "11.0.5721.5262"
 
   it "should return '11.0' as its WMFSDK version" do
     expect(@useragent.wmfsdk_version).to eq("11.0")
@@ -363,9 +363,9 @@ describe "UserAgent: Windows-Media-Player/11.0.5721.5262" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it isn't using WMFSDK"
-  it_behaves_like "it runs on", "Windows XP"
-  it_behaves_like "it has version number", "11.0.5721.5262"
+  it_behaves_like "Windows Media Player isn't using WMFSDK"
+  it_behaves_like "Windows Media Player runs on", "Windows XP"
+  it_behaves_like "Windows Media Player has version number", "11.0.5721.5262"
 end
 
 describe "UserAgent: NSPlayer/11.00.6002.18392 WMFSDK/11.00.6002.18392" do
@@ -374,8 +374,8 @@ describe "UserAgent: NSPlayer/11.00.6002.18392 WMFSDK/11.00.6002.18392" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it runs on", "Windows Vista"
-  it_behaves_like "it has version number", "11.00.6002.18392"
+  it_behaves_like "Windows Media Player runs on", "Windows Vista"
+  it_behaves_like "Windows Media Player has version number", "11.00.6002.18392"
 
   it "should return '11.00.6002.18392' as its WMFSDK version" do
     expect(@useragent.wmfsdk_version).to eq("11.00.6002.18392")
@@ -392,9 +392,9 @@ describe "UserAgent: NSPlayer/11.0.6002.18005" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it isn't using WMFSDK"
-  it_behaves_like "it runs on", "Windows Vista"
-  it_behaves_like "it has version number", "11.0.6002.18005"
+  it_behaves_like "Windows Media Player isn't using WMFSDK"
+  it_behaves_like "Windows Media Player runs on", "Windows Vista"
+  it_behaves_like "Windows Media Player has version number", "11.0.6002.18005"
 end
 
 describe "UserAgent: NSPlayer/11.0.6002.18049 WMFSDK/11.0" do
@@ -403,8 +403,8 @@ describe "UserAgent: NSPlayer/11.0.6002.18049 WMFSDK/11.0" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it runs on", "Windows Vista"
-  it_behaves_like "it has version number", "11.0.6002.18049"
+  it_behaves_like "Windows Media Player runs on", "Windows Vista"
+  it_behaves_like "Windows Media Player has version number", "11.0.6002.18049"
 
   it "should return '11.0' as its WMFSDK version" do
     expect(@useragent.wmfsdk_version).to eq("11.0")
@@ -421,9 +421,9 @@ describe "UserAgent: Windows-Media-Player/11.0.6002.18311" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it isn't using WMFSDK"
-  it_behaves_like "it runs on", "Windows Vista"
-  it_behaves_like "it has version number", "11.0.6002.18311"
+  it_behaves_like "Windows Media Player isn't using WMFSDK"
+  it_behaves_like "Windows Media Player runs on", "Windows Vista"
+  it_behaves_like "Windows Media Player has version number", "11.0.6002.18311"
 end
 
 # FIXME: User agents for Windows 7 and Windows 8
@@ -434,8 +434,8 @@ describe "UserAgent: NSPlayer/12.00.9600.17031 WMFSDK/12.00.9600.17031" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it runs on", "Windows 8.1"
-  it_behaves_like "it has version number", "12.00.9600.17031"
+  it_behaves_like "Windows Media Player runs on", "Windows 8.1"
+  it_behaves_like "Windows Media Player has version number", "12.00.9600.17031"
 
   it "should return '12.00.9600.17031' as its WMFSDK version" do
     expect(@useragent.wmfsdk_version).to eq("12.00.9600.17031")
@@ -452,8 +452,8 @@ describe "UserAgent: Windows-Media-Player/12.0.9841.0" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it runs on", "Windows 10"
-  it_behaves_like "it has version number", "12.0.9841.0"
+  it_behaves_like "Windows Media Player runs on", "Windows 10"
+  it_behaves_like "Windows Media Player has version number", "12.0.9841.0"
 end
 
 describe "UserAgent: NSPlayer/12.00.9841.0000 WMFSDK/12.00.9841.0000" do
@@ -462,8 +462,8 @@ describe "UserAgent: NSPlayer/12.00.9841.0000 WMFSDK/12.00.9841.0000" do
   end
 
   it_behaves_like "Windows Media Player"
-  it_behaves_like "it runs on", "Windows 10"
-  it_behaves_like "it has version number", "12.00.9841.0000"
+  it_behaves_like "Windows Media Player runs on", "Windows 10"
+  it_behaves_like "Windows Media Player has version number", "12.00.9841.0000"
 
   it "should return '12.00.9841.0000' as its WMFSDK version" do
     expect(@useragent.wmfsdk_version).to eq("12.00.9841.0000")
@@ -480,8 +480,8 @@ describe "UserAgent: NSPlayer/12.00.9651.0000 WMFSDK/12.00.9651.0000" do
   end
 
   it_behaves_like "Windows Media Player Mobile"
-  it_behaves_like "it runs on", "Windows Phone 8.1"
-  it_behaves_like "it has version number", "12.00.9651.0000"
+  it_behaves_like "Windows Media Player runs on", "Windows Phone 8.1"
+  it_behaves_like "Windows Media Player has version number", "12.00.9651.0000"
 
   it "should return '12.00.9651.0000' as its WMFSDK version" do
     expect(@useragent.wmfsdk_version).to eq("12.00.9651.0000")
