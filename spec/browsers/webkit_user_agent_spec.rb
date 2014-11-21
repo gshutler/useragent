@@ -647,8 +647,8 @@ describe "UserAgent: Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) Appl
     expect(@useragent.build).to eq("531.21.10")
   end
 
-  it "should return '3.2' as its version" do
-    expect(@useragent.version).to eq("3.2")
+  it "should return '4.0.4' as its version" do
+    expect(@useragent.version).to eq("4.0.4")
   end
 
   it "should return '531.21.10' as its webkit version" do
@@ -659,8 +659,8 @@ describe "UserAgent: Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) Appl
     expect(@useragent.platform).to eq("iPad")
   end
 
-  it "should return 'CPU like Mac OS X' as its os" do
-    expect(@useragent.os).to eq("CPU OS 3_2 like Mac OS X")
+  it "should return 'iOS 3.2' as its os" do
+    expect(@useragent.os).to eq("iOS 3.2")
   end
 
   it "should return 'en-us' as its localization" do
