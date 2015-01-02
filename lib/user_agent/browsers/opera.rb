@@ -3,7 +3,12 @@ class UserAgent
     class Opera < Base
       def self.extend?(agent)
         (agent.first && agent.first.product == 'Opera') ||
-          (agent.application && agent.application.product == 'Opera')
+          (agent.application && agent.application.product == 'Opera') ||
+            (agent.last && agent.last.product == 'OPR')
+      end
+
+      def browser
+        'Opera'
       end
 
       def version
