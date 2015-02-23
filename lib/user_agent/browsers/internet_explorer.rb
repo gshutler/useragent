@@ -13,9 +13,8 @@ class UserAgent
       end
 
       def version
-        if version = application.comment.join('; ')[/(MSIE\s|rv:)([\d\.]+)/, 2]
-          Version.new(version)
-        end
+        str = application.comment.join('; ')[/(MSIE\s|rv:)([\d\.]+)/, 2]
+        Version.new(str)
       end
 
       def compatibility_view?

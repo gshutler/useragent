@@ -17,7 +17,8 @@ class UserAgent
       end
 
       def version
-        send(browser).version || super
+        v = send(browser).version
+        v.nil? ? super : v
       end
 
       def platform

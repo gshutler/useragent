@@ -433,8 +433,32 @@ describe UserAgent::Version do
     expect(UserAgent::Version.new("a.a")).to be < UserAgent::Version.new("b.b")
   end
 
-  it "should raise ArgumentError if other is nil" do
-    expect { expect(UserAgent::Version.new("9.0")).to be < nil }.to raise_error(ArgumentError, "comparison of UserAgent::Version with nil failed")
+  it "should not be > if version is nil" do
+    expect(UserAgent::Version.new(nil)).not_to be > UserAgent::Version.new("1.0")
+  end
+
+  it "should be < if version is nil" do
+    expect(UserAgent::Version.new(nil)).to be < UserAgent::Version.new("1.0")
+  end
+
+  it "should not be > when compared with nil" do
+    expect(UserAgent::Version.new(nil)).not_to be > UserAgent::Version.new(nil)
+  end
+
+  it "should not be < when compared with nil" do
+    expect(UserAgent::Version.new(nil)).not_to be < UserAgent::Version.new(nil)
+  end
+
+  it "should not be > if both versions are nil" do
+    expect(UserAgent::Version.new(nil)).not_to be > UserAgent::Version.new(nil)
+  end
+
+  it "should not be < if both versions are nil" do
+    expect(UserAgent::Version.new(nil)).not_to be < UserAgent::Version.new(nil)
+  end
+
+  it "should be > if version is nil" do
+    expect(UserAgent::Version.new("9.0")).to be > nil
   end
 
   context "comparing with structs" do

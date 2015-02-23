@@ -24,7 +24,7 @@ class UserAgent
           chrome.version
         end
 
-        Version.new(str) if str
+        Version.new(str)
       end
 
       def application

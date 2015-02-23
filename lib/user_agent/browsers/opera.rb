@@ -8,7 +8,7 @@ class UserAgent
 
       def version
         if mini?
-          application.comment.detect{|c| c =~ /Opera Mini/}[/Opera Mini\/([\d\.]+)/, 1] rescue nil
+          application.comment.detect{|c| c =~ /Opera Mini/}[/Opera Mini\/([\d\.]+)/, 1] rescue Version.new
         elsif product = detect_product('Version')
           product.version
         else
