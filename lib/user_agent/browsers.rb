@@ -14,7 +14,7 @@ class UserAgent
     }.freeze
 
     def self.all
-      [InternetExplorer, Chrome, Webkit, Opera, Gecko]
+      [InternetExplorer, Opera, Chrome, Webkit, Gecko]
     end
 
     def self.extend(array)
