@@ -25,8 +25,8 @@ Gem::Specification.new do |s|
     "README.md"
   ]
 
-  s.add_development_dependency "rake"
-  s.add_development_dependency "rspec"
+  s.add_development_dependency "rake", "~> 10.0"
+  s.add_development_dependency "rspec", "~> 3.0"
 
   s.authors  = ["Joshua Peek", "Garry Shutler"]
   s.email   = "garry@robustsoftware.co.uk"
