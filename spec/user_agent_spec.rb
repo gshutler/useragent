@@ -186,6 +186,12 @@ describe UserAgent, ".parse" do
     expect(UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3 ; en-us; )").application).to eq(useragent)
   end
 
+  it "should parse a user agent string with gzip(gfe) addition correctly" do
+    agent = UserAgent.parse("Mozilla/5.0 (Windows NT 5.1; rv:35.0) Gecko/20100101 Firefox/35.0,gzip(gfe)")
+
+    expect(agent.version.to_s).to eq("35.0")
+  end
+
   it "should parse a single product and comment" do
     useragent = UserAgent.new("Mozilla", nil, ["Macintosh"])
     expect(UserAgent.parse("Mozilla (Macintosh)").application).to eq(useragent)
