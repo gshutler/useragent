@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name    = "useragent"
-  s.version = "0.11.0"
+  s.version = "0.12.0"
 
-  s.homepage    = "http://github.com/josh/useragent"
+  s.homepage    = "http://github.com/gshutler/useragent"
   s.summary     = "HTTP User Agent parser"
   s.description = <<-EOS
     HTTP User Agent parser
@@ -22,13 +22,13 @@ Gem::Specification.new do |s|
     "lib/user_agent/version.rb",
     "lib/useragent.rb",
     "LICENSE",
-    "README.rdoc"
+    "README.md"
   ]
 
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
 
-  s.author  = "Joshua Peek"
-  s.email   = "josh@joshpeek.com"
-  s.license = 'MIT'
+  s.authors  = ["Joshua Peek", "Garry Shutler"]
+  s.email   = "garry@robustsoftware.co.uk"
+  s.license = "MIT"
 end
