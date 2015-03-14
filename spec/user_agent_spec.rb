@@ -161,6 +161,8 @@ describe UserAgent, "::MATCHER" do
 end
 
 describe UserAgent, ".parse" do
+  let(:default_user_agent) { UserAgent.parse(UserAgent::DEFAULT_USER_AGENT) }
+
   it "should concatenate user agents when coerced to a string" do
     string = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.18")
     expect(string.to_str).to eq("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.18")
@@ -195,6 +197,18 @@ describe UserAgent, ".parse" do
   it "should parse a single product and comment" do
     useragent = UserAgent.new("Mozilla", nil, ["Macintosh"])
     expect(UserAgent.parse("Mozilla (Macintosh)").application).to eq(useragent)
+  end
+
+  it "should parse nil as the default agent" do
+    expect(UserAgent.parse(nil)).to eq(default_user_agent)
+  end
+
+  it "should parse an empty string as the default agent" do
+    expect(UserAgent.parse("")).to eq(default_user_agent)
+  end
+
+  it "should parse a blank string as the default agent" do
+    expect(UserAgent.parse(" ")).to eq(default_user_agent)
   end
 end
 

@@ -14,7 +14,7 @@ class UserAgent
   DEFAULT_USER_AGENT = "Mozilla/4.0 (compatible)"
 
   def self.parse(string)
-    if string.nil? || string == ""
+    if string.nil? || string.strip == ""
       string = DEFAULT_USER_AGENT
     end
 
