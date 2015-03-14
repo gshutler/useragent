@@ -36,7 +36,7 @@ class UserAgent
       end
 
       def os
-        OperatingSystems.normalize_os(application.comment.join('; ').match(/Windows NT [\d\.]+|Windows Phone OS [\d\.]+/).to_s)
+        OperatingSystems.normalize_os(application.comment.join('; ').match(/Windows NT [\d\.]+|Windows Phone (OS )?[\d\.]+/).to_s)
       end
     end
   end
