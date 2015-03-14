@@ -18,7 +18,7 @@ class UserAgent
     }.freeze
 
     def self.all
-      [InternetExplorer, Chrome, ITunes, Webkit, Opera, Gecko, WindowsMediaPlayer, AppleCoreMedia, Libavformat]
+      [InternetExplorer, Opera, Chrome, ITunes, Webkit, Gecko, WindowsMediaPlayer, AppleCoreMedia, Libavformat]
     end
 
     def self.extend(array)

@@ -62,7 +62,7 @@ class UserAgent
           BuildVersions[build.to_s]
         end
 
-        Version.new(str) if str
+        Version.new(str)
       end
 
       def application

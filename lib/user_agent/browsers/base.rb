@@ -44,7 +44,7 @@ class UserAgent
         nil
       end
 
-      def respond_to?(symbol)
+      def respond_to?(symbol, include_all = false)
         detect_product(symbol) ? true : super
       end
 

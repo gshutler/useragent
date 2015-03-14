@@ -3,12 +3,17 @@ class UserAgent
     class Opera < Base
       def self.extend?(agent)
         (agent.first && agent.first.product == 'Opera') ||
-          (agent.application && agent.application.product == 'Opera')
+          (agent.application && agent.application.product == 'Opera') ||
+            (agent.last && agent.last.product == 'OPR')
+      end
+
+      def browser
+        'Opera'
       end
 
       def version
         if mini?
-          application.comment.detect{|c| c =~ /Opera Mini/}[/Opera Mini\/([\d\.]+)/, 1] rescue nil
+          application.comment.detect{|c| c =~ /Opera Mini/}[/Opera Mini\/([\d\.]+)/, 1] rescue Version.new
         elsif product = detect_product('Version')
           product.version
         else

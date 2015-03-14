@@ -13,9 +13,8 @@ class UserAgent
       end
 
       def version
-        if version = application.comment.join('; ')[/(MSIE\s|rv:)([\d\.]+)/, 2]
-          Version.new(version)
-        end
+        str = application.comment.join('; ')[/(MSIE\s|rv:)([\d\.]+)/, 2]
+        Version.new(str)
       end
 
       def compatibility_view?
@@ -37,7 +36,7 @@ class UserAgent
       end
 
       def os
-        OperatingSystems.normalize_os(application.comment.join('; ').match(/Windows NT [\d\.]+|Windows Phone OS [\d\.]+/).to_s)
+        OperatingSystems.normalize_os(application.comment.join('; ').match(/Windows NT [\d\.]+|Windows Phone (OS )?[\d\.]+/).to_s)
       end
     end
   end

@@ -6,15 +6,15 @@ require 'user_agent/version'
 class UserAgent
   # http://www.texsoft.it/index.php?m=sw.php.useragent
   MATCHER = %r{
-    ^([^/\s]+)        # Product
-    /?([^\s]*)        # Version
-    (\s\(([^\)]*)\))? # Comment
+    ^([^/\s]+)                     # Product
+    /?([^\s,]*)                    # Version
+    (\s\(([^\)]*)\)|,gzip\(gfe\))? # Comment
   }x.freeze
 
   DEFAULT_USER_AGENT = "Mozilla/4.0 (compatible)"
 
   def self.parse(string)
-    if string.nil? || string == ""
+    if string.nil? || string.strip == ""
       string = DEFAULT_USER_AGENT
     end
 
@@ -38,7 +38,7 @@ class UserAgent
     if version && !version.empty?
       @version = Version.new(version)
     else
-      @version = nil
+      @version = Version.new
     end
 
     if comment.respond_to?(:split)
@@ -54,11 +54,7 @@ class UserAgent
   # always return false.
   def <=>(other)
     if @product == other.product
-      if @version && other.version
-        @version <=> other.version
-      else
-        0
-      end
+      @version <=> other.version
     else
       false
     end
@@ -75,9 +71,9 @@ class UserAgent
   end
 
   def to_str
-    if @product && @version && @comment
+    if @product && !@version.nil? && @comment
       "#{@product}/#{@version} (#{@comment.join("; ")})"
-    elsif @product && @version
+    elsif @product && !@version.nil?
       "#{@product}/#{@version}"
     elsif @product && @comment
       "#{@product} (#{@comment.join("; ")})"
