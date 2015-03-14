@@ -6,6 +6,7 @@ class UserAgent
       end
 
       GeckoBrowsers = %w(
+        PaleMoon
         Firefox
         Camino
         Iceweasel
