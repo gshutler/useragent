@@ -87,6 +87,32 @@ class UserAgent
         end
       end
 
+      def to_h
+        return nil unless application
+
+        hash = {
+          :browser => browser,
+          :platform => platform,
+          :os => os,
+          :mobile => mobile?,
+          :bot => bot?,
+        }
+
+        if version
+          hash[:version] = version.to_a
+        else
+          hash[:version] = nil
+        end
+
+        if comment = application.comment
+          hash[:comment] = comment.dup
+        else
+          hash[:comment] = nil
+        end
+
+        hash
+      end
+
       private
         def detect_product(product)
           detect { |useragent| useragent.product.to_s.downcase == product.to_s.downcase }

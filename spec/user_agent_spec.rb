@@ -372,6 +372,60 @@ describe UserAgent::Browsers::Base, "#>=" do
   end
 end
 
+describe UserAgent::Browsers::Base, "#to_h" do
+  shared_examples "Browser serializer" do |user_agent_string, expected_hash|
+    let(:useragent) do
+      UserAgent.parse(user_agent_string)
+    end
+
+    let(:actual) do
+      useragent.to_h
+    end
+
+    expected_hash.each_pair do |key, value|
+      it "should serialize :#{key} as '#{value}'" do
+        expect(actual[key]).to eq(value)
+      end
+    end
+  end
+
+  it_behaves_like "Browser serializer",
+    "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us)",
+    {
+      :browser => "Mozilla",
+      :version => [5, 0],
+      :platform => "Macintosh",
+      :os => "OS X 10.5.3",
+      :mobile => false,
+      :bot => false,
+      :comment => ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"],
+    }
+
+  it_behaves_like "Browser serializer",
+    "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    {
+      :browser => "Mozilla",
+      :version => [5, 0],
+      :platform => nil,
+      :os => "Googlebot/2.1",
+      :mobile => false,
+      :bot => true,
+      :comment => ["compatible", "Googlebot/2.1", "+http://www.google.com/bot.html"],
+    }
+
+  it_behaves_like "Browser serializer",
+    "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/28.0.1500.16 Mobile/10B329 Safari/8536.25",
+    {
+      :browser => "Chrome",
+      :version => [28, 0, 1500, 16],
+      :platform => "iPhone",
+      :os => "CPU iPhone OS 6_1_3 like Mac OS X",
+      :mobile => true,
+      :bot => false,
+      :comment => ["iPhone", "CPU iPhone OS 6_1_3 like Mac OS X"],
+    }
+end
+
 describe UserAgent::Version do
   it "should be eql if versions are the same" do
     expect(UserAgent::Version.new("5.0")).to eql(UserAgent::Version.new("5.0"))
