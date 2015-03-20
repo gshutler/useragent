@@ -204,3 +204,15 @@ describe "Opera/9.80 (BREW Opera Mini/6.0.3/27.2354 U es) Presto/2.8.119 240X320
     expect(@useragent.version).to eq("6.0.3")
   end
 end
+
+describe "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36 OPR/28.0.1750.48" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36 OPR/28.0.1750.48")
+  end
+
+  it_should_behave_like "Opera browser"
+
+  it "should return '28.0.1750.48' as it's version" do
+    expect(@useragent.version).to eq("28.0.1750.48")
+  end
+end
