@@ -4,6 +4,10 @@ shared_examples_for "Opera browser" do
   it "should return 'Opera' as its browser" do
     expect(@useragent.browser).to eq("Opera")
   end
+
+  it "should return a Version object for version" do
+    expect(@useragent.version).to be_a(UserAgent::Version)
+  end
 end
 
 # http://www.useragentstring.com/Opera12.14_id_19612.php
