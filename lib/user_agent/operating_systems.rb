@@ -1,45 +1,17 @@
+require 'user_agent/operating_systems/base'
+require 'user_agent/operating_systems/windows'
+require 'user_agent/operating_systems/mac_os_x'
+require 'user_agent/operating_systems/ios'
+
 class UserAgent
   module OperatingSystems
-    Windows = {
-      "Windows NT 6.3"  => "Windows 8.1",
-      "Windows NT 6.2"  => "Windows 8",
-      "Windows NT 6.1"  => "Windows 7",
-      "Windows NT 6.0"  => "Windows Vista",
-      "Windows NT 5.2"  => "Windows XP x64 Edition",
-      "Windows NT 5.1"  => "Windows XP",
-      "Windows NT 5.01" => "Windows 2000, Service Pack 1 (SP1)",
-      "Windows NT 5.0"  => "Windows 2000",
-      "Windows NT 4.0"  => "Windows NT 4.0",
-      "Windows 98"      => "Windows 98",
-      "Windows 95"      => "Windows 95",
-      "Windows CE"      => "Windows CE"
-    }.freeze
+    extend self
 
-    def self.normalize_os(os)
-      Windows[os] || normalize_mac_os_x(os) || normalize_ios(os) || os
+    def normalize_os(os_string)
+      [Windows, MacOsX, Ios, Base].each do |klass|
+        os = klass.new(os_string)
+        return os.normalize if os.match?
+      end
     end
-
-    private
-      def self.normalize_ios(os)
-        if os =~ /CPU OS\s*([0-9_\.]+)?\slike Mac OS X/
-          if $1.nil?
-            "iOS"
-          else
-            version = $1.gsub('_', '.')
-            "iOS #{version}"
-          end
-        end
-      end
-
-      def self.normalize_mac_os_x(os)
-        if os =~ /(?:Intel|PPC) Mac OS X\s*([0-9_\.]+)?/
-          if $1.nil?
-            "OS X"
-          else
-            version = $1.gsub('_', '.')
-            "OS X #{version}"
-          end
-        end
-      end
   end
 end
