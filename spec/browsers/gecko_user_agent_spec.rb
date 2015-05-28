@@ -501,3 +501,57 @@ describe 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:x.x.x) Gecko/200411
     expect(@useragent.os).to eq("Windows XP")
   end
 end
+
+shared_examples_for "PaleMoon browser" do
+  it "should return 'PaleMoon' as its browser" do
+    expect(@useragent.browser).to eq("PaleMoon")
+  end
+end
+
+describe 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:24.7) Gecko/20140802 Firefox/24.7 PaleMoon/24.7.1' do
+  before do
+    @useragent = UserAgent.parse('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:24.7) Gecko/20140802 Firefox/24.7 PaleMoon/24.7.1')
+  end
+
+  it_should_behave_like "PaleMoon browser"
+
+  it "should return '24.7.1' as its version" do
+    expect(@useragent.version).to eq("24.7.1")
+  end
+
+  it "should return '20140802' as its gecko version" do
+    expect(@useragent.gecko.version).to eq("20140802")
+  end
+
+  it "should return '24.7' as its firefox version" do
+    expect(@useragent.firefox.version).to eq("24.7")
+  end
+
+  it "should return 'Windows' as its platform" do
+    expect(@useragent.platform).to eq("Windows")
+  end
+
+  it "should return 'Windows 7' as its os" do
+    expect(@useragent.os).to eq("Windows 7")
+  end
+end
+
+describe 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20141001 PaleMoon/25.0.0' do
+  before do
+    @useragent = UserAgent.parse('Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20141001 PaleMoon/25.0.0')
+  end
+
+  it_should_behave_like "PaleMoon browser"
+
+  it "should return '25.0.0' as its version" do
+    expect(@useragent.version).to eq("25.0.0")
+  end
+
+  it "should return '20141001' as its gecko version" do
+    expect(@useragent.gecko.version).to eq("20141001")
+  end
+
+  it "should return '24.7' as its firefox version" do
+    expect { @useragent.firefox }.to raise_error(NoMethodError)
+  end
+end
