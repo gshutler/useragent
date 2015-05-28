@@ -1,34 +1,17 @@
 class UserAgent
   module Browsers
-    class Chrome < Base
+    # CoreMedia is a framework on iOS and is used by various iOS apps to playback media.
+    class AppleCoreMedia < Base
       def self.extend?(agent)
-        agent.detect { |useragent|
-          useragent.product == 'Chrome' ||
-            useragent.product == 'CriOS'
-        }
+        agent.detect { |useragent| useragent.product == 'AppleCoreMedia' }
       end
 
       def browser
-        'Chrome'
-      end
-
-      def build
-        webkit.version
-      end
-
-      # Prior to Safari 3, the user agent did not include a version number
-      def version
-        str = if detect_product("CriOs")
-          crios.version
-        else
-          chrome.version
-        end
-
-        Version.new(str)
+        "AppleCoreMedia"
       end
 
       def application
-        self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+         self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
       end
 
       def platform
@@ -41,8 +24,8 @@ class UserAgent
         end
       end
 
-      def webkit
-        detect { |useragent| useragent.product == "AppleWebKit" }
+      def security
+        Security[application.comment[1]]
       end
 
       def os

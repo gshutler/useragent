@@ -341,6 +341,24 @@ describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.0; T
   it { expect(@useragent).to be_mobile }
 end
 
+describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 625; Vodafone)'" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 625; Vodafone)")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "should return '10.0' as its version" do
+    expect(@useragent.version).to eq("10.0")
+  end
+
+  it "should return 'Windows Phone 8.0' as its os" do
+    expect(@useragent.os).to eq("Windows Phone 8.0")
+  end
+
+  it { expect(@useragent).to be_mobile }
+end
+
 describe "Non-Chrome Frame browsers" do
   before do
     @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.1)")

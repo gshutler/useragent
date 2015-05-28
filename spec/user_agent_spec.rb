@@ -161,6 +161,8 @@ describe UserAgent, "::MATCHER" do
 end
 
 describe UserAgent, ".parse" do
+  let(:default_user_agent) { UserAgent.parse(UserAgent::DEFAULT_USER_AGENT) }
+
   it "should concatenate user agents when coerced to a string" do
     string = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.18")
     expect(string.to_str).to eq("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.18")
@@ -186,9 +188,47 @@ describe UserAgent, ".parse" do
     expect(UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3 ; en-us; )").application).to eq(useragent)
   end
 
+  it "should parse a user agent string with gzip(gfe) addition correctly" do
+    agent = UserAgent.parse("Mozilla/5.0 (Windows NT 5.1; rv:35.0) Gecko/20100101 Firefox/35.0,gzip(gfe)")
+
+    expect(agent.version.to_s).to eq("35.0")
+  end
+
   it "should parse a single product and comment" do
     useragent = UserAgent.new("Mozilla", nil, ["Macintosh"])
     expect(UserAgent.parse("Mozilla (Macintosh)").application).to eq(useragent)
+  end
+
+  it "should parse nil as the default agent" do
+    expect(UserAgent.parse(nil)).to eq(default_user_agent)
+  end
+
+  it "should parse an empty string as the default agent" do
+    expect(UserAgent.parse("")).to eq(default_user_agent)
+  end
+
+  it "should parse a blank string as the default agent" do
+    expect(UserAgent.parse(" ")).to eq(default_user_agent)
+  end
+
+  it "should parse a double-quoted user-agent" do
+    useragent = UserAgent.new("Mozilla", "5.0", ["X11", "Linux x86_64", "rv:9.0"])
+    expect(UserAgent.parse("\"Mozilla/5.0 (X11; Linux x86_64; rv:9.0) Gecko/20100101 Firefox/8.0\"").application).to eq(useragent)
+  end
+
+  it "should parse a user-agent with leading double-quote" do
+    useragent = UserAgent.new("Mozilla", "5.0", ["X11", "Linux x86_64", "rv:9.0"])
+    expect(UserAgent.parse("\"Mozilla/5.0 (X11; Linux x86_64; rv:9.0) Gecko/20100101 Firefox/8.0").application).to eq(useragent)
+  end
+
+  it "should parse a single-quoted user-agent" do
+    useragent = UserAgent.new("Mozilla", "5.0", nil)
+    expect(UserAgent.parse("'Mozilla/5.0'").application).to eq(useragent)
+  end
+
+  it "should parse a user-agent with leading single-quote" do
+    useragent = UserAgent.new("Mozilla", "5.0", nil)
+    expect(UserAgent.parse("'Mozilla/5.0").application).to eq(useragent)
   end
 end
 
@@ -332,6 +372,60 @@ describe UserAgent::Browsers::Base, "#>=" do
   end
 end
 
+describe UserAgent::Browsers::Base, "#to_h" do
+  shared_examples "Browser serializer" do |user_agent_string, expected_hash|
+    let(:useragent) do
+      UserAgent.parse(user_agent_string)
+    end
+
+    let(:actual) do
+      useragent.to_h
+    end
+
+    expected_hash.each_pair do |key, value|
+      it "should serialize :#{key} as '#{value}'" do
+        expect(actual[key]).to eq(value)
+      end
+    end
+  end
+
+  it_behaves_like "Browser serializer",
+    "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us)",
+    {
+      :browser => "Mozilla",
+      :version => [5, 0],
+      :platform => "Macintosh",
+      :os => "OS X 10.5.3",
+      :mobile => false,
+      :bot => false,
+      :comment => ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"],
+    }
+
+  it_behaves_like "Browser serializer",
+    "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    {
+      :browser => "Mozilla",
+      :version => [5, 0],
+      :platform => nil,
+      :os => "Googlebot/2.1",
+      :mobile => false,
+      :bot => true,
+      :comment => ["compatible", "Googlebot/2.1", "+http://www.google.com/bot.html"],
+    }
+
+  it_behaves_like "Browser serializer",
+    "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/28.0.1500.16 Mobile/10B329 Safari/8536.25",
+    {
+      :browser => "Chrome",
+      :version => [28, 0, 1500, 16],
+      :platform => "iPhone",
+      :os => "CPU iPhone OS 6_1_3 like Mac OS X",
+      :mobile => true,
+      :bot => false,
+      :comment => ["iPhone", "CPU iPhone OS 6_1_3 like Mac OS X"],
+    }
+end
+
 describe UserAgent::Version do
   it "should be eql if versions are the same" do
     expect(UserAgent::Version.new("5.0")).to eql(UserAgent::Version.new("5.0"))
@@ -433,8 +527,32 @@ describe UserAgent::Version do
     expect(UserAgent::Version.new("a.a")).to be < UserAgent::Version.new("b.b")
   end
 
-  it "should raise ArgumentError if other is nil" do
-    expect { expect(UserAgent::Version.new("9.0")).to be < nil }.to raise_error(ArgumentError, "comparison of UserAgent::Version with nil failed")
+  it "should not be > if version is nil" do
+    expect(UserAgent::Version.new(nil)).not_to be > UserAgent::Version.new("1.0")
+  end
+
+  it "should be < if version is nil" do
+    expect(UserAgent::Version.new(nil)).to be < UserAgent::Version.new("1.0")
+  end
+
+  it "should not be > when compared with nil" do
+    expect(UserAgent::Version.new(nil)).not_to be > UserAgent::Version.new(nil)
+  end
+
+  it "should not be < when compared with nil" do
+    expect(UserAgent::Version.new(nil)).not_to be < UserAgent::Version.new(nil)
+  end
+
+  it "should not be > if both versions are nil" do
+    expect(UserAgent::Version.new(nil)).not_to be > UserAgent::Version.new(nil)
+  end
+
+  it "should not be < if both versions are nil" do
+    expect(UserAgent::Version.new(nil)).not_to be < UserAgent::Version.new(nil)
+  end
+
+  it "should be > if version is nil" do
+    expect(UserAgent::Version.new("9.0")).to be > nil
   end
 
   context "comparing with structs" do

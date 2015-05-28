@@ -44,7 +44,7 @@ class UserAgent
         nil
       end
 
-      def respond_to?(symbol)
+      def respond_to?(symbol, include_all = false)
         detect_product(symbol) ? true : super
       end
 
@@ -85,6 +85,32 @@ class UserAgent
         else
           false
         end
+      end
+
+      def to_h
+        return nil unless application
+
+        hash = {
+          :browser => browser,
+          :platform => platform,
+          :os => os,
+          :mobile => mobile?,
+          :bot => bot?,
+        }
+
+        if version
+          hash[:version] = version.to_a
+        else
+          hash[:version] = nil
+        end
+
+        if comment = application.comment
+          hash[:comment] = comment.dup
+        else
+          hash[:comment] = nil
+        end
+
+        hash
       end
 
       private

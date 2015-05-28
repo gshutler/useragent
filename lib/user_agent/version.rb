@@ -2,12 +2,14 @@ class UserAgent
   class Version
     include ::Comparable
 
-    def self.new(obj)
+    def self.new(obj = nil)
       case obj
       when Version
         obj
       when String
         super
+      when NilClass
+        super("")
       else
         raise ArgumentError, "invalid value for Version: #{obj.inspect}"
       end
@@ -16,13 +18,23 @@ class UserAgent
     def initialize(str)
       @str = str
 
-      if str =~ /^\d+$/ || str =~ /^\d+\./
+      if @str =~ /^\s*$/
+        @nil        = true
+        @sequences  = []
+        @comparable = false
+      elsif str =~ /^\d+$/ || str =~ /^\d+\./
+        @nil        = false
         @sequences  = str.scan(/\d+|[A-Za-z][0-9A-Za-z-]*$/).map { |s| s =~ /^\d+$/ ? s.to_i : s }
         @comparable = true
       else
+        @nil        = false
         @sequences  = [str]
         @comparable = false
       end
+    end
+
+    def nil?
+      @nil
     end
 
     def to_a
@@ -43,6 +55,8 @@ class UserAgent
         eql?(other)
       when String
         eql?(self.class.new(other))
+      when NilClass
+        nil?
       else
         false
       end
@@ -72,7 +86,7 @@ class UserAgent
         else
           return -1
         end
-      when String
+      when String, NilClass
         self <=> self.class.new(other)
       else
         nil
