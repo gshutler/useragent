@@ -1,5 +1,7 @@
 class UserAgent
   module OperatingSystems
+    IOS_VERSION_REGEX = /CPU (?:iPhone |iPod )?OS ([\d_]+) like Mac OS X/
+
     Windows = {
       "Windows NT 6.3"  => "Windows 8.1",
       "Windows NT 6.2"  => "Windows 8",
@@ -32,7 +34,7 @@ class UserAgent
       end
 
       def self.normalize_ios(os)
-        if os =~ /CPU OS\s*([0-9_\.]+)?\slike Mac OS X/
+        if os =~ IOS_VERSION_REGEX
           if $1.nil?
             "iOS"
           else

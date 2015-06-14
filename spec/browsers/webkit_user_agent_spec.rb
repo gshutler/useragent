@@ -655,7 +655,7 @@ describe "UserAgent: Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) Appl
     expect(@useragent.webkit.version).to eq("531.21.10")
   end
 
-  it "should return 'iPod' as its platform" do
+  it "should return 'iPad' as its platform" do
     expect(@useragent.platform).to eq("iPad")
   end
 
@@ -681,8 +681,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_3 like Mac OS X;
     expect(@useragent.build).to eq("528.18")
   end
 
-  it "should return '3.1.3' as its version" do
-    expect(@useragent.version).to eq("3.1.3")
+  it "should return '4.0' as its version" do
+    expect(@useragent.version).to eq("4.0")
   end
 
   it "should return '528.18' as its webkit version" do
@@ -693,8 +693,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_3 like Mac OS X;
     expect(@useragent.platform).to eq("iPhone")
   end
 
-  it "should return 'CPU like Mac OS X' as its os" do
-    expect(@useragent.os).to eq("CPU iPhone OS 3_1_3 like Mac OS X")
+  it "should return 'iOS 3.1.3' as its os" do
+    expect(@useragent.os).to eq("iOS 3.1.3")
   end
 
   it "should return 'en-us' as its localization" do
@@ -713,8 +713,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPod; U; CPU iPhone OS 3_1_3 like Mac OS X; e
     expect(@useragent.build).to eq("528.18")
   end
 
-  it "should return '3.1.3' as its version" do
-    expect(@useragent.version).to eq("3.1.3")
+  it "should return '4.0' as its version" do
+    expect(@useragent.version).to eq("4.0")
   end
 
   it "should return '528.18' as its webkit version" do
@@ -725,8 +725,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPod; U; CPU iPhone OS 3_1_3 like Mac OS X; e
     expect(@useragent.platform).to eq("iPod")
   end
 
-  it "should return 'CPU like Mac OS X' as its os" do
-    expect(@useragent.os).to eq("CPU iPhone OS 3_1_3 like Mac OS X")
+  it "should return 'iOS 3.1.3' as its os" do
+    expect(@useragent.os).to eq("iOS 3.1.3")
   end
 
   it "should return 'en' as its localization" do
@@ -781,8 +781,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; e
     expect(@useragent.build).to eq("532.9")
   end
 
-  it "should return '4.1' as its version" do
-    expect(@useragent.version).to eq("4.1")
+  it "should return '4.0.5' as its version" do
+    expect(@useragent.version).to eq("4.0.5")
   end
 
   it "should return '532.9' as its webkit version" do
@@ -793,8 +793,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; e
     expect(@useragent.platform).to eq("iPhone")
   end
 
-  it "should return 'CPU iPhone OS 4_1 like Mac OS X'" do
-    expect(@useragent.os).to eq("CPU iPhone OS 4_1 like Mac OS X")
+  it "should return 'iOS 4.1'" do
+    expect(@useragent.os).to eq("iOS 4.1")
   end
 
   it "should return 'en' as its localization" do
@@ -827,8 +827,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0_1 like Mac OS X;
     expect(@useragent.platform).to eq("iPhone")
   end
 
-  it "should return 'CPU iPhone OS 4_0_1 like Mac OS X'" do
-    expect(@useragent.os).to eq("CPU iPhone OS 4_0_1 like Mac OS X")
+  it "should return 'iOS 4.0.1'" do
+    expect(@useragent.os).to eq("iOS 4.0.1")
   end
 
   it "should return 'en' as its localization" do
@@ -849,8 +849,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_0_1 like
     expect(@useragent.build).to eq("532.9")
   end
 
-  it "should return '4.0.1' as its version" do
-    expect(@useragent.version).to eq("4.0.1")
+  it "should return '4.0.5' as its version" do
+    expect(@useragent.version).to eq("4.0.5")
   end
 
   it "should return '532.9' as its webkit version" do
@@ -861,8 +861,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_0_1 like
     expect(@useragent.platform).to eq("iPhone Simulator")
   end
 
-  it "should return 'CPU iPhone OS 4_0_1 like Mac OS X'" do
-    expect(@useragent.os).to eq("CPU iPhone OS 4_0_1 like Mac OS X")
+  it "should return 'iOS 4.0.1'" do
+    expect(@useragent.os).to eq("iOS 4.0.1")
   end
 
   it "should return 'en' as its localization" do
@@ -1050,8 +1050,6 @@ describe "UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/
   it { expect(@useragent).not_to be_mobile }
 end
 
-# Chrome OS
-
 describe "UserAgent: Mozilla/5.0 (X11; CrOS armv7l 4537.56.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.38 Safari/537.36" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (X11; CrOS armv7l 4537.56.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.38 Safari/537.36")
@@ -1134,4 +1132,32 @@ describe "UserAgent: Mozilla/5.0 (X11; U; CrOS i686 9.10.0; en-US) AppleWebKit/5
   end
 
   it { expect(@useragent).not_to be_mobile }
+end
+
+describe "UserAgent: Mozilla/5.0 (iPhone; U; fr; CPU iPhone OS 4_2_1 like Mac OS X; fr) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148a Safari/6533.18.5" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (iPhone; U; fr; CPU iPhone OS 4_2_1 like Mac OS X; fr) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148a Safari/6533.18.5")
+  end
+
+  it "should return '533.17.9' as its build" do
+    expect(@useragent.build).to eq("533.17.9")
+  end
+
+  it "should return '5.0.2' as its version" do
+    expect(@useragent.version).to eq("5.0.2")
+  end
+
+  it "should return '533.17.9' as its webkit version" do
+    expect(@useragent.webkit.version).to eq("533.17.9")
+  end
+
+  it "should return 'iPhone' as its platform" do
+    expect(@useragent.platform).to eq("iPhone")
+  end
+
+  it "should return 'iOS 4.2.1' as its os" do
+    expect(@useragent.os).to eq("iOS 4.2.1")
+  end
+
+  it { expect(@useragent).to be_mobile }
 end

@@ -419,7 +419,7 @@ describe UserAgent::Browsers::Base, "#to_h" do
       :browser => "Chrome",
       :version => [28, 0, 1500, 16],
       :platform => "iPhone",
-      :os => "CPU iPhone OS 6_1_3 like Mac OS X",
+      :os => "iOS 6.1.3",
       :mobile => true,
       :bot => false,
       :comment => ["iPhone", "CPU iPhone OS 6_1_3 like Mac OS X"],

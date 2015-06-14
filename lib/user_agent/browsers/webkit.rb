@@ -54,10 +54,10 @@ class UserAgent
 
       # Prior to Safari 3, the user agent did not include a version number
       def version
-        str = if os =~ /CPU (?:iPhone |iPod )?OS ([\d_]+) like Mac OS X/ && browser == "Safari"
-          $1.gsub(/_/, '.')
-        elsif product = detect_product('Version')
+        str = if product = detect_product('Version')
           product.version
+        elsif os =~ /iOS ([\d\.]+)/ && browser == "Safari"
+          $1.gsub(/_/, '.')
         else
           BuildVersions[build.to_s]
         end
@@ -97,6 +97,8 @@ class UserAgent
             OperatingSystems.normalize_os(application.comment[1])
           elsif application.comment[1] =~ /Android/
             OperatingSystems.normalize_os(application.comment[1])
+          elsif (os_string = application.comment.detect { |c| c =~ OperatingSystems::IOS_VERSION_REGEX })
+            OperatingSystems.normalize_os(os_string)
           else
             OperatingSystems.normalize_os(application.comment[2])
           end
