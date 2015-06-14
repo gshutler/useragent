@@ -893,8 +893,8 @@ describe "UserAgent: 'Mozilla/5.0 (Linux; U; Android 1.5; de-; HTC Magic Build/P
     expect(@useragent.webkit.version).to eq("528.5+")
   end
 
-  it "should return 'Linux' as its platform" do
-    expect(@useragent.platform).to eq("Linux")
+  it "should return 'Android' as its platform" do
+    expect(@useragent.platform).to eq("Android")
   end
 
   it "should return 'Android 1.5' as its os" do
@@ -1157,6 +1157,46 @@ describe "UserAgent: Mozilla/5.0 (iPhone; U; fr; CPU iPhone OS 4_2_1 like Mac OS
 
   it "should return 'iOS 4.2.1' as its os" do
     expect(@useragent.os).to eq("iOS 4.2.1")
+  end
+
+  it { expect(@useragent).to be_mobile }
+end
+
+describe "UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30")
+  end
+
+  it "should return 'Android' as its browser" do
+    expect(@useragent.browser).to eq("Android")
+  end
+
+  it "should return :strong as its security" do
+    expect(@useragent.security).to eq(:strong)
+  end
+
+  it "should return '534.30' as its build" do
+    expect(@useragent.build).to eq("534.30")
+  end
+
+  it "should return '4.0' as its version" do
+    expect(@useragent.version).to eq("4.0")
+  end
+
+  it "should return '534.30' as its webkit version" do
+    expect(@useragent.webkit.version).to eq("534.30")
+  end
+
+  it "should return 'Android' as its platform" do
+    expect(@useragent.platform).to eq("Android")
+  end
+
+  it "should return 'Android 4.0.3' as its os" do
+    expect(@useragent.os).to eq("Android 4.0.3")
+  end
+
+  it "should return 'ko-kr' as its localization" do
+    expect(@useragent.localization).to eq("ko-kr")
   end
 
   it { expect(@useragent).to be_mobile }

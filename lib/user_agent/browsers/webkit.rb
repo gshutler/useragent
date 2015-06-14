@@ -2,7 +2,7 @@ class UserAgent
   module Browsers
     class Webkit < Base
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product == 'AppleWebKit' }
+        agent.detect { |useragent| useragent.product =~ /\AAppleWebKit\z/i }
       end
 
       def browser
@@ -76,13 +76,15 @@ class UserAgent
           'Windows'
         elsif application.comment[0] == 'BB10'
           'BlackBerry'
+        elsif application.comment.any? { |c| c =~ /Android/ }
+          'Android'
         else
           application.comment[0]
         end
       end
 
       def webkit
-        detect { |useragent| useragent.product == "AppleWebKit" }
+        detect { |useragent| useragent.product =~ /\AAppleWebKit\z/i }
       end
 
       def security
