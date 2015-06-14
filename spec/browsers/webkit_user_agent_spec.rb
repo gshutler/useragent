@@ -1049,3 +1049,89 @@ describe "UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/
 
   it { expect(@useragent).not_to be_mobile }
 end
+
+# Chrome OS
+
+describe "UserAgent: Mozilla/5.0 (X11; CrOS armv7l 4537.56.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.38 Safari/537.36" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (X11; CrOS armv7l 4537.56.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.38 Safari/537.36")
+  end
+
+  it "should return '537.36' as its build" do
+    expect(@useragent.build).to eq("537.36")
+  end
+
+  it "should return '30.0.1599.38' as its version" do
+    expect(@useragent.version).to eq("30.0.1599.38")
+  end
+
+  it "should return '537.36' as its webkit version" do
+    expect(@useragent.webkit.version).to eq("537.36")
+  end
+
+  it "should return 'ChromeOS' as its platform" do
+    expect(@useragent.platform).to eq("ChromeOS")
+  end
+
+  it "should return 'ChromeOS 4537.56.0' as its os" do
+    expect(@useragent.os).to eq("ChromeOS 4537.56.0")
+  end
+
+  it { expect(@useragent).not_to be_mobile }
+end
+
+describe "UserAgent: Mozilla/5.0 (X11; CrOS x86_64 4920.71.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.95 Safari/537.36" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (X11; CrOS x86_64 4920.71.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.95 Safari/537.36")
+  end
+
+  it "should return '537.36' as its build" do
+    expect(@useragent.build).to eq("537.36")
+  end
+
+  it "should return '32.0.1700.95' as its version" do
+    expect(@useragent.version).to eq("32.0.1700.95")
+  end
+
+  it "should return '537.36' as its webkit version" do
+    expect(@useragent.webkit.version).to eq("537.36")
+  end
+
+  it "should return 'ChromeOS' as its platform" do
+    expect(@useragent.platform).to eq("ChromeOS")
+  end
+
+  it "should return 'ChromeOS 4920.71.0' as its os" do
+    expect(@useragent.os).to eq("ChromeOS 4920.71.0")
+  end
+
+  it { expect(@useragent).not_to be_mobile }
+end
+
+describe "UserAgent: Mozilla/5.0 (X11; U; CrOS i686 9.10.0; en-US) AppleWebKit/532.5 (KHTML, like Gecko) Chrome/4.0.253.0 Safari/532.5" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (X11; U; CrOS i686 9.10.0; en-US) AppleWebKit/532.5 (KHTML, like Gecko) Chrome/4.0.253.0 Safari/532.5")
+  end
+
+  it "should return '532.5' as its build" do
+    expect(@useragent.build).to eq("532.5")
+  end
+
+  it "should return '4.0.253.0' as its version" do
+    expect(@useragent.version).to eq("4.0.253.0")
+  end
+
+  it "should return '532.5' as its webkit version" do
+    expect(@useragent.webkit.version).to eq("532.5")
+  end
+
+  it "should return 'ChromeOS' as its platform" do
+    expect(@useragent.platform).to eq("ChromeOS")
+  end
+
+  it "should return 'ChromeOS 9.10.0' as its os" do
+    expect(@useragent.os).to eq("ChromeOS 9.10.0")
+  end
+
+  it { expect(@useragent).not_to be_mobile }
+end
