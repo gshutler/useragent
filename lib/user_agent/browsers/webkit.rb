@@ -54,7 +54,7 @@ class UserAgent
 
       # Prior to Safari 3, the user agent did not include a version number
       def version
-        str = if os =~ /CPU (?:iPhone |iPod )?OS ([\d_]+) like Mac OS X/ && browser == "Safari"
+        str = if os =~ /iOS ([\d\.]+)/ && browser == "Safari"
           $1.gsub(/_/, '.')
         elsif product = detect_product('Version')
           product.version

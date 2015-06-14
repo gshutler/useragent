@@ -647,15 +647,15 @@ describe "UserAgent: Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) Appl
     expect(@useragent.build).to eq("531.21.10")
   end
 
-  it "should return '4.0.4' as its version" do
-    expect(@useragent.version).to eq("4.0.4")
+  it "should return '3.2' as its version" do
+    expect(@useragent.version).to eq("3.2")
   end
 
   it "should return '531.21.10' as its webkit version" do
     expect(@useragent.webkit.version).to eq("531.21.10")
   end
 
-  it "should return 'iPod' as its platform" do
+  it "should return 'iPad' as its platform" do
     expect(@useragent.platform).to eq("iPad")
   end
 
@@ -693,8 +693,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_3 like Mac OS X;
     expect(@useragent.platform).to eq("iPhone")
   end
 
-  it "should return 'CPU like Mac OS X' as its os" do
-    expect(@useragent.os).to eq("CPU iPhone OS 3_1_3 like Mac OS X")
+  it "should return 'iOS 3.1.3' as its os" do
+    expect(@useragent.os).to eq("iOS 3.1.3")
   end
 
   it "should return 'en-us' as its localization" do
@@ -725,8 +725,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPod; U; CPU iPhone OS 3_1_3 like Mac OS X; e
     expect(@useragent.platform).to eq("iPod")
   end
 
-  it "should return 'CPU like Mac OS X' as its os" do
-    expect(@useragent.os).to eq("CPU iPhone OS 3_1_3 like Mac OS X")
+  it "should return 'iOS 3.1.3' as its os" do
+    expect(@useragent.os).to eq("iOS 3.1.3")
   end
 
   it "should return 'en' as its localization" do
@@ -793,8 +793,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; e
     expect(@useragent.platform).to eq("iPhone")
   end
 
-  it "should return 'CPU iPhone OS 4_1 like Mac OS X'" do
-    expect(@useragent.os).to eq("CPU iPhone OS 4_1 like Mac OS X")
+  it "should return 'iOS 4.1'" do
+    expect(@useragent.os).to eq("iOS 4.1")
   end
 
   it "should return 'en' as its localization" do
@@ -827,8 +827,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0_1 like Mac OS X;
     expect(@useragent.platform).to eq("iPhone")
   end
 
-  it "should return 'CPU iPhone OS 4_0_1 like Mac OS X'" do
-    expect(@useragent.os).to eq("CPU iPhone OS 4_0_1 like Mac OS X")
+  it "should return 'iOS 4.0.1'" do
+    expect(@useragent.os).to eq("iOS 4.0.1")
   end
 
   it "should return 'en' as its localization" do
@@ -861,8 +861,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_0_1 like
     expect(@useragent.platform).to eq("iPhone Simulator")
   end
 
-  it "should return 'CPU iPhone OS 4_0_1 like Mac OS X'" do
-    expect(@useragent.os).to eq("CPU iPhone OS 4_0_1 like Mac OS X")
+  it "should return 'iOS 4.0.1'" do
+    expect(@useragent.os).to eq("iOS 4.0.1")
   end
 
   it "should return 'en' as its localization" do

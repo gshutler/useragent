@@ -91,8 +91,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) Ap
     expect(@useragent.platform).to eq("iPhone")
   end
 
-  it "should return 'CPU iPhone OS 6_1_3 like Mac OS X' as its os" do
-    expect(@useragent.os).to eq("CPU iPhone OS 6_1_3 like Mac OS X")
+  it "should return 'iOS 6.1.3' as its os" do
+    expect(@useragent.os).to eq("iOS 6.1.3")
   end
 
   it { expect(@useragent).to be_mobile }
