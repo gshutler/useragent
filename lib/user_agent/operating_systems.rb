@@ -16,10 +16,21 @@ class UserAgent
     }.freeze
 
     def self.normalize_os(os)
-      Windows[os] || normalize_mac_os_x(os) || normalize_ios(os) || os
+      Windows[os] || normalize_mac_os_x(os) || normalize_ios(os) || normalize_chrome_os(os) || os
     end
 
     private
+      def self.normalize_chrome_os(os)
+        if os =~ /CrOS\s([^\s]+)\s(\d+(\.\d+)*)/
+          if $2.nil?
+            "ChromeOS"
+          else
+            version = $2
+            "ChromeOS #{version}"
+          end
+        end
+      end
+
       def self.normalize_ios(os)
         if os =~ /CPU OS\s*([0-9_\.]+)?\slike Mac OS X/
           if $1.nil?
