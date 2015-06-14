@@ -1049,3 +1049,31 @@ describe "UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/
 
   it { expect(@useragent).not_to be_mobile }
 end
+
+describe "UserAgent: Mozilla/5.0 (iPhone; U; fr; CPU iPhone OS 4_2_1 like Mac OS X; fr) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148a Safari/6533.18.5" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (iPhone; U; fr; CPU iPhone OS 4_2_1 like Mac OS X; fr) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148a Safari/6533.18.5")
+  end
+
+  it "should return '533.17.9' as its build" do
+    expect(@useragent.build).to eq("533.17.9")
+  end
+
+  it "should return '5.0.2' as its version" do
+    expect(@useragent.version).to eq("5.0.2")
+  end
+
+  it "should return '533.17.9' as its webkit version" do
+    expect(@useragent.webkit.version).to eq("533.17.9")
+  end
+
+  it "should return 'iPhone' as its platform" do
+    expect(@useragent.platform).to eq("iPhone")
+  end
+
+  it "should return 'iOS 4.2.1' as its os" do
+    expect(@useragent.os).to eq("iOS 4.2.1")
+  end
+
+  it { expect(@useragent).to be_mobile }
+end

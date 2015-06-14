@@ -97,6 +97,8 @@ class UserAgent
             OperatingSystems.normalize_os(application.comment[1])
           elsif application.comment[1] =~ /Android/
             OperatingSystems.normalize_os(application.comment[1])
+          elsif (os_string = application.comment.detect { |c| c =~ OperatingSystems::IOS_VERSION_REGEX })
+            OperatingSystems.normalize_os(os_string)
           else
             OperatingSystems.normalize_os(application.comment[2])
           end
