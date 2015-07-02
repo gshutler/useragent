@@ -3,8 +3,7 @@ class UserAgent
     class Chrome < Base
       def self.extend?(agent)
         agent.detect { |useragent|
-          useragent.product == 'Chrome' ||
-            useragent.product == 'CriOS'
+          %w(Chrome CriOS).include?(useragent.product)
         }
       end
 
