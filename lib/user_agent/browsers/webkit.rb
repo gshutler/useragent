@@ -66,13 +66,13 @@ class UserAgent
       end
 
       def application
-         self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
       end
 
       def platform
-        if application.nil?
-          nil
-        elsif application.comment[0] =~ /Windows/
+        return unless application
+
+        if application.comment[0] =~ /Windows/
           'Windows'
         elsif application.comment[0] == 'BB10'
           'BlackBerry'
@@ -92,29 +92,23 @@ class UserAgent
       end
 
       def os
-        if application
-          if application.comment[0] =~ /Windows NT/
-            OperatingSystems.normalize_os(application.comment[0])
-          elsif application.comment[2].nil?
-            OperatingSystems.normalize_os(application.comment[1])
-          elsif application.comment[1] =~ /Android/
-            OperatingSystems.normalize_os(application.comment[1])
-          elsif (os_string = application.comment.detect { |c| c =~ OperatingSystems::IOS_VERSION_REGEX })
-            OperatingSystems.normalize_os(os_string)
-          else
-            OperatingSystems.normalize_os(application.comment[2])
-          end
+        return unless application
+
+        if application.comment[0] =~ /Windows NT/
+          OperatingSystems.normalize_os(application.comment[0])
+        elsif application.comment[2].nil?
+          OperatingSystems.normalize_os(application.comment[1])
+        elsif application.comment[1] =~ /Android/
+          OperatingSystems.normalize_os(application.comment[1])
+        elsif (os_string = application.comment.detect { |c| c =~ OperatingSystems::IOS_VERSION_REGEX })
+          OperatingSystems.normalize_os(os_string)
         else
-          nil
+          OperatingSystems.normalize_os(application.comment[2])
         end
       end
 
       def localization
-        if application.nil?
-          nil
-        else
-          application.comment[3]
-        end
+        application.comment[3] if application
       end
     end
   end

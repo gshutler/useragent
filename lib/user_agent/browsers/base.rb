@@ -88,7 +88,7 @@ class UserAgent
       end
 
       def to_h
-        return nil unless application
+        return unless application
 
         hash = {
           :browser => browser,
