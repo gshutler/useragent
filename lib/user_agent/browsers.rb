@@ -1,5 +1,6 @@
 require 'user_agent/browsers/base'
 require 'user_agent/browsers/chrome'
+require 'user_agent/browsers/edge'
 require 'user_agent/browsers/gecko'
 require 'user_agent/browsers/internet_explorer'
 require 'user_agent/browsers/opera'
@@ -18,7 +19,7 @@ class UserAgent
     }.freeze
 
     def self.all
-      [InternetExplorer, Opera, Chrome, ITunes, Webkit, Gecko, WindowsMediaPlayer, AppleCoreMedia, Libavformat]
+      [Edge, InternetExplorer, Opera, Chrome, ITunes, Webkit, Gecko, WindowsMediaPlayer, AppleCoreMedia, Libavformat]
     end
 
     def self.extend(array)
