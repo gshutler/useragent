@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
     "lib/user_agent/browsers/opera.rb",
     "lib/user_agent/browsers/webkit.rb",
     "lib/user_agent/browsers/windows_media_player.rb",
+    "lib/user_agent/browsers/edge.rb",
     "lib/user_agent/comparable.rb",
     "lib/user_agent/operating_systems.rb",
     "lib/user_agent/version.rb",
