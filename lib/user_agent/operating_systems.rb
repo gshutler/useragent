@@ -3,6 +3,7 @@ class UserAgent
     IOS_VERSION_REGEX = /CPU (?:iPhone |iPod )?OS ([\d_]+) like Mac OS X/
 
     Windows = {
+      "Windows NT 10.0" => "Windows 10",
       "Windows NT 6.3"  => "Windows 8.1",
       "Windows NT 6.2"  => "Windows 8",
       "Windows NT 6.1"  => "Windows 7",
