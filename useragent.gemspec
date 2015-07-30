@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
     "lib/user_agent/browsers/apple_core_media.rb",
     "lib/user_agent/browsers/base.rb",
     "lib/user_agent/browsers/chrome.rb",
+    "lib/user_agent/browsers/edge.rb",
     "lib/user_agent/browsers/gecko.rb",
     "lib/user_agent/browsers/internet_explorer.rb",
     "lib/user_agent/browsers/itunes.rb",
