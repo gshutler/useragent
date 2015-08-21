@@ -37,6 +37,8 @@ class UserAgent
           'Windows'
         elsif application.comment.any? { |c| c =~ /CrOS/ }
           'ChromeOS'
+        elsif application.comment.any? { |c| c =~ /Android/ }
+          'Android'
         else
           application.comment[0]
         end
