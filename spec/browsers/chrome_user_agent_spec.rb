@@ -149,8 +149,8 @@ describe "Mozilla/5.0 (Linux; Android 4.2; Nexus 7 Build/JOP40C) AppleWebKit/535
     expect(@useragent.browser).to eq("Chrome")
   end
 
-  it "should return 'Linux' as its platform" do
-    expect(@useragent.platform).to eq("Linux")
+  it "should return 'Android' as its platform" do
+    expect(@useragent.platform).to eq("Android")
   end
 
   it "should return 'Android 4.2' as its os" do
