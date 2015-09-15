@@ -9,6 +9,7 @@ require 'user_agent/browsers/windows_media_player'
 require 'user_agent/browsers/itunes'
 require 'user_agent/browsers/apple_core_media'
 require 'user_agent/browsers/libavformat'
+require 'user_agent/browsers/podcast_addict'
 
 class UserAgent
   module Browsers
@@ -19,7 +20,7 @@ class UserAgent
     }.freeze
 
     def self.all
-      [Edge, InternetExplorer, Opera, Chrome, ITunes, Webkit, Gecko, WindowsMediaPlayer, AppleCoreMedia, Libavformat]
+      [Edge, InternetExplorer, Opera, Chrome, ITunes, PodcastAddict, Webkit, Gecko, WindowsMediaPlayer, AppleCoreMedia, Libavformat]
     end
 
     def self.extend(array)
