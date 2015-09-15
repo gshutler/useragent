@@ -29,6 +29,13 @@ class UserAgent
         end
       end
 
+      # PS Vita is mobile, others are not.
+      # 
+      # @return [true, false] is this a mobile browser?
+      def mobile?
+        platform == 'PlayStation Vita'
+      end
+
       # Returns the operating system in use.
       # 
       # @return [String] the operating system in use
