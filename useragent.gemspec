@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name    = "useragent"
-  s.version = "0.16.0"
+  s.version = "0.16.1"
 
   s.homepage    = "http://github.com/gshutler/useragent"
   s.summary     = "HTTP User Agent parser"
@@ -20,6 +20,8 @@ Gem::Specification.new do |s|
     "lib/user_agent/browsers/itunes.rb",
     "lib/user_agent/browsers/libavformat.rb",
     "lib/user_agent/browsers/opera.rb",
+    "lib/user_agent/browsers/playstation.rb",
+    "lib/user_agent/browsers/podcast_addict.rb",
     "lib/user_agent/browsers/webkit.rb",
     "lib/user_agent/browsers/windows_media_player.rb",
     "lib/user_agent/comparable.rb",
