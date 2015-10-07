@@ -51,7 +51,7 @@ class UserAgent
 
   include Comparable
 
-  # Any comparsion between two user agents with different products will
+  # Any comparison between two user agents with different products will
   # always return false.
   def <=>(other)
     if @product == other.product
