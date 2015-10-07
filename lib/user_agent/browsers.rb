@@ -20,9 +20,23 @@ class UserAgent
       "I" => :weak
     }.freeze
 
+    ALL = [
+      Edge,
+      InternetExplorer,
+      Opera,
+      Chrome,
+      ITunes,
+      PlayStation,
+      PodcastAddict,
+      Webkit,
+      Gecko,
+      WindowsMediaPlayer,
+      AppleCoreMedia,
+      Libavformat,
+    ].freeze
+
     def self.all
-      [Edge, InternetExplorer, Opera, Chrome, ITunes, PlayStation, PodcastAddict, Webkit, Gecko,
-       WindowsMediaPlayer, AppleCoreMedia, Libavformat]
+      ALL
     end
 
     def self.extend(array)
