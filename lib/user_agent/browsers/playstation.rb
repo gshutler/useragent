@@ -7,7 +7,7 @@ class UserAgent
     # Mozilla/5.0 (PlayStation 4 2.57) AppleWebKit/537.73 (KHTML, like Gecko)
     class PlayStation < Base
       def self.extend?(agent)
-        !agent.application.nil? && !agent.application.comment.nil? && (
+        !agent.application.nil? && !agent.application.comment.nil? && agent.application.comment.any? && (
           agent.application.comment.first.include?('PLAYSTATION 3') ||
           agent.application.comment.first.include?('PlayStation Vita') ||
           agent.application.comment.first.include?('PlayStation 4')
