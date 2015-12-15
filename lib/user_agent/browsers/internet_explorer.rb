@@ -1,6 +1,13 @@
 class UserAgent
   module Browsers
     class InternetExplorer < Base
+      TRIDENT_ENGINES = {
+        "Trident/7.0" => "11.0",
+        "Trident/6.0" => "10.0",
+        "Trident/5.0" => "9.0",
+        "Trident/4.0" => "8.0",
+      }.freeze
+
       def self.extend?(agent)
         agent.application &&
         agent.application.comment &&
@@ -19,13 +26,8 @@ class UserAgent
 
       def trident_version
         if trident = application.comment.detect { |c| c['Trident/'] }
-          trident_engines = Hash.new(trident).merge({
-            "Trident/7.0" => "11.0",
-            "Trident/6.0" => "10.0",
-            "Trident/5.0" => "9.0",
-            "Trident/4.0" => "8.0"
-          })
-          trident_engines[trident] && Version.new(trident_engines[trident])
+          trident_version = TRIDENT_ENGINES.fetch(trident, trident)
+          Version.new(trident_version)
         end
       end
 
