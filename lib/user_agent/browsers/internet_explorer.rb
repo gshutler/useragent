@@ -17,8 +17,24 @@ class UserAgent
         Version.new(str)
       end
 
+      def trident_version
+        if trident = application.comment.detect { |c| c['Trident/'] }
+          trident_engines = Hash.new(trident).merge({
+            "Trident/7.0" => "11.0",
+            "Trident/6.0" => "10.0",
+            "Trident/5.0" => "9.0",
+            "Trident/4.0" => "8.0"
+          })
+          trident_engines[trident] && Version.new(trident_engines[trident])
+        end
+      end
+
+      def real_version
+        [trident_version, version].sort.last
+      end
+
       def compatibility_view?
-        version == "7.0" && application.comment.detect { |c| c['Trident/'] }
+        version < real_version
       end
 
       # Before version 4.0, Chrome Frame declared itself (unversioned) in a comment;
