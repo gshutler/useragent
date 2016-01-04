@@ -2,6 +2,7 @@ class UserAgent
   module Browsers
     class InternetExplorer < Base
       TRIDENT_ENGINES = {
+        "Trident/8.0" => "11.0",
         "Trident/7.0" => "11.0",
         "Trident/6.0" => "10.0",
         "Trident/5.0" => "9.0",
