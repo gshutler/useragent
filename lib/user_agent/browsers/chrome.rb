@@ -63,7 +63,9 @@ class UserAgent
       end
 
       def localization
-        application.comment[3] if application
+        return unless application
+
+        application.comment[3]
       end
     end
   end
