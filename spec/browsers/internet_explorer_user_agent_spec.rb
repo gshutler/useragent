@@ -470,3 +470,15 @@ describe "Chrome Frame from version 4.0 on" do
     end
   end
 end
+
+describe "UserAgent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1;)" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1;)")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "should not be considered to be in compatibility view" do
+    expect(@useragent).not_to be_compatibility_view
+  end
+end
