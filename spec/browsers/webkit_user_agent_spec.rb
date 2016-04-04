@@ -1201,3 +1201,43 @@ describe "UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build
 
   it { expect(@useragent).to be_mobile }
 end
+
+describe "UserAgent: HUAWEI_MT7-TL00_TD/5.0 Android/4.4.2 (Linux; U; Android 4.4.2; zh-cn) Release/01.18.2014 Browser/WAP2.0 (AppleWebKit/537.36) Mobile Safari/537.36" do
+  before do
+    @useragent = UserAgent.parse("HUAWEI_MT7-TL00_TD/5.0 Android/4.4.2 (Linux; U; Android 4.4.2; zh-cn) Release/01.18.2014 Browser/WAP2.0 (AppleWebKit/537.36) Mobile Safari/537.36")
+  end
+
+  it "should return 'Android' as its browser" do
+    expect(@useragent.browser).to eq("Android")
+  end
+
+  it "should return :strong as its security" do
+    expect(@useragent.security).to eq(:strong)
+  end
+
+  it "should return '537.36' as its build" do
+    expect(@useragent.build).to eq("537.36")
+  end
+
+  it "should return nil as its version" do
+    expect(@useragent.version).to be_nil
+  end
+
+  it "should return '537.36' as its webkit version" do
+    expect(@useragent.webkit.version).to eq("537.36")
+  end
+
+  it "should return 'Android' as its platform" do
+    expect(@useragent.platform).to eq("Android")
+  end
+
+  it "should return 'Android 4.4.2' as its os" do
+    expect(@useragent.os).to eq("Android 4.4.2")
+  end
+
+  it "should return 'zh-cn' as its localization" do
+    expect(@useragent.localization).to eq("zh-cn")
+  end
+
+  it { expect(@useragent).to be_mobile }
+end

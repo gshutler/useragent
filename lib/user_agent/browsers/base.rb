@@ -121,6 +121,12 @@ class UserAgent
         def detect_comment(comment)
           detect { |useragent| useragent.comment && useragent.comment.include?(comment) }
         end
+
+        def detect_comment_match(regexp)
+          comment_match = nil
+          detect { |useragent| useragent.comment && useragent.comment.detect { |c| comment_match = c.match(regexp) } }
+          comment_match
+        end
     end
   end
 end

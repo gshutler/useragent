@@ -26,13 +26,9 @@ class UserAgent
       private
 
       def os_comment
-        if os_agent = detect { |useragent| comment_os_match(useragent) }
-          comment_os_match(os_agent).to_s
+        if comment_match = detect_comment_match(OS_REGEXP)
+          comment_match.to_s
         end
-      end
-
-      def comment_os_match(useragent)
-        useragent.comment && useragent.comment.join("; ").match(OS_REGEXP)
       end
     end
   end

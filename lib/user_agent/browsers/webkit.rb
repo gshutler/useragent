@@ -1,8 +1,11 @@
 class UserAgent
   module Browsers
     class Webkit < Base
+      WEBKIT_PRODUCT_REGEXP = /\AAppleWebKit\z/i
+      WEBKIT_VERSION_REGEXP = /\A(?<webkit>AppleWebKit)\/(?<version>[\d\.]+)/i
+
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product =~ /\AAppleWebKit\z/i }
+        agent.detect { |useragent| useragent.product =~ WEBKIT_PRODUCT_REGEXP || useragent.comment && useragent.comment.detect { |c| c =~ WEBKIT_VERSION_REGEXP } }
       end
 
       def browser
@@ -84,7 +87,11 @@ class UserAgent
       end
 
       def webkit
-        detect { |useragent| useragent.product =~ /\AAppleWebKit\z/i }
+        if product_match = detect { |useragent| useragent.product =~ WEBKIT_PRODUCT_REGEXP }
+          product_match
+        elsif comment_match = detect_comment_match(WEBKIT_VERSION_REGEXP)
+          UserAgent.new(comment_match[:webkit], comment_match[:version])
+        end
       end
 
       def security
