@@ -26,9 +26,7 @@ class UserAgent
       private
 
       def os_comment
-        if comment_match = detect_comment_match(OS_REGEXP)
-          comment_match.to_s
-        end
+        detect_comment_match(OS_REGEXP).to_s
       end
     end
   end
