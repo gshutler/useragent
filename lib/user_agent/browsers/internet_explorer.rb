@@ -37,7 +37,7 @@ class UserAgent
       end
 
       def compatibility_view?
-        !trident_version.nil? && version < real_version
+        trident_version && version < real_version
       end
 
       # Before version 4.0, Chrome Frame declared itself (unversioned) in a comment;
