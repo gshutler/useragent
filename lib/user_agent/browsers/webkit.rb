@@ -5,7 +5,7 @@ class UserAgent
       WEBKIT_VERSION_REGEXP = /\A(?<webkit>AppleWebKit)\/(?<version>[\d\.]+)/i
 
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product =~ WEBKIT_PRODUCT_REGEXP || useragent.comment && useragent.comment.detect { |c| c =~ WEBKIT_VERSION_REGEXP } }
+        agent.detect { |useragent| useragent.product =~ WEBKIT_PRODUCT_REGEXP || useragent.detect_comment { |c| c =~ WEBKIT_VERSION_REGEXP } }
       end
 
       def browser

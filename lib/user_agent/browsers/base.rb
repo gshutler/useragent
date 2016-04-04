@@ -57,8 +57,7 @@ class UserAgent
           true
         elsif os =~ /Android/
           true
-        elsif application && application.comment &&
-            application.comment.detect { |k, v| k =~ /^IEMobile/ }
+        elsif application && application.detect_comment { |c| c =~ /^IEMobile/ }
           true
         else
           false
@@ -119,12 +118,12 @@ class UserAgent
         end
 
         def detect_comment(comment)
-          detect { |useragent| useragent.comment && useragent.comment.include?(comment) }
+          detect { |useragent| useragent.detect_comment { |c| c == comment } }
         end
 
         def detect_comment_match(regexp)
           comment_match = nil
-          detect { |useragent| useragent.comment && useragent.comment.detect { |c| comment_match = c.match(regexp) } }
+          detect { |useragent| useragent.detect_comment { |c| comment_match = c.match(regexp) } }
           comment_match
         end
     end
