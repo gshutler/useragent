@@ -21,3 +21,15 @@ describe "mozilla/5.0 (windows nt 5.1; rv:11.0) gecko firefox/11.0 (via ggpht.co
     expect(@useragent.os).to be_nil
   end
 end
+
+describe "mozilla/5.0 (windows nt 5.1; rv:11.0) gecko firefox/11.0 (via ggpht.com GoogleImageProxy)" do
+  before do
+    @useragent = UserAgent.parse("mozilla/5.0 (windows nt 5.1; rv:11.0) gecko firefox/11.0 (via ggpht.com GoogleImageProxy)")
+  end
+
+  it_should_behave_like "Google Image Proxy browser"
+
+  it "should return nil as its os" do
+    expect(@useragent.os).to be_nil
+  end
+end
