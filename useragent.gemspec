@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
     "lib/user_agent/browsers/chrome.rb",
     "lib/user_agent/browsers/edge.rb",
     "lib/user_agent/browsers/gecko.rb",
+    "lib/user_agent/browsers/google_image_proxy.rb",
     "lib/user_agent/browsers/internet_explorer.rb",
     "lib/user_agent/browsers/itunes.rb",
     "lib/user_agent/browsers/libavformat.rb",

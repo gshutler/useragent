@@ -2,6 +2,7 @@ require 'user_agent/browsers/base'
 require 'user_agent/browsers/chrome'
 require 'user_agent/browsers/edge'
 require 'user_agent/browsers/gecko'
+require 'user_agent/browsers/google_image_proxy'
 require 'user_agent/browsers/internet_explorer'
 require 'user_agent/browsers/opera'
 require 'user_agent/browsers/webkit'
@@ -30,6 +31,7 @@ class UserAgent
       PodcastAddict,
       Webkit,
       Gecko,
+      GoogleImageProxy,
       WindowsMediaPlayer,
       AppleCoreMedia,
       Libavformat,
