@@ -3,7 +3,7 @@ class UserAgent
     class GoogleImageProxy < Base
 
       def self.extend?(agent)
-        agent.last && agent.last.comment[0] =~ /googleimageproxy/
+        agent.last && agent.last.comment && agent.last.comment[0] =~ /googleimageproxy/
       end
 
       def browser
