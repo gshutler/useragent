@@ -39,7 +39,7 @@ class UserAgent
           if $1.nil?
             "iOS"
           else
-            version = $1.gsub('_', '.')
+            version = $1.tr('_', '.')
             "iOS #{version}"
           end
         end
@@ -50,7 +50,7 @@ class UserAgent
           if $1.nil?
             "OS X"
           else
-            version = $1.gsub('_', '.')
+            version = $1.tr('_', '.')
             "OS X #{version}"
           end
         end
