@@ -1,4 +1,5 @@
 require 'user_agent/browsers/base'
+require 'user_agent/browsers/wechat_browser'
 require 'user_agent/browsers/chrome'
 require 'user_agent/browsers/edge'
 require 'user_agent/browsers/gecko'
@@ -21,6 +22,7 @@ class UserAgent
     }.freeze
 
     ALL = [
+      WechatBrowser,
       Edge,
       InternetExplorer,
       Opera,
