@@ -216,6 +216,11 @@ describe UserAgent, ".parse" do
     expect(UserAgent.parse(" ")).to eq(default_user_agent)
   end
 
+  it "should allow changing the default agent" do
+    UserAgent.default_user_agent = "Mozilla/5.0 (Macintosh)"
+    expect(UserAgent.parse(nil)).to eq(UserAgent.parse("Mozilla/5.0 (Macintosh)"))
+  end
+
   it "should parse a double-quoted user-agent" do
     useragent = UserAgent.new("Mozilla", "5.0", ["X11", "Linux x86_64", "rv:9.0"])
     expect(UserAgent.parse("\"Mozilla/5.0 (X11; Linux x86_64; rv:9.0) Gecko/20100101 Firefox/8.0\"").application).to eq(useragent)
