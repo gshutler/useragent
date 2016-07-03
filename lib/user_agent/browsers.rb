@@ -11,6 +11,7 @@ require 'user_agent/browsers/apple_core_media'
 require 'user_agent/browsers/libavformat'
 require 'user_agent/browsers/playstation'
 require 'user_agent/browsers/podcast_addict'
+require 'user_agent/browsers/vivaldi'
 
 class UserAgent
   module Browsers
@@ -24,6 +25,7 @@ class UserAgent
       Edge,
       InternetExplorer,
       Opera,
+      Vivaldi, # Needs to come before Chrome for detection to work properly
       Chrome,
       ITunes,
       PlayStation,
