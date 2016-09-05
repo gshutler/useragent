@@ -60,7 +60,7 @@ class UserAgent
         str = if product = detect_product('Version')
           product.version
         elsif os =~ /iOS ([\d\.]+)/ && browser == "Safari"
-          $1.gsub(/_/, '.')
+          $1.tr('_', '.')
         else
           BuildVersions[build.to_s]
         end
