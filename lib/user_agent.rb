@@ -1,4 +1,3 @@
-require 'user_agent/comparable'
 require 'user_agent/browsers'
 require 'user_agent/operating_systems'
 require 'user_agent/version'
@@ -61,7 +60,7 @@ class UserAgent
     if @product == other.product
       @version <=> other.version
     else
-      false
+      nil
     end
   end
 
