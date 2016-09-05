@@ -2,9 +2,7 @@ class UserAgent
   module Browsers
     class WechatBrowser < Base
       def self.extend?(agent)
-        agent.detect { |useragent|
-          useragent.product =~ /MicroMessenger/i
-        }
+        agent.detect { |useragent| useragent.product =~ /MicroMessenger/i }
       end
 
       def browser
@@ -12,7 +10,8 @@ class UserAgent
       end
 
       def version
-        micro_messenger.version
+        micro_messenger = detect_product("MicroMessenger")
+        Version.new(micro_messenger.version)
       end
 
       def platform
@@ -40,11 +39,6 @@ class UserAgent
           OperatingSystems.normalize_os(application.comment[2])
         end
       end
-
-      def micro_messenger
-        detect { |useragent| useragent.product =~ /MicroMessenger/i }
-      end
-
     end
   end
 end
