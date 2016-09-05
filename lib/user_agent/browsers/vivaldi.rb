@@ -2,9 +2,7 @@ class UserAgent
   module Browsers
     class Vivaldi < Base
       def self.extend?(agent)
-        agent.detect { |useragent|
-          useragent.product == 'Vivaldi'
-        }
+        agent.detect { |useragent| useragent.product == 'Vivaldi' }
       end
 
       def browser
@@ -38,7 +36,7 @@ class UserAgent
       end
 
       def webkit
-        detect { |useragent| useragent.product == "AppleWebKit" }
+        detect_product("AppleWebKit")
       end
 
       def os
