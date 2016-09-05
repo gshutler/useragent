@@ -8,7 +8,7 @@ class UserAgent
             browser == other.browser
           version <=> Version.new(other.version)
         else
-          false
+          nil
         end
       end
 

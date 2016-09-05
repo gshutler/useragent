@@ -1,6 +1,6 @@
 class UserAgent
   class Version
-    include ::Comparable
+    include Comparable
 
     def self.new(obj = nil)
       case obj
