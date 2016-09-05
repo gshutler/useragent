@@ -2,11 +2,9 @@ Gem::Specification.new do |s|
   s.name    = "useragent"
   s.version = "0.16.7"
 
-  s.homepage    = "http://github.com/gshutler/useragent"
+  s.homepage    = "https://github.com/gshutler/useragent"
   s.summary     = "HTTP User Agent parser"
-  s.description = <<-EOS
-    HTTP User Agent parser
-  EOS
+  s.description = "HTTP User Agent parser"
 
   s.files = Dir["LICENSE", "README.md", "lib/**/*.rb"]
 
