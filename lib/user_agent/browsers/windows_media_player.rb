@@ -8,7 +8,7 @@ class UserAgent
     class WindowsMediaPlayer < Base
       def self.extend?(agent)
         agent.detect do |useragent|
-          (useragent.product == "NSPlayer" || useragent.product == "Windows-Media-Player" || useragent.product == "WMFSDK") &&
+          %w(NSPlayer Windows-Media-Player WMFSDK).include?(useragent.product) &&
             agent.version != "4.1.0.3856" && # 4.1.0.3856 is libavformat
             agent.version != "7.10.0.3059" && # used by VLC for mmsh support
             agent.version != "7.0.0.1956" # used by VLC for mmstu support

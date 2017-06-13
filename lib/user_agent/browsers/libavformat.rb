@@ -15,11 +15,7 @@ class UserAgent
 
       # @return [nil, Version] If the product is NSPlayer, we don't have a version
       def version
-        if detect_product("NSPlayer")
-          nil
-        else
-          super
-        end
+        super unless detect_product("NSPlayer")
       end
 
       # @return [nil] Lavf doesn't return us anything here

@@ -1,6 +1,8 @@
 class UserAgent
   module Browsers
     class Edge < Base
+      OS_REGEXP = /Windows NT [\d\.]+|Windows Phone (OS )?[\d\.]+/
+
       def self.extend?(agent)
         agent.last && agent.last.product == "Edge"
       end
@@ -18,7 +20,13 @@ class UserAgent
       end
 
       def os
-        OperatingSystems.normalize_os(application.comment.join('; ').match(/Windows NT [\d\.]+|Windows Phone (OS )?[\d\.]+/).to_s)
+        OperatingSystems.normalize_os(os_comment)
+      end
+
+      private
+
+      def os_comment
+        detect_comment_match(OS_REGEXP).to_s
       end
     end
   end

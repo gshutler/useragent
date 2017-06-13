@@ -24,9 +24,9 @@ class UserAgent
       end
 
       def platform
-        if application.comment.nil?
-          nil
-        elsif application.comment[0] =~ /Windows/
+        return unless application.comment
+
+        if application.comment[0] =~ /Windows/
           "Windows"
         else
           application.comment[0]
@@ -36,7 +36,7 @@ class UserAgent
       def security
         if application.comment.nil?
           :strong
-        elsif platform == "Macintosh"
+        elsif macintosh?
           Security[application.comment[2]]
         elsif mini?
           Security[application.comment[-2]]
@@ -50,9 +50,9 @@ class UserAgent
       end
 
       def os
-        if application.comment.nil?
-          nil
-        elsif application.comment[0] =~ /Windows/
+        return unless application.comment
+
+        if application.comment[0] =~ /Windows/
           OperatingSystems.normalize_os(application.comment[0])
         else
           application.comment[1]
@@ -60,9 +60,9 @@ class UserAgent
       end
 
       def localization
-        if application.comment.nil?
-          nil
-        elsif platform == "Macintosh"
+        return unless application.comment
+
+        if macintosh?
           application.comment[3]
         else
           application.comment[2]
@@ -72,6 +72,10 @@ class UserAgent
       private
         def mini?
           /Opera Mini/ === application
+        end
+
+        def macintosh?
+          platform == 'Macintosh'
         end
     end
   end

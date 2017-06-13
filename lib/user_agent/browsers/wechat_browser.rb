@@ -1,31 +1,29 @@
 class UserAgent
   module Browsers
-    # CoreMedia is a framework on iOS and is used by various iOS apps to playback media.
-    class AppleCoreMedia < Base
+    class WechatBrowser < Base
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product == 'AppleCoreMedia' }
+        agent.detect { |useragent| useragent.product =~ /MicroMessenger/i }
       end
 
       def browser
-        "AppleCoreMedia"
+        'Wechat Browser'
       end
 
-      def application
-        self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+      def version
+        micro_messenger = detect_product("MicroMessenger")
+        Version.new(micro_messenger.version)
       end
 
       def platform
         return unless application
 
-        if application.comment[0] =~ /Windows/
-          'Windows'
+        if application.comment[0] =~ /iPhone/
+          'iPhone'
+        elsif application.comment.any? { |c| c =~ /Android/ }
+          'Android'
         else
           application.comment[0]
         end
-      end
-
-      def security
-        Security[application.comment[1]]
       end
 
       def os
@@ -40,12 +38,6 @@ class UserAgent
         else
           OperatingSystems.normalize_os(application.comment[2])
         end
-      end
-
-      def localization
-        return unless application
-
-        application.comment[3]
       end
     end
   end

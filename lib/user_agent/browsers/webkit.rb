@@ -1,8 +1,11 @@
 class UserAgent
   module Browsers
     class Webkit < Base
+      WEBKIT_PRODUCT_REGEXP = /\AAppleWebKit\z/i
+      WEBKIT_VERSION_REGEXP = /\A(?<webkit>AppleWebKit)\/(?<version>[\d\.]+)/i
+
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product =~ /\AAppleWebKit\z/i }
+        agent.detect { |useragent| useragent.product =~ WEBKIT_PRODUCT_REGEXP || useragent.detect_comment { |c| c =~ WEBKIT_VERSION_REGEXP } }
       end
 
       def browser
@@ -57,7 +60,7 @@ class UserAgent
         str = if product = detect_product('Version')
           product.version
         elsif os =~ /iOS ([\d\.]+)/ && browser == "Safari"
-          $1.gsub(/_/, '.')
+          $1.tr('_', '.')
         else
           BuildVersions[build.to_s]
         end
@@ -66,13 +69,13 @@ class UserAgent
       end
 
       def application
-         self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
       end
 
       def platform
-        if application.nil?
-          nil
-        elsif application.comment[0] =~ /Windows/
+        return unless application
+
+        if application.comment[0] =~ /Windows/
           'Windows'
         elsif application.comment[0] == 'BB10'
           'BlackBerry'
@@ -84,7 +87,11 @@ class UserAgent
       end
 
       def webkit
-        detect { |useragent| useragent.product =~ /\AAppleWebKit\z/i }
+        if product_match = detect { |useragent| useragent.product =~ WEBKIT_PRODUCT_REGEXP }
+          product_match
+        elsif comment_match = detect_comment_match(WEBKIT_VERSION_REGEXP)
+          UserAgent.new(comment_match[:webkit], comment_match[:version])
+        end
       end
 
       def security
@@ -92,29 +99,25 @@ class UserAgent
       end
 
       def os
-        if application
-          if application.comment[0] =~ /Windows NT/
-            OperatingSystems.normalize_os(application.comment[0])
-          elsif application.comment[2].nil?
-            OperatingSystems.normalize_os(application.comment[1])
-          elsif application.comment[1] =~ /Android/
-            OperatingSystems.normalize_os(application.comment[1])
-          elsif (os_string = application.comment.detect { |c| c =~ OperatingSystems::IOS_VERSION_REGEX })
-            OperatingSystems.normalize_os(os_string)
-          else
-            OperatingSystems.normalize_os(application.comment[2])
-          end
+        return unless application
+
+        if application.comment[0] =~ /Windows NT/
+          OperatingSystems.normalize_os(application.comment[0])
+        elsif application.comment[2].nil?
+          OperatingSystems.normalize_os(application.comment[1])
+        elsif application.comment[1] =~ /Android/
+          OperatingSystems.normalize_os(application.comment[1])
+        elsif (os_string = application.comment.detect { |c| c =~ OperatingSystems::IOS_VERSION_REGEX })
+          OperatingSystems.normalize_os(os_string)
         else
-          nil
+          OperatingSystems.normalize_os(application.comment[2])
         end
       end
 
       def localization
-        if application.nil?
-          nil
-        else
-          application.comment[3]
-        end
+        return unless application
+
+        application.comment[3]
       end
     end
   end

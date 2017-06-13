@@ -24,7 +24,7 @@ class UserAgent
 
       def platform
         if comment = application.comment
-          if comment[0] == 'compatible'
+          if comment[0] == 'compatible' || comment[0] == 'Mobile'
             nil
           elsif /^Windows / =~ comment[0]
             'Windows'
@@ -41,13 +41,17 @@ class UserAgent
       def os
         if comment = application.comment
           i = if comment[1] == 'U'
-            2
-          elsif /^Windows / =~ comment[0]
-            0
-          else
-            1
-          end
+                2
+              elsif /^Windows / =~ comment[0] || /^Android/ =~ comment[0]
+                0
+              elsif comment[0] == 'Mobile'
+                nil
+              else
+                1
+              end
 
+          return nil if i.nil?
+          
           OperatingSystems.normalize_os(comment[i])
         end
       end

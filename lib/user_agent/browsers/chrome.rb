@@ -7,8 +7,12 @@ class UserAgent
         }
       end
 
+      ChromeBrowsers = %w(
+        Iron
+      ).freeze
+
       def browser
-        'Chrome'
+        ChromeBrowsers.detect { |browser| respond_to?(browser) } || 'Chrome'
       end
 
       def build
@@ -31,9 +35,9 @@ class UserAgent
       end
 
       def platform
-        if application.nil?
-          nil
-        elsif application.comment[0] =~ /Windows/
+        return unless application
+
+        if application.comment[0] =~ /Windows/
           'Windows'
         elsif application.comment.any? { |c| c =~ /CrOS/ }
           'ChromeOS'
@@ -49,27 +53,23 @@ class UserAgent
       end
 
       def os
-        if application
-          if application.comment[0] =~ /Windows NT/
-            OperatingSystems.normalize_os(application.comment[0])
-          elsif application.comment[2].nil?
-            OperatingSystems.normalize_os(application.comment[1])
-          elsif application.comment[1] =~ /Android/
-            OperatingSystems.normalize_os(application.comment[1])
-          else
-            OperatingSystems.normalize_os(application.comment[2])
-          end
+        return unless application
+
+        if application.comment[0] =~ /Windows NT/
+          OperatingSystems.normalize_os(application.comment[0])
+        elsif application.comment[2].nil?
+          OperatingSystems.normalize_os(application.comment[1])
+        elsif application.comment[1] =~ /Android/
+          OperatingSystems.normalize_os(application.comment[1])
         else
-          nil
+          OperatingSystems.normalize_os(application.comment[2])
         end
       end
 
       def localization
-        if application.nil?
-          nil
-        else
-          application.comment[3]
-        end
+        return unless application
+
+        application.comment[3]
       end
     end
   end

@@ -51,7 +51,11 @@ class UserAgent
 
   include Comparable
 
-  # Any comparsion between two user agents with different products will
+  def detect_comment(&block)
+    comment && comment.detect(&block)
+  end
+
+  # Any comparison between two user agents with different products will
   # always return false.
   def <=>(other)
     if @product == other.product

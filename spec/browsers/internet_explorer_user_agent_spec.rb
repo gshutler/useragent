@@ -126,6 +126,24 @@ describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) 
   end
 end
 
+describe "UserAgent: Mozilla/5.0 (Windows NT 6.1; Trident/8.0; rv:11.0) like Gecko" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Windows NT 6.1; Trident/8.0; rv:11.0) like Gecko")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "should return '11.0' as its version" do
+    expect(@useragent.version).to eq("11.0")
+  end
+
+  it "should return '11.0' as its real version" do
+    expect(@useragent.real_version).to eq("11.0")
+  end
+
+  it { expect(@useragent).not_to be_compatibility_view }
+end
+
 describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)'" do
   before do
     @useragent = UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)")
@@ -359,6 +377,38 @@ describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Tri
   it { expect(@useragent).to be_mobile }
 end
 
+describe "Mozilla/5.0 (MSIE 8.0; Windows NT 6.0; Trident/7.0; rv:11.0) like Gecko" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (MSIE 8.0; Windows NT 6.0; Trident/7.0; rv:11.0) like Gecko")
+  end
+
+  it "should return '8.0' as its version" do
+    expect(@useragent.version).to eq("8.0")
+  end
+
+  it "should return '11.0' as its real version" do
+    expect(@useragent.real_version).to eq("11.0")
+  end
+
+  it { expect(@useragent).to be_compatibility_view }
+end
+
+describe "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; BOIE9;ENUS))" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; BOIE9;ENUS))")
+  end
+
+  it "should return '9.0' as its version" do
+    expect(@useragent.version).to eq("9.0")
+  end
+
+  it "should return '11.0' as its real version" do
+    expect(@useragent.real_version).to eq("11.0")
+  end
+
+  it { expect(@useragent).to be_compatibility_view }
+end
+
 describe "Non-Chrome Frame browsers" do
   before do
     @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.1)")
@@ -418,5 +468,17 @@ describe "Chrome Frame from version 4.0 on" do
     it "should have a version" do
       expect(@useragent.chromeframe.version).to eq("4.0")
     end
+  end
+end
+
+describe "UserAgent: Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1;)" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1;)")
+  end
+
+  it_should_behave_like "Internet Explorer browser"
+
+  it "should not be considered to be in compatibility view" do
+    expect(@useragent).not_to be_compatibility_view
   end
 end

@@ -473,8 +473,38 @@ describe 'Mozilla/5.0 (Android; Mobile; rv:19.0) Gecko/19.0 Firefox/19.0' do
     @useragent = UserAgent.parse('Mozilla/5.0 (Android; Mobile; rv:19.0) Gecko/19.0 Firefox/19.0')
   end
 
-  it "should return true for mobile?" do
-    expect(@useragent.mobile?).to be_truthy
+  it_behaves_like 'Firefox browser'
+
+  it 'returns true for mobile?' do
+    expect(@useragent.mobile?).to be true
+  end
+
+  it "returns 'Android' as the platform" do
+    expect(@useragent.platform).to eq('Android')
+  end
+
+  it "returns 'Android' as the operating system" do
+    expect(@useragent.os).to eq('Android')
+  end
+end
+
+describe 'Mozilla/5.0 (Mobile; rv:41.0) Gecko/41.0 Firefox/41.0' do
+  before do
+    @useragent = UserAgent.parse('Mozilla/5.0 (Mobile; rv:41.0) Gecko/41.0 Firefox/41.0')
+  end
+
+  it_behaves_like 'Firefox browser'
+
+  it 'returns true for mobile?' do
+    expect(@useragent.mobile?).to be true
+  end
+
+  it "returns nil as the platform" do
+    expect(@useragent.platform).to be_nil
+  end
+
+  it "returns nil as the operating system" do
+    expect(@useragent.os).to be_nil
   end
 end
 

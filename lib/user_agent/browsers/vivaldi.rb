@@ -1,13 +1,20 @@
 class UserAgent
   module Browsers
-    # CoreMedia is a framework on iOS and is used by various iOS apps to playback media.
-    class AppleCoreMedia < Base
+    class Vivaldi < Base
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product == 'AppleCoreMedia' }
+        agent.detect { |useragent| useragent.product == 'Vivaldi' }
       end
 
       def browser
-        "AppleCoreMedia"
+        'Vivaldi'
+      end
+
+      def build
+        webkit.version
+      end
+
+      def version
+        last.version
       end
 
       def application
@@ -19,13 +26,17 @@ class UserAgent
 
         if application.comment[0] =~ /Windows/
           'Windows'
+        elsif application.comment.any? { |c| c =~ /CrOS/ }
+          'ChromeOS'
+        elsif application.comment.any? { |c| c =~ /Android/ }
+          'Android'
         else
           application.comment[0]
         end
       end
 
-      def security
-        Security[application.comment[1]]
+      def webkit
+        detect_product("AppleWebKit")
       end
 
       def os
