@@ -13,6 +13,8 @@ class UserAgent
           'Android'
         elsif platform == 'BlackBerry'
           platform
+        elsif firefoxOniOS?
+          'Firefox'
         else
           'Safari'
         end
@@ -118,6 +120,10 @@ class UserAgent
         return unless application
 
         application.comment[3]
+      end
+
+      def firefoxOniOS?
+        self.any? { |agent| agent.product == 'FxiOS' }
       end
     end
   end

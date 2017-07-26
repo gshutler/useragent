@@ -1241,3 +1241,35 @@ describe "UserAgent: HUAWEI_MT7-TL00_TD/5.0 Android/4.4.2 (Linux; U; Android 4.4
 
   it { expect(@useragent).to be_mobile }
 end
+
+describe 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 Safari/600.1.4' do
+  before do
+    @useragent = UserAgent.parse('Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 Safari/600.1.4')
+  end
+
+  it "should return 'Firefox' as its browser" do
+    expect(@useragent.browser).to eq('Firefox')
+  end
+
+  it "should return '600.1.4' as its build" do
+    expect(@useragent.build).to eq('600.1.4')
+  end
+
+  it "should return nil as its version" do
+    expect(@useragent.version).to be_nil
+  end
+
+  it "should return '600.1.4' as its webkit version" do
+    expect(@useragent.webkit.version).to eq('600.1.4')
+  end
+
+  it "should return 'iPhone' as its platform" do
+    expect(@useragent.platform).to eq('iPhone')
+  end
+
+  it "should return 'iOS 8.3' as its os" do
+    expect(@useragent.os).to eq('iOS 8.3')
+  end
+
+  it { expect(@useragent).to be_mobile }
+end
