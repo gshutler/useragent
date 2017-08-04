@@ -15,7 +15,7 @@ class UserAgent
       end
 
       def platform
-        return unless application
+        return unless application && application.comment
 
         if application.comment[0] =~ /iPhone/
           'iPhone'
@@ -27,7 +27,7 @@ class UserAgent
       end
 
       def os
-        return unless application
+        return unless application && application.comment
 
         if application.comment[0] =~ /Windows NT/
           OperatingSystems.normalize_os(application.comment[0])
