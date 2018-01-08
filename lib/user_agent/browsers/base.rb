@@ -69,7 +69,11 @@ class UserAgent
         # shitty bot.
         if application.nil?
           true
-
+        # Sometimes the user agent value contains multiple browsers for 
+        # some reason, but still includes a bot mention. These are bots, but 
+        # not sure why they are submitting multiple browsers at once.
+        elsif to_str =~ /.*(Googlebot|bingbot|AdsBot-Google-Mobile|YandexMobileBot).*/i
+          true
         # Match common case when bots refer to themselves as bots in
         # the application comment. There are no standards for how bots
         # should call themselves so its not an exhaustive method.
