@@ -69,11 +69,6 @@ class UserAgent
         # shitty bot.
         if application.nil?
           true
-        # Sometimes the user agent value contains multiple browsers for 
-        # some reason, but still includes a bot mention. These are bots, but 
-        # not sure why they are submitting multiple browsers at once.
-        elsif to_str =~ /.*(Googlebot|bingbot|AdsBot-Google-Mobile|YandexMobileBot).*/i
-          true
         # Match common case when bots refer to themselves as bots in
         # the application comment. There are no standards for how bots
         # should call themselves so its not an exhaustive method.
@@ -81,8 +76,8 @@ class UserAgent
         # If you want to expand the scope, override the method and
         # provide your own regexp. Any patches to future extend this
         # list will be rejected.
-        elsif comment = application.comment
-          comment.any? { |c| c =~ /bot/i }
+        elsif detect_comment_match(/bot/i)
+          true
         elsif product = application.product
           product.include?('bot')
         else
