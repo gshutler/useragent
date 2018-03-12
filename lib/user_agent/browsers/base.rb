@@ -5,7 +5,7 @@ class UserAgent
 
       def <=>(other)
         if respond_to?(:browser) && other.respond_to?(:browser) &&
-            browser == other.browser
+           browser == other.browser
           version <=> Version.new(other.version)
         else
           false
@@ -21,7 +21,7 @@ class UserAgent
       end
 
       def to_str
-        join(" ")
+        join(' ')
       end
 
       def application
@@ -52,6 +52,10 @@ class UserAgent
         detect_product(method) || super
       end
 
+      def respond_to_missing?(symbol, include_all = false)
+        detect_product(symbol) ? true : super
+      end
+
       def mobile?
         if detect_product('Mobile') || detect_comment('Mobile')
           true
@@ -78,7 +82,7 @@ class UserAgent
         # list will be rejected.
         elsif detect_comment_match(/bot/i)
           true
-        elsif product = application.product
+        elsif (product = application.product)
           product.include?('bot')
         else
           false
@@ -89,42 +93,37 @@ class UserAgent
         return unless application
 
         hash = {
-          :browser => browser,
-          :platform => platform,
-          :os => os,
-          :mobile => mobile?,
-          :bot => bot?,
+          browser: browser,
+          platform: platform,
+          os: os,
+          mobile: mobile?,
+          bot: bot?
         }
 
-        if version
-          hash[:version] = version.to_a
-        else
-          hash[:version] = nil
-        end
+        hash[:version] = (version.to_a if version)
 
-        if comment = application.comment
-          hash[:comment] = comment.dup
-        else
-          hash[:comment] = nil
-        end
+        hash[:comment] = if (comment = application.comment)
+                           comment.dup
+                         end
 
         hash
       end
 
       private
-        def detect_product(product)
-          detect { |useragent| useragent.product.to_s.downcase == product.to_s.downcase }
-        end
 
-        def detect_comment(comment)
-          detect { |useragent| useragent.detect_comment { |c| c == comment } }
-        end
+      def detect_product(product)
+        detect { |useragent| useragent.product.to_s.casecmp(product.to_s).zero? }
+      end
 
-        def detect_comment_match(regexp)
-          comment_match = nil
-          detect { |useragent| useragent.detect_comment { |c| comment_match = c.match(regexp) } }
-          comment_match
-        end
+      def detect_comment(comment)
+        detect { |useragent| useragent.detect_comment { |c| c == comment } }
+      end
+
+      def detect_comment_match(regexp)
+        comment_match = nil
+        detect { |useragent| useragent.detect_comment { |c| comment_match = c.match(regexp) } }
+        comment_match
+      end
     end
   end
 end

@@ -2,17 +2,17 @@ class UserAgent
   module Browsers
     class Chrome < Base
       def self.extend?(agent)
-        agent.detect { |useragent|
-          %w(Chrome CriOS).include?(useragent.product)
-        }
+        agent.detect do |useragent|
+          %w[Chrome CriOS].include?(useragent.product)
+        end
       end
 
-      ChromeBrowsers = %w(
+      CHROME_BROWSERS = %w[
         Iron
-      ).freeze
+      ].freeze
 
       def browser
-        ChromeBrowsers.detect { |browser| respond_to?(browser) } || 'Chrome'
+        CHROME_BROWSERS.detect { |browser| respond_to?(browser) } || 'Chrome'
       end
 
       def build
@@ -21,17 +21,17 @@ class UserAgent
 
       # Prior to Safari 3, the user agent did not include a version number
       def version
-        str = if detect_product("CriOs")
-          crios.version
-        else
-          chrome.version
-        end
+        str = if detect_product('CriOs')
+                crios.version
+              else
+                chrome.version
+              end
 
         Version.new(str)
       end
 
       def application
-        self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
       end
 
       def platform
@@ -49,7 +49,7 @@ class UserAgent
       end
 
       def webkit
-        detect { |useragent| useragent.product == "AppleWebKit" }
+        detect { |useragent| useragent.product == 'AppleWebKit' }
       end
 
       def os

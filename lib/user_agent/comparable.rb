@@ -7,11 +7,11 @@ class UserAgent
     end
 
     def <=(other)
-      (c = self <=> other) ? c == -1 || c == 0 : false
+      (c = self <=> other) ? c == -1 || c.zero? : false
     end
 
     def ==(other)
-      (c = self <=> other) ? c == 0 : false
+      (c = self <=> other) ? c.zero? : false
     end
 
     def >(other)
@@ -19,7 +19,7 @@ class UserAgent
     end
 
     def >=(other)
-      (c = self <=> other) ? c == 1 || c == 0 : false
+      (c = self <=> other) ? c == 1 || c.zero? : false
     end
   end
 end

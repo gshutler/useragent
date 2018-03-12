@@ -10,7 +10,7 @@ class UserAgent
       end
 
       def version
-        micro_messenger = detect_product("MicroMessenger")
+        micro_messenger = detect_product('MicroMessenger')
         Version.new(micro_messenger.version)
       end
 

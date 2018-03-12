@@ -16,10 +16,10 @@ require 'user_agent/browsers/vivaldi'
 
 class UserAgent
   module Browsers
-    Security = {
-      "N" => :none,
-      "U" => :strong,
-      "I" => :weak
+    SECURITY = {
+      'N' => :none,
+      'U' => :strong,
+      'I' => :weak
     }.freeze
 
     ALL = [
@@ -36,7 +36,7 @@ class UserAgent
       Gecko,
       WindowsMediaPlayer,
       AppleCoreMedia,
-      Libavformat,
+      Libavformat
     ].freeze
 
     def self.all

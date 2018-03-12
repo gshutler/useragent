@@ -18,7 +18,7 @@ class UserAgent
       end
 
       def application
-        self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
       end
 
       def platform
@@ -36,7 +36,7 @@ class UserAgent
       end
 
       def webkit
-        detect_product("AppleWebKit")
+        detect_product('AppleWebKit')
       end
 
       def os

@@ -7,11 +7,11 @@ class UserAgent
       end
 
       def browser
-        "AppleCoreMedia"
+        'AppleCoreMedia'
       end
 
       def application
-        self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
       end
 
       def platform
@@ -25,7 +25,7 @@ class UserAgent
       end
 
       def security
-        Security[application.comment[1]]
+        SECURITY[application.comment[1]]
       end
 
       def os

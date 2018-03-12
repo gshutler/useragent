@@ -9,7 +9,7 @@ class UserAgent
       when String
         super
       when NilClass
-        super("")
+        super('')
       else
         raise ArgumentError, "invalid value for Version: #{obj.inspect}"
       end
@@ -66,30 +66,23 @@ class UserAgent
       case other
       when Version
         if @comparable
-          ([0]*6).zip(to_a, other.to_a).each do |dump, a, b|
+          ([0] * 6).zip(to_a, other.to_a).each do |_dump, a, b|
             a ||= 0
             b ||= 0
 
-            if a.is_a?(String) && b.is_a?(Integer)
-              return -1
-            elsif a.is_a?(Integer) && b.is_a?(String)
-              return 1
-            elsif a == b
-              next
-            else
-              return a <=> b
-            end
+            return -1 if a.is_a?(String) && b.is_a?(Integer)
+            return 1 if a.is_a?(Integer) && b.is_a?(String)
+            next if a == b
+            return a <=> b
           end
           0
         elsif to_s == other.to_s
-          return 0
+          0
         else
-          return -1
+          -1
         end
       when String, NilClass
         self <=> self.class.new(other)
-      else
-        nil
       end
     end
 
@@ -98,7 +91,7 @@ class UserAgent
     end
 
     def inspect
-      "#<#{self.class} #{to_s}>"
+      "#<#{self.class} #{self}>"
     end
   end
 end

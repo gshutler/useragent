@@ -15,7 +15,7 @@ class UserAgent
       end
 
       # If we can figure out the device, return it.
-      # 
+      #
       # @return [nil, String] the device model
       def device
         return nil unless length >= 4
@@ -25,7 +25,7 @@ class UserAgent
       end
 
       # If we can figure out the device build, return it.
-      # 
+      #
       # @return [nil, String] the device build
       def device_build
         return nil unless length >= 4
@@ -35,7 +35,7 @@ class UserAgent
       end
 
       # Returns the localization, if known. We currently only know this for certain devices.
-      # 
+      #
       # @return [nil, String] the localization
       def localization
         return nil unless length >= 4
@@ -46,14 +46,14 @@ class UserAgent
       end
 
       # This is a mobile app, always return true.
-      # 
+      #
       # @return [true]
       def mobile?
         true
       end
 
       # Gets the operating system (some variant of Android, if we're certain that is the case)
-      # 
+      #
       # @return [nil, String] the operating system
       def os
         return nil unless length >= 4
@@ -65,31 +65,24 @@ class UserAgent
           self[3].comment[2]
         elsif (self[3].product == 'Dalvik' || self[3].product == 'Mozilla') && self[3].comment.length == 3
           'Android'
-        else
-          nil
         end
       end
 
       # Gets the platform (Android, if we're certain)
-      # 
+      #
       # @return [nil, "Android"] the platform
       def platform
-        if os.include?('Android')
-          'Android'
-        else
-          nil
-        end
+        'Android' if os.include?('Android')
       end
 
-
       # Get the security level reported
-      # 
+      #
       # @return [:weak, :strong, :none] the security level
       def security
         return nil unless length >= 4
         return nil unless self[3].product == 'Dalvik' || self[3].product == 'Mozilla'
 
-        Security[self[3].comment[1]]
+        SECURITY[self[3].comment[1]]
       end
 
       # We aren't provided with the version :(

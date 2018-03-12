@@ -2,22 +2,22 @@ class UserAgent
   module Browsers
     class InternetExplorer < Base
       TRIDENT_ENGINES = {
-        "Trident/8.0" => "11.0",
-        "Trident/7.0" => "11.0",
-        "Trident/6.0" => "10.0",
-        "Trident/5.0" => "9.0",
-        "Trident/4.0" => "8.0",
+        'Trident/8.0' => '11.0',
+        'Trident/7.0' => '11.0',
+        'Trident/6.0' => '10.0',
+        'Trident/5.0' => '9.0',
+        'Trident/4.0' => '8.0'
       }.freeze
 
       def self.extend?(agent)
         agent.application &&
-        agent.application.comment &&
-        (agent.application.comment[1] =~ /MSIE/ ||
-         agent.application.comment.join('; ') =~ /Trident.+rv:/)
+          agent.application.comment &&
+          (agent.application.comment[1] =~ /MSIE/ ||
+           agent.application.comment.join('; ') =~ /Trident.+rv:/)
       end
 
       def browser
-        "Internet Explorer"
+        'Internet Explorer'
       end
 
       def version
@@ -26,7 +26,7 @@ class UserAgent
       end
 
       def trident_version
-        if trident = application.comment.detect { |c| c['Trident/'] }
+        if (trident = application.comment.detect { |c| c['Trident/'] }) # rubocop:disable Style/GuardClause
           trident_version = TRIDENT_ENGINES.fetch(trident, trident)
           Version.new(trident_version)
         end
@@ -44,14 +44,14 @@ class UserAgent
       # as of 4.0 it can declare itself versioned in a comment
       # or as a separate product with a version
       def chromeframe
-        cf = application.comment.include?("chromeframe") || detect_product("chromeframe")
+        cf = application.comment.include?('chromeframe') || detect_product('chromeframe')
         return cf if cf
         cf_comment = application.comment.detect { |c| c['chromeframe/'] }
         cf_comment ? UserAgent.new(*cf_comment.split('/', 2)) : nil
       end
 
       def platform
-        "Windows"
+        'Windows'
       end
 
       def os

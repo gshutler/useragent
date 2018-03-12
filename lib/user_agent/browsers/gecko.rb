@@ -2,19 +2,19 @@ class UserAgent
   module Browsers
     class Gecko < Base
       def self.extend?(agent)
-        agent.application && agent.application.product == "Mozilla"
+        agent.application && agent.application.product == 'Mozilla'
       end
 
-      GeckoBrowsers = %w(
+      GECKO_BROWSERS = %w[
         PaleMoon
         Firefox
         Camino
         Iceweasel
         Seamonkey
-      ).freeze
+      ].freeze
 
       def browser
-        GeckoBrowsers.detect { |browser| respond_to?(browser) } || super
+        GECKO_BROWSERS.detect { |browser| respond_to?(browser) } || super
       end
 
       def version
@@ -23,7 +23,7 @@ class UserAgent
       end
 
       def platform
-        if comment = application.comment
+        if (comment = application.comment) # rubocop:disable Style/GuardClause
           if comment[0] == 'compatible' || comment[0] == 'Mobile'
             nil
           elsif /^Windows / =~ comment[0]
@@ -35,11 +35,11 @@ class UserAgent
       end
 
       def security
-        Security[application.comment[1]] || :strong
+        SECURITY[application.comment[1]] || :strong
       end
 
       def os
-        if comment = application.comment
+        if (comment = application.comment) # rubocop:disable Style/GuardClause
           i = if comment[1] == 'U'
                 2
               elsif /^Windows / =~ comment[0] || /^Android/ =~ comment[0]
@@ -51,15 +51,13 @@ class UserAgent
               end
 
           return nil if i.nil?
-          
+
           OperatingSystems.normalize_os(comment[i])
         end
       end
 
       def localization
-        if comment = application.comment
-          comment[3]
-        end
+        application.comment[3] if application.comment
       end
     end
   end

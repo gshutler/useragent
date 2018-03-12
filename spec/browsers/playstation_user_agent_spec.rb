@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'user_agent'
 
 shared_examples 'PlayStation 3' do
@@ -14,9 +15,9 @@ shared_examples 'PlayStation 3' do
   end
 end
 
-describe "UserAgent: Mozilla/5.0 (PLAYSTATION 3 4.75) AppleWebKit/531.22.8 (KHTML, like Gecko)" do
+describe 'UserAgent: Mozilla/5.0 (PLAYSTATION 3 4.75) AppleWebKit/531.22.8 (KHTML, like Gecko)' do
   before do
-    @useragent = UserAgent.parse("Mozilla/5.0 (PLAYSTATION 3 4.75) AppleWebKit/531.22.8 (KHTML, like Gecko)")
+    @useragent = UserAgent.parse('Mozilla/5.0 (PLAYSTATION 3 4.75) AppleWebKit/531.22.8 (KHTML, like Gecko)')
   end
 
   it_behaves_like 'PlayStation 3'
@@ -25,14 +26,14 @@ describe "UserAgent: Mozilla/5.0 (PLAYSTATION 3 4.75) AppleWebKit/531.22.8 (KHTM
     expect(@useragent.os).to eq('PLAYSTATION 3 4.75')
   end
 
-  it "returns 4.75 as its version" do
+  it 'returns 4.75 as its version' do
     expect(@useragent.version.to_a).to eq([4, 75])
   end
 end
 
-describe "UserAgent: Mozilla/5.0 (PLAYSTATION 3; 1.00)" do
+describe 'UserAgent: Mozilla/5.0 (PLAYSTATION 3; 1.00)' do
   before do
-    @useragent = UserAgent.parse("Mozilla/5.0 (PLAYSTATION 3; 1.00)")
+    @useragent = UserAgent.parse('Mozilla/5.0 (PLAYSTATION 3; 1.00)')
   end
 
   it_behaves_like 'PlayStation 3'
@@ -41,14 +42,14 @@ describe "UserAgent: Mozilla/5.0 (PLAYSTATION 3; 1.00)" do
     expect(@useragent.os).to eq('PLAYSTATION 3 1.00')
   end
 
-  it "returns 1.0 as its version" do
+  it 'returns 1.0 as its version' do
     expect(@useragent.version.to_a).to eq([1, 0])
   end
 end
 
-describe "UserAgent: Mozilla/5.0 (PlayStation Vita 3.52) AppleWebKit/537.73 (KHTML, like Gecko) Silk/3.2" do
+describe 'UserAgent: Mozilla/5.0 (PlayStation Vita 3.52) AppleWebKit/537.73 (KHTML, like Gecko) Silk/3.2' do
   before do
-    @useragent = UserAgent.parse("Mozilla/5.0 (PlayStation Vita 3.52) AppleWebKit/537.73 (KHTML, like Gecko) Silk/3.2")
+    @useragent = UserAgent.parse('Mozilla/5.0 (PlayStation Vita 3.52) AppleWebKit/537.73 (KHTML, like Gecko) Silk/3.2')
   end
 
   it "returns 'Silk' as its browser" do
@@ -63,7 +64,7 @@ describe "UserAgent: Mozilla/5.0 (PlayStation Vita 3.52) AppleWebKit/537.73 (KHT
     expect(@useragent.os).to eq('PlayStation Vita 3.52')
   end
 
-  it "returns 3.2 as its version" do
+  it 'returns 3.2 as its version' do
     expect(@useragent.version.to_a).to eq([3, 2])
   end
 
@@ -72,9 +73,9 @@ describe "UserAgent: Mozilla/5.0 (PlayStation Vita 3.52) AppleWebKit/537.73 (KHT
   end
 end
 
-describe "UserAgent: Mozilla/5.0 (PlayStation 4 2.57) AppleWebKit/537.73 (KHTML, like Gecko)" do
+describe 'UserAgent: Mozilla/5.0 (PlayStation 4 2.57) AppleWebKit/537.73 (KHTML, like Gecko)' do
   before do
-    @useragent = UserAgent.parse("Mozilla/5.0 (PlayStation 4 2.57) AppleWebKit/537.73 (KHTML, like Gecko)")
+    @useragent = UserAgent.parse('Mozilla/5.0 (PlayStation 4 2.57) AppleWebKit/537.73 (KHTML, like Gecko)')
   end
 
   it "returns 'PS4 Internet Browser' as its browser" do
@@ -89,7 +90,7 @@ describe "UserAgent: Mozilla/5.0 (PlayStation 4 2.57) AppleWebKit/537.73 (KHTML,
     expect(@useragent.os).to eq('PlayStation 4 2.57')
   end
 
-  it "returns 2.57 as its version" do
+  it 'returns 2.57 as its version' do
     expect(@useragent.version.to_a).to eq([2, 57])
   end
 

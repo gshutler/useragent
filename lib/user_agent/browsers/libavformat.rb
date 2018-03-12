@@ -4,18 +4,18 @@ class UserAgent
     class Libavformat < Base
       def self.extend?(agent)
         agent.detect do |useragent|
-          useragent.product == "Lavf" || (useragent.product == "NSPlayer" && agent.version == "4.1.0.3856")
+          useragent.product == 'Lavf' || (useragent.product == 'NSPlayer' && agent.version == '4.1.0.3856')
         end
       end
 
       # @return ["libavformat"] To make it easy to pick it out, all of the UAs that Lavf uses have this browser.
       def browser
-        "libavformat"
+        'libavformat'
       end
 
       # @return [nil, Version] If the product is NSPlayer, we don't have a version
       def version
-        super unless detect_product("NSPlayer")
+        super unless detect_product('NSPlayer')
       end
 
       # @return [nil] Lavf doesn't return us anything here

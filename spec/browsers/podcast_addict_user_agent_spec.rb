@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'user_agent'
 
 shared_examples 'Podcast Addict' do
@@ -22,9 +23,9 @@ shared_examples 'Podcast Addict' do
   end
 end
 
-describe "UserAgent: Podcast Addict - Dalvik/1.6.0 (Linux; U; Android 4.4.2; LG-D631 Build/KOT49I.D63110b)" do
+describe 'UserAgent: Podcast Addict - Dalvik/1.6.0 (Linux; U; Android 4.4.2; LG-D631 Build/KOT49I.D63110b)' do
   before do
-    @useragent = UserAgent.parse("Podcast Addict - Dalvik/1.6.0 (Linux; U; Android 4.4.2; LG-D631 Build/KOT49I.D63110b)")
+    @useragent = UserAgent.parse('Podcast Addict - Dalvik/1.6.0 (Linux; U; Android 4.4.2; LG-D631 Build/KOT49I.D63110b)')
   end
 
   it_behaves_like 'Podcast Addict'
@@ -46,9 +47,9 @@ describe "UserAgent: Podcast Addict - Dalvik/1.6.0 (Linux; U; Android 4.4.2; LG-
   end
 end
 
-describe "UserAgent: Podcast Addict - Dalvik/2.1.0 (Linux; U; Android 5.1; XT1093 Build/LPE23.32-21.3)" do
+describe 'UserAgent: Podcast Addict - Dalvik/2.1.0 (Linux; U; Android 5.1; XT1093 Build/LPE23.32-21.3)' do
   before do
-    @useragent = UserAgent.parse("Podcast Addict - Dalvik/2.1.0 (Linux; U; Android 5.1; XT1093 Build/LPE23.32-21.3)")
+    @useragent = UserAgent.parse('Podcast Addict - Dalvik/2.1.0 (Linux; U; Android 5.1; XT1093 Build/LPE23.32-21.3)')
   end
 
   it_behaves_like 'Podcast Addict'
@@ -70,9 +71,9 @@ describe "UserAgent: Podcast Addict - Dalvik/2.1.0 (Linux; U; Android 5.1; XT109
   end
 end
 
-describe "UserAgent: Podcast Addict - Dalvik/2.1.0 (Linux; U; Android M Build/MPZ79M)" do
+describe 'UserAgent: Podcast Addict - Dalvik/2.1.0 (Linux; U; Android M Build/MPZ79M)' do
   before do
-    @useragent = UserAgent.parse("Podcast Addict - Dalvik/2.1.0 (Linux; U; Android M Build/MPZ79M)")
+    @useragent = UserAgent.parse('Podcast Addict - Dalvik/2.1.0 (Linux; U; Android M Build/MPZ79M)')
   end
 
   it_behaves_like 'Podcast Addict'
@@ -94,9 +95,9 @@ describe "UserAgent: Podcast Addict - Dalvik/2.1.0 (Linux; U; Android M Build/MP
   end
 end
 
-describe "UserAgent: Podcast Addict - Mozilla/5.0 (Linux; U; Android 4.2.2; en-ca; ALCATEL ONE TOUCH 6040A Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.2 Mobile Safari/534.30" do
+describe 'UserAgent: Podcast Addict - Mozilla/5.0 (Linux; U; Android 4.2.2; en-ca; ALCATEL ONE TOUCH 6040A Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.2 Mobile Safari/534.30' do
   before do
-    @useragent = UserAgent.parse("Podcast Addict - Mozilla/5.0 (Linux; U; Android 4.2.2; en-ca; ALCATEL ONE TOUCH 6040A Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.2 Mobile Safari/534.30")
+    @useragent = UserAgent.parse('Podcast Addict - Mozilla/5.0 (Linux; U; Android 4.2.2; en-ca; ALCATEL ONE TOUCH 6040A Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.2 Mobile Safari/534.30')
   end
 
   it_behaves_like 'Podcast Addict'

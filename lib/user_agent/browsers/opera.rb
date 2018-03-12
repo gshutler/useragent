@@ -4,7 +4,7 @@ class UserAgent
       def self.extend?(agent)
         (agent.first && agent.first.product == 'Opera') ||
           (agent.application && agent.application.product == 'Opera') ||
-            (agent.last && agent.last.product == 'OPR')
+          (agent.last && agent.last.product == 'OPR')
       end
 
       def browser
@@ -13,10 +13,14 @@ class UserAgent
 
       def version
         if mini?
-          Version.new(application.comment.detect{|c| c =~ /Opera Mini/}[/Opera Mini\/([\d\.]+)/, 1]) rescue Version.new
-        elsif product = detect_product('Version')
+          begin
+            Version.new(application.comment.detect { |c| c =~ /Opera Mini/ }[%r{Opera Mini\/([\d\.]+)}, 1])
+          rescue StandardError
+            Version.new
+          end
+        elsif (product = detect_product('Version'))
           Version.new(product.version)
-        elsif product = detect_product('OPR')
+        elsif (product = detect_product('OPR'))
           Version.new(product.version)
         else
           super
@@ -27,7 +31,7 @@ class UserAgent
         return unless application.comment
 
         if application.comment[0] =~ /Windows/
-          "Windows"
+          'Windows'
         else
           application.comment[0]
         end
@@ -37,11 +41,11 @@ class UserAgent
         if application.comment.nil?
           :strong
         elsif macintosh?
-          Security[application.comment[2]]
+          SECURITY[application.comment[2]]
         elsif mini?
-          Security[application.comment[-2]]
+          SECURITY[application.comment[-2]]
         else
-          Security[application.comment[1]]
+          SECURITY[application.comment[1]]
         end
       end
 
@@ -70,13 +74,14 @@ class UserAgent
       end
 
       private
-        def mini?
-          /Opera Mini/ === application
-        end
 
-        def macintosh?
-          platform == 'Macintosh'
-        end
+      def mini?
+        /Opera Mini/ =~ application
+      end
+
+      def macintosh?
+        platform == 'Macintosh'
+      end
     end
   end
 end

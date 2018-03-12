@@ -10,17 +10,15 @@ class UserAgent
     ([^/\s]+)                      # Product
     /?([^\s,]*)                    # Version
     (\s\(([^\)]*)\)|,gzip\(gfe\))? # Comment
-  }x.freeze
+  }x
 
-  DEFAULT_USER_AGENT = "Mozilla/4.0 (compatible)"
+  DEFAULT_USER_AGENT = 'Mozilla/4.0 (compatible)'.freeze
 
   def self.parse(string)
-    if string.nil? || string.strip == ""
-      string = DEFAULT_USER_AGENT
-    end
+    string = DEFAULT_USER_AGENT if string.nil? || string.strip == ''
 
     agents = Browsers::Base.new
-    while m = string.to_s.match(MATCHER)
+    while (m = string.to_s.match(MATCHER))
       agents << new(m[1], m[2], m[4])
       string = string[m[0].length..-1].strip
     end
@@ -30,23 +28,20 @@ class UserAgent
   attr_reader :product, :version, :comment
 
   def initialize(product, version = nil, comment = nil)
-    if product
-      @product = product
-    else
-      raise ArgumentError, "expected a value for product"
-    end
+    raise ArgumentError, 'expected a value for product' unless product
+    @product = product
 
-    if version && !version.empty?
-      @version = Version.new(version)
-    else
-      @version = Version.new
-    end
+    @version = if version && !version.empty?
+                 Version.new(version)
+               else
+                 Version.new
+               end
 
-    if comment.respond_to?(:split)
-      @comment = comment.split("; ")
-    else
-      @comment = comment
-    end
+    @comment = if comment.respond_to?(:split)
+                 comment.split('; ')
+               else
+                 comment
+               end
   end
 
   include Comparable
@@ -77,11 +72,11 @@ class UserAgent
 
   def to_str
     if @product && !@version.nil? && @comment
-      "#{@product}/#{@version} (#{@comment.join("; ")})"
+      "#{@product}/#{@version} (#{@comment.join('; ')})"
     elsif @product && !@version.nil?
       "#{@product}/#{@version}"
     elsif @product && @comment
-      "#{@product} (#{@comment.join("; ")})"
+      "#{@product} (#{@comment.join('; ')})"
     else
       @product
     end

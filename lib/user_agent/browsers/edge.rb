@@ -4,11 +4,11 @@ class UserAgent
       OS_REGEXP = /Windows NT [\d\.]+|Windows Phone (OS )?[\d\.]+/
 
       def self.extend?(agent)
-        agent.last && agent.last.product == "Edge"
+        agent.last && agent.last.product == 'Edge'
       end
 
       def browser
-        "Edge"
+        'Edge'
       end
 
       def version
@@ -16,7 +16,7 @@ class UserAgent
       end
 
       def platform
-        "Windows"
+        'Windows'
       end
 
       def os
