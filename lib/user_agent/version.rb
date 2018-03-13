@@ -9,7 +9,7 @@ class UserAgent
       when String
         super
       when NilClass
-        super('')
+        super("")
       else
         raise ArgumentError, "invalid value for Version: #{obj.inspect}"
       end

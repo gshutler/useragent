@@ -21,7 +21,7 @@ class UserAgent
       end
 
       def to_str
-        join(' ')
+        join(" ")
       end
 
       def application
@@ -57,7 +57,7 @@ class UserAgent
       end
 
       def mobile?
-        if detect_product('Mobile') || detect_comment('Mobile')
+        if detect_product("Mobile") || detect_comment("Mobile")
           true
         elsif os =~ /Android/
           true
@@ -83,7 +83,7 @@ class UserAgent
         elsif detect_comment_match(/bot/i)
           true
         elsif (product = application.product)
-          product.include?('bot')
+          product.include?("bot")
         else
           false
         end

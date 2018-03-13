@@ -9,9 +9,9 @@ class UserAgent
       end
 
       def browser
-        return 'Android' if os =~ /Android/
-        return platform if platform == 'BlackBerry'
-        'Safari'
+        return "Android" if os =~ /Android/
+        return platform if platform == "BlackBerry"
+        "Safari"
       end
 
       def build
@@ -19,44 +19,44 @@ class UserAgent
       end
 
       BUILD_VERSIONS = {
-        '85.7'     => '1.0',
-        '85.8.5'   => '1.0.3',
-        '85.8.2'   => '1.0.3',
-        '124'      => '1.2',
-        '125.2'    => '1.2.2',
-        '125.4'    => '1.2.3',
-        '125.5.5'  => '1.2.4',
-        '125.5.6'  => '1.2.4',
-        '125.5.7'  => '1.2.4',
-        '312.1.1'  => '1.3',
-        '312.1'    => '1.3',
-        '312.5'    => '1.3.1',
-        '312.5.1'  => '1.3.1',
-        '312.5.2'  => '1.3.1',
-        '312.8'    => '1.3.2',
-        '312.8.1'  => '1.3.2',
-        '412'      => '2.0',
-        '412.6'    => '2.0',
-        '412.6.2'  => '2.0',
-        '412.7'    => '2.0.1',
-        '416.11'   => '2.0.2',
-        '416.12'   => '2.0.2',
-        '417.9'    => '2.0.3',
-        '418'      => '2.0.3',
-        '418.8'    => '2.0.4',
-        '418.9'    => '2.0.4',
-        '418.9.1'  => '2.0.4',
-        '419'      => '2.0.4',
-        '425.13'   => '2.2',
-        '534.52.7' => '5.1.2'
+        "85.7"     => "1.0",
+        "85.8.5"   => "1.0.3",
+        "85.8.2"   => "1.0.3",
+        "124"      => "1.2",
+        "125.2"    => "1.2.2",
+        "125.4"    => "1.2.3",
+        "125.5.5"  => "1.2.4",
+        "125.5.6"  => "1.2.4",
+        "125.5.7"  => "1.2.4",
+        "312.1.1"  => "1.3",
+        "312.1"    => "1.3",
+        "312.5"    => "1.3.1",
+        "312.5.1"  => "1.3.1",
+        "312.5.2"  => "1.3.1",
+        "312.8"    => "1.3.2",
+        "312.8.1"  => "1.3.2",
+        "412"      => "2.0",
+        "412.6"    => "2.0",
+        "412.6.2"  => "2.0",
+        "412.7"    => "2.0.1",
+        "416.11"   => "2.0.2",
+        "416.12"   => "2.0.2",
+        "417.9"    => "2.0.3",
+        "418"      => "2.0.3",
+        "418.8"    => "2.0.4",
+        "418.9"    => "2.0.4",
+        "418.9.1"  => "2.0.4",
+        "419"      => "2.0.4",
+        "425.13"   => "2.2",
+        "534.52.7" => "5.1.2"
       }.freeze
 
       # Prior to Safari 3, the user agent did not include a version number
       def version
-        str = if (product = detect_product('Version'))
+        str = if (product = detect_product("Version"))
                 product.version
-              elsif os =~ /iOS ([\d\.]+)/ && browser == 'Safari'
-                Regexp.last_match(1).tr('_', '.')
+              elsif os =~ /iOS ([\d\.]+)/ && browser == "Safari"
+                Regexp.last_match(1).tr("_", ".")
               else
                 BUILD_VERSIONS[build.to_s]
               end
@@ -72,11 +72,11 @@ class UserAgent
         return unless application
 
         if application.comment[0] =~ /Windows/
-          'Windows'
-        elsif application.comment[0] == 'BB10'
-          'BlackBerry'
+          "Windows"
+        elsif application.comment[0] == "BB10"
+          "BlackBerry"
         elsif application.comment.any? { |c| c =~ /Android/ }
-          'Android'
+          "Android"
         else
           application.comment[0]
         end

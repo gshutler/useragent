@@ -9,9 +9,9 @@ class UserAgent
       def self.extend?(agent)
         agent.detect do |useragent|
           %w[NSPlayer Windows-Media-Player WMFSDK].include?(useragent.product) &&
-            agent.version != '4.1.0.3856' && # 4.1.0.3856 is libavformat
-            agent.version != '7.10.0.3059' && # used by VLC for mmsh support
-            agent.version != '7.0.0.1956' # used by VLC for mmstu support
+            agent.version != "4.1.0.3856" && # 4.1.0.3856 is libavformat
+            agent.version != "7.10.0.3059" && # used by VLC for mmsh support
+            agent.version != "7.0.0.1956" # used by VLC for mmstu support
         end
       end
 
@@ -19,7 +19,7 @@ class UserAgent
       #
       # @return [Version, nil] The WMFSDK version
       def wmfsdk_version
-        (respond_to?('WMFSDK') && send('WMFSDK').version) || nil
+        (respond_to?("WMFSDK") && send("WMFSDK").version) || nil
       end
 
       # Check if the client supports the WMFSDK version passed in.
@@ -37,12 +37,12 @@ class UserAgent
 
       # @return ["Windows Media Player"] All of the user agents we parse are Windows Media Player
       def browser
-        'Windows Media Player'
+        "Windows Media Player"
       end
 
       # @return ["Windows"] All of the user agents we parse are on Windows
       def platform
-        'Windows'
+        "Windows"
       end
 
       # @return [true, false] Is this Windows Media Player 6.4 (NSPlayer 4.1) or Media Player 6.0 (NSPlayer 3.2)?
@@ -54,7 +54,7 @@ class UserAgent
       #
       # @return [true, false] Is this a mobile Windows Media Player?
       def mobile?
-        ['Windows Phone 8', 'Windows Phone 8.1'].include?(os)
+        ["Windows Phone 8", "Windows Phone 8.1"].include?(os)
       end
 
       # Parses the Windows Media Player version to figure out the host OS version
@@ -128,48 +128,48 @@ class UserAgent
         # WMP 6.4
         if classic?
           case version.to_a[3]
-          when 3564, 3925 then  'Windows 98'
-          when 3857 then        'Windows 9x'
-          when 3936 then        'Windows XP'
-          when 3938 then        'Windows 2000'
-          else 'Windows'
+          when 3564, 3925 then  "Windows 98"
+          when 3857 then        "Windows 9x"
+          when 3936 then        "Windows XP"
+          when 3938 then        "Windows 2000"
+          else "Windows"
           end
 
         # WMP 7/7.1
         elsif version.to_a[0] == 7
           case version.to_a[3]
-          when 3055 then 'Windows 98'
-          else 'Windows'
+          when 3055 then "Windows 98"
+          else "Windows"
           end
 
         # WMP 8 was also known as "Windows Media Player for Windows XP"
         elsif version.to_a[0] == 8
-          'Windows XP'
+          "Windows XP"
 
         # WMP 9/10
         elsif version.to_a[0] == 9 || version.to_a[0] == 10
           case version.to_a[3]
-          when 2980 then              'Windows 98/2000'
-          when 3268, 3367, 3270 then  'Windows 2000'
-          when 3802, 4503 then        'Windows XP'
-          else 'Windows'
+          when 2980 then              "Windows 98/2000"
+          when 3268, 3367, 3270 then  "Windows 2000"
+          when 3802, 4503 then        "Windows XP"
+          else "Windows"
           end
 
         # WMP 11/12
         elsif version.to_a[0] == 11 || version.to_a[0] == 12
           case version.to_a[2]
           when 9841, 9858, 9860,
-               9879 then              'Windows 10'
-          when 9651 then              'Windows Phone 8.1'
-          when 9600 then              'Windows 8.1'
-          when 9200 then              'Windows 8'
-          when 7600, 7601 then        'Windows 7'
-          when 6000, 6001, 6002 then  'Windows Vista'
-          when 5721 then              'Windows XP'
-          else                        'Windows'
+               9879 then              "Windows 10"
+          when 9651 then              "Windows Phone 8.1"
+          when 9600 then              "Windows 8.1"
+          when 9200 then              "Windows 8"
+          when 7600, 7601 then        "Windows 7"
+          when 6000, 6001, 6002 then  "Windows Vista"
+          when 5721 then              "Windows XP"
+          else                        "Windows"
           end
         else
-          'Windows'
+          "Windows"
         end
       end
     end

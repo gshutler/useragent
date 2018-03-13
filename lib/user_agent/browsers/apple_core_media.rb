@@ -3,11 +3,11 @@ class UserAgent
     # CoreMedia is a framework on iOS and is used by various iOS apps to playback media.
     class AppleCoreMedia < Base
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product == 'AppleCoreMedia' }
+        agent.detect { |useragent| useragent.product == "AppleCoreMedia" }
       end
 
       def browser
-        'AppleCoreMedia'
+        "AppleCoreMedia"
       end
 
       def application
@@ -18,7 +18,7 @@ class UserAgent
         return unless application
 
         if application.comment[0] =~ /Windows/
-          'Windows'
+          "Windows"
         else
           application.comment[0]
         end

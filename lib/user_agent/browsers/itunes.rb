@@ -10,12 +10,12 @@ class UserAgent
     # iTunes/12.0.1 (Macintosh; OS X 10.10.1) AppleWebKit/0600.1.25
     class ITunes < Webkit
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product == 'iTunes' }
+        agent.detect { |useragent| useragent.product == "iTunes" }
       end
 
       # @return ["iTunes"] Always return iTunes as the browser
       def browser
-        'iTunes'
+        "iTunes"
       end
 
       # @return [Version] The version of iTunes in use
@@ -41,17 +41,17 @@ class UserAgent
 
         if application && application.comment[0] =~ /Windows/
           if full_os =~ /Windows 8\.1/
-            'Windows 8.1'
+            "Windows 8.1"
           elsif full_os =~ /Windows 8/
-            'Windows 8'
+            "Windows 8"
           elsif full_os =~ /Windows 7/
-            'Windows 7'
+            "Windows 7"
           elsif full_os =~ /Windows Vista/
-            'Windows Vista'
+            "Windows Vista"
           elsif full_os =~ /Windows XP/
-            'Windows XP'
+            "Windows XP"
           else
-            'Windows'
+            "Windows"
           end
         else
           super

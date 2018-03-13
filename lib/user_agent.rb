@@ -1,7 +1,7 @@
-require 'user_agent/comparable'
-require 'user_agent/browsers'
-require 'user_agent/operating_systems'
-require 'user_agent/version'
+require "user_agent/comparable"
+require "user_agent/browsers"
+require "user_agent/operating_systems"
+require "user_agent/version"
 
 class UserAgent
   # http://www.texsoft.it/index.php?m=sw.php.useragent
@@ -12,10 +12,10 @@ class UserAgent
     (\s\(([^\)]*)\)|,gzip\(gfe\))? # Comment
   }x
 
-  DEFAULT_USER_AGENT = 'Mozilla/4.0 (compatible)'.freeze
+  DEFAULT_USER_AGENT = "Mozilla/4.0 (compatible)".freeze
 
   def self.parse(string)
-    string = DEFAULT_USER_AGENT if string.nil? || string.strip == ''
+    string = DEFAULT_USER_AGENT if string.nil? || string.strip == ""
 
     agents = Browsers::Base.new
     while (m = string.to_s.match(MATCHER))
@@ -28,7 +28,7 @@ class UserAgent
   attr_reader :product, :version, :comment
 
   def initialize(product, version = nil, comment = nil)
-    raise ArgumentError, 'expected a value for product' unless product
+    raise ArgumentError, "expected a value for product" unless product
     @product = product
 
     @version = if version && !version.empty?
@@ -38,7 +38,7 @@ class UserAgent
                end
 
     @comment = if comment.respond_to?(:split)
-                 comment.split('; ')
+                 comment.split("; ")
                else
                  comment
                end

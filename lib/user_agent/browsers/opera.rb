@@ -2,13 +2,13 @@ class UserAgent
   module Browsers
     class Opera < Base
       def self.extend?(agent)
-        (agent.first && agent.first.product == 'Opera') ||
-          (agent.application && agent.application.product == 'Opera') ||
-          (agent.last && agent.last.product == 'OPR')
+        (agent.first && agent.first.product == "Opera") ||
+          (agent.application && agent.application.product == "Opera") ||
+          (agent.last && agent.last.product == "OPR")
       end
 
       def browser
-        'Opera'
+        "Opera"
       end
 
       def version
@@ -18,9 +18,9 @@ class UserAgent
           rescue StandardError
             Version.new
           end
-        elsif (product = detect_product('Version'))
+        elsif (product = detect_product("Version"))
           Version.new(product.version)
-        elsif (product = detect_product('OPR'))
+        elsif (product = detect_product("OPR"))
           Version.new(product.version)
         else
           super
@@ -31,7 +31,7 @@ class UserAgent
         return unless application.comment
 
         if application.comment[0] =~ /Windows/
-          'Windows'
+          "Windows"
         else
           application.comment[0]
         end
@@ -80,7 +80,7 @@ class UserAgent
       end
 
       def macintosh?
-        platform == 'Macintosh'
+        platform == "Macintosh"
       end
     end
   end

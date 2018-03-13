@@ -6,11 +6,11 @@ class UserAgent
       end
 
       def browser
-        'Wechat Browser'
+        "Wechat Browser"
       end
 
       def version
-        micro_messenger = detect_product('MicroMessenger')
+        micro_messenger = detect_product("MicroMessenger")
         Version.new(micro_messenger.version)
       end
 
@@ -18,9 +18,9 @@ class UserAgent
         return unless application && application.comment
 
         if application.comment[0] =~ /iPhone/
-          'iPhone'
+          "iPhone"
         elsif application.comment.any? { |c| c =~ /Android/ }
-          'Android'
+          "Android"
         else
           application.comment[0]
         end

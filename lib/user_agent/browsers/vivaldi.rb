@@ -2,11 +2,11 @@ class UserAgent
   module Browsers
     class Vivaldi < Base
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product == 'Vivaldi' }
+        agent.detect { |useragent| useragent.product == "Vivaldi" }
       end
 
       def browser
-        'Vivaldi'
+        "Vivaldi"
       end
 
       def build
@@ -25,18 +25,18 @@ class UserAgent
         return unless application
 
         if application.comment[0] =~ /Windows/
-          'Windows'
+          "Windows"
         elsif application.comment.any? { |c| c =~ /CrOS/ }
-          'ChromeOS'
+          "ChromeOS"
         elsif application.comment.any? { |c| c =~ /Android/ }
-          'Android'
+          "Android"
         else
           application.comment[0]
         end
       end
 
       def webkit
-        detect_product('AppleWebKit')
+        detect_product("AppleWebKit")
       end
 
       def os

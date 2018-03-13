@@ -12,7 +12,7 @@ class UserAgent
       ].freeze
 
       def browser
-        CHROME_BROWSERS.detect { |browser| respond_to?(browser) } || 'Chrome'
+        CHROME_BROWSERS.detect { |browser| respond_to?(browser) } || "Chrome"
       end
 
       def build
@@ -21,7 +21,7 @@ class UserAgent
 
       # Prior to Safari 3, the user agent did not include a version number
       def version
-        str = if detect_product('CriOs')
+        str = if detect_product("CriOs")
                 crios.version
               else
                 chrome.version
@@ -38,18 +38,18 @@ class UserAgent
         return unless application
 
         if application.comment[0] =~ /Windows/
-          'Windows'
+          "Windows"
         elsif application.comment.any? { |c| c =~ /CrOS/ }
-          'ChromeOS'
+          "ChromeOS"
         elsif application.comment.any? { |c| c =~ /Android/ }
-          'Android'
+          "Android"
         else
           application.comment[0]
         end
       end
 
       def webkit
-        detect { |useragent| useragent.product == 'AppleWebKit' }
+        detect { |useragent| useragent.product == "AppleWebKit" }
       end
 
       def os

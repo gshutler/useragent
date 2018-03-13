@@ -7,11 +7,11 @@ class UserAgent
     # Podcast Addict - Dalvik/2.1.0 (Linux; U; Android M Build/MPZ79M)
     class PodcastAddict < Base
       def self.extend?(agent)
-        agent.length >= 3 && agent[0].product == 'Podcast' && agent[1].product == 'Addict' && agent[2].product == '-'
+        agent.length >= 3 && agent[0].product == "Podcast" && agent[1].product == "Addict" && agent[2].product == "-"
       end
 
       def browser
-        'Podcast Addict'
+        "Podcast Addict"
       end
 
       # If we can figure out the device, return it.
@@ -19,9 +19,9 @@ class UserAgent
       # @return [nil, String] the device model
       def device
         return nil unless length >= 4
-        return nil unless self[3].comment.last.include?(' Build/')
+        return nil unless self[3].comment.last.include?(" Build/")
 
-        self[3].comment.last.split(' Build/').first
+        self[3].comment.last.split(" Build/").first
       end
 
       # If we can figure out the device build, return it.
@@ -29,9 +29,9 @@ class UserAgent
       # @return [nil, String] the device build
       def device_build
         return nil unless length >= 4
-        return nil unless self[3].comment.last.include?(' Build/')
+        return nil unless self[3].comment.last.include?(" Build/")
 
-        self[3].comment.last.split(' Build/').last
+        self[3].comment.last.split(" Build/").last
       end
 
       # Returns the localization, if known. We currently only know this for certain devices.
@@ -39,7 +39,7 @@ class UserAgent
       # @return [nil, String] the localization
       def localization
         return nil unless length >= 4
-        return nil unless self[3].comment.last.include?('ALCATEL ')
+        return nil unless self[3].comment.last.include?("ALCATEL ")
         return nil unless self[3].comment.length >= 5
 
         self[3].comment[3]
@@ -61,10 +61,10 @@ class UserAgent
         # comment[0] = 'Linux'
         # comment[1] = 'U'
         # comment[2] = 'Android x.y.z' except when there are only 3 tokens, then we don't know the version
-        if (self[3].product == 'Dalvik' || self[3].product == 'Mozilla') && self[3].comment.length > 3
+        if (self[3].product == "Dalvik" || self[3].product == "Mozilla") && self[3].comment.length > 3
           self[3].comment[2]
-        elsif (self[3].product == 'Dalvik' || self[3].product == 'Mozilla') && self[3].comment.length == 3
-          'Android'
+        elsif (self[3].product == "Dalvik" || self[3].product == "Mozilla") && self[3].comment.length == 3
+          "Android"
         end
       end
 
@@ -72,7 +72,7 @@ class UserAgent
       #
       # @return [nil, "Android"] the platform
       def platform
-        'Android' if os.include?('Android')
+        "Android" if os.include?("Android")
       end
 
       # Get the security level reported
@@ -80,7 +80,7 @@ class UserAgent
       # @return [:weak, :strong, :none] the security level
       def security
         return nil unless length >= 4
-        return nil unless self[3].product == 'Dalvik' || self[3].product == 'Mozilla'
+        return nil unless self[3].product == "Dalvik" || self[3].product == "Mozilla"
 
         SECURITY[self[3].comment[1]]
       end

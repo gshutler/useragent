@@ -8,9 +8,9 @@ class UserAgent
     class PlayStation < Base
       def self.extend?(agent)
         !agent.application.nil? && !agent.application.comment.nil? && agent.application.comment.any? && (
-          agent.application.comment.first.include?('PLAYSTATION 3') ||
-          agent.application.comment.first.include?('PlayStation Vita') ||
-          agent.application.comment.first.include?('PlayStation 4')
+          agent.application.comment.first.include?("PLAYSTATION 3") ||
+          agent.application.comment.first.include?("PlayStation Vita") ||
+          agent.application.comment.first.include?("PlayStation 4")
         )
       end
 
@@ -18,12 +18,12 @@ class UserAgent
       #
       # @return [nil, String] the name of the browser
       def browser
-        if application.comment.first.include?('PLAYSTATION 3')
-          'PS3 Internet Browser'
-        elsif last.product == 'Silk'
-          'Silk'
-        elsif application.comment.first.include?('PlayStation 4')
-          'PS4 Internet Browser'
+        if application.comment.first.include?("PLAYSTATION 3")
+          "PS3 Internet Browser"
+        elsif last.product == "Silk"
+          "Silk"
+        elsif application.comment.first.include?("PlayStation 4")
+          "PS4 Internet Browser"
         end
       end
 
@@ -31,26 +31,26 @@ class UserAgent
       #
       # @return [true, false] is this a mobile browser?
       def mobile?
-        platform == 'PlayStation Vita'
+        platform == "PlayStation Vita"
       end
 
       # Returns the operating system in use.
       #
       # @return [String] the operating system in use
       def os
-        application.comment.join(' ')
+        application.comment.join(" ")
       end
 
       # Returns the platform in use.
       #
       # @return [nil, "PlayStation 3", "PlayStation 4", "PlayStation Vita"] the platform in use
       def platform
-        if os.include?('PLAYSTATION 3')
-          'PlayStation 3'
-        elsif os.include?('PlayStation 4')
-          'PlayStation 4'
-        elsif os.include?('PlayStation Vita')
-          'PlayStation Vita'
+        if os.include?("PLAYSTATION 3")
+          "PlayStation 3"
+        elsif os.include?("PlayStation 4")
+          "PlayStation 4"
+        elsif os.include?("PlayStation Vita")
+          "PlayStation Vita"
         end
       end
 
@@ -59,14 +59,14 @@ class UserAgent
       #
       # @return [nil, Version] the version
       def version
-        if browser == 'Silk'
+        if browser == "Silk"
           last.version
-        elsif platform == 'PlayStation 3'
-          Version.new(os.split('PLAYSTATION 3 ').last)
-        elsif platform == 'PlayStation 4'
-          Version.new(os.split('PlayStation 4 ').last)
-        elsif platform == 'PlayStation Vita'
-          Version.new(os.split('PlayStation Vita ').last)
+        elsif platform == "PlayStation 3"
+          Version.new(os.split("PLAYSTATION 3 ").last)
+        elsif platform == "PlayStation 4"
+          Version.new(os.split("PlayStation 4 ").last)
+        elsif platform == "PlayStation Vita"
+          Version.new(os.split("PlayStation Vita ").last)
         end
       end
     end

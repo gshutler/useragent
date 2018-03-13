@@ -2,7 +2,7 @@ class UserAgent
   module Browsers
     class Gecko < Base
       def self.extend?(agent)
-        agent.application && agent.application.product == 'Mozilla'
+        agent.application && agent.application.product == "Mozilla"
       end
 
       GECKO_BROWSERS = %w[
@@ -24,10 +24,10 @@ class UserAgent
 
       def platform
         if (comment = application.comment) # rubocop:disable Style/GuardClause
-          if comment[0] == 'compatible' || comment[0] == 'Mobile'
+          if comment[0] == "compatible" || comment[0] == "Mobile"
             nil
           elsif /^Windows / =~ comment[0]
-            'Windows'
+            "Windows"
           else
             comment[0]
           end
@@ -40,11 +40,11 @@ class UserAgent
 
       def os
         if (comment = application.comment) # rubocop:disable Style/GuardClause
-          i = if comment[1] == 'U'
+          i = if comment[1] == "U"
                 2
               elsif /^Windows / =~ comment[0] || /^Android/ =~ comment[0]
                 0
-              elsif comment[0] == 'Mobile'
+              elsif comment[0] == "Mobile"
                 nil
               else
                 1
