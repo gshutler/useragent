@@ -93,11 +93,11 @@ class UserAgent
         return unless application
 
         hash = {
-          browser: browser,
-          platform: platform,
-          os: os,
-          mobile: mobile?,
-          bot: bot?
+          :browser => browser,
+          :platform => platform,
+          :os => os,
+          :mobile => mobile?,
+          :bot => bot?
         }
 
         hash[:version] = (version.to_a if version)

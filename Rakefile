@@ -7,5 +7,5 @@ RSpec::Core::RakeTask.new do |t|
   t.ruby_opts = ["-w"]
 end
 
-task default: %i[spec rubocop]
-task release: :spec
+task :default => %i[spec rubocop]
+task :release => :spec

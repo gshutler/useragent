@@ -113,7 +113,7 @@ describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) 
 
   it_should_behave_like "Internet Explorer browser"
 
-  it "should return '11.0' as its version", focus: true do
+  it "should return '11.0' as its version", :focus => true do
     expect(@useragent.version).to eq("11.0")
   end
 

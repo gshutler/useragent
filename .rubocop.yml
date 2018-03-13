@@ -24,3 +24,6 @@ Naming/UncommunicativeMethodParamName:
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
+Style/HashSyntax:
+  EnforcedStyle: hash_rockets

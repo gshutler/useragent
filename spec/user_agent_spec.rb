@@ -406,33 +406,33 @@ describe UserAgent::Browsers::Base, "#to_h" do
 
   it_behaves_like "Browser serializer",
                   "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us)",
-                  browser: "Mozilla",
-                  version: [5, 0],
-                  platform: "Macintosh",
-                  os: "OS X 10.5.3",
-                  mobile: false,
-                  bot: false,
-                  comment: ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"]
+                  :browser => "Mozilla",
+                  :version => [5, 0],
+                  :platform => "Macintosh",
+                  :os => "OS X 10.5.3",
+                  :mobile => false,
+                  :bot => false,
+                  :comment => ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"]
 
   it_behaves_like "Browser serializer",
                   "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
-                  browser: "Mozilla",
-                  version: [5, 0],
-                  platform: nil,
-                  os: "Googlebot/2.1",
-                  mobile: false,
-                  bot: true,
-                  comment: ["compatible", "Googlebot/2.1", "+http://www.google.com/bot.html"]
+                  :browser => "Mozilla",
+                  :version => [5, 0],
+                  :platform => nil,
+                  :os => "Googlebot/2.1",
+                  :mobile => false,
+                  :bot => true,
+                  :comment => ["compatible", "Googlebot/2.1", "+http://www.google.com/bot.html"]
 
   it_behaves_like "Browser serializer",
                   "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/28.0.1500.16 Mobile/10B329 Safari/8536.25",
-                  browser: "Chrome",
-                  version: [28, 0, 1500, 16],
-                  platform: "iPhone",
-                  os: "iOS 6.1.3",
-                  mobile: true,
-                  bot: false,
-                  comment: ["iPhone", "CPU iPhone OS 6_1_3 like Mac OS X"]
+                  :browser => "Chrome",
+                  :version => [28, 0, 1500, 16],
+                  :platform => "iPhone",
+                  :os => "iOS 6.1.3",
+                  :mobile => true,
+                  :bot => false,
+                  :comment => ["iPhone", "CPU iPhone OS 6_1_3 like Mac OS X"]
 end
 
 describe UserAgent::Version do
@@ -566,7 +566,7 @@ describe UserAgent::Version do
 
   context "comparing with structs" do
     it "should not be < if products are the same and version is greater" do
-      expect(UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)")).not_to be < OpenStruct.new(browser: "Internet Explorer", version: "7.0")
+      expect(UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)")).not_to be < OpenStruct.new(:browser => "Internet Explorer", :version => "7.0")
     end
   end
 end
