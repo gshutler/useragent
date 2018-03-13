@@ -48,7 +48,7 @@ class UserAgent
         "418.9.1"  => "2.0.4",
         "419"      => "2.0.4",
         "425.13"   => "2.2",
-        "534.52.7" => "5.1.2"
+        "534.52.7" => "5.1.2",
       }.freeze
 
       def BuildVersions # rubocop:disable Naming/MethodName

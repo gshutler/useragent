@@ -97,7 +97,7 @@ class UserAgent
           :platform => platform,
           :os => os,
           :mobile => mobile?,
-          :bot => bot?
+          :bot => bot?,
         }
 
         hash[:version] = (version.to_a if version)

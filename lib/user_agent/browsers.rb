@@ -19,7 +19,7 @@ class UserAgent
     SECURITY = {
       "N" => :none,
       "U" => :strong,
-      "I" => :weak
+      "I" => :weak,
     }.freeze
 
     ALL = [

@@ -6,7 +6,7 @@ class UserAgent
         "Trident/7.0" => "11.0",
         "Trident/6.0" => "10.0",
         "Trident/5.0" => "9.0",
-        "Trident/4.0" => "8.0"
+        "Trident/4.0" => "8.0",
       }.freeze
 
       def self.extend?(agent)

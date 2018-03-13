@@ -27,3 +27,6 @@ Style/StringLiterals:
 
 Style/HashSyntax:
   EnforcedStyle: hash_rockets
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma

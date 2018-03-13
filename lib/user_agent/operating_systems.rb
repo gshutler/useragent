@@ -17,7 +17,7 @@ class UserAgent
       "Windows NT 4.0"  => "Windows NT 4.0",
       "Windows 98"      => "Windows 98",
       "Windows 95"      => "Windows 95",
-      "Windows CE"      => "Windows CE"
+      "Windows CE"      => "Windows CE",
     }.freeze
 
     class << self
