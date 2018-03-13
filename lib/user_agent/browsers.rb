@@ -36,7 +36,7 @@ class UserAgent
       Gecko,
       WindowsMediaPlayer,
       AppleCoreMedia,
-      Libavformat
+      Libavformat,
     ].freeze
 
     def self.Security # rubocop:disable Naming/MethodName
