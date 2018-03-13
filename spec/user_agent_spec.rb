@@ -9,6 +9,7 @@ describe UserAgent do
     UserAgent::Browsers::Chrome.new.ChromeBrowsers
     UserAgent::Browsers::Gecko.new.GeckoBrowsers
     UserAgent::Browsers::Webkit.new.BuildVersions
+    UserAgent::Browsers::WindowsMediaPlayer.new.has_wmfsdk?("")
   end
 
   it "should require a product" do

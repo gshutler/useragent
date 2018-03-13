@@ -35,6 +35,11 @@ class UserAgent
         end
       end
 
+      def has_wmfsdk?(version) # rubocop:disable Naming/PredicateName
+        warn("#{__method__} is deprecated. Please use wmfsdk? instead")
+        wmfsdk?(version)
+      end
+
       # @return ["Windows Media Player"] All of the user agents we parse are Windows Media Player
       def browser
         "Windows Media Player"
