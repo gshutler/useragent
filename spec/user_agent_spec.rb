@@ -3,6 +3,14 @@ require "user_agent"
 require "ostruct"
 
 describe UserAgent do
+  it "should warn about deprecation" do
+    UserAgent::Browsers.Security
+    UserAgent::OperatingSystems.Windows
+    UserAgent::Browsers::Chrome.new.ChromeBrowsers
+    UserAgent::Browsers::Gecko.new.GeckoBrowsers
+    UserAgent::Browsers::Webkit.new.BuildVersions
+  end
+
   it "should require a product" do
     expect { UserAgent.new(nil) }.to raise_error(ArgumentError, "expected a value for product")
   end

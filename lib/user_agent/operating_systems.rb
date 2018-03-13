@@ -21,6 +21,11 @@ class UserAgent
         "Windows CE"      => "Windows CE"
       }.freeze
 
+      def Windows # rubocop:disable Naming/MethodName
+        warn("#{__method__} is deprecated. Please use WINDOWS instead")
+        WINDOWS
+      end
+
       def normalize_os(os)
         WINDOWS[os] || normalize_mac_os_x(os) || normalize_ios(os) || normalize_chrome_os(os) || os
       end

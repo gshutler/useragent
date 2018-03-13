@@ -39,6 +39,11 @@ class UserAgent
       Libavformat
     ].freeze
 
+    def self.Security # rubocop:disable Naming/MethodName
+      warn("#{__method__} is deprecated. Please use SECURITY instead")
+      SECURITY
+    end
+
     def self.all
       ALL
     end

@@ -51,17 +51,16 @@ class UserAgent
         "534.52.7" => "5.1.2"
       }.freeze
 
+      def BuildVersions # rubocop:disable Naming/MethodName
+        warn("#{__method__} is deprecated. Please use BUILD_VERSIONS instead")
+        BUILD_VERSIONS
+      end
+
       # Prior to Safari 3, the user agent did not include a version number
       def version
-        str = if (product = detect_product("Version"))
-                product.version
-              elsif os =~ /iOS ([\d\.]+)/ && browser == "Safari"
-                Regexp.last_match(1).tr("_", ".")
-              else
-                BUILD_VERSIONS[build.to_s]
-              end
-
-        Version.new(str)
+        return Version.new(detect_product("Version").version) if detect_product("Version")
+        return Version.new(Regexp.last_match(1).tr("_", ".")) if os =~ /iOS ([\d\.]+)/ && browser == "Safari"
+        Version.new(BUILD_VERSIONS[build.to_s])
       end
 
       def application
