@@ -20,9 +20,13 @@ class UserAgent
       "Windows CE"      => "Windows CE",
     }.freeze
 
+    @windows_warned = false
     class << self
     def Windows # rubocop:disable Naming/MethodName
-      warn("#{__method__} is deprecated. Please use WINDOWS instead")
+      unless @windows_warned
+        warn("#{__method__} is deprecated. Please use WINDOWS instead")
+        @windows_warned = true
+      end
       WINDOWS
     end
 

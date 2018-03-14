@@ -13,8 +13,15 @@ class UserAgent
         Seamonkey
       ].freeze
 
+      def gecko_browser_warned
+        @gecko_browser_warned ||= false
+      end
+
       def GeckoBrowsers # rubocop:disable Naming/MethodName
-        warn("#{__method__} is deprecated. Please use GECKO_BROWSERS instead")
+        unless gecko_browser_warned
+          warn("#{__method__} is deprecated. Please use GECKO_BROWSERS instead")
+          @gecko_browser_warned = true
+        end
         GECKO_BROWSERS
       end
 

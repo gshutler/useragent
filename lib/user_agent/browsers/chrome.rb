@@ -11,8 +11,15 @@ class UserAgent
         Iron
       ].freeze
 
+      def chrome_browsers_warned
+        @chrome_browsers_warned ||= false
+      end
+
       def ChromeBrowsers # rubocop:disable Naming/MethodName
-        warn("#{__method__} is deprecated. Please use CHROME_BROWSERS instead")
+        unless chrome_browsers_warned
+          warn("#{__method__} is deprecated. Please use CHROME_BROWSERS instead")
+          @chrome_browsers_warned = true
+        end
         CHROME_BROWSERS
       end
 

@@ -35,8 +35,15 @@ class UserAgent
         end
       end
 
+      def wmfsdk_warned
+        @wmfsdk_warned ||= false
+      end
+
       def has_wmfsdk?(version) # rubocop:disable Naming/PredicateName
-        warn("#{__method__} is deprecated. Please use wmfsdk? instead")
+        unless wmfsdk_warned
+          warn("#{__method__} is deprecated. Please use wmfsdk? instead")
+          @wmfsdk_warned = true
+        end
         wmfsdk?(version)
       end
 

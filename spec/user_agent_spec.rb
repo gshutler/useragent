@@ -4,12 +4,22 @@ require "ostruct"
 
 describe UserAgent do
   it "should warn about deprecation" do
-    UserAgent::Browsers.Security
-    UserAgent::OperatingSystems.Windows
-    UserAgent::Browsers::Chrome.new.ChromeBrowsers
-    UserAgent::Browsers::Gecko.new.GeckoBrowsers
-    UserAgent::Browsers::Webkit.new.BuildVersions
-    UserAgent::Browsers::WindowsMediaPlayer.new.has_wmfsdk?("")
+    expect { UserAgent::Browsers.Security }.to output("Security is deprecated. Please use SECURITY instead\n").to_stderr
+    expect { UserAgent::Browsers.Security }.to output("").to_stderr
+    expect { UserAgent::OperatingSystems.Windows }.to output("Windows is deprecated. Please use WINDOWS instead\n").to_stderr
+    expect { UserAgent::OperatingSystems.Windows }.to output("").to_stderr
+    chrome = UserAgent::Browsers::Chrome.new
+    expect { chrome.ChromeBrowsers }.to output("ChromeBrowsers is deprecated. Please use CHROME_BROWSERS instead\n").to_stderr
+    expect { chrome.ChromeBrowsers }.to output("").to_stderr
+    gecko = UserAgent::Browsers::Gecko.new
+    expect { gecko.GeckoBrowsers }.to output("GeckoBrowsers is deprecated. Please use GECKO_BROWSERS instead\n").to_stderr
+    expect { gecko.GeckoBrowsers }.to output("").to_stderr
+    webkit = UserAgent::Browsers::Webkit.new
+    expect { webkit.BuildVersions }.to output("BuildVersions is deprecated. Please use BUILD_VERSIONS instead\n").to_stderr
+    expect { webkit.BuildVersions }.to output("").to_stderr
+    wmf = UserAgent::Browsers::WindowsMediaPlayer.new
+    expect { wmf.has_wmfsdk?("") }.to output("has_wmfsdk? is deprecated. Please use wmfsdk? instead\n").to_stderr
+    expect { wmf.has_wmfsdk?("") }.to output("").to_stderr
   end
 
   it "should require a product" do

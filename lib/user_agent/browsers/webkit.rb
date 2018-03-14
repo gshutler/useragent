@@ -51,8 +51,15 @@ class UserAgent
         "534.52.7" => "5.1.2",
       }.freeze
 
+      def build_versions_warned
+        @build_versions_warned ||= false
+      end
+
       def BuildVersions # rubocop:disable Naming/MethodName
-        warn("#{__method__} is deprecated. Please use BUILD_VERSIONS instead")
+        unless build_versions_warned
+          warn("#{__method__} is deprecated. Please use BUILD_VERSIONS instead")
+          @build_versions_warned = true
+        end
         BUILD_VERSIONS
       end
 
@@ -70,15 +77,10 @@ class UserAgent
       def platform
         return unless application
 
-        if application.comment[0] =~ /Windows/
-          "Windows"
-        elsif application.comment[0] == "BB10"
-          "BlackBerry"
-        elsif application.comment.any? { |c| c =~ /Android/ }
-          "Android"
-        else
-          application.comment[0]
-        end
+        return "Windows" if application.comment[0] =~ /Windows/
+        return "BlackBerry" if application.comment[0] == "BB10"
+        return "Android" if application.comment.any? { |c| c =~ /Android/ }
+        application.comment[0]
       end
 
       def webkit
