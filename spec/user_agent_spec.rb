@@ -3,7 +3,7 @@ require "user_agent"
 require "ostruct"
 
 describe UserAgent do
-  it "warns about deprecation" do
+  it "warns about deprecation" do # rubocop:disable RSpec/ExampleLength,RSpec/MultipleExpectations
     expect { UserAgent::Browsers.Security }.to output("Security is deprecated. Please use SECURITY instead\n").to_stderr
     expect { UserAgent::Browsers.Security }.to output("").to_stderr
     expect { UserAgent::OperatingSystems.Windows }.to output("Windows is deprecated. Please use WINDOWS instead\n").to_stderr
@@ -73,11 +73,11 @@ describe UserAgent do
     expect(described_class.new("Mozilla", "5.0", ["Macintosh"])).to eql(described_class.new("Mozilla", "5.0", ["Macintosh"]))
   end
 
-  it "is not eql if both products, versions and comments are not the same" do
+  it "is not eql if both oses, versions and comments are not the same" do
     expect(described_class.new("Mozilla", "5.0", ["Macintosh"])).not_to eql(described_class.new("Mozilla", "5.0", ["Windows"]))
   end
 
-  it "is not eql if both products, versions and comments are not the same" do
+  it "is not eql if both versions, versions and comments are not the same" do
     expect(described_class.new("Mozilla", "5.0", ["Macintosh"])).not_to eql(described_class.new("Mozilla", "4.0", ["Macintosh"]))
   end
 
@@ -156,427 +156,409 @@ describe UserAgent do
   it "is <= if products are the same and version is the same" do
     expect(described_class.new("Mozilla", "5.0")).to be <= described_class.new("Mozilla", "5.0")
   end
-end
 
-describe UserAgent, "::MATCHER" do
-  it "does not match a blank line" do
-    expect(UserAgent::MATCHER).not_to match("")
-  end
+  describe ".parse" do
+    let(:default_user_agent) { described_class.parse(UserAgent::DEFAULT_USER_AGENT) }
 
-  it "matches a single product" do
-    expect(UserAgent::MATCHER).to match("Mozilla")
-  end
-
-  it "matches a product and version" do
-    expect(UserAgent::MATCHER).to match("Mozilla/5.0")
-  end
-
-  it "matches a product, version, and comment" do
-    expect(UserAgent::MATCHER).to match("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us)")
-  end
-
-  it "matches a product, and comment" do
-    expect(UserAgent::MATCHER).to match("Mozilla (Macintosh; U; Intel Mac OS X 10_5_3; en-us)")
-  end
-end
-
-describe UserAgent, ".parse" do
-  let(:default_user_agent) { UserAgent.parse(UserAgent::DEFAULT_USER_AGENT) }
-
-  it "concatenates user agents when coerced to a string" do
-    string = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.18")
-    expect(string.to_str).to eq("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.18")
-  end
-
-  it "parses a single product" do
-    useragent = UserAgent.new("Mozilla")
-    expect(UserAgent.parse("Mozilla").application).to eq(useragent)
-  end
-
-  it "parses a single product with version" do
-    useragent = UserAgent.new("Mozilla", "5.0")
-    expect(UserAgent.parse("Mozilla/5.0").application).to eq(useragent)
-  end
-
-  it "parses a single product with an empty comment" do
-    useragent = UserAgent.new("Mozilla", "5.0")
-    expect(UserAgent.parse("Mozilla/5.0 ()").application).to eq(useragent)
-  end
-
-  it "parses a single product, version, and comment" do
-    useragent = UserAgent.new("Mozilla", "5.0", ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"])
-    expect(UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us)").application).to eq(useragent)
-  end
-
-  it "parses a single product, version, and comment, with space-padded semicolons" do
-    useragent = UserAgent.new("Mozilla", "5.0", ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"])
-    expect(UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3 ; en-us; )").application).to eq(useragent)
-  end
-
-  it "parses a user agent string with gzip(gfe) addition correctly" do
-    agent = UserAgent.parse("Mozilla/5.0 (Windows NT 5.1; rv:35.0) Gecko/20100101 Firefox/35.0,gzip(gfe)")
-
-    expect(agent.version.to_s).to eq("35.0")
-  end
-
-  it "parses a single product and comment" do
-    useragent = UserAgent.new("Mozilla", nil, ["Macintosh"])
-    expect(UserAgent.parse("Mozilla (Macintosh)").application).to eq(useragent)
-  end
-
-  it "parses nil as the default agent" do
-    expect(UserAgent.parse(nil)).to eq(default_user_agent)
-  end
-
-  it "parses an empty string as the default agent" do
-    expect(UserAgent.parse("")).to eq(default_user_agent)
-  end
-
-  it "parses a blank string as the default agent" do
-    expect(UserAgent.parse(" ")).to eq(default_user_agent)
-  end
-
-  it "parses a double-quoted user-agent" do
-    useragent = UserAgent.new("Mozilla", "5.0", ["X11", "Linux x86_64", "rv:9.0"])
-    expect(UserAgent.parse('"Mozilla/5.0 (X11; Linux x86_64; rv:9.0) Gecko/20100101 Firefox/8.0"').application).to eq(useragent)
-  end
-
-  it "parses a user-agent with leading double-quote" do
-    useragent = UserAgent.new("Mozilla", "5.0", ["X11", "Linux x86_64", "rv:9.0"])
-    expect(UserAgent.parse('"Mozilla/5.0 (X11; Linux x86_64; rv:9.0) Gecko/20100101 Firefox/8.0').application).to eq(useragent)
-  end
-
-  it "parses a single-quoted user-agent" do
-    useragent = UserAgent.new("Mozilla", "5.0", nil)
-    expect(UserAgent.parse("'Mozilla/5.0'").application).to eq(useragent)
-  end
-
-  it "parses a user-agent with leading single-quote" do
-    useragent = UserAgent.new("Mozilla", "5.0", nil)
-    expect(UserAgent.parse("'Mozilla/5.0").application).to eq(useragent)
-  end
-end
-
-describe UserAgent::Browsers::Base, "#<" do
-  before do
-    @ie7 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)")
-    @ie6 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)")
-    @firefox = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14")
-  end
-
-  it "is not < if user agent does not have a browser" do
-    expect(@ie7).not_to be < "Mozilla"
-  end
-
-  it "is not < if user agent does not have the same browser" do
-    expect(@ie7).not_to be < @firefox
-  end
-
-  it "is < if version is less than its version" do
-    expect(@ie6).to be < @ie7
-  end
-
-  it "is not < if version is the same as its version" do
-    expect(@ie6).not_to be < @ie6
-  end
-
-  it "is not < if version is greater than its version" do
-    expect(@ie7).not_to be < @ie6
-  end
-end
-
-describe UserAgent::Browsers::Base, "#<=" do
-  before do
-    @ie7 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)")
-    @ie6 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)")
-    @firefox = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14")
-  end
-
-  it "is not <= if user agent does not have a browser" do
-    expect(@ie7).not_to be <= "Mozilla"
-  end
-
-  it "is not <= if user agent does not have the same browser" do
-    expect(@ie7).not_to be <= @firefox
-  end
-
-  it "is <= if version is less than its version" do
-    expect(@ie6).to be <= @ie7
-  end
-
-  it "is <= if version is the same as its version" do
-    expect(@ie6).to be <= @ie6
-  end
-
-  it "is not <= if version is greater than its version" do
-    expect(@ie7).not_to be <= @ie6
-  end
-end
-
-describe UserAgent::Browsers::Base, "#==" do
-  before do
-    @ie7 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)")
-    @ie6 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)")
-    @firefox = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14")
-  end
-
-  it "is not == if user agent does not have a browser" do
-    expect(@ie7).not_to eq("Mozilla")
-  end
-
-  it "is not == if user agent does not have the same browser" do
-    expect(@ie7).not_to eq(@firefox)
-  end
-
-  it "is not == if version is less than its version" do
-    expect(@ie6).not_to eq(@ie7)
-  end
-
-  it "is == if version is the same as its version" do
-    expect(@ie6).to eq(@ie6)
-  end
-
-  it "is not == if version is greater than its version" do
-    expect(@ie7).not_to eq(@ie6)
-  end
-end
-
-describe UserAgent::Browsers::Base, "#>" do
-  before do
-    @ie7 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)")
-    @ie6 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)")
-    @firefox = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14")
-  end
-
-  it "is not > if user agent does not have a browser" do
-    expect(@ie7).not_to be > "Mozilla"
-  end
-
-  it "is not > if user agent does not have the same browser" do
-    expect(@ie7).not_to be > @firefox
-  end
-
-  it "is not > if version is less than its version" do
-    expect(@ie6).not_to be > @ie7
-  end
-
-  it "is not > if version is the same as its version" do
-    expect(@ie6).not_to be > @ie6
-  end
-
-  it "is > if version is greater than its version" do
-    expect(@ie7).to be > @ie6
-  end
-end
-
-describe UserAgent::Browsers::Base, "#>=" do
-  before do
-    @ie7 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)")
-    @ie6 = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)")
-    @firefox = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14")
-  end
-
-  it "is not >= if user agent does not have a browser" do
-    expect(@ie7).not_to be >= "Mozilla"
-  end
-
-  it "is not >= if user agent does not have the same browser" do
-    expect(@ie7).not_to be >= @firefox
-  end
-
-  it "is not >= if version is less than its version" do
-    expect(@ie6).not_to be >= @ie7
-  end
-
-  it "is >= if version is the same as its version" do
-    expect(@ie6).to be >= @ie6
-  end
-
-  it "is >= if version is greater than its version" do
-    expect(@ie7).to be >= @ie6
-  end
-end
-
-describe UserAgent::Browsers::Base, "#to_h" do
-  shared_examples "Browser serializer" do |user_agent_string, expected_hash|
-    let(:useragent) do
-      UserAgent.parse(user_agent_string)
+    it "concatenates user agents when coerced to a string" do
+      string = described_class.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.18")
+      expect(string.to_str).to eq("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.18")
     end
 
-    let(:actual) do
-      useragent.to_h
+    it "parses a single product" do
+      useragent = described_class.new("Mozilla")
+      expect(described_class.parse("Mozilla").application).to eq(useragent)
     end
 
-    expected_hash.each_pair do |key, value|
-      it "should serialize :#{key} as '#{value}'" do
-        expect(actual[key]).to eq(value)
+    it "parses a single product with version" do
+      useragent = described_class.new("Mozilla", "5.0")
+      expect(described_class.parse("Mozilla/5.0").application).to eq(useragent)
+    end
+
+    it "parses a single product with an empty comment" do
+      useragent = described_class.new("Mozilla", "5.0")
+      expect(described_class.parse("Mozilla/5.0 ()").application).to eq(useragent)
+    end
+
+    it "parses a single product, version, and comment" do
+      useragent = described_class.new("Mozilla", "5.0", ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"])
+      expect(described_class.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us)").application).to eq(useragent)
+    end
+
+    it "parses a single product, version, and comment, with space-padded semicolons" do
+      useragent = described_class.new("Mozilla", "5.0", ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"])
+      expect(described_class.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3 ; en-us; )").application).to eq(useragent)
+    end
+
+    it "parses a user agent string with gzip(gfe) addition correctly" do
+      agent = described_class.parse("Mozilla/5.0 (Windows NT 5.1; rv:35.0) Gecko/20100101 Firefox/35.0,gzip(gfe)")
+
+      expect(agent.version.to_s).to eq("35.0")
+    end
+
+    it "parses a single product and comment" do
+      useragent = described_class.new("Mozilla", nil, ["Macintosh"])
+      expect(described_class.parse("Mozilla (Macintosh)").application).to eq(useragent)
+    end
+
+    it "parses nil as the default agent" do
+      expect(described_class.parse(nil)).to eq(default_user_agent)
+    end
+
+    it "parses an empty string as the default agent" do
+      expect(described_class.parse("")).to eq(default_user_agent)
+    end
+
+    it "parses a blank string as the default agent" do
+      expect(described_class.parse(" ")).to eq(default_user_agent)
+    end
+
+    it "parses a double-quoted user-agent" do
+      useragent = described_class.new("Mozilla", "5.0", ["X11", "Linux x86_64", "rv:9.0"])
+      expect(described_class.parse('"Mozilla/5.0 (X11; Linux x86_64; rv:9.0) Gecko/20100101 Firefox/8.0"').application).to eq(useragent)
+    end
+
+    it "parses a user-agent with leading double-quote" do
+      useragent = described_class.new("Mozilla", "5.0", ["X11", "Linux x86_64", "rv:9.0"])
+      expect(described_class.parse('"Mozilla/5.0 (X11; Linux x86_64; rv:9.0) Gecko/20100101 Firefox/8.0').application).to eq(useragent)
+    end
+
+    it "parses a single-quoted user-agent" do
+      useragent = described_class.new("Mozilla", "5.0", nil)
+      expect(described_class.parse("'Mozilla/5.0'").application).to eq(useragent)
+    end
+
+    it "parses a user-agent with leading single-quote" do
+      useragent = described_class.new("Mozilla", "5.0", nil)
+      expect(described_class.parse("'Mozilla/5.0").application).to eq(useragent)
+    end
+  end
+
+  describe "::Browsers::Base" do
+    describe "#<" do
+      let(:ie7) { described_class.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)") }
+      let(:ie6) { described_class.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)") }
+      let(:firefox) { described_class.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14") }
+
+      it "is not < if user agent does not have a browser" do
+        expect(ie7).not_to be < "Mozilla"
+      end
+
+      it "is not < if user agent does not have the same browser" do
+        expect(ie7).not_to be < firefox
+      end
+
+      it "is < if version is less than its version" do
+        expect(ie6).to be < ie7
+      end
+
+      it "is not < if version is the same as its version" do
+        expect(ie6).not_to be < ie6
+      end
+
+      it "is not < if version is greater than its version" do
+        expect(ie7).not_to be < ie6
       end
     end
-  end
 
-  it_behaves_like "Browser serializer",
-                  "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us)",
-                  :browser => "Mozilla",
-                  :version => [5, 0],
-                  :platform => "Macintosh",
-                  :os => "OS X 10.5.3",
-                  :mobile => false,
-                  :bot => false,
-                  :comment => ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"]
+    describe "#<=" do
+      let(:ie7) { described_class.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)") }
+      let(:ie6) { described_class.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)") }
+      let(:firefox) { described_class.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14") }
 
-  it_behaves_like "Browser serializer",
-                  "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
-                  :browser => "Mozilla",
-                  :version => [5, 0],
-                  :platform => nil,
-                  :os => "Googlebot/2.1",
-                  :mobile => false,
-                  :bot => true,
-                  :comment => ["compatible", "Googlebot/2.1", "+http://www.google.com/bot.html"]
+      it "is not <= if user agent does not have a browser" do
+        expect(ie7).not_to be <= "Mozilla"
+      end
 
-  it_behaves_like "Browser serializer",
-                  "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/28.0.1500.16 Mobile/10B329 Safari/8536.25",
-                  :browser => "Chrome",
-                  :version => [28, 0, 1500, 16],
-                  :platform => "iPhone",
-                  :os => "iOS 6.1.3",
-                  :mobile => true,
-                  :bot => false,
-                  :comment => ["iPhone", "CPU iPhone OS 6_1_3 like Mac OS X"]
-end
+      it "is not <= if user agent does not have the same browser" do
+        expect(ie7).not_to be <= firefox
+      end
 
-describe UserAgent::Version do
-  it "is eql if versions are the same" do
-    expect(described_class.new("5.0")).to eql(described_class.new("5.0"))
-  end
+      it "is <= if version is less than its version" do
+        expect(ie6).to be <= ie7
+      end
 
-  it "is not eql if versions are the different" do
-    expect(described_class.new("9.0")).not_to eql(described_class.new("5.0"))
-  end
+      it "is <= if version is the same as its version" do
+        expect(ie6).to be <= ie6
+      end
 
-  it "is == if versions are the same" do
-    expect(described_class.new("5.0")).to eq(described_class.new("5.0"))
-  end
+      it "is not <= if version is greater than its version" do
+        expect(ie7).not_to be <= ie6
+      end
+    end
 
-  it "is == if versions are the same string" do
-    expect(described_class.new("5.0")).to eq("5.0")
-  end
+    describe "#==" do
+      let(:ie7) { described_class.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)") }
+      let(:ie6) { described_class.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)") }
+      let(:firefox) { described_class.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14") }
 
-  it "is not == if versions are the different" do
-    expect(described_class.new("9.0")).not_to eq(described_class.new("5.0"))
-  end
+      it "is not == if user agent does not have a browser" do
+        expect(ie7).not_to eq("Mozilla")
+      end
 
-  it "is not == to nil" do
-    expect(described_class.new("9.0")).not_to eq(nil)
-  end
+      it "is not == if user agent does not have the same browser" do
+        expect(ie7).not_to eq(firefox)
+      end
 
-  it "is not == to []" do
-    expect(described_class.new("9.0")).not_to eq([])
-  end
+      it "is not == if version is less than its version" do
+        expect(ie6).not_to eq(ie7)
+      end
 
-  it "is < if version is less" do
-    expect(described_class.new("9.0")).to be < described_class.new("10.0")
-  end
+      it "is == if version is the same as its version" do
+        expect(ie6).to eq(ie6)
+      end
 
-  it "is < if version is less" do
-    expect(described_class.new("4")).to be < described_class.new("4.1")
-  end
+      it "is not == if version is greater than its version" do
+        expect(ie7).not_to eq(ie6)
+      end
+    end
 
-  it "is < if version is less and a string" do
-    expect(described_class.new("9.0")).to be < "10.0"
-  end
+    describe "#>" do
+      let(:ie7) { described_class.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)") }
+      let(:ie6) { described_class.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)") }
+      let(:firefox) { described_class.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14") }
 
-  it "is not < if version is greater" do
-    expect(described_class.new("9.0")).not_to be > described_class.new("10.0")
-  end
+      it "is not > if user agent does not have a browser" do
+        expect(ie7).not_to be > "Mozilla"
+      end
 
-  it "is <= if version is less" do
-    expect(described_class.new("9.0")).to be <= described_class.new("10.0")
-  end
+      it "is not > if user agent does not have the same browser" do
+        expect(ie7).not_to be > firefox
+      end
 
-  it "is not <= if version is greater" do
-    expect(described_class.new("9.0")).not_to be >= described_class.new("10.0")
-  end
+      it "is not > if version is less than its version" do
+        expect(ie6).not_to be > ie7
+      end
 
-  it "is <= if version is same" do
-    expect(described_class.new("9.0")).to be <= described_class.new("9.0")
-  end
+      it "is not > if version is the same as its version" do
+        expect(ie6).not_to be > ie6
+      end
 
-  it "is > if version is greater" do
-    expect(described_class.new("1.0")).to be > described_class.new("0.9")
-  end
+      it "is > if version is greater than its version" do
+        expect(ie7).to be > ie6
+      end
+    end
 
-  it "is > if version is greater" do
-    expect(described_class.new("4.1")).to be > described_class.new("4")
-  end
+    describe "#>=" do
+      let(:ie7) { described_class.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)") }
+      let(:ie6) { described_class.parse("Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)") }
+      let(:firefox) { described_class.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.14) Gecko/20080404 Firefox/2.0.0.14") }
 
-  it "is not > if version is less" do
-    expect(described_class.new("0.0.1")).not_to be > described_class.new("10.0")
-  end
+      it "is not >= if user agent does not have a browser" do
+        expect(ie7).not_to be >= "Mozilla"
+      end
 
-  it "is >= if version is greater" do
-    expect(described_class.new("10.0")).to be >= described_class.new("4.0")
-  end
+      it "is not >= if user agent does not have the same browser" do
+        expect(ie7).not_to be >= firefox
+      end
 
-  it "is not >= if version is less" do
-    expect(described_class.new("0.9")).not_to be >= described_class.new("1.0")
-  end
+      it "is not >= if version is less than its version" do
+        expect(ie6).not_to be >= ie7
+      end
 
-  it "is not > if version is invalid" do
-    expect(described_class.new("x.x")).not_to be > described_class.new("1.0")
-  end
+      it "is >= if version is the same as its version" do
+        expect(ie6).to be >= ie6
+      end
 
-  it "is < if version is invalid" do
-    expect(described_class.new("x.x")).to be < described_class.new("1.0")
-  end
+      it "is >= if version is greater than its version" do
+        expect(ie7).to be >= ie6
+      end
+    end
 
-  it "is > when compared with invalid" do
-    expect(described_class.new("1.0")).to be > described_class.new("x.x")
-  end
+    describe "#to_h" do
+      shared_examples "Browser serializer" do |user_agent_string, expected_hash|
+        let(:useragent) do
+          described_class.parse(user_agent_string)
+        end
 
-  it "is not < when compared with invalid" do
-    expect(described_class.new("1.0")).not_to be < described_class.new("x.x")
-  end
+        let(:actual) do
+          useragent.to_h
+        end
 
-  it "is not > if both versions are invalid" do
-    expect(described_class.new("a.a")).not_to be > described_class.new("b.b")
-  end
+        expected_hash.each_pair do |key, value|
+          it "should serialize :#{key} as '#{value}'" do
+            expect(actual[key]).to eq(value)
+          end
+        end
+      end
 
-  it "is < if both versions are invalid" do
-    expect(described_class.new("a.a")).to be < described_class.new("b.b")
-  end
+      it_behaves_like "Browser serializer",
+                      "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us)",
+                      :browser => "Mozilla",
+                      :version => [5, 0],
+                      :platform => "Macintosh",
+                      :os => "OS X 10.5.3",
+                      :mobile => false,
+                      :bot => false,
+                      :comment => ["Macintosh", "U", "Intel Mac OS X 10_5_3", "en-us"]
 
-  it "is not > if version is nil" do
-    expect(described_class.new(nil)).not_to be > described_class.new("1.0")
-  end
+      it_behaves_like "Browser serializer",
+                      "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+                      :browser => "Mozilla",
+                      :version => [5, 0],
+                      :platform => nil,
+                      :os => "Googlebot/2.1",
+                      :mobile => false,
+                      :bot => true,
+                      :comment => ["compatible", "Googlebot/2.1", "+http://www.google.com/bot.html"]
 
-  it "is < if version is nil" do
-    expect(described_class.new(nil)).to be < described_class.new("1.0")
-  end
-
-  it "is not > when compared with nil" do
-    expect(described_class.new(nil)).not_to be > described_class.new(nil)
-  end
-
-  it "is not < when compared with nil" do
-    expect(described_class.new(nil)).not_to be < described_class.new(nil)
-  end
-
-  it "is not > if both versions are nil" do
-    expect(described_class.new(nil)).not_to be > described_class.new(nil)
-  end
-
-  it "is not < if both versions are nil" do
-    expect(described_class.new(nil)).not_to be < described_class.new(nil)
-  end
-
-  it "is > if version is nil" do
-    expect(described_class.new("9.0")).to be > nil
-  end
-
-  context "comparing with structs" do
-    it "is not < if products are the same and version is greater" do
-      expect(UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)")).not_to be < OpenStruct.new(:browser => "Internet Explorer", :version => "7.0")
+      it_behaves_like "Browser serializer",
+                      "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/28.0.1500.16 Mobile/10B329 Safari/8536.25",
+                      :browser => "Chrome",
+                      :version => [28, 0, 1500, 16],
+                      :platform => "iPhone",
+                      :os => "iOS 6.1.3",
+                      :mobile => true,
+                      :bot => false,
+                      :comment => ["iPhone", "CPU iPhone OS 6_1_3 like Mac OS X"]
     end
   end
+
+  describe UserAgent::Version do
+    it "is eql if versions are the same" do
+      expect(described_class.new("5.0")).to eql(described_class.new("5.0"))
+    end
+
+    it "is not eql if versions are the different" do
+      expect(described_class.new("9.0")).not_to eql(described_class.new("5.0"))
+    end
+
+    it "is == if versions are the same" do
+      expect(described_class.new("5.0")).to eq(described_class.new("5.0"))
+    end
+
+    it "is == if versions are the same string" do
+      expect(described_class.new("5.0")).to eq("5.0")
+    end
+
+    it "is not == if versions are the different" do
+      expect(described_class.new("9.0")).not_to eq(described_class.new("5.0"))
+    end
+
+    it "is not == to nil" do
+      expect(described_class.new("9.0")).not_to eq(nil)
+    end
+
+    it "is not == to []" do
+      expect(described_class.new("9.0")).not_to eq([])
+    end
+
+    it "is < if major minor version is less" do
+      expect(described_class.new("9.0")).to be < described_class.new("10.0")
+    end
+
+    it "is < if major vs major minor version is less" do
+      expect(described_class.new("4")).to be < described_class.new("4.1")
+    end
+
+    it "is < if version is less and a string" do
+      expect(described_class.new("9.0")).to be < "10.0"
+    end
+
+    it "is not < if version is greater" do
+      expect(described_class.new("9.0")).not_to be > described_class.new("10.0")
+    end
+
+    it "is <= if version is less" do
+      expect(described_class.new("9.0")).to be <= described_class.new("10.0")
+    end
+
+    it "is not <= if version is greater" do
+      expect(described_class.new("9.0")).not_to be >= described_class.new("10.0")
+    end
+
+    it "is <= if version is same" do
+      expect(described_class.new("9.0")).to be <= described_class.new("9.0")
+    end
+
+    it "is > if major minor version is greater" do
+      expect(described_class.new("1.0")).to be > described_class.new("0.9")
+    end
+
+    it "is > if major minor vs major version is greater" do
+      expect(described_class.new("4.1")).to be > described_class.new("4")
+    end
+
+    it "is not > if version is less" do
+      expect(described_class.new("0.0.1")).not_to be > described_class.new("10.0")
+    end
+
+    it "is >= if version is greater" do
+      expect(described_class.new("10.0")).to be >= described_class.new("4.0")
+    end
+
+    it "is not >= if version is less" do
+      expect(described_class.new("0.9")).not_to be >= described_class.new("1.0")
+    end
+
+    it "is not > if version is invalid" do
+      expect(described_class.new("x.x")).not_to be > described_class.new("1.0")
+    end
+
+    it "is < if version is invalid" do
+      expect(described_class.new("x.x")).to be < described_class.new("1.0")
+    end
+
+    it "is > when compared with invalid" do
+      expect(described_class.new("1.0")).to be > described_class.new("x.x")
+    end
+
+    it "is not < when compared with invalid" do
+      expect(described_class.new("1.0")).not_to be < described_class.new("x.x")
+    end
+
+    it "is not > if both versions are invalid" do
+      expect(described_class.new("a.a")).not_to be > described_class.new("b.b")
+    end
+
+    it "is < if both versions are invalid" do
+      expect(described_class.new("a.a")).to be < described_class.new("b.b")
+    end
+
+    it "is not > if version is nil" do
+      expect(described_class.new(nil)).not_to be > described_class.new("1.0")
+    end
+
+    it "is < if version is nil" do
+      expect(described_class.new(nil)).to be < described_class.new("1.0")
+    end
+
+    it "is not > if both versions are nil" do
+      expect(described_class.new(nil)).not_to be > described_class.new(nil)
+    end
+
+    it "is not < if both versions are nil" do
+      expect(described_class.new(nil)).not_to be < described_class.new(nil)
+    end
+
+    it "is > if version is nil" do
+      expect(described_class.new("9.0")).to be > nil
+    end
+  end
+  context "when comparing with structs" do
+    it "is not < if products are the same and version is greater" do
+      expect(described_class.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)")).not_to be < OpenStruct.new(:browser => "Internet Explorer", :version => "7.0")
+    end
+  end
+  # describe "::MATCHER" do
+  #  it "does not match a blank line" do
+  #    expect(described_class).not_to be_empty
+  #  end
+
+  #  it "matches a single product" do
+  #    expect(described_class).to match("Mozilla")
+  #  end
+
+  #  it "matches a product and version" do
+  #    expect(described_class).to match("Mozilla/5.0")
+  #  end
+
+  #  it "matches a product, version, and comment" do
+  #    expect(described_class).to match("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us)")
+  #  end
+
+  #  it "matches a product, and comment" do
+  #    expect(described_class).to match("Mozilla (Macintosh; U; Intel Mac OS X 10_5_3; en-us)")
+  #  end
+  # end
 end

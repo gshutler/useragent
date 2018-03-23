@@ -35,3 +35,6 @@ Style/TrailingCommaInHashLiteral:
 
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
+
+# RSpec/MultipleDescribes:
+#  Enabled: false

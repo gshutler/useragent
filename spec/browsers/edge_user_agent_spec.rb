@@ -3,42 +3,40 @@ require "user_agent"
 
 shared_examples_for "Edge browser" do
   it "returns 'Edge' as its browser" do
-    expect(@useragent.browser).to eq("Edge")
+    expect(useragent.browser).to eq("Edge")
   end
 
   it "returns 'Windows' as its platform" do
-    expect(@useragent.platform).to eq("Windows")
+    expect(useragent.platform).to eq("Windows")
   end
 end
 
-describe "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240" do
-  before do
-    @useragent = UserAgent.parse("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240")
+describe UserAgent do
+  context do
+    let(:useragent) { described_class.parse("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240") }
+
+    it_behaves_like "Edge browser"
+
+    it "returns '12.10240' as its version" do
+      expect(useragent.version).to eq("12.10240")
+    end
+
+    it "returns 'Windows 10' as its os" do
+      expect(useragent.os).to eq("Windows 10")
+    end
   end
 
-  it_behaves_like "Edge browser"
+  context do
+    let(:useragent) { described_class.parse("Mozilla/5.0 SHC; SHC-Unit-04973; SHC-HTS; SHC-KIOSK; SHC-MAC-0000 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586") }
 
-  it "returns '12.10240' as its version" do
-    expect(@useragent.version).to eq("12.10240")
-  end
+    it_behaves_like "Edge browser"
 
-  it "returns 'Windows 10' as its os" do
-    expect(@useragent.os).to eq("Windows 10")
-  end
-end
+    it "returns '13.10586' as its version" do
+      expect(useragent.version).to eq("13.10586")
+    end
 
-describe "Mozilla/5.0 SHC; SHC-Unit-04973; SHC-HTS; SHC-KIOSK; SHC-MAC-0000 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586" do
-  before do
-    @useragent = UserAgent.parse("Mozilla/5.0 SHC; SHC-Unit-04973; SHC-HTS; SHC-KIOSK; SHC-MAC-0000 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586")
-  end
-
-  it_behaves_like "Edge browser"
-
-  it "returns '13.10586' as its version" do
-    expect(@useragent.version).to eq("13.10586")
-  end
-
-  it "returns 'Windows 10' as its os" do
-    expect(@useragent.os).to eq("Windows 10")
+    it "returns 'Windows 10' as its os" do
+      expect(useragent.os).to eq("Windows 10")
+    end
   end
 end
