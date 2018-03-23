@@ -534,31 +534,15 @@ describe UserAgent do
     it "is > if version is nil" do
       expect(described_class.new("9.0")).to be > nil
     end
+
+    it "raises error" do
+      expect { described_class.new(9.0) }.to raise_error(ArgumentError, "invalid value for Version: 9.0")
+    end
   end
+
   context "when comparing with structs" do
     it "is not < if products are the same and version is greater" do
       expect(described_class.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)")).not_to be < OpenStruct.new(:browser => "Internet Explorer", :version => "7.0")
     end
   end
-  # describe "::MATCHER" do
-  #  it "does not match a blank line" do
-  #    expect(described_class).not_to be_empty
-  #  end
-
-  #  it "matches a single product" do
-  #    expect(described_class).to match("Mozilla")
-  #  end
-
-  #  it "matches a product and version" do
-  #    expect(described_class).to match("Mozilla/5.0")
-  #  end
-
-  #  it "matches a product, version, and comment" do
-  #    expect(described_class).to match("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us)")
-  #  end
-
-  #  it "matches a product, and comment" do
-  #    expect(described_class).to match("Mozilla (Macintosh; U; Intel Mac OS X 10_5_3; en-us)")
-  #  end
-  # end
 end
