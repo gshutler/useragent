@@ -6,19 +6,19 @@ describe "UserAgent: nil" do
     @useragent = UserAgent.parse(nil)
   end
 
-  it "should return 'Mozilla' as its browser" do
+  it "returns 'Mozilla' as its browser" do
     expect(@useragent.browser).to eq("Mozilla")
   end
 
-  it "should return '4.0' as its version" do
+  it "returns '4.0' as its version" do
     expect(@useragent.version).to eq("4.0")
   end
 
-  it "should return nil as its platform" do
+  it "returns nil as its platform" do
     expect(@useragent.platform).to eq(nil)
   end
 
-  it "should return nil as its os" do
+  it "returns nil as its os" do
     expect(@useragent.os).to eq(nil)
   end
 
@@ -31,19 +31,19 @@ describe "UserAgent: ''" do
     @useragent = UserAgent.parse("")
   end
 
-  it "should return 'Mozilla' as its browser" do
+  it "returns 'Mozilla' as its browser" do
     expect(@useragent.browser).to eq("Mozilla")
   end
 
-  it "should return '4.0' as its version" do
+  it "returns '4.0' as its version" do
     expect(@useragent.version).to eq("4.0")
   end
 
-  it "should return nil as its platform" do
+  it "returns nil as its platform" do
     expect(@useragent.platform).to eq(nil)
   end
 
-  it "should return nil as its os" do
+  it "returns nil as its os" do
     expect(@useragent.os).to eq(nil)
   end
 
@@ -56,19 +56,19 @@ describe "UserAgent: 'Mozilla/4.0 (compatible)'" do
     @useragent = UserAgent.parse("Mozilla/4.0 (compatible)")
   end
 
-  it "should return 'Mozilla' as its browser" do
+  it "returns 'Mozilla' as its browser" do
     expect(@useragent.browser).to eq("Mozilla")
   end
 
-  it "should return '4.0' as its version" do
+  it "returns '4.0' as its version" do
     expect(@useragent.version).to eq("4.0")
   end
 
-  it "should return nil as its platform" do
+  it "returns nil as its platform" do
     expect(@useragent.platform).to eq(nil)
   end
 
-  it "should return nil as its os" do
+  it "returns nil as its os" do
     expect(@useragent.os).to eq(nil)
   end
 
@@ -81,19 +81,19 @@ describe "UserAgent: 'Mozilla/5.0'" do
     @useragent = UserAgent.parse("Mozilla/5.0")
   end
 
-  it "should return 'Mozilla' as its browser" do
+  it "returns 'Mozilla' as its browser" do
     expect(@useragent.browser).to eq("Mozilla")
   end
 
-  it "should return '5.0' as its version" do
+  it "returns '5.0' as its version" do
     expect(@useragent.version).to eq("5.0")
   end
 
-  it "should return nil as its platform" do
+  it "returns nil as its platform" do
     expect(@useragent.platform).to eq(nil)
   end
 
-  it "should return nil as its os" do
+  it "returns nil as its os" do
     expect(@useragent.os).to eq(nil)
   end
 
@@ -106,15 +106,15 @@ describe "UserAgent: 'amaya/9.51 libwww/5.4.0'" do
     @useragent = UserAgent.parse("amaya/9.51 libwww/5.4.0")
   end
 
-  it "should return 'amaya' as its browser" do
+  it "returns 'amaya' as its browser" do
     expect(@useragent.browser).to eq("amaya")
   end
 
-  it "should return '9.51' as its version" do
+  it "returns '9.51' as its version" do
     expect(@useragent.version).to eq("9.51")
   end
 
-  it "should return '5.4.0' as its libwww version" do
+  it "returns '5.4.0' as its libwww version" do
     expect(@useragent.libwww.version).to eq("5.4.0")
   end
 end
@@ -124,7 +124,7 @@ describe "UserAgent: 'Rails Testing'" do
     @useragent = UserAgent.parse("Rails Testing")
   end
 
-  it "should return 'Rails' as its browser" do
+  it "returns 'Rails' as its browser" do
     expect(@useragent.browser).to eq("Rails")
   end
 
@@ -139,11 +139,11 @@ describe "UserAgent: 'Python-urllib/2.7'" do
     @useragent = UserAgent.parse("Python-urllib/2.7")
   end
 
-  it "should return 'Python-urllib' as its browser" do
+  it "returns 'Python-urllib' as its browser" do
     expect(@useragent.browser).to eq("Python-urllib")
   end
 
-  it "should return '2.7' as its version" do
+  it "returns '2.7' as its version" do
     expect(@useragent.version).to eq("2.7")
   end
 
@@ -157,11 +157,11 @@ describe "UserAgent: 'check_http/v1.4.15 (nagios-plugins 1.4.15)'" do
     @useragent = UserAgent.parse("check_http/v1.4.15 (nagios-plugins 1.4.15)")
   end
 
-  it "should return 'check_http' as its browser" do
+  it "returns 'check_http' as its browser" do
     expect(@useragent.browser).to eq("check_http")
   end
 
-  it "should return 'v1.4.15' as its version" do
+  it "returns 'v1.4.15' as its version" do
     expect(@useragent.version).to eq("v1.4.15")
   end
 
@@ -175,7 +175,7 @@ describe "UserAgent: '/WebTest.pm'" do
     @useragent = UserAgent.parse("/WebTest.pm")
   end
 
-  it "should return nil as its browser" do
+  it "returns nil as its browser" do
     expect(@useragent.browser).to eq(nil)
   end
 end

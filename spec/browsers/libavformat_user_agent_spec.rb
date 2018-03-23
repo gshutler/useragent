@@ -2,15 +2,15 @@ require "spec_helper"
 require "user_agent"
 
 shared_examples "libavformat" do
-  it "should return 'libavformat' as its browser" do
+  it "returns 'libavformat' as its browser" do
     expect(@useragent.browser).to eq("libavformat")
   end
 
-  it "should return nil as its OS" do
+  it "returns nil as its OS" do
     expect(@useragent.os).to be_nil
   end
 
-  it "should return nil as its platform" do
+  it "returns nil as its platform" do
     expect(@useragent.platform).to be_nil
   end
 end

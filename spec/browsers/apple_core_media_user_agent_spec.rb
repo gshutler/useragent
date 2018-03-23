@@ -2,7 +2,7 @@ require "spec_helper"
 require "user_agent"
 
 shared_examples "AppleCoreMedia" do
-  it "should return 'AppleCoreMedia' as its browser" do
+  it "returns 'AppleCoreMedia' as its browser" do
     expect(@useragent.browser).to eq("AppleCoreMedia")
   end
 end
@@ -30,7 +30,7 @@ shared_examples "AppleCoreMedia has localization" do |locale|
 end
 
 shared_examples "AppleCoreMedia has strong encryption" do
-  it "should return ':strong' as its security" do
+  it "returns ':strong' as its security" do
     expect(@useragent.security).to eq(:strong)
   end
 end

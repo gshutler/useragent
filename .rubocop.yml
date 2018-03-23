@@ -1,3 +1,5 @@
+require: rubocop-rspec
+
 Metrics/PerceivedComplexity:
   Enabled: false
 
