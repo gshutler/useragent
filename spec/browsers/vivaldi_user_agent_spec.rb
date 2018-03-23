@@ -25,6 +25,10 @@ describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KH
   it "should return 'Windows 7' as its os" do
     expect(@useragent.os).to eq("Windows 7")
   end
+
+  it "should return '537.36' as its build" do
+    expect(@useragent.build).to eq("537.36")
+  end
 end
 
 describe "UserAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36 Vivaldi/1.2.490.43'" do
