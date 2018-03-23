@@ -98,3 +98,13 @@ describe "UserAgent: Mozilla/5.0 (PlayStation 4 2.57) AppleWebKit/537.73 (KHTML,
     expect(@useragent.mobile?).to be false
   end
 end
+
+describe "Mozilla/5.0 (PlayStation Vita 2.06) AppleWebKit/536.26 (KHTML, like Gecko)" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (PlayStation Vita 2.06) AppleWebKit/536.26 (KHTML, like Gecko)")
+  end
+
+  it "return '2.06' as its version" do
+    expect(@useragent.version.to_a).to eq([2, 0o6])
+  end
+end
