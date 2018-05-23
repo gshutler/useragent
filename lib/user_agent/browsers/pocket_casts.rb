@@ -20,10 +20,36 @@ class UserAgent
         return app unless app.nil?
       end
 
+      # Gets the operating system
+      #
+      # @return [String] the os
+      def os
+        application = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        return if application.nil?
+
+        if application.comment[0] =~ /Windows NT/
+          OperatingSystems.normalize_os(application.comment[0])
+        elsif application.comment[2].nil?
+          OperatingSystems.normalize_os(application.comment[1])
+        elsif application.comment[1] =~ /Android/
+          OperatingSystems.normalize_os(application.comment[1])
+        elsif (os_string = application.comment.detect { |c| c =~ OperatingSystems::IOS_VERSION_REGEX })
+          OperatingSystems.normalize_os(os_string)
+        end
+      end
+
       # Gets the platform
       #
       # @return [String] the platform
       def platform
+        application = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+
+        if application
+          return 'Windows'    if application.comment[0] =~ /Windows/
+          return 'BlackBerry' if application.comment[0] == 'BB10'
+          return 'Android'    if application.comment.any? { |c| c =~ /Android/ }
+        end
+
         ua = self.to_s
         if ua =~ /Android/
           'Android'
@@ -38,17 +64,27 @@ class UserAgent
       def version
         if application && application.version
           version = application.version.to_s
-          return version.index('/') ? version.split('/')[-1] : application.version
+          return version.index('/') ? normalize_version(version.split('/')[-1]) : normalize_version(application.version)
         end
 
         ua = self.to_s
         if pos = ua =~ /Android/
-          ua[pos..-1].split()[1]
+          normalize_version(ua[pos..-1].split[1])
         elsif pos = ua =~ /iOS/
-          ua[pos..-1].split()[1]
+          normalize_version(ua[pos..-1].split[1])
         elsif pos = ua =~ /Pocket Casts\//
-          detect_product('Casts').version
+          normalize_version(detect_product('Casts').version)
         end
+      end
+
+      private
+
+      # Normalize the version string
+      # - remove starting 'v'
+      def normalize_version(version)
+        version = version.to_s
+        return version[1..-1] if version.downcase.start_with?('v')
+        version
       end
     end
   end

@@ -45,8 +45,8 @@ describe "UserAgent: Shifty Jelly Pocket Casts, Android v4.5.3" do
 
   it_behaves_like 'Pocket Casts'
 
-  it "should return 'v4.5.3' as its version" do
-    expect(@useragent.version).to eq('v4.5.3')
+  it "should return '4.5.3' as its version" do
+    expect(@useragent.version).to eq('4.5.3')
   end
 
   it "should return 'Android' as its platform" do
@@ -61,8 +61,8 @@ describe "UserAgent: Shifty Jelly Pocket Casts, iOS v4.3" do
 
   it_behaves_like 'Pocket Casts'
 
-  it "should return 'v4.3' as its version" do
-    expect(@useragent.version).to eq('v4.3')
+  it "should return '4.3' as its version" do
+    expect(@useragent.version).to eq('4.3')
   end
 
   it "should return 'iPhone' as its platform" do
@@ -81,7 +81,11 @@ describe "UserAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.3
     expect(@useragent.version).to eq('1.1')
   end
 
-  it "should return nil as its platform" do
-    expect(@useragent.platform).to be_nil
+  it "should return 'Windows' as its platform" do
+    expect(@useragent.platform).to eq('Windows')
+  end
+
+  it "should return 'Windows 10' as its os" do
+    expect(@useragent.os).to eq('Windows 10')
   end
 end
