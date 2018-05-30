@@ -6,8 +6,16 @@ class UserAgent
     # Shifty Jelly Pocket Casts, iOS v4.3
     # Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Pocket Casts/1.1 Pocket Casts/1.1
     class PocketCasts < Base
+      ANDROID_REGEX            = /Android/
+      IOS_REGEX                = /iOS/
+      POCKETCASTS_REGEX        = /PocketCasts/
+      POCKET_CASTS_REGEX       = /Pocket Casts/
+      POCKET_CASTS_SLASH_REGEX = /Pocket Casts\//
+      WINDOWS_REGEX            = /Windows/
+      WINDOWS_NT_REGEX         = /Windows NT/
+
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product =~ /PocketCasts/ } || agent.to_s =~ /Pocket Casts/
+        agent.detect { |useragent| POCKETCASTS_REGEX.match?(useragent.product) } || POCKET_CASTS_REGEX.match?(agent.to_s)
       end
 
       def browser
@@ -27,13 +35,13 @@ class UserAgent
         application = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
         return if application.nil?
 
-        if application.comment[0] =~ /Windows NT/
+        if WINDOWS_NT_REGEX.match?(application.comment[0])
           OperatingSystems.normalize_os(application.comment[0])
         elsif application.comment[2].nil?
           OperatingSystems.normalize_os(application.comment[1])
-        elsif application.comment[1] =~ /Android/
+        elsif ANDROID_REGEX.match?(application.comment[1])
           OperatingSystems.normalize_os(application.comment[1])
-        elsif (os_string = application.comment.detect { |c| c =~ OperatingSystems::IOS_VERSION_REGEX })
+        elsif (os_string = application.comment.detect { |c| OperatingSystems::IOS_VERSION_REGEX.match?(c) })
           OperatingSystems.normalize_os(os_string)
         end
       end
@@ -45,15 +53,15 @@ class UserAgent
         application = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
 
         if application
-          return 'Windows'    if application.comment[0] =~ /Windows/
+          return 'Windows'    if WINDOWS_REGEX.match?(application.comment[0])
           return 'BlackBerry' if application.comment[0] == 'BB10'
-          return 'Android'    if application.comment.any? { |c| c =~ /Android/ }
+          return 'Android'    if application.comment.any? { |c| ANDROID_REGEX.match?(c) }
         end
 
         ua = self.to_s
-        if ua =~ /Android/
+        if ANDROID_REGEX.match?(ua)
           'Android'
-        elsif ua =~ /iOS/
+        elsif IOS_REGEX.match?(ua)
           'iPhone'
         end
       end
@@ -72,7 +80,7 @@ class UserAgent
           normalize_version(ua[pos..-1].split[1])
         elsif pos = ua =~ /iOS/
           normalize_version(ua[pos..-1].split[1])
-        elsif pos = ua =~ /Pocket Casts\//
+        elsif POCKET_CASTS_SLASH_REGEX.match?(ua)
           normalize_version(detect_product('Casts').version)
         end
       end
