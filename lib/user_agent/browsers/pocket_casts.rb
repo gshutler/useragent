@@ -24,8 +24,7 @@ class UserAgent
 
       # Gets the right application
       def application
-        app = detect_product('PocketCasts')
-        return app unless app.nil?
+        detect_product('PocketCasts')
       end
 
       # Gets the operating system
