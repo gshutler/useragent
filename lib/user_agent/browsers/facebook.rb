@@ -7,8 +7,11 @@ class UserAgent
     # Mozilla/5.0 (Linux; Tizen 3.0.0.0; Samsung SM-Z400Y) AppleWebKit/537.3 (KHTML, like Gecko) Version/3.0.0.0 Mobile Safari/537.3 [FBAN/FB4T;FBAV/1.0.57;FBBV/1.0.57;FBMF/Samsung;FBDV/SM-Z400Y;FBSN/Tizen;FBSV/3.0.0.0;FBCR/655-10;FBLC/en_ZA;FBCM/{density=233 ,width=480,height=800};]
     # Mozilla/5.0 (Windows NT 10.0.15063.413; osmeta 9.3.1233) AppleWebKit/602.1.1 (KHTML, like Gecko) Version/9.0 Safari/602.1.1 osmeta/9.3.1233 Build/1233 [FBAN/FBW;FBAV/93.0.0.64.0;FBBV/62624619;FBDV/WindowsDevice;FBMD/550-227c;FBSN/Windows;FBSV/10.0.15063.413;FBSS/1;FBCR/;FBID/desktop;FBLC/en_US;FBOP/45;FBRV/0]
     class Facebook < Webkit
+      FACEBOOK_PRODUCT_REGEXP = /FBAV\//
+      FACEBOOK_VERSION_REGEXP = /.*FBAV\/([^;]*)/
+
       def self.extend?(agent)
-        agent.to_s =~ /FBAV\//
+        agent.to_s =~ FACEBOOK_PRODUCT_REGEXP
       end
 
       def browser
@@ -19,7 +22,7 @@ class UserAgent
       #
       # @return [String]
       def version
-        self.to_s[/.*FBAV\/([^;]*)/, 1]
+        self.to_s[FACEBOOK_VERSION_REGEXP, 1]
       end
     end
   end
