@@ -14,6 +14,10 @@ require 'user_agent/browsers/playstation'
 require 'user_agent/browsers/podcast_addict'
 require 'user_agent/browsers/vivaldi'
 require 'user_agent/browsers/facebook'
+require 'user_agent/browsers/stagefright'
+require 'user_agent/browsers/google_assistant'
+require 'user_agent/browsers/pocket_casts'
+require 'user_agent/browsers/google_home'
 
 class UserAgent
   module Browsers
@@ -30,6 +34,10 @@ class UserAgent
       WechatBrowser,
       Vivaldi,
       Facebook,
+      GoogleAssistant,
+      GoogleHome,
+      PocketCasts,
+      Stagefright,
       Chrome,
       ITunes,
       PlayStation,
