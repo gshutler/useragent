@@ -13,7 +13,6 @@ require 'user_agent/browsers/libavformat'
 require 'user_agent/browsers/playstation'
 require 'user_agent/browsers/podcast_addict'
 require 'user_agent/browsers/vivaldi'
-require 'user_agent/browsers/google_home'
 
 class UserAgent
   module Browsers
@@ -29,7 +28,6 @@ class UserAgent
       Opera,
       WechatBrowser,
       Vivaldi,
-      GoogleHome,
       Chrome,
       ITunes,
       PlayStation,
