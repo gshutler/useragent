@@ -16,11 +16,11 @@ class UserAgent
     # LG-H873/V15c Player/LG Player 1.0 for Android 7.0 (stagefright alternative)
     # LG-H955/V15c Player/LG Player 1.0 for Android 5.1.1 (stagefright alternative) BMID/E67AB269FB
     class Stagefright < Base
-      ANDROID_REGEX = /Android/
-      LG_PLAYER_REGEX = /LG Player/
-      NEXPLAYER_REGEX = /NexPlayer/
+      ANDROID_REGEX                 = /Android/
+      LG_PLAYER_REGEX               = /LG Player/
+      NEXPLAYER_REGEX               = /NexPlayer/
       STAGEFRIGHT_ALT_PRODUCT_REGEX = /stagefright alternative/
-      STAGEFRIGHT_PRODUCT_REGEX = /stagefright/
+      STAGEFRIGHT_PRODUCT_REGEX     = /stagefright/
 
       def self.extend?(agent)
         agent.detect { |useragent| STAGEFRIGHT_PRODUCT_REGEX.match?(useragent.product) } || STAGEFRIGHT_ALT_PRODUCT_REGEX.match?(agent.to_s)
