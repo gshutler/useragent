@@ -16,15 +16,21 @@ class UserAgent
     # LG-H873/V15c Player/LG Player 1.0 for Android 7.0 (stagefright alternative)
     # LG-H955/V15c Player/LG Player 1.0 for Android 5.1.1 (stagefright alternative) BMID/E67AB269FB
     class Stagefright < Base
+      ANDROID_REGEX = /Android/
+      LG_PLAYER_REGEX = /LG Player/
+      NEXPLAYER_REGEX = /NexPlayer/
+      STAGEFRIGHT_ALT_PRODUCT_REGEX = /stagefright alternative/
+      STAGEFRIGHT_PRODUCT_REGEX = /stagefright/
+
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product =~ /stagefright/ } || agent.to_s =~ /stagefright alternative/
+        agent.detect { |useragent| STAGEFRIGHT_PRODUCT_REGEX.match?(useragent.product) } || STAGEFRIGHT_ALT_PRODUCT_REGEX.match?(agent.to_s)
       end
 
       def browser
         ua = self.to_s
-        if pos = ua =~ /NexPlayer/
+        if NEXPLAYER_REGEX.match?(ua)
           return 'NexPlayer'
-        elsif pos = ua =~ /LG Player/
+        elsif LG_PLAYER_REGEX.match?(ua)
           return 'LG Player'
         end
 
@@ -36,26 +42,26 @@ class UserAgent
 
       # Find the right application
       def application
-        self.reject { |agent| !(agent.product =~ /stagefright/) || agent.comment.nil? || agent.comment.empty? }.first
+        self.reject { |agent| !(STAGEFRIGHT_PRODUCT_REGEX.match?(agent.product)) || agent.comment.nil? || agent.comment.empty? }.first
       end
 
       # Return the platform
       #
       # @return [String]
       def platform
-        'Android' if self.to_s =~ /Android/
+        'Android' if ANDROID_REGEX.match?(self.to_s)
       end
 
       # Return the operating system
       #
       # @return [String]
       def os
-        if application && pos = application.comment[0] =~ /Android/
+        if application && pos = application.comment[0] =~ ANDROID_REGEX
           return OperatingSystems.normalize_os(application.comment[0][pos..-1].split()[0..1].join(' '))
         end
 
         ua = self.to_s
-        if pos = ua =~ /Android/
+        if pos = ua =~ ANDROID_REGEX
           OperatingSystems.normalize_os(ua[pos..-1].split()[0..1].join(' '))
         end
       end
@@ -70,9 +76,9 @@ class UserAgent
         end
 
         ua = self.to_s
-        if pos = ua =~ /NexPlayer/
+        if pos = ua =~ NEXPLAYER_REGEX
           ua[pos..-1].split()[1]
-        elsif pos = ua =~ /LG Player/
+        elsif pos = ua =~ LG_PLAYER_REGEX
           ua[pos..-1].split()[2]
         end
       end
