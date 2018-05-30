@@ -11,7 +11,7 @@ class UserAgent
       FACEBOOK_VERSION_REGEXP = /.*FBAV\/([^;]*)/
 
       def self.extend?(agent)
-        agent.to_s =~ FACEBOOK_PRODUCT_REGEXP
+        FACEBOOK_PRODUCT_REGEXP.match?(agent.to_s)
       end
 
       def browser
