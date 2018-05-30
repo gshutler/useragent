@@ -44,3 +44,26 @@ describe "UserAgent: 'Mozilla/5.0 (Linux; Android 4.4.4; MI 4LTE Build/KTU84P) A
   end
 end
 
+describe "Not well-formed UserAgent: LenovoA658t_TD/1.0 Android 4.0.3 Release/10.01.2012 Browser/WAP2.0 appleWebkit/534.30 MicroMessenger/6.2.4.54_r266a9ba.601 NetType/cmnet Language/zh_CN" do
+  before do
+    @useragent = UserAgent.parse("LenovoA658t_TD/1.0 Android 4.0.3 Release/10.01.2012 Browser/WAP2.0 appleWebkit/534.30 MicroMessenger/6.2.4.54_r266a9ba.601 NetType/cmnet Language/zh_CN")
+  end
+
+  it "should return WechatBrowser" do
+    expect(@useragent.browser).to eq("Wechat Browser")
+  end
+
+  it "should return '6.2.4.54_r266a9ba.601' as its version" do
+    expect(@useragent.version).to eq("6.2.4.54_r266a9ba.601")
+  end
+
+  it "should return nil as its platform" do
+    expect(@useragent.platform).to be_nil
+  end
+
+  it "should return nil as its os" do
+    expect(@useragent.os).to be_nil
+  end
+
+end
+
