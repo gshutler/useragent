@@ -31,16 +31,16 @@ class UserAgent
       #
       # @return [String] the os
       def os
-        application = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
-        return if application.nil?
+        app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        return if app.nil?
 
-        if WINDOWS_NT_REGEX.match?(application.comment[0])
-          OperatingSystems.normalize_os(application.comment[0])
-        elsif application.comment[2].nil?
-          OperatingSystems.normalize_os(application.comment[1])
-        elsif ANDROID_REGEX.match?(application.comment[1])
-          OperatingSystems.normalize_os(application.comment[1])
-        elsif (os_string = application.comment.detect { |c| OperatingSystems::IOS_VERSION_REGEX.match?(c) })
+        if WINDOWS_NT_REGEX.match?(app.comment[0])
+          OperatingSystems.normalize_os(app.comment[0])
+        elsif app.comment[2].nil?
+          OperatingSystems.normalize_os(app.comment[1])
+        elsif ANDROID_REGEX.match?(app.comment[1])
+          OperatingSystems.normalize_os(app.comment[1])
+        elsif (os_string = app.comment.detect { |c| OperatingSystems::IOS_VERSION_REGEX.match?(c) })
           OperatingSystems.normalize_os(os_string)
         end
       end
@@ -49,12 +49,12 @@ class UserAgent
       #
       # @return [String] the platform
       def platform
-        application = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
 
-        if application
-          return 'Windows'    if WINDOWS_REGEX.match?(application.comment[0])
-          return 'BlackBerry' if application.comment[0] == 'BB10'
-          return 'Android'    if application.comment.any? { |c| ANDROID_REGEX.match?(c) }
+        if app
+          return 'Windows'    if WINDOWS_REGEX.match?(app.comment[0])
+          return 'BlackBerry' if app.comment[0] == 'BB10'
+          return 'Android'    if app.comment.any? { |c| ANDROID_REGEX.match?(c) }
         end
 
         ua = self.to_s
@@ -75,9 +75,9 @@ class UserAgent
         end
 
         ua = self.to_s
-        if pos = ua =~ /Android/
+        if pos = ua =~ ANDROID_REGEX
           normalize_version(ua[pos..-1].split[1])
-        elsif pos = ua =~ /iOS/
+        elsif pos = ua =~ IOS_REGEX
           normalize_version(ua[pos..-1].split[1])
         elsif POCKET_CASTS_SLASH_REGEX.match?(ua)
           normalize_version(detect_product('Casts').version)
