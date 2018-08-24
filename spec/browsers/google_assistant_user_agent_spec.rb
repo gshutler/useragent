@@ -2,7 +2,7 @@ require 'user_agent'
 
 shared_examples_for "Google Assistant" do
   it "should return 'Google Assistant' as its browser" do
-    expect(useragent.browser).to eq("Google Assistant")
+    expect(useragent.browser).to eq("Google Podcasts")
   end
 end
 
