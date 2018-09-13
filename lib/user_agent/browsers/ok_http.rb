@@ -12,13 +12,15 @@ class UserAgent
       class << self
         ##
         # Check if this class usable for the useragent
+        #
+        # @return [Boolean] true if this is the right class for the useragent
         def extend?(agent)
           agent.detect { |useragent| useragent.product == OKHTTP_PRODUCT }
         end
       end
 
       ##
-      # The browser to report
+      # @return [String] The browser to report
       def browser
         'OkHttp'
       end
