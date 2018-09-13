@@ -4,10 +4,6 @@ shared_examples 'OkHttp' do
   it "returns 'OkHttp' as its browser" do
     expect(useragent.browser).to eq('OkHttp')
   end
-
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
-  end
 end
 
 describe "UserAgent: okhttp/3.8.1" do
@@ -39,6 +35,10 @@ describe "UserAgent: okhttp/3.8.1 Dalvik/2.1.0 (Linux; U; Android 7.1.1; vivo X2
     expect(useragent.version).to eq('3.8.1')
   end
 
+  it "returns 'Android' as its platform" do
+    expect(useragent.platform).to eq('Android')
+  end
+
   it "returns 'Android 7.1.1' as its operating system" do
     expect(useragent.os).to eq('Android 7.1.1')
   end
@@ -51,5 +51,9 @@ describe "UserAgent: okhttp/2.7.5 nyt-android/6.19.3 ,okhttp/2.7.5 nyt-android/6
 
   it "returns '2.7.5' as its version" do
     expect(useragent.version).to eq('2.7.5')
+  end
+
+  it "returns 'Android' as its platform" do
+    expect(useragent.platform).to eq('Android')
   end
 end

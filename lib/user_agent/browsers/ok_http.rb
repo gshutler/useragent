@@ -7,6 +7,7 @@ class UserAgent
     # okhttp/3.8.1 Dalvik/2.1.0 (Linux; U; Android 7.1.1; vivo X20A Build/NMF26X) baiduboxapp/10.1.0.11 (Baidu; P1 7.1.1)
     # okhttp/2.7.5 nyt-android/6.19.3 ,okhttp/2.7.5 nyt-android/6.19.3
     class OkHttp < Base
+      ANDROID_REGEX  = /android/
       OKHTTP_PRODUCT = 'okhttp'
 
       class << self
@@ -34,7 +35,7 @@ class UserAgent
       #
       # @return [String]
       def platform
-        'Android'
+        'Android' if ANDROID_REGEX.match?(self.to_s.downcase)
       end
 
       # Return the operating system
