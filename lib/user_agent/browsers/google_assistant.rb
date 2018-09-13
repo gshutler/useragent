@@ -10,7 +10,7 @@ class UserAgent
       end
 
       def browser
-        'Google Assistant'
+        'Google Podcasts' # Google wants their agent to be reported as "Google Podcasts"
       end
 
       # Gets the application version
