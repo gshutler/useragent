@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # stagefright/1.2 (Linux;Android 5.0.1)
