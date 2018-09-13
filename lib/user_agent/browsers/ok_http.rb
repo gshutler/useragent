@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # okhttp/3.8.1
@@ -7,10 +9,16 @@ class UserAgent
     class OkHttp < Base
       OKHTTP_PRODUCT = 'okhttp'
 
-      def self.extend?(agent)
-        agent.detect { |useragent| useragent.product == OKHTTP_PRODUCT }
+      class << self
+        ##
+        # Check if this class usable for the useragent
+        def extend?(agent)
+          agent.detect { |useragent| useragent.product == OKHTTP_PRODUCT }
+        end
       end
 
+      ##
+      # The browser to report
       def browser
         'OkHttp'
       end
