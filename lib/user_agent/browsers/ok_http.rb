@@ -7,7 +7,9 @@ class UserAgent
     # okhttp/3.8.1 Dalvik/2.1.0 (Linux; U; Android 7.1.1; vivo X20A Build/NMF26X) baiduboxapp/10.1.0.11 (Baidu; P1 7.1.1)
     # okhttp/2.7.5 nyt-android/6.19.3 ,okhttp/2.7.5 nyt-android/6.19.3
     class OkHttp < Base
-      ANDROID_REGEX  = /android/
+      ANDROID        = 'Android'
+      ANDROID_REGEX  = /android/i
+      OKHTTP_BROWSER = 'OkHttp'
       OKHTTP_PRODUCT = 'okhttp'
 
       class << self
@@ -23,7 +25,7 @@ class UserAgent
       ##
       # @return [String] The browser to report
       def browser
-        'OkHttp'
+        OKHTTP_BROWSER
       end
 
       # Find the right application
@@ -35,7 +37,7 @@ class UserAgent
       #
       # @return [String]
       def platform
-        'Android' if ANDROID_REGEX.match?(self.to_s.downcase)
+        ANDROID if ANDROID_REGEX.match?(self.to_s)
       end
 
       # Return the operating system
@@ -46,7 +48,7 @@ class UserAgent
 
         if application.comment[2].nil?
           OperatingSystems.normalize_os(application.comment[1])
-        elsif application.comment[1] =~ /Android/
+        elsif ANDROID_REGEX.match?(application.comment[1])
           OperatingSystems.normalize_os(application.comment[1])
         else
           OperatingSystems.normalize_os(application.comment[2])
