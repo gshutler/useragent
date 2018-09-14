@@ -18,6 +18,7 @@ require 'user_agent/browsers/stagefright'
 require 'user_agent/browsers/google_assistant'
 require 'user_agent/browsers/pocket_casts'
 require 'user_agent/browsers/google_home'
+require 'user_agent/browsers/ok_http'
 
 class UserAgent
   module Browsers
@@ -47,6 +48,7 @@ class UserAgent
       WindowsMediaPlayer,
       AppleCoreMedia,
       Libavformat,
+      OkHttp,
     ].freeze
 
     def self.all
