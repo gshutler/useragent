@@ -19,6 +19,7 @@ require 'user_agent/browsers/google_assistant'
 require 'user_agent/browsers/pocket_casts'
 require 'user_agent/browsers/google_home'
 require 'user_agent/browsers/ok_http'
+require 'user_agent/browsers/apple_watch'
 
 class UserAgent
   module Browsers
@@ -49,6 +50,7 @@ class UserAgent
       AppleCoreMedia,
       Libavformat,
       OkHttp,
+      AppleWatch,
     ].freeze
 
     def self.all
