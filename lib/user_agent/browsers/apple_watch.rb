@@ -13,7 +13,7 @@ class UserAgent
 
       class << self
         ##
-        # Check if this class usable for the useragent
+        # Check if this class is usable for the user agent
         #
         # @return [Boolean] true if this is the right class for the useragent
         def extend?(agent)
