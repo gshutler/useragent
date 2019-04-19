@@ -39,4 +39,4 @@ user_agent = UserAgent.parse(request.user_agent)
 SupportedBrowsers.detect { |browser| user_agent >= browser }
 ```
 
-Copyright (c) 2015 Garry Shutler, released under the MIT license
+Copyright (c) 2015-2019 Garry Shutler, released under the MIT license
