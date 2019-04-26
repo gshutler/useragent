@@ -14,9 +14,21 @@ class UserAgent
 
   DEFAULT_USER_AGENT = "Mozilla/4.0 (compatible)"
 
+  def self.default_user_agent
+    if instance_variable_defined?(:@default_user_agent)
+      @default_user_agent
+    else
+      DEFAULT_USER_AGENT
+    end
+  end
+
+  def self.default_user_agent=(value)
+    @default_user_agent = value
+  end
+
   def self.parse(string)
     if string.nil? || string.strip == ""
-      string = DEFAULT_USER_AGENT
+      string = default_user_agent
     end
 
     agents = Browsers::Base.new
