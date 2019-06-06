@@ -55,7 +55,7 @@ class UserAgent
         if application.comment[0] =~ /Windows/
           OperatingSystems.normalize_os(application.comment[0])
         else
-          application.comment[1]
+          OperatingSystems.normalize_os(application.comment[1])
         end
       end
 
