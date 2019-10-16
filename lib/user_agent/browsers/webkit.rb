@@ -13,7 +13,7 @@ class UserAgent
           'Android'
         elsif platform == 'BlackBerry'
           platform
-        elsif /UCBrowser/.match?(application.all)
+        elsif application.all =~ /UCBrowser/
           'UCBrowser'
         else
           'Safari'
