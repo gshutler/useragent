@@ -1241,3 +1241,35 @@ describe "UserAgent: HUAWEI_MT7-TL00_TD/5.0 Android/4.4.2 (Linux; U; Android 4.4
 
   it { expect(@useragent).to be_mobile }
 end
+
+describe 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_1_2 like Mac OS X; zh-CN) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/17A860 UCBrowser/12.6.6.1230 Mobile AliApp(TUnionSDK/0.1.20.3)' do
+  before do
+    @useragent = UserAgent.parse('Mozilla/5.0 (iPhone; CPU iPhone OS 13_1_2 like Mac OS X; zh-CN) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/17A860 UCBrowser/12.6.6.1230 Mobile AliApp(TUnionSDK/0.1.20.3)')
+  end
+
+  it "should return 'UCBrowser' as its browser" do
+    expect(@useragent.browser).to eq('UCBrowser')
+  end
+
+  it 'should return :strong as its security' do
+    expect(@useragent.security).to be(nil)
+  end
+
+  it "should return '537.51.1' as its build" do
+    expect(@useragent.build).to eq('537.51.1')
+  end
+
+  it "should return '537.51.1' as its webkit version" do
+    expect(@useragent.webkit.version).to eq('537.51.1')
+  end
+
+  it "should return 'iPhone' as its platform" do
+    expect(@useragent.platform).to eq('iPhone')
+  end
+
+  it "should return 'iOS 13.1.2' as its os" do
+    expect(@useragent.os).to eq('iOS 13.1.2')
+  end
+
+  it { expect(@useragent).to be_mobile }
+end
