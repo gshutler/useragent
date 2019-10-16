@@ -21,15 +21,15 @@ class UserAgent
 
     agents = Browsers::Base.new
     while m = string.to_s.match(MATCHER)
-      agents << new(m[1], m[2], m[4])
+      agents << new(m[1], m[2], m[4], string.to_s)
       string = string[m[0].length..-1].strip
     end
     Browsers.extend(agents)
   end
 
-  attr_reader :product, :version, :comment
+  attr_reader :product, :version, :comment, :all
 
-  def initialize(product, version = nil, comment = nil)
+  def initialize(product, version = nil, comment = nil, all = nil)
     if product
       @product = product
     else
@@ -47,6 +47,8 @@ class UserAgent
     else
       @comment = comment
     end
+
+    @all = all
   end
 
   include Comparable
