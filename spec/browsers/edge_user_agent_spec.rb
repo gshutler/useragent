@@ -41,3 +41,19 @@ describe "Mozilla/5.0 SHC; SHC-Unit-04973; SHC-HTS; SHC-KIOSK; SHC-MAC-0000 (Win
     expect(@useragent.os).to eq("Windows 10")
   end
 end
+
+describe "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.48 Safari/537.36 Edg/74.1.96.24" do
+  before do
+    @useragent = UserAgent.parse("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.48 Safari/537.36 Edg/74.1.96.24")
+  end
+
+  it_should_behave_like "Edge browser"
+
+  it "should return '13.10586' as its version" do
+    expect(@useragent.version).to eq("74.1.96.24")
+  end
+
+  it "should return 'Windows 10' as its os" do
+    expect(@useragent.os).to eq("Windows 10")
+  end
+end
