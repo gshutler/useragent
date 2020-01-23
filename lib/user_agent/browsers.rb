@@ -20,6 +20,7 @@ require 'user_agent/browsers/pocket_casts'
 require 'user_agent/browsers/google_home'
 require 'user_agent/browsers/ok_http'
 require 'user_agent/browsers/apple_watch'
+require 'user_agent/browsers/pandora'
 
 class UserAgent
   module Browsers
@@ -40,6 +41,7 @@ class UserAgent
       GoogleHome,
       PocketCasts,
       Stagefright,
+      Pandora,
       Chrome,
       ITunes,
       PlayStation,
