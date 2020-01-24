@@ -21,6 +21,7 @@ require 'user_agent/browsers/google_home'
 require 'user_agent/browsers/ok_http'
 require 'user_agent/browsers/apple_watch'
 require 'user_agent/browsers/pandora'
+require 'user_agent/browsers/apple_podcasts'
 
 class UserAgent
   module Browsers
@@ -53,6 +54,7 @@ class UserAgent
       Libavformat,
       OkHttp,
       AppleWatch,
+      ApplePodcasts,
     ].freeze
 
     def self.all
