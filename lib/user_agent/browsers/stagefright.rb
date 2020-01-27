@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # stagefright/1.2 (Linux;Android 5.0.1)
@@ -49,7 +51,7 @@ class UserAgent
       #
       # @return [String]
       def platform
-        'Android' if ANDROID_REGEX.match?(self.to_s)
+        'Android'
       end
 
       # Return the operating system

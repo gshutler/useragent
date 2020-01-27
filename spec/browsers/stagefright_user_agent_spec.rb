@@ -1,27 +1,41 @@
 require 'user_agent'
 
+shared_examples 'Android platform' do
+  it "returns 'Android' as its platform" do
+    expect(useragent.platform).to eq('Android')
+  end
+end
+
 shared_examples 'Stagefright' do
   it "returns 'Stagefright' as its browser" do
     expect(useragent.browser).to eq('Stagefright')
   end
+
+  it_behaves_like 'Android platform'
 end
 
 shared_examples 'Stagefright/Beyonce' do
   it "returns 'Stagefright/Beyonce' as its browser" do
     expect(useragent.browser).to eq('Stagefright/Beyonce')
   end
+
+  it_behaves_like 'Android platform'
 end
 
 shared_examples 'NexPlayer' do
   it "returns 'NexPlayer' as its browser" do
     expect(useragent.browser).to eq('NexPlayer')
   end
+
+  it_behaves_like 'Android platform'
 end
 
 shared_examples 'LG Player' do
   it "returns 'LG Player' as its browser" do
     expect(useragent.browser).to eq('LG Player')
   end
+
+  it_behaves_like 'Android platform'
 end
 
 describe "UserAgent: stagefright/1.2 (Linux;Android 5.0.1)" do
@@ -31,10 +45,6 @@ describe "UserAgent: stagefright/1.2 (Linux;Android 5.0.1)" do
 
   it "returns '1.2' as its version" do
     expect(useragent.version).to eq('1.2')
-  end
-
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
   end
 
   it "returns 'Android 5.0.1' as its operating system" do
@@ -51,10 +61,6 @@ describe "UserAgent: SonyD5803 Build/23.0.1.A.5.77 stagefright/1.2 (Linux;Androi
     expect(useragent.version).to eq('1.2')
   end
 
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
-  end
-
   it "returns 'Android 4.4.4' as its operating system" do
     expect(useragent.os).to eq('Android 4.4.4')
   end
@@ -67,10 +73,6 @@ describe "UserAgent: Samsung SAMSUNG-SGH-I747 stagefright/1.2 (Linux;Android 4.4
 
   it "returns '1.2' as its version" do
     expect(useragent.version).to eq('1.2')
-  end
-
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
   end
 
   it "returns 'Android 4.4.2' as its operating system" do
@@ -87,10 +89,6 @@ describe "UserAgent: Samsung SM-G900T stagefright/Beyonce/1.1.9 (Linux;Android 5
     expect(useragent.version).to eq('1.1.9')
   end
 
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
-  end
-
   it "returns 'Android 5.1.1' as its operating system" do
     expect(useragent.os).to eq('Android 5.1.1')
   end
@@ -103,10 +101,6 @@ describe "UserAgent: AlcatelOneTouch-Alcatel_5044R-SVN/02; stagefright/1.2 (Linu
 
   it "returns '1.2' as its version" do
     expect(useragent.version).to eq('1.2')
-  end
-
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
   end
 
   it "returns 'Android 7.0' as its operating system" do
@@ -123,10 +117,6 @@ describe "UserAgent: BLADE L111-stagefright/1.2 (Linux;Android 5.1)" do
     expect(useragent.version).to eq('1.2')
   end
 
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
-  end
-
   it "returns 'Android 5.1' as its operating system" do
     expect(useragent.os).to eq('Android 5.1')
   end
@@ -139,10 +129,6 @@ describe "UserAgent: Fire OS/5.1.1 stagefright/1.2 (Linux;Android 5.1.1) ,Dalvik
 
   it "returns '1.2' as its version" do
     expect(useragent.version).to eq('1.2')
-  end
-
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
   end
 
   it "returns 'Android 5.1.1' as its operating system" do
@@ -159,10 +145,6 @@ describe "UserAgent: Fire OS/6.0 stagefright/1.2 (Linux;Android 7.1.2)" do
     expect(useragent.version).to eq('1.2')
   end
 
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
-  end
-
   it "returns 'Android 7.1.2' as its operating system" do
     expect(useragent.os).to eq('Android 7.1.2')
   end
@@ -175,10 +157,6 @@ describe "UserAgent: stagefright/1.2 (Linux;Android 5.0 Huawei HUAWEI GRA-L09 GR
 
   it "returns '1.2' as its version" do
     expect(useragent.version).to eq('1.2')
-  end
-
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
   end
 
   it "returns 'Android 5.0' as its operating system" do
@@ -195,10 +173,6 @@ describe "UserAgent: stagefright/1.2 (Linux;Android 4.0.3) Mozilla/5.0(iPad; U; 
     expect(useragent.version).to eq('1.2')
   end
 
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
-  end
-
   it "returns 'Android 4.0.3' as its operating system" do
     expect(useragent.os).to eq('Android 4.0.3')
   end
@@ -212,10 +186,6 @@ describe "UserAgent: LG-E615f/LG-E615f-V10p-SEP-02-2013 Player/NexPlayer 4.0 for
   it "returns '4.0' as its version" do
     expect(useragent.version).to eq('4.0')
   end
-
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
-  end
 end
 
 describe "UserAgent: LG-D802/Desperate Rom LP UX4 V4 Player/LG Player 1.0 for Android 5.0.2 (stagefright alternative)" do
@@ -225,10 +195,6 @@ describe "UserAgent: LG-D802/Desperate Rom LP UX4 V4 Player/LG Player 1.0 for An
 
   it "returns '1.0' as its version" do
     expect(useragent.version).to eq('1.0')
-  end
-
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
   end
 
   it "returns 'Android 5.0.2' as its operating system" do
@@ -245,10 +211,6 @@ describe "UserAgent: LG-H873/V15c Player/LG Player 1.0 for Android 7.0 (stagefri
     expect(useragent.version).to eq('1.0')
   end
 
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
-  end
-
   it "returns 'Android 7.0' as its operating system" do
     expect(useragent.os).to eq('Android 7.0')
   end
@@ -261,10 +223,6 @@ describe "UserAgent: LG-H955/V15c Player/LG Player 1.0 for Android 5.1.1 (stagef
 
   it "returns '1.0' as its version" do
     expect(useragent.version).to eq('1.0')
-  end
-
-  it "returns 'Android' as its platform" do
-    expect(useragent.platform).to eq('Android')
   end
 
   it "returns 'Android 5.1.1' as its operating system" do
