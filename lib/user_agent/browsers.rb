@@ -1,7 +1,9 @@
+require 'user_agent/browsers/base'
+require 'user_agent/browsers/webkit'
+
 require 'user_agent/browsers/apple_core_media'
 require 'user_agent/browsers/apple_podcasts'
 require 'user_agent/browsers/apple_watch'
-require 'user_agent/browsers/base'
 require 'user_agent/browsers/chrome'
 require 'user_agent/browsers/edge'
 require 'user_agent/browsers/facebook'
@@ -19,7 +21,6 @@ require 'user_agent/browsers/pocket_casts'
 require 'user_agent/browsers/podcast_addict'
 require 'user_agent/browsers/stagefright'
 require 'user_agent/browsers/vivaldi'
-require 'user_agent/browsers/webkit'
 require 'user_agent/browsers/wechat_browser'
 require 'user_agent/browsers/windows_media_player'
 
