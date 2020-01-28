@@ -27,17 +27,28 @@ class UserAgent
       APPLE_PODCASTS_REGEX = /\A(
         # ca, da, de, el, en_AU, en_GB, en, es_419, es, fr, id, it, ja, ms, nl, pt_PT, vi, zh_HK, zh_TW
         Podcast(s?)
-        |البودكاست|%D8%A7%D9%84%D8%A8%D9%88%D8%AF%D9%83%D8%A7%D8%B3%D8%AA                          # ar
-        |Podcast(y|it|i|ok|uri|er)                                                                 # cs, fi, hr, hu, ro, sv
-        |Balados                                                                                   # fr_CA
-        |פודקאסטים|%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98%D7%99%D7%9D                          # he
-        |पॉडकास्ट|%E0%A4%AA%E0%A5%89%E0%A4%A1%E0%A4%95%E0%A4%BE%E0%A4%B8%E0%A5%8D%E0%A4%9F            # hi
-        |팟캐스트|%ED%8C%9F%EC%BA%90%EC%8A%A4%ED%8A%B8                                             # ko
-        |Podkaster                                                                                 # no
-        |Подкасты|Подкасти|%D0%9F%D0%BE%D0%B4%D0%BA%D0%B0%D1%81%D1%82%(D1%8B|D0%B8)                # ru, uk
-        |พ็อดคาสท์|%E0%B8%9E%E0%B9%87%E0%B8%AD%E0%B8%94%E0%B8%84%E0%B8%B2%E0%B8%AA%E0%B8%97%E0%B9%8C # th
-        |Podcast(’|%E2%80%99)ler                                                                   # tr
-        |播客|%E6%92%AD%E5%AE%A2                                                                   # zh_CN
+        # ar
+        |البودكاست|%D8%A7%D9%84%D8%A8%D9%88%D8%AF%D9%83%D8%A7%D8%B3%D8%AA
+        # cs, fi, hr, hu, ro, sv
+        |Podcast(y|it|i|ok|uri|er)
+        # fr_CA
+        |Balados
+        # he
+        |פודקאסטים|%D7%A4%D7%95%D7%93%D7%A7%D7%90%D7%A1%D7%98%D7%99%D7%9D
+        # hi
+        |पॉडकास्ट|%E0%A4%AA%E0%A5%89%E0%A4%A1%E0%A4%95%E0%A4%BE%E0%A4%B8%E0%A5%8D%E0%A4%9F
+        # ko
+        |팟캐스트|%ED%8C%9F%EC%BA%90%EC%8A%A4%ED%8A%B8
+        # no
+        |Podkaster
+        # ru, uk
+        |Подкасты|Подкасти|%D0%9F%D0%BE%D0%B4%D0%BA%D0%B0%D1%81%D1%82%(D1%8B|D0%B8)
+        # th
+        |พ็อดคาสท์|%E0%B8%9E%E0%B9%87%E0%B8%AD%E0%B8%94%E0%B8%84%E0%B8%B2%E0%B8%AA%E0%B8%97%E0%B9%8C
+        # tr
+        |Podcast(’|%E2%80%99)ler
+        # zh_CN
+        |播客|%E6%92%AD%E5%AE%A2
         )\/.+CFNetwork\/
       /x.freeze
 
