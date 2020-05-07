@@ -1,8 +1,4 @@
-# frozen_string_literal: true
-
 class UserAgent
-  VERSION = '0.16.12'
-
   class Version
     include ::Comparable
 
