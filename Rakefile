@@ -14,7 +14,7 @@ task publish: :build do
   raise 'Set environment variable GEM_PUSH_KEY to the name of a key in ~/.gem/credentials' unless ENV['GEM_PUSH_KEY']
 
   system("gem push --key #{ENV['GEM_PUSH_KEY']} --host https://rubygems.pkg.github.com/art19 " \
-         "pkg/art19-useragent-#{UserAgent::VERSION}.gem")
+         "pkg/useragent-#{UserAgent::VERSION}.gem")
 end
 
 task :default => :spec
