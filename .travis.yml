@@ -8,7 +8,6 @@ before_install:
   - gem install bundler
 
 rvm:
-  - 2.4
-  - 2.5
+  - 2.7.1
   - 2.6
   - jruby-head
