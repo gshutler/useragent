@@ -46,8 +46,8 @@ describe "UserAgent: 'Opera/9.27 (Macintosh; Intel Mac OS X; U; en)'" do
     expect(@useragent.platform).to eq("Macintosh")
   end
 
-  it "should return 'Intel Mac OS X' as its os" do
-    expect(@useragent.os).to eq("Intel Mac OS X")
+  it "should return 'OS X' as its os" do
+    expect(@useragent.os).to eq("OS X")
   end
 
   it "should return 'en' as its localization" do
@@ -118,8 +118,8 @@ describe "UserAgent: 'Opera/9.80 (Macintosh; Intel Mac OS X; U; en) Presto/2.2.1
     expect(@useragent.platform).to eq("Macintosh")
   end
 
-  it "should return 'Intel Mac OS X' as its os" do
-    expect(@useragent.os).to eq("Intel Mac OS X")
+  it "should return 'OS X' as its os" do
+    expect(@useragent.os).to eq("OS X")
   end
 
   it "should return 'en' as its localization" do
@@ -218,5 +218,21 @@ describe "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
 
   it "should return '28.0.1750.48' as it's version" do
     expect(@useragent.version).to eq("28.0.1750.48")
+  end
+
+  describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.127" do
+    before do
+      @useragent = UserAgent.parse("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.127")
+    end
+
+    it_should_behave_like "Opera browser"
+
+    it "should return 'Macintosh' as its platform" do
+      expect(@useragent.platform).to eq("Macintosh")
+    end
+
+    it "should return 'OS X 10.14.5' as its os" do
+      expect(@useragent.os).to eq("OS X 10.14.5")
+    end
   end
 end
