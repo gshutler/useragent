@@ -1,6 +1,7 @@
 require 'user_agent/comparable'
 require 'user_agent/browsers'
 require 'user_agent/operating_systems'
+require 'user_agent/operating_systems/darwin'
 require 'user_agent/version'
 
 class UserAgent
