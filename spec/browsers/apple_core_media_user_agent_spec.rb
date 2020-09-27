@@ -81,3 +81,26 @@ describe "UserAgent: AppleCoreMedia/1.0.0.11D257 (iPhone; U; CPU OS 7_1_2 like M
   it_behaves_like "AppleCoreMedia has localization", "en_us"
   it_behaves_like "AppleCoreMedia has strong encryption"
 end
+
+describe "UserAgent: AppleCoreMedia/1.0.0.15R276 (Apple Watch; U; CPU OS 4_0 like Mac OS X; en_us)" do
+  before do
+    @useragent = UserAgent.parse("AppleCoreMedia/1.0.0.15R276 (Apple Watch; U; CPU OS 4_0 like Mac OS X; en_us)")
+  end
+
+  it_behaves_like "AppleCoreMedia"
+  it_behaves_like "AppleCoreMedia runs on", "Apple Watch", "watchOS 4.0"
+  it_behaves_like "AppleCoreMedia has version number", "1.0.0.15R276"
+  it_behaves_like "AppleCoreMedia has localization", "en_us"
+  it_behaves_like "AppleCoreMedia has strong encryption"
+end
+
+describe "UserAgent: AppleCoreMedia/1.0.0.15R276 (Apple Watch; all missing)" do
+  before do
+    @useragent = UserAgent.parse("AppleCoreMedia/1.0.0.15R276 (Apple Watch; all missing)")
+  end
+
+  it_behaves_like "AppleCoreMedia"
+  it_behaves_like "AppleCoreMedia runs on", "Apple Watch", "all missing"
+  it_behaves_like "AppleCoreMedia has version number", "1.0.0.15R276"
+  it_behaves_like "AppleCoreMedia has localization", nil
+end

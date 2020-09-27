@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # CoreMedia is a framework on iOS and is used by various iOS apps to playback media.
@@ -7,11 +9,11 @@ class UserAgent
       end
 
       def browser
-        "AppleCoreMedia"
+        'AppleCoreMedia'
       end
 
       def application
-        self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
       end
 
       def platform
@@ -37,6 +39,8 @@ class UserAgent
           OperatingSystems.normalize_os(application.comment[1])
         elsif application.comment[1] =~ /Android/
           OperatingSystems.normalize_os(application.comment[1])
+        elsif application.comment[0] =~ /Apple Watch/
+          OperatingSystems.normalize_ios(application.comment[2]).sub('iOS', 'watchOS')
         else
           OperatingSystems.normalize_os(application.comment[2])
         end
