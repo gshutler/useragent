@@ -28,6 +28,8 @@ class UserAgent
             nil
           elsif /^Windows / =~ comment[0]
             'Windows'
+          elsif comment.any? { |c| c =~ /Android/ }
+            'Android'
           else
             comment[0]
           end
