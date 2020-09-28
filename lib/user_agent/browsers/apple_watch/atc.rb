@@ -7,16 +7,19 @@ class UserAgent
       # This class detects and handles the ATC browser on Apple Watch
       class ATC < Base
         # The browser string
-        BROWSER = 'atc'
+        BROWSER = 'AirTraffic.framework'
 
         # The build within the comment
         BUILD = 'build'
+
+        # The product string identifying the AirTraffic.framework browser
+        PRODUCT_ATC = 'atc'
 
         # The product string identifying the broken versions of this browser
         PRODUCT_NULL = '(null)'
 
         # The required products in order to consider using this extension
-        PRODUCTS = [BROWSER, PRODUCT_NULL].freeze
+        PRODUCTS = [PRODUCT_ATC, PRODUCT_NULL].freeze
 
         class << self
           ##
@@ -44,7 +47,7 @@ class UserAgent
         ##
         # @return [UserAgent::Version, nil] The browser version
         def version
-          atc_version   = detect_product(BROWSER)&.version
+          atc_version   = detect_product(PRODUCT_ATC)&.version
           build_version = detect_product(BUILD)&.version
 
           return atc_version unless atc_version && build_version

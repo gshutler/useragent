@@ -54,11 +54,4 @@ describe UserAgent::Browsers::AppleWatch::Pod2Watch do
 
     it_behaves_like 'a Pod2Watch browser on watchOS', '5.0.x', '889.7'
   end
-
-  context 'with "something/1.2 totally (different)' do
-    let(:ua_string) { 'something/1.2 totally (different)' }
-
-    it { expect(user_agent.browser).to eql 'something' }
-    it { expect(user_agent.version.to_s).to eql '1.2' }
-  end
 end

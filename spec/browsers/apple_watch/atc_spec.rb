@@ -6,7 +6,7 @@ describe UserAgent::Browsers::AppleWatch::ATC do
   let(:user_agent) { UserAgent.parse(ua_string) }
 
   shared_examples 'an ATC browser on watchOS' do |os_version = nil, version = nil|
-    it { expect(user_agent.browser).to eql 'atc' }
+    it { expect(user_agent.browser).to eql 'AirTraffic.framework' }
     it { expect(user_agent).not_to be_bot }
     it { expect(user_agent).to be_mobile }
     it { expect(user_agent.os).to eql ['watchOS', os_version].compact.join(' ') }
@@ -64,12 +64,5 @@ describe UserAgent::Browsers::AppleWatch::ATC do
     let(:ua_string) { 'atc watchOS' }
 
     it_behaves_like 'an ATC browser on watchOS', nil, nil
-  end
-
-  context 'with "something/1.2 totally (different)' do
-    let(:ua_string) { 'something/1.2 totally (different)' }
-
-    it { expect(user_agent.browser).to eql 'something' }
-    it { expect(user_agent.version.to_s).to eql '1.2' }
   end
 end
