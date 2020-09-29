@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 require 'user_agent/browsers/base'
 require 'user_agent/browsers/webkit'
 
 require 'user_agent/browsers/apple_core_media'
 require 'user_agent/browsers/apple_podcasts'
-require 'user_agent/browsers/apple_watch'
+require 'user_agent/browsers/apple_watch/base'
+require 'user_agent/browsers/apple_watch/atc'
+require 'user_agent/browsers/apple_watch/pod_2_watch'
 require 'user_agent/browsers/chrome'
 require 'user_agent/browsers/edge'
 require 'user_agent/browsers/facebook'
@@ -27,9 +31,9 @@ require 'user_agent/browsers/windows_media_player'
 class UserAgent
   module Browsers
     Security = {
-      "N" => :none,
-      "U" => :strong,
-      "I" => :weak
+      'N' => :none,
+      'U' => :strong,
+      'I' => :weak
     }.freeze
 
     ALL = [
@@ -54,8 +58,9 @@ class UserAgent
       AppleCoreMedia,
       Libavformat,
       OkHttp,
-      AppleWatch,
-      ApplePodcasts,
+      AppleWatch::ATC,
+      AppleWatch::Pod2Watch,
+      ApplePodcasts
     ].freeze
 
     def self.all
