@@ -10,4 +10,4 @@ Due to inactivity on upstream we decided to treat this as a real, independent fo
   * Converted this gem to work as a real fork and bumped the version to 1.0.0
 * [#20](https://github.com/art19/useragent/pull/20) Gecko android platform
 * [#19](https://github.com/art19/useragent/pull/19) Add support for 'Edge Anaheim'
-* [#18](https://github.com/art19/useragent/pull/18) Upgrade to Ruby 2.7 (PLAT-425)
+* [#18](https://github.com/art19/useragent/pull/18) Upgrade to Ruby 2.7
