@@ -15,12 +15,36 @@ class UserAgent
         last.version
       end
 
+      def application
+        self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+      end
+
       def platform
-        "Windows"
+        return unless application
+
+        if application.comment[0] =~ /Windows/
+          'Windows'
+        elsif application.comment.any? { |c| c =~ /CrOS/ }
+          'ChromeOS'
+        elsif application.comment.any? { |c| c =~ /Android/ }
+          'Android'
+        else
+          application.comment[0]
+        end
       end
 
       def os
-        OperatingSystems.normalize_os(os_comment)
+        return unless application
+
+        if application.comment[0] =~ /Windows NT/
+          OperatingSystems.normalize_os(application.comment[0])
+        elsif application.comment[2].nil?
+          OperatingSystems.normalize_os(application.comment[1])
+        elsif application.comment[1] =~ /Android/
+          OperatingSystems.normalize_os(application.comment[1])
+        else
+          OperatingSystems.normalize_os(application.comment[2])
+        end
       end
 
       private
