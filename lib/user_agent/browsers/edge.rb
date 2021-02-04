@@ -4,7 +4,7 @@ class UserAgent
       OS_REGEXP = /Windows NT [\d\.]+|Windows Phone (OS )?[\d\.]+/
 
       def self.extend?(agent)
-        agent.last && %w(Edge Edg).include?(agent.last.product)
+        agent.last && %w(Edge Edg EdgA EdgiOS).include?(agent.last.product)
       end
 
       def browser
