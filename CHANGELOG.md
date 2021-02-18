@@ -1,3 +1,7 @@
+# 1.0.1
+
+* [#22](https://github.com/art19/useragent/pull/22) Add support for Edge on non-Windows OS (thanks @hollandmatt)
+
 # 1.0.0
 
 Due to inactivity on upstream we decided to treat this as a real, independent fork. The following changes are added to this version
