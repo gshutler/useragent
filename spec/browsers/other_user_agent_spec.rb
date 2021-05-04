@@ -23,6 +23,7 @@ describe "UserAgent: nil" do
 
   it { expect(@useragent).not_to be_mobile }
   it { expect(@useragent).not_to be_bot }
+  it { expect(@useragent).not_to be_speaker }
 end
 
 describe "UserAgent: ''" do
@@ -48,6 +49,7 @@ describe "UserAgent: ''" do
 
   it { expect(@useragent).not_to be_mobile }
   it { expect(@useragent).not_to be_bot }
+  it { expect(@useragent).not_to be_speaker }
 end
 
 describe "UserAgent: 'Mozilla/4.0 (compatible)'" do
@@ -73,6 +75,7 @@ describe "UserAgent: 'Mozilla/4.0 (compatible)'" do
 
   it { expect(@useragent).not_to be_mobile }
   it { expect(@useragent).not_to be_bot }
+  it { expect(@useragent).not_to be_speaker }
 end
 
 describe "UserAgent: 'Mozilla/5.0'" do
@@ -98,6 +101,7 @@ describe "UserAgent: 'Mozilla/5.0'" do
 
   it { expect(@useragent).not_to be_mobile }
   it { expect(@useragent).not_to be_bot }
+  it { expect(@useragent).not_to be_speaker }
 end
 
 describe "UserAgent: 'amaya/9.51 libwww/5.4.0'" do
@@ -131,6 +135,7 @@ describe "UserAgent: 'Rails Testing'" do
   it { expect(@useragent.platform).to be_nil }
   it { expect(@useragent.os).to be_nil }
   it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).not_to be_speaker }
 end
 
 describe "UserAgent: 'Python-urllib/2.7'" do
@@ -149,6 +154,7 @@ describe "UserAgent: 'Python-urllib/2.7'" do
   it { expect(@useragent.platform).to be_nil }
   it { expect(@useragent.os).to be_nil }
   it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).not_to be_speaker }
 end
 
 describe "UserAgent: 'check_http/v1.4.15 (nagios-plugins 1.4.15)'" do
@@ -167,6 +173,7 @@ describe "UserAgent: 'check_http/v1.4.15 (nagios-plugins 1.4.15)'" do
   it { expect(@useragent.platform).to be_nil }
   it { expect(@useragent.os).to be_nil }
   it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).not_to be_speaker }
 end
 
 describe "UserAgent: '/WebTest.pm'" do

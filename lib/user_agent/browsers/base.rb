@@ -85,6 +85,12 @@ class UserAgent
         end
       end
 
+      ##
+      # @return [Boolean] True if this UA is a speaker
+      def speaker?
+        false
+      end
+
       def to_h
         return unless application
 

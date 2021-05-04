@@ -4,6 +4,10 @@ shared_examples_for "Google Home" do
   it "should return 'Google Home' as its browser" do
     expect(useragent.browser).to eq("Google Home")
   end
+
+  it 'returns as a speaker' do
+    expect(useragent).to be_speaker
+  end
 end
 
 describe "UserAgent: Mozilla/5.0 (Linux; Android 6.0.1; Build/M-MMB29M-rzs-us-sf-bld2-19HP-08.02.AM) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.41 Safari/537.36 CrKey/1.29.104695" do

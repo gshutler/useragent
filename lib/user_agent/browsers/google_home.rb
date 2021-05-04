@@ -14,6 +14,10 @@ class UserAgent
         'Google Home'
       end
 
+      def speaker?
+        true
+      end
+
       # Gets the application version
       def version
         detect_product('CrKey').version
