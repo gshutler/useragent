@@ -40,8 +40,8 @@ describe "UserAgent: Acast/1.42.1 (phone; android 10; Google Pixel 3 XL)" do
   it_behaves_like 'Acast', '1.42.1', 'Android', 'Android 10'
 end
 
-describe "UserAgent: Acast/1.26.0 (Linux; Android 9) ExoPlayerLib/2.2.0" do
-  let!(:useragent) { UserAgent.parse("Acast/1.26.0 (Linux; Android 9) ExoPlayerLib/2.2.0") }
+describe "UserAgent: Acast/1.26.0 (Linux;Android 9) ExoPlayerLib/2.2.0" do
+  let!(:useragent) { UserAgent.parse("Acast/1.26.0 (Linux;Android 9) ExoPlayerLib/2.2.0") }
 
   it_behaves_like 'Acast', '1.26.0', 'Android', 'Android 9'
 end
