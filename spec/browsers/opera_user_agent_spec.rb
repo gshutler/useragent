@@ -29,6 +29,8 @@ describe "UserAgent: 'Opera/9.80 (Windows NT 6.0) Presto/2.12.388 Version/12.14'
   it "should return 'Windows Vista' as its os" do
     expect(@useragent.os).to eq("Windows Vista")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Opera/9.27 (Macintosh; Intel Mac OS X; U; en)'" do
@@ -53,6 +55,8 @@ describe "UserAgent: 'Opera/9.27 (Macintosh; Intel Mac OS X; U; en)'" do
   it "should return 'en' as its localization" do
     expect(@useragent.localization).to eq("en")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Opera/9.27 (Windows NT 5.1; U; en)'" do
@@ -77,6 +81,8 @@ describe "UserAgent: 'Opera/9.27 (Windows NT 5.1; U; en)'" do
   it "should return 'en' as its localization" do
     expect(@useragent.localization).to eq("en")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Opera/9.80'" do
@@ -101,6 +107,8 @@ describe "UserAgent: 'Opera/9.80'" do
   it "should return nil as its localization" do
     expect(@useragent.localization).to be_nil
   end
+
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "UserAgent: 'Opera/9.80 (Macintosh; Intel Mac OS X; U; en) Presto/2.2.15 Version/10.10'" do
@@ -125,6 +133,8 @@ describe "UserAgent: 'Opera/9.80 (Macintosh; Intel Mac OS X; U; en) Presto/2.2.1
   it "should return 'en' as its localization" do
     expect(@useragent.localization).to eq("en")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Opera/9.80 (Windows NT 6.0; U; en) Presto/2.2.15 Version/10.10'" do
@@ -149,6 +159,8 @@ describe "UserAgent: 'Opera/9.80 (Windows NT 6.0; U; en) Presto/2.2.15 Version/1
   it "should return 'en' as its localization" do
     expect(@useragent.localization).to eq("en")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Opera/9.80 (J2ME/MIDP; Opera Mini/9 (Compatible; MSIE:9.0; iPhone; BlackBerry9700; AppleWebKit/24.746; U; en) Presto/2.5.25 Version/10.54'" do
@@ -159,6 +171,7 @@ describe "UserAgent: 'Opera/9.80 (J2ME/MIDP; Opera Mini/9 (Compatible; MSIE:9.0;
   it_should_behave_like "Opera browser"
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "UserAgent: 'Opera/9.80 (J2ME/MIDP; Opera Mini/9.80 (J2ME/23.377; U; en) Presto/2.5.25 Version/10.54'" do
@@ -169,6 +182,7 @@ describe "UserAgent: 'Opera/9.80 (J2ME/MIDP; Opera Mini/9.80 (J2ME/23.377; U; en
   it_should_behave_like "Opera browser"
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 # http://www.useragentstring.com/Opera%20Mini9.80_id_17936.php
@@ -182,6 +196,8 @@ describe "UserAgent: 'Opera/9.80 (J2ME/MIDP; Opera Mini/9.80 (S60; SymbOS; Opera
   it "should return '9.80' as its version" do
     expect(@useragent.version).to eq("9.80")
   end
+
+  it { expect(@useragent).not_to be_desktop }
 end
 
 # http://www.useragentstring.com/Opera%20Mini7.1.32694_id_19147.php
@@ -195,6 +211,8 @@ describe "UserAgent: 'Opera/9.80 (iPhone; Opera Mini/7.1.32694/27.1407; U; en) P
   it "should return '7.1.32694' as its version" do
     expect(@useragent.version).to eq("7.1.32694")
   end
+
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "Opera/9.80 (BREW Opera Mini/6.0.3/27.2354 U es) Presto/2.8.119 240X320 Samsung SCH-U485" do
@@ -207,6 +225,8 @@ describe "Opera/9.80 (BREW Opera Mini/6.0.3/27.2354 U es) Presto/2.8.119 240X320
   it "should return '6.0.3' as its version" do
     expect(@useragent.version).to eq("6.0.3")
   end
+
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36 OPR/28.0.1750.48" do
@@ -219,4 +239,6 @@ describe "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
   it "should return '28.0.1750.48' as it's version" do
     expect(@useragent.version).to eq("28.0.1750.48")
   end
+
+  it { expect(@useragent).to be_desktop }
 end

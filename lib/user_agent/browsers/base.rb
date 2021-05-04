@@ -86,6 +86,12 @@ class UserAgent
       end
 
       ##
+      # @return [Boolean] True if this UA is a desktop
+      def desktop?
+        false
+      end
+
+      ##
       # @return [Boolean] True if this UA is a speaker
       def speaker?
         false
@@ -95,11 +101,13 @@ class UserAgent
         return unless application
 
         hash = {
-          :browser => browser,
+          :browser  => browser,
           :platform => platform,
-          :os => os,
-          :mobile => mobile?,
-          :bot => bot?,
+          :os       => os,
+          :mobile   => mobile?,
+          :bot      => bot?,
+          :desktop  => desktop?,
+          :speaker  => speaker?,
         }
 
         if version

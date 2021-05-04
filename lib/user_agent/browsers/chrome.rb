@@ -1,6 +1,8 @@
 class UserAgent
   module Browsers
     class Chrome < Base
+      include DesktopClassifiable
+
       def self.extend?(agent)
         agent.detect { |useragent|
           %w(Chrome CriOS).include?(useragent.product)

@@ -16,6 +16,8 @@ shared_examples "Windows Media Player" do
   it "should be the desktop version" do
     expect(@useragent.mobile?).to eq(false)
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 shared_examples "Windows Media Player Mobile" do
@@ -34,6 +36,8 @@ shared_examples "Windows Media Player Mobile" do
   it "should be the desktop version" do
     expect(@useragent.mobile?).to eq(true)
   end
+
+  it { expect(@useragent).not_to be_desktop }
 end
 
 shared_examples "Windows Media Player Classic" do
@@ -48,6 +52,8 @@ shared_examples "Windows Media Player Classic" do
   it "should identify as being classic" do
     expect(@useragent.classic?).to eq(true)
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 shared_examples "Windows Media Player isn't using WMFSDK" do

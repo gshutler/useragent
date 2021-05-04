@@ -12,6 +12,8 @@ class UserAgent
     # Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) -0 Chrome/69.0.3497.128 Electron/4.1.4 Safari/537.36 PandoraDesktopApp/1.8.4
     # Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.106 Electron/4.0.6 Safari/537.36 PandoraDesktopApp/1.8.2
     class Pandora < Webkit
+      include DesktopClassifiable
+
       PANDORA             = 'Pandora'
       PANDORA_APP         = 'PandoraApp'
       PANDORA_DESKTOP_APP = 'PandoraDesktopApp'

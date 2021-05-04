@@ -8,6 +8,8 @@ shared_examples_for "Internet Explorer browser" do
   it "should return 'Windows' as its platform" do
     expect(@useragent.platform).to eq("Windows")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko" do

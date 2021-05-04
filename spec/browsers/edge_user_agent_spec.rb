@@ -24,6 +24,8 @@ describe "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, l
   it "should return 'Windows 10' as its os" do
     expect(@useragent.os).to eq("Windows 10")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "Mozilla/5.0 SHC; SHC-Unit-04973; SHC-HTS; SHC-KIOSK; SHC-MAC-0000 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586" do
@@ -44,6 +46,8 @@ describe "Mozilla/5.0 SHC; SHC-Unit-04973; SHC-HTS; SHC-KIOSK; SHC-MAC-0000 (Win
   it "should return 'Windows 10' as its os" do
     expect(@useragent.os).to eq("Windows 10")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.48 Safari/537.36 Edg/74.1.96.24" do
@@ -64,6 +68,8 @@ describe "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, l
   it "should return 'Windows 10' as its os" do
     expect(@useragent.os).to eq("Windows 10")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36 Edg/88.0.705.56" do
@@ -84,6 +90,8 @@ describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KH
   it "should return 'OS X 10.15.7' as its os" do
     expect(@useragent.os).to eq("OS X 10.15.7")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "Mozilla/5.0 (Linux; Android 10; Pixel 3 XL) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.141 Mobile Safari/537.36 EdgA/45.12.4.5125" do
@@ -104,6 +112,8 @@ describe "Mozilla/5.0 (Linux; Android 10; Pixel 3 XL) AppleWebKit/537.36 (KHTML,
   it "should return 'Android 10' as its os" do
     expect(@useragent.os).to eq("Android 10")
   end
+
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 Safari/603.2.4 EdgiOS/41.1.35.1" do
@@ -124,4 +134,6 @@ describe "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/6
   it "should return 'iOS 10.3.2' as its os" do
     expect(@useragent.os).to eq("iOS 10.3.2")
   end
+
+  it { expect(@useragent).not_to be_desktop }
 end

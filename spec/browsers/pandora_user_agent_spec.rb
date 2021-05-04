@@ -24,6 +24,7 @@ describe "Mozilla/5.0 (iPad; CPU OS 10_3_4 like Mac OS X) AppleWebKit/603.3.8 (K
   end
 
   it { expect(useragent).to be_mobile }
+  it { expect(useragent).not_to be_desktop }
 end
 
 describe "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/603.2.4 (KHTML, like Gecko) Mobile/14F89 Pandora/1901.1.1" do
@@ -44,6 +45,7 @@ describe "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_2 like Mac OS X) AppleWebKit/6
   end
 
   it { expect(useragent).to be_mobile }
+  it { expect(useragent).not_to be_desktop }
 end
 
 describe "Mozilla/5.0 (iPod touch; CPU iPhone OS 11_2_5 like Mac OS X) AppleWebKit/604.5.6 (KHTML, like Gecko) Mobile/15D60 Pandora/1908.1" do
@@ -64,6 +66,7 @@ describe "Mozilla/5.0 (iPod touch; CPU iPhone OS 11_2_5 like Mac OS X) AppleWebK
   end
 
   it { expect(useragent).to be_mobile }
+  it { expect(useragent).not_to be_desktop }
 end
 
 describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.128 Electron/4.2.10 Safari/537.36 PandoraApp/15.0.3" do
@@ -84,6 +87,7 @@ describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KH
   end
 
   it { expect(useragent).not_to be_mobile }
+  it { expect(useragent).to be_desktop }
 end
 
 describe "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.128 Electron/4.2.10 Safari/537.36 PandoraApp/15.0.2" do
@@ -104,6 +108,7 @@ describe "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, l
   end
 
   it { expect(useragent).not_to be_mobile }
+  it { expect(useragent).to be_desktop }
 end
 
 describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) -0 Chrome/69.0.3497.128 Electron/4.1.4 Safari/537.36 PandoraDesktopApp/1.8.4" do
@@ -124,6 +129,7 @@ describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KH
   end
 
   it { expect(useragent).not_to be_mobile }
+  it { expect(useragent).to be_desktop }
 end
 
 describe "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.106 Electron/4.0.6 Safari/537.36 PandoraDesktopApp/1.8.2" do
@@ -144,4 +150,5 @@ describe "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, l
   end
 
   it { expect(useragent).not_to be_mobile }
+  it { expect(useragent).to be_desktop }
 end

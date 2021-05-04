@@ -25,6 +25,8 @@ describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KH
   it "should return 'Windows 8' as its os" do
     expect(@useragent.os).to eq("Windows 8")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 # http://www.useragentstring.com/Chrome29.0.1547.62_id_19709.php
@@ -46,6 +48,8 @@ describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KH
   it "should return 'Windows 7' as its os" do
     expect(@useragent.os).to eq("Windows 7")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36'" do
@@ -66,6 +70,8 @@ describe "UserAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML,
   it "should return 'Linux x86_64' as its os" do
     expect(@useragent.os).to eq("Linux x86_64")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/28.0.1500.16 Mobile/10B329 Safari/8536.25'" do
@@ -96,6 +102,7 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) Ap
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.40 Safari/537.17" do
@@ -110,6 +117,8 @@ describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHT
   it "should return 'OS X 10.8.2' as its os" do
     expect(@useragent.os).to eq("OS X 10.8.2")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.168 Safari/535.19'" do
@@ -138,6 +147,8 @@ describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KH
   it "should return 'Windows 7' as its os" do
     expect(@useragent.os).to eq("Windows 7")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "Mozilla/5.0 (Linux; Android 4.2; Nexus 7 Build/JOP40C) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Safari/535.19" do
@@ -158,6 +169,7 @@ describe "Mozilla/5.0 (Linux; Android 4.2; Nexus 7 Build/JOP40C) AppleWebKit/535
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 
@@ -201,6 +213,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) A
     other = UserAgent.parse("Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.231 Safari/534.10")
     expect(@useragent).not_to be < other
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.231 Safari/534.10'" do
@@ -233,6 +247,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) A
   it "should return 'en-US' as its localization" do
     expect(@useragent.localization).to eq("en-US")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 AppleWebKit/534.10 Chrome/8.0.552.215 Safari/534.10'" do
@@ -293,6 +309,8 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKi
   it "should return 'en-US' as its localization" do
     expect(@useragent.localization).to eq("en-US")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.0.2 Safari/525.13'" do
@@ -325,6 +343,8 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKi
   it "should return 'en-US' as its localization" do
     expect(@useragent.localization).to eq("en-US")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.62 Safari/537.36" do
@@ -353,4 +373,6 @@ describe "UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, 
   it "should return 'Linux x86_64' as its os" do
     expect(@useragent.os).to eq("Linux x86_64")
   end
+
+  it { expect(@useragent).to be_desktop }
 end

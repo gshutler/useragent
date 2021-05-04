@@ -1,6 +1,8 @@
 class UserAgent
   module Browsers
     class Edge < Base
+      include DesktopClassifiable
+
       OS_REGEXP = /Windows NT [\d\.]+|Windows Phone (OS )?[\d\.]+/
 
       def self.extend?(agent)

@@ -6,6 +6,8 @@ class UserAgent
     # Shifty Jelly Pocket Casts, iOS v4.3
     # Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Pocket Casts/1.1 Pocket Casts/1.1
     class PocketCasts < Base
+      include DesktopClassifiable
+
       ANDROID_REGEX            = /Android/
       IOS_REGEX                = /iOS/
       POCKETCASTS_REGEX        = /PocketCasts/

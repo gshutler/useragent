@@ -50,6 +50,10 @@ class UserAgent
         cf_comment ? UserAgent.new(*cf_comment.split('/', 2)) : nil
       end
 
+      def desktop?
+        true
+      end
+
       def platform
         "Windows"
       end

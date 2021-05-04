@@ -29,6 +29,8 @@ describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHT
   it "should return 'Windows 7' as its os" do
     expect(@useragent.os).to eq("Windows 7")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 # http://www.useragentstring.com/Iron21.0.1200.0_id_19375.php
@@ -50,4 +52,6 @@ describe "UserAgent: 'Mozilla/5.0 (X11; U; Linux amd64) Iron/21.0.1200.0 Chrome/
   it "should return 'Linux amd' as its os" do
     expect(@useragent.os).to eq("Linux amd64")
   end
+
+  it { expect(@useragent).to be_desktop }
 end

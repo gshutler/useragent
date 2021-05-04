@@ -1,6 +1,8 @@
 class UserAgent
   module Browsers
     class Opera < Base
+      include DesktopClassifiable
+
       def self.extend?(agent)
         (agent.first && agent.first.product == 'Opera') ||
           (agent.application && agent.application.product == 'Opera') ||

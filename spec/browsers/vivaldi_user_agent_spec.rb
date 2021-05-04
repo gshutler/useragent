@@ -24,6 +24,8 @@ describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KH
   it "should return 'Windows 7' as its os" do
     expect(@useragent.os).to eq("Windows 7")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36 Vivaldi/1.2.490.43'" do
@@ -44,4 +46,6 @@ describe "UserAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML,
   it "should return 'Linux x86_64' as its os" do
     expect(@useragent.os).to eq("Linux x86_64")
   end
+
+  it { expect(@useragent).to be_desktop }
 end

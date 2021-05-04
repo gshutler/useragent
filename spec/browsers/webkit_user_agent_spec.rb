@@ -42,6 +42,7 @@ describe "UserAgent: Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us) Ap
   end
 
   it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/526.9 (KHTML, like Gecko) Version/4.0dp1 Safari/526.8'" do
@@ -76,6 +77,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) A
   end
 
   it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en) AppleWebKit/526.9 (KHTML, like Gecko) Version/4.0dp1 Safari/526.8'" do
@@ -110,6 +112,7 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en) AppleWebKit/5
   end
 
   it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) AppleWebKit/525.18 (KHTML, like Gecko) Version/3.1.1 Safari/525.18'" do
@@ -118,6 +121,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_3; en-us) A
   end
 
   it_should_behave_like "Safari browser"
+
+  it { expect(@useragent).to be_desktop }
 
   it "should return '525.18' as its build" do
     expect(@useragent.build).to eq("525.18")
@@ -191,6 +196,8 @@ describe "UserAgent: 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en) AppleWebKit/5
 
   it_should_behave_like "Safari browser"
 
+  it { expect(@useragent).to be_desktop }
+
   it "should return '525.18' as its build" do
     expect(@useragent.build).to eq("525.18")
   end
@@ -222,6 +229,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en) AppleWebKit
   end
 
   it_should_behave_like "Safari browser"
+
+  it { expect(@useragent).to be_desktop }
 
   it "should return '419.3' as its build" do
     expect(@useragent.build).to eq("419")
@@ -255,6 +264,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-us) AppleWebKi
 
   it_should_behave_like "Safari browser"
 
+  it { expect(@useragent).to be_desktop }
+
   it "should return '412.2' as its build" do
     expect(@useragent.build).to eq("412.6")
   end
@@ -286,6 +297,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/4
   end
 
   it_should_behave_like "Safari browser"
+
+  it { expect(@useragent).to be_desktop }
 
   it "should return '412.2.2' as its build" do
     expect(@useragent.build).to eq("412.6.2")
@@ -319,6 +332,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/3
 
   it_should_behave_like "Safari browser"
 
+  it { expect(@useragent).to be_desktop }
+
   it "should return '312.6' as its build" do
     expect(@useragent.build).to eq("312.8")
   end
@@ -350,6 +365,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; fr-ch) AppleWebKi
   end
 
   it_should_behave_like "Safari browser"
+
+  it { expect(@useragent).to be_desktop }
 
   it "should return '312' as its build" do
     expect(@useragent.build).to eq("312.1.1")
@@ -383,6 +400,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; es-es) AppleWebKi
 
   it_should_behave_like "Safari browser"
 
+  it { expect(@useragent).to be_desktop }
+
   it "should return '312.3.3' as its build" do
     expect(@useragent.build).to eq("312.5.2")
   end
@@ -414,6 +433,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; fr) AppleWebKit/3
   end
 
   it_should_behave_like "Safari browser"
+
+  it { expect(@useragent).to be_desktop }
 
   it "should return '312.3.1' as its build" do
     expect(@useragent.build).to eq("312.5.1")
@@ -447,6 +468,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-us) AppleWebKi
 
   it_should_behave_like "Safari browser"
 
+  it { expect(@useragent).to be_desktop }
+
   it "should return '312.3' as its build" do
     expect(@useragent.build).to eq("312.5")
   end
@@ -478,6 +501,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-us) AppleWebKi
   end
 
   it_should_behave_like "Safari browser"
+
+  it { expect(@useragent).to be_desktop }
 
   it "should return '125' as its build" do
     expect(@useragent.build).to eq("124")
@@ -511,6 +536,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/1
 
   it_should_behave_like "Safari browser"
 
+  it { expect(@useragent).to be_desktop }
+
   it "should return '125.12' as its build" do
     expect(@useragent.build).to eq("125.5.7")
   end
@@ -542,6 +569,8 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X; fr-fr) AppleWebKi
   end
 
   it_should_behave_like "Safari browser"
+
+  it { expect(@useragent).to be_desktop }
 
   it "should return '85.5' as its build" do
     expect(@useragent.build).to eq("85.7")
@@ -600,6 +629,7 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/420.1 (KHTML, like Gecko) Version/3.0 Mobile/4A102 Safari/419'" do
@@ -634,6 +664,7 @@ describe "UserAgent: 'Mozilla/5.0 (iPod; U; CPU like Mac OS X; en) AppleWebKit/4
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "UserAgent: Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B367 Safari/531.21.10" do
@@ -668,6 +699,7 @@ describe "UserAgent: Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) Appl
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_3 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7E18 Safari/528.16'" do
@@ -676,6 +708,8 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1_3 like Mac OS X;
   end
 
   it_should_behave_like "Safari browser"
+
+  it { expect(@useragent).not_to be_desktop }
 
   it "should return '528.18' as its build" do
     expect(@useragent.build).to eq("528.18")
@@ -734,6 +768,7 @@ describe "UserAgent: 'Mozilla/5.0 (iPod; U; CPU iPhone OS 3_1_3 like Mac OS X; e
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-us) AppleWebKit/533.19.4 (KHTML, like Gecko) Version/5.0.3 Safari/533.19.4'" do
@@ -768,6 +803,7 @@ describe "UserAgent: 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-us) A
   end
 
   it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8B117 Safari/6531.22.7'" do
@@ -802,6 +838,7 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_1 like Mac OS X; e
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Mobile/8A306'" do
@@ -836,6 +873,7 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0_1 like Mac OS X;
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_0_1 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A306 Safari/6531.22.7'" do
@@ -870,6 +908,7 @@ describe "UserAgent: 'Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_0_1 like
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (Linux; U; Android 1.5; de-; HTC Magic Build/PLAT-RC33) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1'" do
@@ -902,6 +941,7 @@ describe "UserAgent: 'Mozilla/5.0 (Linux; U; Android 1.5; de-; HTC Magic Build/P
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en) AppleWebKit/534.1+ (KHTML, Like Gecko) Version/6.0.0.141 Mobile Safari/534.1+'" do
@@ -934,6 +974,7 @@ describe "UserAgent: 'Mozilla/5.0 (BlackBerry; U; BlackBerry 9800; en) AppleWebK
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.3+ (KHTML, like Gecko) Version/10.0.9.388 Mobile Safari/537.3+'" do
@@ -966,6 +1007,7 @@ describe "UserAgent: 'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.3+ (KHTML, like 
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.1.1 Safari/534.51.22" do
@@ -1006,6 +1048,7 @@ describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.51.22 (
   end
 
   it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.52.7 (KHTML, like Gecko)" do
@@ -1020,6 +1063,8 @@ describe "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/534.52.7 (K
   it "should return '5.1.2' as its version" do
     expect(@useragent.version).to eq("5.1.2")
   end
+
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Salamander/44.0 Safari/537.36" do
@@ -1048,6 +1093,7 @@ describe "UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/
   end
 
   it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: Mozilla/5.0 (X11; CrOS armv7l 4537.56.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.38 Safari/537.36" do
@@ -1076,6 +1122,7 @@ describe "UserAgent: Mozilla/5.0 (X11; CrOS armv7l 4537.56.0) AppleWebKit/537.36
   end
 
   it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: Mozilla/5.0 (X11; CrOS x86_64 4920.71.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.95 Safari/537.36" do
@@ -1104,6 +1151,7 @@ describe "UserAgent: Mozilla/5.0 (X11; CrOS x86_64 4920.71.0) AppleWebKit/537.36
   end
 
   it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: Mozilla/5.0 (X11; U; CrOS i686 9.10.0; en-US) AppleWebKit/532.5 (KHTML, like Gecko) Chrome/4.0.253.0 Safari/532.5" do
@@ -1132,6 +1180,7 @@ describe "UserAgent: Mozilla/5.0 (X11; U; CrOS i686 9.10.0; en-US) AppleWebKit/5
   end
 
   it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).to be_desktop }
 end
 
 describe "UserAgent: Mozilla/5.0 (iPhone; U; fr; CPU iPhone OS 4_2_1 like Mac OS X; fr) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148a Safari/6533.18.5" do
@@ -1160,6 +1209,7 @@ describe "UserAgent: Mozilla/5.0 (iPhone; U; fr; CPU iPhone OS 4_2_1 like Mac OS
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build/IML74K) AppleWebkit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30" do
@@ -1200,6 +1250,7 @@ describe "UserAgent: Mozilla/5.0 (Linux; U; Android 4.0.3; ko-kr; LG-L160L Build
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end
 
 describe "UserAgent: HUAWEI_MT7-TL00_TD/5.0 Android/4.4.2 (Linux; U; Android 4.4.2; zh-cn) Release/01.18.2014 Browser/WAP2.0 (AppleWebKit/537.36) Mobile Safari/537.36" do
@@ -1240,4 +1291,5 @@ describe "UserAgent: HUAWEI_MT7-TL00_TD/5.0 Android/4.4.2 (Linux; U; Android 4.4
   end
 
   it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
 end

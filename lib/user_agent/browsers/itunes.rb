@@ -1,13 +1,13 @@
 class UserAgent
   module Browsers
     # The user agent for iTunes
-    # 
+    #
     # Some user agents:
     # iTunes/10.6.1 (Macintosh; Intel Mac OS X 10.7.3) AppleWebKit/534.53.11
     # iTunes/12.0.1 (Macintosh; OS X 10.10) AppleWebKit/0600.1.25
     # iTunes/11.1.5 (Windows; Microsoft Windows 7 x64 Business Edition Service Pack 1 (Build 7601)) AppleWebKit/537.60.15
     # iTunes/12.0.1 (Windows; Microsoft Windows 8 x64 Home Premium Edition (Build 9200)) AppleWebKit/7600.1017.0.24
-    # iTunes/12.0.1 (Macintosh; OS X 10.10.1) AppleWebKit/0600.1.25 
+    # iTunes/12.0.1 (Macintosh; OS X 10.10.1) AppleWebKit/0600.1.25
     class ITunes < Webkit
       def self.extend?(agent)
         agent.detect { |useragent| useragent.product == "iTunes" }
@@ -33,8 +33,12 @@ class UserAgent
         super if webkit
       end
 
+      def desktop?
+        true
+      end
+
       # Parses the operating system in use.
-      # 
+      #
       # @return [String] The operating system
       def os
         full_os = self.full_os
@@ -59,7 +63,7 @@ class UserAgent
       end
 
       # Parses the operating system in use.
-      # 
+      #
       # @return [String] The operating system
       def full_os
         if application && application.comment && application.comment.length > 1

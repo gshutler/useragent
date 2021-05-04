@@ -1,6 +1,8 @@
 class UserAgent
   module Browsers
     class Webkit < Base
+      include DesktopClassifiable
+
       WEBKIT_PRODUCT_REGEXP = /\AAppleWebKit\z/i
       WEBKIT_VERSION_REGEXP = /\A(?<webkit>AppleWebKit)\/(?<version>[\d\.]+)/i
 
