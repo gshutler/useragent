@@ -24,6 +24,8 @@ class UserAgent
     # Podcast/1 CFNetwork/901.1 Darwin/17.6.0
     # Podcast/22 CFNetwork/978.0.7 Darwin/18.6.0
     class ApplePodcasts < Webkit
+      include DesktopClassifiable
+
       APPLE_PODCASTS_REGEX = /\A(
         # ca, da, de, el, en_AU, en_GB, en, es_419, es, fr, id, it, ja, ms, nl, pt_PT, vi, zh_HK, zh_TW
         Podcast(s?)
@@ -56,22 +58,44 @@ class UserAgent
         APPLE_PODCASTS_REGEX.match?(agent.to_s)
       end
 
+      def application
+        detect_product('Darwin')
+      end
+
       def browser
         'Apple Podcasts'
       end
 
-      # This is a mobile app, always return true.
-      #
-      # @return [true]
+      ##
+      # @return [Boolean]
+      #     This is a mobile app when platform is iOS
       def mobile?
-        true
+        platform == 'iOS'
       end
 
-      # Return 'iOS' for the operating system
+      ##
+      # @return [String]
+      #     Macintosh for x86_64, otherwise iOS
+      def platform
+        if application && application.comment && application.comment.any? { |c| /x86_64/.match?(c) }
+          'Macintosh'
+        else
+          'iOS'
+        end
+      end
+
+      ##
+      # The operating system is derived from the Darwin kernel version when present.
       #
-      # @return [String] iOS
+      # @return [String] The operating system
       def os
-        'iOS'
+        return unless application
+
+        if platform == 'iOS'
+          "iOS #{UserAgent::OperatingSystems::Darwin::IOS[application.version.to_s]}"
+        else
+          "macOS #{UserAgent::OperatingSystems::Darwin::MAC_OS[application.version.to_s]}"
+        end
       end
 
       # Gets the application version
