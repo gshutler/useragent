@@ -5,6 +5,7 @@ require 'user_agent/browsers/webkit'
 
 require 'user_agent/browsers/acast'
 require 'user_agent/browsers/airr'
+require 'user_agent/browsers/alexa'
 require 'user_agent/browsers/apple_core_media'
 require 'user_agent/browsers/apple_podcasts'
 require 'user_agent/browsers/apple_watch/base'
@@ -49,6 +50,7 @@ class UserAgent
       GoogleHome,
       Acast,
       Airr,
+      Alexa,
       PocketCasts,
       Stagefright,
       Pandora,
