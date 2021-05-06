@@ -16,8 +16,8 @@ require 'user_agent/browsers/chrome'
 require 'user_agent/browsers/edge'
 require 'user_agent/browsers/facebook'
 require 'user_agent/browsers/gecko'
-require 'user_agent/browsers/google_assistant'
 require 'user_agent/browsers/google_home'
+require 'user_agent/browsers/google_podcasts'
 require 'user_agent/browsers/internet_explorer'
 require 'user_agent/browsers/itunes'
 require 'user_agent/browsers/libavformat'
@@ -47,7 +47,7 @@ class UserAgent
       WechatBrowser,
       Vivaldi,
       Facebook,
-      GoogleAssistant,
+      GooglePodcasts,
       GoogleHome,
       Acast,
       Airr,
