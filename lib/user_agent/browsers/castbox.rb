@@ -27,6 +27,12 @@ class UserAgent
         self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
       end
 
+      ##
+      # @return [True] This is a mobile app
+      def mobile?
+        true
+      end
+
       # Gets the operating system
       #
       # @return [String] the os

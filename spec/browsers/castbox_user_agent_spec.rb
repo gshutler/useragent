@@ -16,6 +16,8 @@ shared_examples_for 'Castbox' do |version, platform, os|
   it "returns '#{os}' as its operating system" do
     expect(useragent.os).to eq(os)
   end
+
+  it { expect(useragent).to be_mobile }
 end
 
 describe "UserAgent: CastBox/4.20 (fm.castbox.audiobook.radio.podcast; build:15; iOS 14.4.0)" do
