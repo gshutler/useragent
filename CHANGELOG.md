@@ -1,3 +1,10 @@
+# 1.1.0
+
+* Add browsers support with Acast, Airr, Alexa (Speaker & App), Amazon Music, Apple HomePod, Sonos, Castbox, iHeartRadio
+* Add `speaker?` and `desktop?`, and update existing browsers to support that
+* Improve Apple Podcasts
+* Rename GoogleAssistant to GooglePodcasts and Improve it
+
 # 1.0.1
 
 * [#22](https://github.com/art19/useragent/pull/22) Add support for Edge on non-Windows OS (thanks @hollandmatt)

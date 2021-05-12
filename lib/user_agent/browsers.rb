@@ -26,6 +26,7 @@ require 'user_agent/browsers/itunes'
 require 'user_agent/browsers/libavformat'
 require 'user_agent/browsers/ok_http'
 require 'user_agent/browsers/opera'
+require 'user_agent/browsers/overcast'
 require 'user_agent/browsers/pandora'
 require 'user_agent/browsers/playstation'
 require 'user_agent/browsers/pocket_casts'
@@ -63,6 +64,7 @@ class UserAgent
       Stagefright,
       Pandora,
       IHeartRadio,
+      Overcast,
       Chrome,
       ITunes,
       PlayStation,
