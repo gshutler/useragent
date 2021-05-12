@@ -16,6 +16,8 @@ shared_examples_for 'HomePod' do |version, os|
   it "returns '#{os}' as its operating system" do
     expect(useragent.os).to eq(os)
   end
+
+  it { expect(useragent).to be_speaker }
 end
 
 describe "UserAgent: AppleCoreMedia/1.0.0.16A5288c (HomePod; U; CPU OS 12_0 like Mac OS X; en_us)" do

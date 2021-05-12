@@ -14,6 +14,12 @@ class UserAgent
       def browser
         'HomePod'
       end
+
+      ##
+      # @return [True] HomePod is a speaker
+      def speaker?
+        true
+      end
     end
   end
 end
