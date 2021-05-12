@@ -48,7 +48,7 @@ class UserAgent
         '20.2.0' => '14.3',
         '20.3.0' => '14.4.x',
         '20.4.0' => '14.5'
-      }
+      }.freeze
 
       # A mapping of Darwin kernel versions to macOS/OS X versions
       MAC_OS = {
@@ -103,7 +103,7 @@ class UserAgent
         '20.2.0' => '11.1',
         '20.3.0' => '11.2',    # also 11.2.x
         '20.4.0' => '11.3'     # also 11.3.1
-      }
+      }.freeze
 
       # A mapping of Darwin kernel versions to watchOS versions
       WATCH_OS = {

@@ -20,6 +20,7 @@ require 'user_agent/browsers/facebook'
 require 'user_agent/browsers/gecko'
 require 'user_agent/browsers/google_home'
 require 'user_agent/browsers/google_podcasts'
+require 'user_agent/browsers/iheart_radio'
 require 'user_agent/browsers/internet_explorer'
 require 'user_agent/browsers/itunes'
 require 'user_agent/browsers/libavformat'
@@ -61,6 +62,7 @@ class UserAgent
       PocketCasts,
       Stagefright,
       Pandora,
+      IHeartRadio,
       Chrome,
       ITunes,
       PlayStation,
