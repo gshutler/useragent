@@ -5,15 +5,17 @@ class UserAgent
     # Shifty Jelly Pocket Casts, Android v4.5.3
     # Shifty Jelly Pocket Casts, iOS v4.3
     # Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Pocket Casts/1.1 Pocket Casts/1.1
+    # Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Pocketcast/2.1.0 Chrome/58.0.3029.110 Molecule/2.1.0 Safari/537.36
+    # Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Pocketcasts/3.0.11 Chrome/58.0.3029.110 Molecule/3.0.11 Safari/537.36
+    # Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) PocketCasts/1.0.0 Chrome/59.0.3071.115 Electron/1.8.3 Safari/537.36
     class PocketCasts < Base
       include DesktopClassifiable
 
       ANDROID_REGEX            = /Android/
       IOS_REGEX                = /iOS/
-      POCKETCASTS_REGEX        = /PocketCasts/
+      POCKETCASTS_REGEX        = /Pocket[Cc]asts?/
       POCKET_CASTS_REGEX       = /Pocket Casts/
       POCKET_CASTS_SLASH_REGEX = /Pocket Casts\//
-      WINDOWS_REGEX            = /Windows/
       WINDOWS_NT_REGEX         = /Windows NT/
 
       def self.extend?(agent)
@@ -26,7 +28,7 @@ class UserAgent
 
       # Gets the right application
       def application
-        detect_product('PocketCasts')
+        detect_product('PocketCasts') || detect_product('Pocketcast')
       end
 
       # Gets the operating system
@@ -34,7 +36,7 @@ class UserAgent
       # @return [String] the os
       def os
         app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
-        return if app.nil?
+        return if app.nil? || app.product == 'PocketCasts'
 
         if WINDOWS_NT_REGEX.match?(app.comment[0])
           OperatingSystems.normalize_os(app.comment[0])
@@ -54,16 +56,20 @@ class UserAgent
         app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
 
         if app
-          return 'Windows'    if WINDOWS_REGEX.match?(app.comment[0])
-          return 'BlackBerry' if app.comment[0] == 'BB10'
-          return 'Android'    if app.comment.any? { |c| ANDROID_REGEX.match?(c) }
+          if /Windows/.match?(app.comment[0])
+            return 'Windows'
+          elsif /Macintosh/.match?(app.comment[0])
+            return 'Macintosh'
+          elsif app.comment.any? { |c| ANDROID_REGEX.match?(c) }
+            return 'Android'
+          end
         end
 
         ua = self.to_s
         if ANDROID_REGEX.match?(ua)
           'Android'
         elsif IOS_REGEX.match?(ua)
-          'iPhone'
+          'iOS'
         end
       end
 
