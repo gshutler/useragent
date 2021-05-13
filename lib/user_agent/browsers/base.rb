@@ -55,7 +55,7 @@ class UserAgent
       def mobile?
         if detect_product('Mobile') || detect_comment('Mobile')
           true
-        elsif os =~ /Android/
+        elsif /(Android|iOS)/.match?(os)
           true
         elsif application && application.detect_comment { |c| c =~ /^IEMobile/ }
           true

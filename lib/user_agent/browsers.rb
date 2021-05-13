@@ -28,6 +28,7 @@ require 'user_agent/browsers/ok_http'
 require 'user_agent/browsers/opera'
 require 'user_agent/browsers/overcast'
 require 'user_agent/browsers/pandora'
+require 'user_agent/browsers/pandora_rss_crawler'
 require 'user_agent/browsers/playstation'
 require 'user_agent/browsers/pocket_casts'
 require 'user_agent/browsers/podcast_addict'
@@ -62,6 +63,7 @@ class UserAgent
       AmazonMusic,
       PocketCasts,
       Stagefright,
+      PandoraRSSCrawler,
       Pandora,
       IHeartRadio,
       Overcast,

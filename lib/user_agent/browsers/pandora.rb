@@ -11,33 +11,65 @@ class UserAgent
 
     # Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) -0 Chrome/69.0.3497.128 Electron/4.1.4 Safari/537.36 PandoraDesktopApp/1.8.4
     # Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.106 Electron/4.0.6 Safari/537.36 PandoraDesktopApp/1.8.2
+    # Pandora Audio/2102.1 (Linux;Android 9.1) ExoPlayerLib/2.9.6
+    # Pandora/1811.1 Android/7.1.1 kelly (ExoPlayerLib1.5.14.1)
+    # Pandora/2107 CFNetwork/1125.2 Darwin/19.4.0
     class Pandora < Webkit
-      include DesktopClassifiable
-
       PANDORA             = 'Pandora'
       PANDORA_APP         = 'PandoraApp'
+      PANDORA_AUDIO_REGEX = /Pandora Audio/
       PANDORA_DESKTOP_APP = 'PandoraDesktopApp'
       PANDORA_PRODUCTS    = [PANDORA, PANDORA_APP, PANDORA_DESKTOP_APP].freeze
 
       def self.extend?(agent)
-        agent.detect { |useragent| PANDORA_PRODUCTS.include?(useragent.product) }
+        agent.detect { |useragent| PANDORA_PRODUCTS.include?(useragent.product) } || PANDORA_AUDIO_REGEX.match?(agent.to_s)
       end
 
       def browser
         PANDORA
       end
 
-      # Gets the application version
-      def version
-        str = if detect_product(PANDORA)
-                pandora.version
-              elsif detect_product(PANDORA_APP)
-                pandoraapp.version
-              elsif detect_product(PANDORA_DESKTOP_APP)
-                pandoradesktopapp.version
-              end
+      ##
+      # @return [String]
+      #     Gets the operating system
+      def os
+        os = super
+        return os unless os.nil?
 
-        Version.new(str)
+        if PANDORA_AUDIO_REGEX.match?(self.to_s) && app = detect_product('Audio')
+          OperatingSystems.normalize_os(app.comment[0]) unless app.comment[0].nil?
+        elsif app = detect_product('Android')
+          "Android #{app.version}"
+        elsif app = detect_product('Darwin')
+          "iOS #{OperatingSystems::Darwin::IOS[app.version.to_s]}"
+        end
+      end
+
+      ##
+      # @return [String]
+      #     Gets the application platform
+      def platform
+        platform = super
+        return platform unless platform.nil? || platform.start_with?('ExoPlayerLib')
+
+        ua = self.to_s
+        if /Android/.match?(ua)
+          'Android'
+        elsif /Darwin/.match?(ua)
+          'iOS'
+        end
+      end
+
+      ##
+      # @return [String]
+      #     Gets the application version
+      def version
+        app = if PANDORA_AUDIO_REGEX.match?(self.to_s)
+                detect_product('Audio')
+              else
+                detect_product(PANDORA) || detect_product(PANDORA_APP) || detect_product(PANDORA_DESKTOP_APP)
+              end
+        app.version if app
       end
     end
   end
