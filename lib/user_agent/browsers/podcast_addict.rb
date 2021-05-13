@@ -5,98 +5,83 @@ class UserAgent
     # Podcast Addict - Mozilla/5.0 (Linux; U; Android 4.2.2; en-us; ALCATEL ONE TOUCH Fierce Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.2 Mobile Safari/534.30
     # Podcast Addict - Mozilla/5.0 (Linux; U; Android 4.2.2; en-ca; ALCATEL ONE TOUCH 6040A Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.2 Mobile Safari/534.30
     # Podcast Addict - Dalvik/2.1.0 (Linux; U; Android M Build/MPZ79M)
+    # Mozilla/5.0 (Linux; Android 10; Lenovo TB-8705F Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/81.0.4044.138 Safari/537.36,PodcastAddict/v5 (+https://podcastaddict.com/; Android podcast app)
+    # PodcastAddict/v2 - Mozilla/5.0 (Linux; U; Android 4.2.2; bg-bg; 6037Y Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.2 Mobile Safari/534.30
+    # PodcastAddict/v2 - Dalvik/2.1.0 (Linux; U; Android 10; I4213 Build/53.1.A.2.2)
     class PodcastAddict < Base
       def self.extend?(agent)
-        agent.length >= 3 && agent[0].product == 'Podcast' && agent[1].product == 'Addict' && agent[2].product == '-'
+        ua = agent.to_s
+        ua.start_with?('Podcast Addict') || /PodcastAddict/.match?(ua)
       end
 
       def browser
         'Podcast Addict'
       end
 
+      # Find the right application
+      def application
+        self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+      end
+
       # If we can figure out the device, return it.
-      # 
+      #
       # @return [nil, String] the device model
       def device
-        return nil unless length >= 4
-        return nil unless self[3].comment.last.include?(' Build/')
+        return if application.nil?
+        return unless application.comment.last.include?(' Build/')
 
-        self[3].comment.last.split(' Build/').first
+        application.comment.last.split(' Build/').first
       end
 
       # If we can figure out the device build, return it.
-      # 
+      #
       # @return [nil, String] the device build
       def device_build
-        return nil unless length >= 4
-        return nil unless self[3].comment.last.include?(' Build/')
+        return if application.nil?
+        return unless application.comment.last.include?(' Build/')
 
-        self[3].comment.last.split(' Build/').last
-      end
-
-      # Returns the localization, if known. We currently only know this for certain devices.
-      # 
-      # @return [nil, String] the localization
-      def localization
-        return nil unless length >= 4
-        return nil unless self[3].comment.last.include?('ALCATEL ')
-        return nil unless self[3].comment.length >= 5
-
-        self[3].comment[3]
+        application.comment.last.split(' Build/').last
       end
 
       # This is a mobile app, always return true.
-      # 
+      #
       # @return [true]
       def mobile?
         true
       end
 
       # Gets the operating system (some variant of Android, if we're certain that is the case)
-      # 
+      #
       # @return [nil, String] the operating system
       def os
-        return nil unless length >= 4
-
-        # comment[0] = 'Linux'
-        # comment[1] = 'U'
-        # comment[2] = 'Android x.y.z' except when there are only 3 tokens, then we don't know the version
-        if (self[3].product == 'Dalvik' || self[3].product == 'Mozilla') && self[3].comment.length > 3
-          self[3].comment[2]
-        elsif (self[3].product == 'Dalvik' || self[3].product == 'Mozilla') && self[3].comment.length == 3
-          'Android'
-        else
-          nil
+        if application && c = application.comment.detect { |c| OperatingSystems::ANDROID_VERSION_REGEX.match?(c) }
+          OperatingSystems.normalize_os(c)
         end
       end
 
-      # Gets the platform (Android, if we're certain)
-      # 
-      # @return [nil, "Android"] the platform
+      ##
+      # @return ["Android"] This is an Android app
       def platform
-        if os.include?('Android')
-          'Android'
-        else
-          nil
-        end
+        'Android'
       end
 
 
       # Get the security level reported
-      # 
+      #
       # @return [:weak, :strong, :none] the security level
       def security
-        return nil unless length >= 4
-        return nil unless self[3].product == 'Dalvik' || self[3].product == 'Mozilla'
+        app = detect_product('Dalvik') || detect_product('Mozilla')
 
-        Security[self[3].comment[1]]
+        Security[app.comment[1]] if app
       end
 
-      # We aren't provided with the version :(
-      #
-      # @return [nil]
+      ##
+      # @return [String]
+      #     The app version if there is one
       def version
-        nil
+        if /PodcastAddict\/v(\d+)/ =~ self.to_s
+          $1
+        end
       end
     end
   end
