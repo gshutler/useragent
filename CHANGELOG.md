@@ -1,7 +1,7 @@
 # 1.1.0
 
 * Add `speaker?` and `desktop?`, and update existing browsers to support that
-* Add browsers support with Acast, Airr, Alexa (Speaker & App), Amazon Music, Apple HomePod, Sonos, Castbox, iHeartRadio, Overcast, Spotify
+* Add browsers support with Acast, Airr, Alexa (Speaker & App), Amazon Music, Apple HomePod, Sonos, Castbox, iHeartRadio, Overcast, Spotify, Stitcher
 * Improve Apple Podcasts, Pocket Casts, Podcast Addict
 * Improve Pandora and support their RSS crawler
 * Rename GoogleAssistant to GooglePodcasts and Improve it

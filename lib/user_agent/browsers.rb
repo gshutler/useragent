@@ -35,6 +35,8 @@ require 'user_agent/browsers/podcast_addict'
 require 'user_agent/browsers/sonos'
 require 'user_agent/browsers/spotify'
 require 'user_agent/browsers/stagefright'
+require 'user_agent/browsers/stitcher'
+require 'user_agent/browsers/stitcher_bot'
 require 'user_agent/browsers/vivaldi'
 require 'user_agent/browsers/wechat_browser'
 require 'user_agent/browsers/windows_media_player'
@@ -49,6 +51,8 @@ class UserAgent
 
     ALL = [
       Edge,
+      StitcherBot,
+      Stitcher,
       InternetExplorer,
       Opera,
       WechatBrowser,
