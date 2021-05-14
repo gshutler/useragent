@@ -8,7 +8,7 @@ class UserAgent
     def desktop?
       return false if mobile?
 
-      %w[Windows Macintosh X11 ChromeOS].include?(platform)
+      %w[Windows Macintosh X11 Linux ChromeOS].include?(platform)
     end
   end
 end

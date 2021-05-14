@@ -33,6 +33,7 @@ require 'user_agent/browsers/playstation'
 require 'user_agent/browsers/pocket_casts'
 require 'user_agent/browsers/podcast_addict'
 require 'user_agent/browsers/sonos'
+require 'user_agent/browsers/spotify'
 require 'user_agent/browsers/stagefright'
 require 'user_agent/browsers/vivaldi'
 require 'user_agent/browsers/wechat_browser'
@@ -63,6 +64,7 @@ class UserAgent
       AmazonMusic,
       PocketCasts,
       PodcastAddict,
+      Spotify,
       Stagefright,
       PandoraRSSCrawler,
       Pandora,
