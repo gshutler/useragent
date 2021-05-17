@@ -34,7 +34,7 @@ class UserAgent
       end
 
       ##
-      # @return [String]
+      # @return [String, nil]
       #     The operating system
       def os
         if app = detect_product('Darwin')
@@ -54,7 +54,7 @@ class UserAgent
       end
 
       ##
-      # @return [String]
+      # @return [String, nil]
       #     The platform
       def platform
         ua = self.to_s

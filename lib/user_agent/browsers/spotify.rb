@@ -27,7 +27,7 @@ class UserAgent
       end
 
       ##
-      # @return [String]
+      # @return [String, nil]
       #     The operating system
       def os
         if app = detect_product('Android')
@@ -44,7 +44,7 @@ class UserAgent
       end
 
       ##
-      # @return [String]
+      # @return [String, nil]
       #     The platform
       def platform
         app     = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first

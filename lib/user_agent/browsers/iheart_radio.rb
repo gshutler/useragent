@@ -26,7 +26,7 @@ class UserAgent
       end
 
       ##
-      # @return [String]
+      # @return [String, nil]
       #     The operating system
       def os
         app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
@@ -48,7 +48,7 @@ class UserAgent
       end
 
       ##
-      # @return [String]
+      # @return [String, nil]
       #     The platform
       def platform
         if detect_product('Darwin')

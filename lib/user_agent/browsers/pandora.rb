@@ -30,7 +30,7 @@ class UserAgent
       end
 
       ##
-      # @return [String]
+      # @return [String, nil]
       #     Gets the operating system
       def os
         os = super
@@ -46,7 +46,7 @@ class UserAgent
       end
 
       ##
-      # @return [String]
+      # @return [String, nil]
       #     Gets the application platform
       def platform
         platform = super

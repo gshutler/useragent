@@ -31,7 +31,7 @@ class UserAgent
 
       # Gets the operating system
       #
-      # @return [String] the os
+      # @return [String, nil] the os
       def os
         if IPAD_IPHONE.include?(platform)
           app = detect_product('Darwin')
@@ -49,7 +49,7 @@ class UserAgent
 
       # Gets the platform
       #
-      # @return [String] the platform
+      # @return [String, nil] the platform
       def platform
         ua = self.to_s
         return 'iPad'      if IPAD_REGEX.match?(ua)

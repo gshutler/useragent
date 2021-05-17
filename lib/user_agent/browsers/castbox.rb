@@ -35,7 +35,7 @@ class UserAgent
 
       # Gets the operating system
       #
-      # @return [String] the os
+      # @return [String, nil] the os
       def os
         if (application && os_string = application.comment.detect { |c| ANDROID_REGEX.match?(c) || IOS_REGEX.match?(c) })
           OperatingSystems.normalize_os(os_string)
@@ -46,7 +46,7 @@ class UserAgent
 
       # Gets the platform
       #
-      # @return [String] the platform
+      # @return [String, nil] the platform
       def platform
         ua = self.to_s
         if ANDROID_REGEX.match?(ua)

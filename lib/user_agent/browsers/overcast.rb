@@ -33,7 +33,7 @@ class UserAgent
       end
 
       ##
-      # @return [String]
+      # @return [String, nil]
       #     The operating system
       def os
         case platform

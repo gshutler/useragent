@@ -26,7 +26,7 @@ class UserAgent
       end
 
       ##
-      # @return [String]
+      # @return [String, nil]
       #     The OS version
       def os
         if application
@@ -42,7 +42,7 @@ class UserAgent
       end
 
       ##
-      # @return [String]
+      # @return [String, nil]
       #     The platform
       def platform
         if application

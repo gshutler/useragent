@@ -87,7 +87,7 @@ class UserAgent
       ##
       # The operating system is derived from the Darwin kernel version when present.
       #
-      # @return [String] The operating system
+      # @return [String, nil] The operating system
       def os
         return unless application
 

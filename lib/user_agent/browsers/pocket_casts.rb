@@ -33,7 +33,7 @@ class UserAgent
 
       # Gets the operating system
       #
-      # @return [String] the os
+      # @return [String, nil] the os
       def os
         app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
         return if app.nil? || app.product == 'PocketCasts'
@@ -51,7 +51,7 @@ class UserAgent
 
       # Gets the platform
       #
-      # @return [String] the platform
+      # @return [String, nil] the platform
       def platform
         app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
 
