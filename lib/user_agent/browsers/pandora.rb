@@ -15,18 +15,26 @@ class UserAgent
     # Pandora/1811.1 Android/7.1.1 kelly (ExoPlayerLib1.5.14.1)
     # Pandora/2107 CFNetwork/1125.2 Darwin/19.4.0
     class Pandora < Webkit
-      ANDROID_REGEX       = /Android/.freeze
-      DARWIN_REGEX        = /Darwin/.freeze
+      AUDIO               = 'Audio'
+      EXO_PLAYER_LIB      = 'ExoPlayerLib'
       PANDORA             = 'Pandora'
       PANDORA_APP         = 'PandoraApp'
       PANDORA_AUDIO_REGEX = /Pandora Audio/.freeze
       PANDORA_DESKTOP_APP = 'PandoraDesktopApp'
       PANDORA_PRODUCTS    = [PANDORA, PANDORA_APP, PANDORA_DESKTOP_APP].freeze
 
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
         agent.detect { |useragent| PANDORA_PRODUCTS.include?(useragent.product) } || PANDORA_AUDIO_REGEX.match?(agent.to_s)
       end
 
+      ##
+      # @return [String]
+      #     The browser name
       def browser
         PANDORA
       end
@@ -38,12 +46,12 @@ class UserAgent
         os = super
         return os unless os.nil?
 
-        if PANDORA_AUDIO_REGEX.match?(self.to_s) && app = detect_product('Audio')
+        if PANDORA_AUDIO_REGEX.match?(self.to_s) && app = detect_product(AUDIO)
           OperatingSystems.normalize_os(app.comment[0]) unless app.comment[0].nil?
-        elsif app = detect_product('Android')
-          "Android #{app.version}"
-        elsif app = detect_product('Darwin')
-          "iOS #{OperatingSystems::Darwin::IOS[app.version.to_s]}"
+        elsif app = detect_product(ANDROID)
+          "#{ANDROID} #{app.version}"
+        elsif app = detect_product(DARWIN)
+          "#{IOS} #{OperatingSystems::Darwin::IOS[app.version.to_s]}"
         end
       end
 
@@ -52,13 +60,13 @@ class UserAgent
       #     Gets the application platform
       def platform
         platform = super
-        return platform unless platform.nil? || platform.start_with?('ExoPlayerLib')
+        return platform unless platform.nil? || platform.start_with?(EXO_PLAYER_LIB)
 
         ua = self.to_s
         if ANDROID_REGEX.match?(ua)
-          'Android'
+          ANDROID
         elsif DARWIN_REGEX.match?(ua)
-          'iOS'
+          IOS
         end
       end
 
@@ -67,7 +75,7 @@ class UserAgent
       #     Gets the application version
       def version
         app = if PANDORA_AUDIO_REGEX.match?(self.to_s)
-                detect_product('Audio')
+                detect_product(AUDIO)
               else
                 detect_product(PANDORA) || detect_product(PANDORA_APP) || detect_product(PANDORA_DESKTOP_APP)
               end

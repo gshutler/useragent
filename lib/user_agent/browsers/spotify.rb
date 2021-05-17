@@ -15,15 +15,9 @@ class UserAgent
     class Spotify < Base
       include DesktopClassifiable
 
-      IPAD_REGEX       = /iPad/.freeze
-      IPHONE_REGEX     = /iPhone/.freeze
-      IPOD_REGEX       = /iPod/.freeze
-      MACINTOSH_REGEX  = /Macintosh/.freeze
-      SPOTIFY          = 'Spotify'
-      SPOTIFY_LITE     = 'Spotify-Lite'
-      WINDOWS_NT_REGEX = /Windows NT/.freeze
-      WINDOWS_REGEX    = /Windows/.freeze
-      X11_REGEX        = /X11/.freeze
+      SPOTIFY      = 'Spotify'
+      SPOTIFY_LITE = 'Spotify-Lite'
+      WIN32        = 'Win32'
 
       def self.extend?(agent)
         agent.detect { |useragent| useragent.product == SPOTIFY || useragent.product == SPOTIFY_LITE }
@@ -37,10 +31,10 @@ class UserAgent
       # @return [String, nil]
       #     The operating system
       def os
-        if app = detect_product('Android')
-          "Android #{OperatingSystems::Android::SDK[app.version.to_s]}"
-        elsif app = detect_product('iOS')
-          "iOS #{app.version.to_s}"
+        if app = detect_product(ANDROID)
+          "#{ANDROID} #{OperatingSystems::Android::SDK[app.version.to_s]}"
+        elsif app = detect_product(IOS)
+          "#{IOS} #{app.version.to_s}"
         elsif app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
           if WINDOWS_NT_REGEX.match?(app.comment[0])
             OperatingSystems.normalize_os(application.comment[0])
@@ -57,26 +51,26 @@ class UserAgent
         app     = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
         comment = app.comment.join unless app.nil? || app.comment.nil?
 
-        if detect_product('Android')
-          'Android'
-        elsif detect_product('OSX') || MACINTOSH_REGEX.match?(comment)
-          'Macintosh'
-        elsif detect_product('Linux')
-          'Linux'
-        elsif detect_product('Win32') || WINDOWS_REGEX.match?(comment)
-          'Windows'
+        if detect_product(ANDROID)
+          ANDROID
+        elsif detect_product(OSX) || MACINTOSH_REGEX.match?(comment)
+          MACINTOSH
+        elsif detect_product(LINUX)
+          LINUX
+        elsif detect_product(WIN32) || WINDOWS_REGEX.match?(comment)
+          WINDOWS
         elsif X11_REGEX.match?(comment)
-          'X11'
-        elsif app = detect_product('iOS')
+          X11
+        elsif app = detect_product(IOS)
           comment = app.comment.join unless app.comment.nil?
           if IPHONE_REGEX.match?(comment)
-            'iPhone'
+            IPHONE
           elsif IPAD_REGEX.match?(comment)
-            'iPad'
+            IPAD
           elsif IPOD_REGEX.match?(comment)
-            'iPod touch'
+            IPOD_TOUCH
           else
-            'iOS'
+            IOS
           end
         end
       end

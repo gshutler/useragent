@@ -9,19 +9,30 @@ class UserAgent
     # PodcastAddict/v2 - Mozilla/5.0 (Linux; U; Android 4.2.2; bg-bg; 6037Y Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.2 Mobile Safari/534.30
     # PodcastAddict/v2 - Dalvik/2.1.0 (Linux; U; Android 10; I4213 Build/53.1.A.2.2)
     class PodcastAddict < Base
+      PODCAST_ADDICT         = 'Podcast Addict'
       PODCAST_ADDICT_REGEX   = /PodcastAddict/.freeze
       PODCAST_ADDICT_V_REGEX = /PodcastAddict\/v(\d+)/.freeze
 
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
         ua = agent.to_s
-        ua.start_with?('Podcast Addict') || /PodcastAddict/.match?(ua)
+        ua.start_with?(PODCAST_ADDICT) || PODCAST_ADDICT_REGEX.match?(ua)
       end
 
+      ##
+      # @return [String]
+      #     The browser name
       def browser
-        'Podcast Addict'
+        PODCAST_ADDICT
       end
 
-      # Find the right application
+      ##
+      # @return [Array]
+      #     Gets the right application
       def application
         self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
       end
@@ -65,7 +76,7 @@ class UserAgent
       ##
       # @return ["Android"] This is an Android app
       def platform
-        'Android'
+        ANDROID
       end
 
 
@@ -73,7 +84,7 @@ class UserAgent
       #
       # @return [:weak, :strong, :none] the security level
       def security
-        app = detect_product('Dalvik') || detect_product('Mozilla')
+        app = detect_product(DALVIK) || detect_product(MOZILLA)
 
         Security[app.comment[1]] if app
       end

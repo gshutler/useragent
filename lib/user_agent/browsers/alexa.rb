@@ -5,17 +5,26 @@ class UserAgent
     # Alexa Mobile Voice/17.8.5 (Linux;Android 11) ExoPlayerLib/2.5.4
     # Alexa Mobile Voice/1.0.0 (Linux;Android 8.1.0) ExoPlayerLib/2.2.0
     class Alexa < Base
+      ALEXA                    = 'Alexa'
       ALEXA_MEDIA_PLAYER       = 'AlexaMediaPlayer'
       ALEXA_MOBILE_VOICE_REGEX = /Alexa Mobile Voice/.freeze
       ALEXA_REGEX              = /AlexaMediaPlayer/.freeze
-      ANDROID_REGEX            = /Android/.freeze
+      VOICE                    = 'Voice'
 
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
         agent.detect { |useragent| ALEXA_REGEX.match?(useragent.product) } || ALEXA_MOBILE_VOICE_REGEX.match?(agent.to_s)
       end
 
+      ##
+      # @return [String]
+      #     The browser name
       def browser
-        'Alexa'
+        ALEXA
       end
 
       # Gets the operating system
@@ -34,7 +43,7 @@ class UserAgent
       #
       # @return [String] the platform
       def platform
-        'Android'
+        ANDROID
       end
 
       ##
@@ -50,7 +59,7 @@ class UserAgent
       def version
         return application.version if application.product == ALEXA_MEDIA_PLAYER
 
-        detect_product('Voice').version
+        detect_product(VOICE).version
       end
     end
   end

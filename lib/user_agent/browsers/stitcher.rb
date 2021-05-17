@@ -14,21 +14,19 @@ class UserAgent
     class Stitcher < Base
       include DesktopClassifiable
 
-      ANDROID_REGEX         = /Android/.freeze
-      IOS_ANDROID_REGEX     = /(iOS|Android)/.freeze
-      IOS_REGEX             = /iOS/.freeze
-      MACINTOSH_REGEX       = /Macintosh/.freeze
+      DEMO                  = 'DEMO'
       MOBILE_REGEX          = /(iOS|Android|Darwin)/.freeze
+      STITCHER              = 'Stitcher'
       STITCHER_DEMO_X_REGEX = /Stitcher\ (Demo|X)/.freeze
       STITCHER_REGEX        = /[Ss]titcher([Xx]|Radio|TV)?/.freeze
-      X86_64_REGEX          = /x86_64/.freeze
+      X                     = 'X'
 
       def self.extend?(agent)
         agent.detect { |useragent| STITCHER_REGEX.match?(useragent.product) } || STITCHER_DEMO_X_REGEX.match?(agent.to_s)
       end
 
       def browser
-        'Stitcher'
+        STITCHER
       end
 
       ##
@@ -43,12 +41,12 @@ class UserAgent
       # @return [String, nil]
       #     The operating system
       def os
-        if app = detect_product('Darwin')
+        if app = detect_product(DARWIN)
           comment = app.comment.join unless app.comment.nil?
           if X86_64_REGEX.match?(comment)
-            "macOS #{OperatingSystems::Darwin::MAC_OS[app.version.to_s]}"
+            "#{MAC_OS} #{OperatingSystems::Darwin::MAC_OS[app.version.to_s]}"
           else
-            "iOS #{OperatingSystems::Darwin::IOS[app.version.to_s]}"
+            "#{IOS} #{OperatingSystems::Darwin::IOS[app.version.to_s]}"
           end
         elsif app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
           if MACINTOSH_REGEX.match?(app.comment[0])
@@ -65,14 +63,14 @@ class UserAgent
       def platform
         ua = self.to_s
         if IOS_REGEX.match?(ua)
-          'iOS'
+          IOS
         elsif ANDROID_REGEX.match?(ua)
-          'Android'
-        elsif app = detect_product('Darwin')
+          ANDROID
+        elsif app = detect_product(DARWIN)
           comment = app.comment.join unless app.comment.nil?
-          X86_64_REGEX.match?(comment) ? 'Macintosh' : 'iOS'
+          X86_64_REGEX.match?(comment) ? MACINTOSH : IOS
         elsif app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
-          'Macintosh' if MACINTOSH_REGEX.match?(app.comment.join)
+          MACINTOSH if MACINTOSH_REGEX.match?(app.comment.join)
         end
       end
 
@@ -80,10 +78,10 @@ class UserAgent
       # @return [String]
       #     The version
       def version
-        if app = detect_product('Demo') || detect_product('X')
+        if app = detect_product(DEMO) || detect_product(X)
           app.version
         elsif app = detect { |product| STITCHER_REGEX.match?(product) }
-          app.version unless IOS_ANDROID_REGEX.match?(app.version.to_s)
+          app.version unless ANDROID_IOS_REGEX.match?(app.version.to_s)
         end
       end
     end

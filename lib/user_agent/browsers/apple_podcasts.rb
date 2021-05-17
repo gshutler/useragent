@@ -26,6 +26,7 @@ class UserAgent
     class ApplePodcasts < Webkit
       include DesktopClassifiable
 
+      APPLE_PODCASTS       = 'Apple Podcasts'
       APPLE_PODCASTS_REGEX = /\A(
         # ca, da, de, el, en_AU, en_GB, en, es_419, es, fr, id, it, ja, ms, nl, pt_PT, vi, zh_HK, zh_TW
         Podcast(s?)
@@ -53,25 +54,35 @@ class UserAgent
         |播客|%E6%92%AD%E5%AE%A2
         )\/.+CFNetwork\/
       /x.freeze
-      X86_64_REGEX = /x86_64/.freeze
 
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
         APPLE_PODCASTS_REGEX.match?(agent.to_s)
       end
 
+      ##
+      # @return [Array]
+      #     Gets the right application
       def application
-        detect_product('Darwin')
+        detect_product(DARWIN)
       end
 
+      ##
+      # @return [String]
+      #     The browser name
       def browser
-        'Apple Podcasts'
+        APPLE_PODCASTS
       end
 
       ##
       # @return [Boolean]
       #     This is a mobile app when platform is iOS
       def mobile?
-        platform == 'iOS'
+        platform == IOS
       end
 
       ##
@@ -79,9 +90,9 @@ class UserAgent
       #     Macintosh for x86_64, otherwise iOS
       def platform
         if application && application.comment && application.comment.any? { |c| X86_64_REGEX.match?(c) }
-          'Macintosh'
+          MACINTOSH
         else
-          'iOS'
+          IOS
         end
       end
 
@@ -92,10 +103,10 @@ class UserAgent
       def os
         return unless application
 
-        if platform == 'iOS'
-          "iOS #{UserAgent::OperatingSystems::Darwin::IOS[application.version.to_s]}"
+        if platform == IOS
+          "#{IOS} #{UserAgent::OperatingSystems::Darwin::IOS[application.version.to_s]}"
         else
-          "macOS #{UserAgent::OperatingSystems::Darwin::MAC_OS[application.version.to_s]}"
+          "#{MAC_OS} #{UserAgent::OperatingSystems::Darwin::MAC_OS[application.version.to_s]}"
         end
       end
 

@@ -3,7 +3,36 @@ class UserAgent
     class Base < Array
       include Comparable
 
+      ANDROID     = 'Android'
+      APPLE_WATCH = 'Apple Watch'
+      DALVIK      = 'Dalvik'
+      DARWIN      = 'Darwin'
+      IOS         = 'iOS'
+      IPAD        = 'iPad'
+      IPHONE      = 'iPhone'
+      IPODTOUCH   = 'iPod_touch'
+      IPOD_TOUCH  = 'iPod touch'
+      MACINTOSH   = 'Macintosh'
+      MAC_OS      = 'macOS'
+      MOZILLA     = 'Mozilla'
+      LINUX       = 'Linux'
+      OSX         = 'OSX'
+      WINDOWS     = 'Windows'
+      X11         = 'X11'
+
       ANDROID_IOS_REGEX = /(Android|iOS)/.freeze
+      ANDROID_REGEX     = /[Aa]ndroid/.freeze
+      APPLE_WATCH_REGEX = /Apple Watch/.freeze
+      DARWIN_REGEX      = /Darwin/.freeze
+      IOS_REGEX         = /iOS/.freeze
+      IPAD_REGEX        = /iPad/.freeze
+      IPHONE_REGEX      = /iPhone/.freeze
+      IPOD_REGEX        = /iPod/.freeze
+      MACINTOSH_REGEX   = /Macintosh/.freeze
+      WINDOWS_NT_REGEX  = /Windows NT/.freeze
+      WINDOWS_REGEX     = /Windows/.freeze
+      X11_REGEX         = /X11/.freeze
+      X86_64_REGEX      = /x86_64/.freeze
 
       def <=>(other)
         if respond_to?(:browser) && other.respond_to?(:browser) &&

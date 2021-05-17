@@ -4,7 +4,7 @@ class UserAgent
     ##
     # @return [Boolean]
     #     False if it's a mobile
-    #     Or check if it's a Windows, Macintosh or X11
+    #     Or check if it's a Windows, Macintosh, X11, Linux or ChromeOS
     def desktop?
       return false if mobile?
 

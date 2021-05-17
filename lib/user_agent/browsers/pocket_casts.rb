@@ -11,26 +11,35 @@ class UserAgent
     class PocketCasts < Base
       include DesktopClassifiable
 
-      ANDROID_REGEX            = /Android/.freeze
-      IOS_REGEX                = /iOS/.freeze
-      MACINTOSH_REGEX          = /Macintosh/.freeze
+      CASTS                    = 'Casts'
+      POCKETCAST               = 'Pocketcast'
+      POCKETCASTS              = 'PocketCasts'
       POCKETCASTS_REGEX        = /Pocket[Cc]asts?/.freeze
+      POCKET_CASTS             = 'Pocket Casts'
       POCKET_CASTS_REGEX       = /Pocket Casts/.freeze
       POCKET_CASTS_SLASH_REGEX = /Pocket Casts\//.freeze
-      WINDOWS_REGEX            = /Windows/.freeze
-      WINDOWS_NT_REGEX         = /Windows NT/.freeze
 
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
         agent.detect { |useragent| POCKETCASTS_REGEX.match?(useragent.product) } || POCKET_CASTS_REGEX.match?(agent.to_s)
       end
 
+      ##
+      # @return [String]
+      #     The browser name
       def browser
-        'Pocket Casts'
+        POCKET_CASTS
       end
 
-      # Gets the right application
+      ##
+      # @return [Array]
+      #     Gets the right application
       def application
-        detect_product('PocketCasts') || detect_product('Pocketcast')
+        detect_product(POCKETCASTS) || detect_product(POCKETCAST)
       end
 
       # Gets the operating system
@@ -38,7 +47,7 @@ class UserAgent
       # @return [String, nil] the os
       def os
         app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
-        return if app.nil? || app.product == 'PocketCasts'
+        return if app.nil? || app.product == POCKETCASTS
 
         if WINDOWS_NT_REGEX.match?(app.comment[0])
           OperatingSystems.normalize_os(app.comment[0])
@@ -59,19 +68,19 @@ class UserAgent
 
         if app
           if WINDOWS_REGEX.match?(app.comment[0])
-            return 'Windows'
+            return WINDOWS
           elsif MACINTOSH_REGEX.match?(app.comment[0])
-            return 'Macintosh'
+            return MACINTOSH
           elsif app.comment.any? { |c| ANDROID_REGEX.match?(c) }
-            return 'Android'
+            return ANDROID
           end
         end
 
         ua = self.to_s
         if ANDROID_REGEX.match?(ua)
-          'Android'
+          ANDROID
         elsif IOS_REGEX.match?(ua)
-          'iOS'
+          IOS
         end
       end
 
@@ -90,7 +99,7 @@ class UserAgent
         elsif pos = ua =~ IOS_REGEX
           normalize_version(ua[pos..-1].split[1])
         elsif POCKET_CASTS_SLASH_REGEX.match?(ua)
-          normalize_version(detect_product('Casts').version)
+          normalize_version(detect_product(CASTS).version)
         end
       end
 

@@ -3,21 +3,30 @@ class UserAgent
     # Airr/3916 CFNetwork/1202 Darwin/20.1.0
     # Airr/3186 CFNetwork/1128.0.1 Darwin/19.6.0
     class Airr < Base
+      AIRR       = 'Airr'
       AIRR_REGEX = /Airr/.freeze
-      DARWIN     = 'Darwin'
-      IOS        = 'iOS'
 
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
         agent.detect { |useragent| AIRR_REGEX.match?(useragent.product) }
       end
 
+      ##
+      # @return [String]
+      #     The browser name
       def browser
-        'Airr'
+        AIRR
       end
 
-      # Gets the right application
+      ##
+      # @return [Array]
+      #     Gets the right application
       def application
-        detect_product('Airr')
+        detect_product(AIRR)
       end
 
       ##
@@ -42,7 +51,7 @@ class UserAgent
       ##
       # @return [String] This is an iPhone only app
       def platform
-        'iPhone'
+        IPHONE
       end
     end
   end

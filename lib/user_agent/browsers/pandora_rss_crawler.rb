@@ -4,14 +4,23 @@ class UserAgent
   module Browsers
     # PandoraRSSCrawler/1.0 (podcastpartnerships@pandora.com)
     class PandoraRSSCrawler < Base
+      PANDORA             = 'Pandora'
       PANDORA_RSS_CRAWLER = 'PandoraRSSCrawler'
 
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
         agent.detect { |useragent| useragent.product == PANDORA_RSS_CRAWLER }
       end
 
+      ##
+      # @return [String]
+      #     The browser name
       def browser
-        'Pandora'
+        PANDORA
       end
 
       ##

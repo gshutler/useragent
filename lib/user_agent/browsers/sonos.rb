@@ -9,10 +9,18 @@ class UserAgent
     class Sonos < Base
       SONOS = 'Sonos'
 
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
         agent.detect { |useragent| useragent.product == SONOS }
       end
 
+      ##
+      # @return [String]
+      #     The browser name
       def browser
         SONOS
       end

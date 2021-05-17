@@ -8,18 +8,24 @@ class UserAgent
     # GooglePodcasts/2.0.10 iPhone/12.1 hw/iPhone11_2
     # GooglePodcasts/2.0.9 iPod_touch/14.4.1 hw/iPod9_1
     class GooglePodcasts < Webkit
-      ANDROID_REGEX   = /Android/.freeze
-      GOOGLE_PODCASTS = 'GooglePodcasts'
+      GOOGLE_PODCASTS = 'Google Podcasts'
+      GOOGLEPODCASTS  = 'GooglePodcasts'
       GSA             = 'GSA'
-      IPAD_REGEX      = /iPad/.freeze
-      IPHONE_REGEX    = /iPhone/.freeze
 
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product == GSA || useragent.product == GOOGLE_PODCASTS }
+        agent.detect { |useragent| useragent.product == GSA || useragent.product == GOOGLEPODCASTS }
       end
 
+      ##
+      # @return [String]
+      #     The browser name
       def browser
-        'Google Podcasts' # Google wants their agent to be reported as "Google Podcasts"
+        GOOGLE_PODCASTS # Google wants their agent to be reported as "Google Podcasts"
       end
 
       ##
@@ -39,8 +45,8 @@ class UserAgent
             OperatingSystems.normalize_os(application.comment[1])
           end
         else
-          app = detect_product('iPhone') || detect_product('iPad') || detect_product('iPod_touch')
-          "iOS #{app.version}" if app && app.version
+          app = detect_product(IPHONE) || detect_product(IPAD) || detect_product(IPODTOUCH)
+          "#{IOS} #{app.version}" if app && app.version
         end
       end
 
@@ -50,26 +56,26 @@ class UserAgent
       def platform
         if application
           if application.comment.any? { |c| IPHONE_REGEX.match?(c) }
-            'iPhone'
+            IPHONE
           elsif application.comment.any? { |c| IPAD_REGEX.match?(c) }
-            'iPad'
+            IPAD
           elsif application.comment.any? { |c| ANDROID_REGEX.match?(c) }
-            'Android'
+            ANDROID
           end
         else
-          if detect_product('iPhone')
-            'iPhone'
-          elsif detect_product('iPad')
-            'iPad'
-          elsif detect_product('iPod_touch')
-            'iPod touch'
+          if detect_product(IPHONE)
+            IPHONE
+          elsif detect_product(IPAD)
+            IPAD
+          elsif detect_product(IPODTOUCH)
+            IPOD_TOUCH
           end
         end
       end
 
       # Gets the application version
       def version
-        app = detect_product(GSA) || detect_product(GOOGLE_PODCASTS)
+        app = detect_product(GSA) || detect_product(GOOGLEPODCASTS)
         app.version
       end
     end

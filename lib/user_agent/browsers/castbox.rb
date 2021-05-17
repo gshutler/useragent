@@ -8,21 +8,31 @@ class UserAgent
     # CastBox/5.10.4-200119035.r517c146 (Linux;Android 9.0)
     # CastBox/7.12.1-180306067 (Linux;Android 9) ExoPlayerLib/2.4.0
     class Castbox < Base
-      ANDROID_REGEX     = /Android/.freeze
+      CASTBOX           = 'Castbox'
       CASTBOX_REGEX     = /Cast[Bb]ox/.freeze
-      IOS_REGEX         = /iOS/.freeze
+      CAST_BOX          = 'CastBox'
       IOS_VERSION_REGEX = /iOS ([\d\.]+)/.freeze
       VERSION_REGEX     = /\d+\./.freeze
 
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
         agent.detect { |useragent| CASTBOX_REGEX.match?(useragent.product) }
       end
 
+      ##
+      # @return [String]
+      #     The browser name
       def browser
-        'Castbox'
+        CASTBOX
       end
 
-      # Gets the right application
+      ##
+      # @return [Array]
+      #     Gets the right application
       def application
         self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
       end
@@ -40,7 +50,7 @@ class UserAgent
         if (application && os_string = application.comment.detect { |c| ANDROID_REGEX.match?(c) || IOS_REGEX.match?(c) })
           OperatingSystems.normalize_os(os_string)
         elsif (self.to_s =~ IOS_VERSION_REGEX)
-          "iOS #{$1}"
+          "#{IOS} #{$1}"
         end
       end
 
@@ -50,9 +60,9 @@ class UserAgent
       def platform
         ua = self.to_s
         if ANDROID_REGEX.match?(ua)
-          'Android'
+          ANDROID
         elsif IOS_REGEX.match?(ua)
-          'iOS'
+          IOS
         end
       end
 
@@ -63,7 +73,7 @@ class UserAgent
         if application
           VERSION_REGEX.match(application.version) ? application.version : application.comment.join
         else
-          detect_product('CastBox').version
+          detect_product(CAST_BOX).version
         end
       end
     end

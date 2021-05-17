@@ -6,19 +6,24 @@ class UserAgent
     # AmazonMusic/1.0 x86_64 CFNetwork/1121.2.1 Darwin/19.6.0
     # AmazonMusic/16.17.1 Dalvik/2.1.0 (Linux; U; Android 7.0; LGL83BL Build/NRD90U)
     class AmazonMusic < Base
+      AMAZON_MUSIC       = 'Amazon Music'
       AMAZON_MUSIC_REGEX = /AmazonMusic/.freeze
-      ANDROID_REGEX      = /Android/.freeze
-      DARWIN_REGEX       = /Darwin/.freeze
       IPAD_IPHONE        = %w[iPad iPhone].freeze
-      IPAD_REGEX         = /iPad/.freeze
-      IPHONE_REGEX       = /iPhone/.freeze
 
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
         agent.detect { |useragent| AMAZON_MUSIC_REGEX.match?(useragent.product) }
       end
 
+      ##
+      # @return [String]
+      #     The browser name
       def browser
-        'Amazon Music'
+        AMAZON_MUSIC
       end
 
       ##
@@ -34,11 +39,11 @@ class UserAgent
       # @return [String, nil] the os
       def os
         if IPAD_IPHONE.include?(platform)
-          app = detect_product('Darwin')
-          "iOS #{UserAgent::OperatingSystems::Darwin::IOS[app.version.to_s]}" if app
-        elsif platform == 'Macintosh'
-          app = detect_product('Darwin')
-          "macOS #{UserAgent::OperatingSystems::Darwin::MAC_OS[app.version.to_s]}" if app
+          app = detect_product(DARWIN)
+          "#{IOS} #{UserAgent::OperatingSystems::Darwin::IOS[app.version.to_s]}" if app
+        elsif platform == MACINTOSH
+          app = detect_product(DARWIN)
+          "#{MAC_OS} #{UserAgent::OperatingSystems::Darwin::MAC_OS[app.version.to_s]}" if app
         else
           app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
           if (os_string = app.comment.detect { |c| ANDROID_REGEX.match?(c) })
@@ -52,12 +57,12 @@ class UserAgent
       # @return [String, nil] the platform
       def platform
         ua = self.to_s
-        return 'iPad'      if IPAD_REGEX.match?(ua)
-        return 'iPhone'    if IPHONE_REGEX.match?(ua)
-        return 'Macintosh' if DARWIN_REGEX.match?(ua)
+        return IPAD      if IPAD_REGEX.match?(ua)
+        return IPHONE    if IPHONE_REGEX.match?(ua)
+        return MACINTOSH if DARWIN_REGEX.match?(ua)
 
         app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
-        'Android' if app && app.comment.any? { |c| ANDROID_REGEX.match?(c) }
+        ANDROID if app && app.comment.any? { |c| ANDROID_REGEX.match?(c) }
       end
     end
   end

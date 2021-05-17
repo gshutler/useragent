@@ -11,14 +11,23 @@ class UserAgent
     # iHeartRadio/1.0.0 (Android 10; SM-A505FN Build/QP1A.190711.020)
     # iHeartRadio/10.2.0 (Android 6.0.1; Nexus 7 Build/MMB30S)
     class IHeartRadio < Base
-      SDK_REGEX = /[Ss]dk (\d+)/.freeze
+      IHEARTRADIO = 'iHeartRadio'
+      SDK_REGEX   = /[Ss]dk (\d+)/.freeze
 
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product == 'iHeartRadio' }
+        agent.detect { |useragent| useragent.product == IHEARTRADIO }
       end
 
+      ##
+      # @return [String]
+      #     The browser name
       def browser
-        'iHeartRadio'
+        IHEARTRADIO
       end
 
       ##
@@ -34,15 +43,15 @@ class UserAgent
         app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
 
         case platform
-        when 'iOS'
-          version = OperatingSystems::Darwin::IOS[detect_product('Darwin').version.to_s]
-          ['iOS', version].compact.join(' ')
-        when 'iPhone', 'iPad', 'iPod touch'
+        when IOS
+          version = OperatingSystems::Darwin::IOS[detect_product(DARWIN).version.to_s]
+          [IOS, version].compact.join(' ')
+        when IPHONE, IPAD, IPOD_TOUCH
           OperatingSystems.normalize_os(app.comment[1])
-        when 'Android'
+        when ANDROID
           version = app.comment[0]
           if version =~ SDK_REGEX
-            "Android #{OperatingSystems::Android::SDK[$1]}"
+            "#{ANDROID} #{OperatingSystems::Android::SDK[$1]}"
           else
             OperatingSystems.normalize_os(app.comment[0])
           end
@@ -53,16 +62,16 @@ class UserAgent
       # @return [String, nil]
       #     The platform
       def platform
-        if detect_product('Darwin')
-          'iOS'
-        elsif detect_comment('iPhone')
-          'iPhone'
-        elsif detect_comment('iPad')
-          'iPad'
-        elsif detect_comment('iPod touch')
-          'iPod touch'
-        elsif detect_comment_match(/Android/)
-          'Android'
+        if detect_product(DARWIN)
+          IOS
+        elsif detect_comment(IPHONE)
+          IPHONE
+        elsif detect_comment(IPAD)
+          IPAD
+        elsif detect_comment(IPOD_TOUCH)
+          IPOD_TOUCH
+        elsif detect_comment_match(ANDROID_REGEX)
+          ANDROID
         end
       end
     end

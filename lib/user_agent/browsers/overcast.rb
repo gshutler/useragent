@@ -7,15 +7,23 @@ class UserAgent
     # Overcast/857 CFNetwork/1209 Darwin/20.3.0
     # Overcast/1.0 Podcast Sync (+http://overcast.fm/)
     class Overcast < Base
-      APPLE_WATCH_REGEX  = /Apple Watch/.freeze
+      OVERCAST           = 'Overcast'
       PODCAST_SYNC_REGEX = /Podcast Sync/.freeze
 
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product == 'Overcast' }
+        agent.detect { |useragent| useragent.product == OVERCAST }
       end
 
+      ##
+      # @return [String]
+      #     The browser name
       def browser
-        'Overcast'
+        OVERCAST
       end
 
       ##
@@ -37,11 +45,11 @@ class UserAgent
       #     The operating system
       def os
         case platform
-        when 'iOS'
-          darwin = detect_product('Darwin')
+        when IOS
+          darwin = detect_product(DARWIN)
           return if darwin.nil?
           version = OperatingSystems::Darwin::IOS[darwin.version.to_s]
-          ['iOS', version].compact.join(' ')
+          [IOS, version].compact.join(' ')
         # Improve when we have more samples
         # when 'Apple Watch'
         end
@@ -54,9 +62,9 @@ class UserAgent
         return if bot?
 
         if APPLE_WATCH_REGEX.match?(self.to_s)
-          'Apple Watch'
+          APPLE_WATCH
         else
-          'iOS'
+          IOS
         end
       end
     end
