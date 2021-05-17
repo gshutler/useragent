@@ -1,6 +1,6 @@
 require 'user_agent'
 
-shared_examples 'Pocket Casts' do |version, platform, os, desktop|
+shared_examples 'Pocket Casts' do |version, platform, os, type|
   it "returns 'Pocket Casts' as its browser" do
     expect(useragent.browser).to eq('Pocket Casts')
   end
@@ -17,53 +17,53 @@ shared_examples 'Pocket Casts' do |version, platform, os, desktop|
     expect(useragent.os).to eql(os)
   end
 
-  it { expect(useragent.desktop?).to eql(desktop) }
+  it { expect(useragent.desktop?).to eql(type == :desktop) }
 end
 
 describe "UserAgent: Pocket Casts BMID/E678F58F21" do
   let!(:useragent) { UserAgent.parse("Pocket Casts BMID/E678F58F21") }
 
-  it_behaves_like 'Pocket Casts', nil, nil, nil, false
+  it_behaves_like 'Pocket Casts', nil, nil, nil, nil
 end
 
 describe "UserAgent: PocketCasts/1.0 (Pocket Casts Feed Parser; +http://pocketcasts.com/)" do
   let!(:useragent) { UserAgent.parse("PocketCasts/1.0 (Pocket Casts Feed Parser; +http://pocketcasts.com/)") }
 
-  it_behaves_like 'Pocket Casts', '1.0', nil, nil, false
+  it_behaves_like 'Pocket Casts', '1.0', nil, nil, nil
 end
 
 describe "UserAgent: Shifty Jelly Pocket Casts, Android v4.5.3" do
   let!(:useragent) { UserAgent.parse("Shifty Jelly Pocket Casts, Android v4.5.3") }
 
-  it_behaves_like 'Pocket Casts', '4.5.3', 'Android', nil, false
+  it_behaves_like 'Pocket Casts', '4.5.3', 'Android', nil, nil
 end
 
 describe "UserAgent: Shifty Jelly Pocket Casts, iOS v4.3" do
   let!(:useragent) { UserAgent.parse("Shifty Jelly Pocket Casts, iOS v4.3") }
 
-  it_behaves_like 'Pocket Casts', '4.3', 'iOS', nil, false
+  it_behaves_like 'Pocket Casts', '4.3', 'iOS', nil, nil
 end
 
 describe "UserAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Pocket Casts/1.1 Pocket Casts/1.1" do
   let!(:useragent) { UserAgent.parse("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Pocket Casts/1.1 Pocket Casts/1.1") }
 
-  it_behaves_like 'Pocket Casts', '1.1', 'Windows', 'Windows 10', true
+  it_behaves_like 'Pocket Casts', '1.1', 'Windows', 'Windows 10', :desktop
 end
 
 describe "UserAgent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Pocketcast/2.1.0 Chrome/58.0.3029.110 Molecule/2.1.0 Safari/537.36" do
   let!(:useragent) { UserAgent.parse("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Pocketcast/2.1.0 Chrome/58.0.3029.110 Molecule/2.1.0 Safari/537.36") }
 
-  it_behaves_like 'Pocket Casts', '2.1.0', 'Macintosh', 'OS X 10.14.4', true
+  it_behaves_like 'Pocket Casts', '2.1.0', 'Macintosh', 'OS X 10.14.4', :desktop
 end
 
 describe "UserAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Pocketcasts/3.0.11 Chrome/58.0.3029.110 Molecule/3.0.11 Safari/537.36" do
   let!(:useragent) { UserAgent.parse("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Pocketcasts/3.0.11 Chrome/58.0.3029.110 Molecule/3.0.11 Safari/537.36") }
 
-  it_behaves_like 'Pocket Casts', '3.0.11', 'Windows', 'Windows 10', true
+  it_behaves_like 'Pocket Casts', '3.0.11', 'Windows', 'Windows 10', :desktop
 end
 
 describe "UserAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) PocketCasts/1.0.0 Chrome/59.0.3071.115 Electron/1.8.3 Safari/537.36" do
   let!(:useragent) { UserAgent.parse("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) PocketCasts/1.0.0 Chrome/59.0.3071.115 Electron/1.8.3 Safari/537.36") }
 
-  it_behaves_like 'Pocket Casts', '1.0.0', 'Windows', 'Windows 10', true
+  it_behaves_like 'Pocket Casts', '1.0.0', 'Windows', 'Windows 10', :desktop
 end

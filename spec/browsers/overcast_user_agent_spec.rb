@@ -1,6 +1,6 @@
 require 'user_agent'
 
-shared_examples_for 'Overcast' do |version, platform, os, mobile = true|
+shared_examples_for 'Overcast' do |version, platform, os, type|
   it "returns 'Overcast' as its browser" do
     expect(useragent.browser).to eq('Overcast')
   end
@@ -17,9 +17,9 @@ shared_examples_for 'Overcast' do |version, platform, os, mobile = true|
     expect(useragent.os).to eq(os)
   end
 
-  if mobile
+  if type == :mobile
     it { expect(useragent).to be_mobile }
-  else
+  elsif type == :bot
     it { expect(useragent).to be_bot }
   end
 end
@@ -27,23 +27,23 @@ end
 describe "UserAgent: Overcast/3.0 (+http://overcast.fm/; iOS podcast app) BMID/E6793162B9" do
   let!(:useragent) { UserAgent.parse("Overcast/3.0 (+http://overcast.fm/; iOS podcast app) BMID/E6793162B9") }
 
-  it_should_behave_like 'Overcast', '3.0', 'iOS', nil
+  it_should_behave_like 'Overcast', '3.0', 'iOS', nil, :mobile
 end
 
 describe "UserAgent: Overcast (+http://overcast.fm/; Apple Watch podcast app)" do
   let!(:useragent) { UserAgent.parse("Overcast (+http://overcast.fm/; Apple Watch podcast app)") }
 
-  it_should_behave_like 'Overcast', '', 'Apple Watch', nil
+  it_should_behave_like 'Overcast', '', 'Apple Watch', nil, :mobile
 end
 
 describe "UserAgent: Overcast/857 CFNetwork/1209 Darwin/20.3.0" do
   let!(:useragent) { UserAgent.parse("Overcast/857 CFNetwork/1209 Darwin/20.3.0") }
 
-  it_should_behave_like 'Overcast', '857', 'iOS', 'iOS 14.4.x'
+  it_should_behave_like 'Overcast', '857', 'iOS', 'iOS 14.4.x', :mobile
 end
 
 describe "UserAgent: Overcast/1.0 Podcast Sync (+http://overcast.fm/)" do
   let!(:useragent) { UserAgent.parse("Overcast/1.0 Podcast Sync (+http://overcast.fm/)") }
 
-  it_should_behave_like 'Overcast', '1.0', nil, nil, false
+  it_should_behave_like 'Overcast', '1.0', nil, nil, :bot
 end
