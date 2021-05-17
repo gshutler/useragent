@@ -8,8 +8,11 @@ class UserAgent
     # GooglePodcasts/2.0.10 iPhone/12.1 hw/iPhone11_2
     # GooglePodcasts/2.0.9 iPod_touch/14.4.1 hw/iPod9_1
     class GooglePodcasts < Webkit
+      ANDROID_REGEX   = /Android/.freeze
       GOOGLE_PODCASTS = 'GooglePodcasts'
       GSA             = 'GSA'
+      IPAD_REGEX      = /iPad/.freeze
+      IPHONE_REGEX    = /iPhone/.freeze
 
       def self.extend?(agent)
         agent.detect { |useragent| useragent.product == GSA || useragent.product == GOOGLE_PODCASTS }
@@ -32,7 +35,7 @@ class UserAgent
         if application
           if application.comment[2].nil?
             OperatingSystems.normalize_os(application.comment[1])
-          elsif /Android/.match?(application.comment[1])
+          elsif ANDROID_REGEX.match?(application.comment[1])
             OperatingSystems.normalize_os(application.comment[1])
           end
         else
@@ -46,11 +49,11 @@ class UserAgent
       #     The platform
       def platform
         if application
-          if application.comment.any? { |c| /iPhone/.match?(c) }
+          if application.comment.any? { |c| IPHONE_REGEX.match?(c) }
             'iPhone'
-          elsif application.comment.any? { |c| /iPad/.match?(c) }
+          elsif application.comment.any? { |c| IPAD_REGEX.match?(c) }
             'iPad'
-          elsif application.comment.any? { |c| /Android/.match?(c) }
+          elsif application.comment.any? { |c| ANDROID_REGEX.match?(c) }
             'Android'
           end
         else

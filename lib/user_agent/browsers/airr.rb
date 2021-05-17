@@ -3,7 +3,7 @@ class UserAgent
     # Airr/3916 CFNetwork/1202 Darwin/20.1.0
     # Airr/3186 CFNetwork/1128.0.1 Darwin/19.6.0
     class Airr < Base
-      AIRR_REGEX = /Airr/
+      AIRR_REGEX = /Airr/.freeze
       DARWIN     = 'Darwin'
       IOS        = 'iOS'
 

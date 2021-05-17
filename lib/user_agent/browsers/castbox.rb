@@ -8,11 +8,11 @@ class UserAgent
     # CastBox/5.10.4-200119035.r517c146 (Linux;Android 9.0)
     # CastBox/7.12.1-180306067 (Linux;Android 9) ExoPlayerLib/2.4.0
     class Castbox < Base
-      ANDROID_REGEX     = /Android/
-      CASTBOX_REGEX     = /Cast[Bb]ox/
-      IOS_REGEX         = /iOS/
-      IOS_VERSION_REGEX = /iOS ([\d\.]+)/
-      VERSION_REGEX     = /\d+\./
+      ANDROID_REGEX     = /Android/.freeze
+      CASTBOX_REGEX     = /Cast[Bb]ox/.freeze
+      IOS_REGEX         = /iOS/.freeze
+      IOS_VERSION_REGEX = /iOS ([\d\.]+)/.freeze
+      VERSION_REGEX     = /\d+\./.freeze
 
       def self.extend?(agent)
         agent.detect { |useragent| CASTBOX_REGEX.match?(useragent.product) }

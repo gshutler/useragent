@@ -15,9 +15,11 @@ class UserAgent
     # Pandora/1811.1 Android/7.1.1 kelly (ExoPlayerLib1.5.14.1)
     # Pandora/2107 CFNetwork/1125.2 Darwin/19.4.0
     class Pandora < Webkit
+      ANDROID_REGEX       = /Android/.freeze
+      DARWIN_REGEX        = /Darwin/.freeze
       PANDORA             = 'Pandora'
       PANDORA_APP         = 'PandoraApp'
-      PANDORA_AUDIO_REGEX = /Pandora Audio/
+      PANDORA_AUDIO_REGEX = /Pandora Audio/.freeze
       PANDORA_DESKTOP_APP = 'PandoraDesktopApp'
       PANDORA_PRODUCTS    = [PANDORA, PANDORA_APP, PANDORA_DESKTOP_APP].freeze
 
@@ -53,9 +55,9 @@ class UserAgent
         return platform unless platform.nil? || platform.start_with?('ExoPlayerLib')
 
         ua = self.to_s
-        if /Android/.match?(ua)
+        if ANDROID_REGEX.match?(ua)
           'Android'
-        elsif /Darwin/.match?(ua)
+        elsif DARWIN_REGEX.match?(ua)
           'iOS'
         end
       end

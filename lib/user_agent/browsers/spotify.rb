@@ -15,8 +15,15 @@ class UserAgent
     class Spotify < Base
       include DesktopClassifiable
 
-      SPOTIFY      = 'Spotify'
-      SPOTIFY_LITE = 'Spotify-Lite'
+      IPAD_REGEX       = /iPad/.freeze
+      IPHONE_REGEX     = /iPhone/.freeze
+      IPOD_REGEX       = /iPod/.freeze
+      MACINTOSH_REGEX  = /Macintosh/.freeze
+      SPOTIFY          = 'Spotify'
+      SPOTIFY_LITE     = 'Spotify-Lite'
+      WINDOWS_NT_REGEX = /Windows NT/.freeze
+      WINDOWS_REGEX    = /Windows/.freeze
+      X11_REGEX        = /X11/.freeze
 
       def self.extend?(agent)
         agent.detect { |useragent| useragent.product == SPOTIFY || useragent.product == SPOTIFY_LITE }
@@ -35,7 +42,7 @@ class UserAgent
         elsif app = detect_product('iOS')
           "iOS #{app.version.to_s}"
         elsif app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
-          if /Windows NT/.match?(app.comment[0])
+          if WINDOWS_NT_REGEX.match?(app.comment[0])
             OperatingSystems.normalize_os(application.comment[0])
           elsif !app.comment[1].nil?
             OperatingSystems.normalize_os(application.comment[1])
@@ -52,21 +59,21 @@ class UserAgent
 
         if detect_product('Android')
           'Android'
-        elsif detect_product('OSX') || /Macintosh/.match?(comment)
+        elsif detect_product('OSX') || MACINTOSH_REGEX.match?(comment)
           'Macintosh'
         elsif detect_product('Linux')
           'Linux'
-        elsif detect_product('Win32') || /Windows/.match?(comment)
+        elsif detect_product('Win32') || WINDOWS_REGEX.match?(comment)
           'Windows'
-        elsif /X11/.match?(comment)
+        elsif X11_REGEX.match?(comment)
           'X11'
         elsif app = detect_product('iOS')
           comment = app.comment.join unless app.comment.nil?
-          if /iPhone/.match?(comment)
+          if IPHONE_REGEX.match?(comment)
             'iPhone'
-          elsif /iPad/.match?(comment)
+          elsif IPAD_REGEX.match?(comment)
             'iPad'
-          elsif /iPod/.match?(comment)
+          elsif IPOD_REGEX.match?(comment)
             'iPod touch'
           else
             'iOS'

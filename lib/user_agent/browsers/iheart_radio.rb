@@ -11,6 +11,8 @@ class UserAgent
     # iHeartRadio/1.0.0 (Android 10; SM-A505FN Build/QP1A.190711.020)
     # iHeartRadio/10.2.0 (Android 6.0.1; Nexus 7 Build/MMB30S)
     class IHeartRadio < Base
+      SDK_REGEX = /[Ss]dk (\d+)/.freeze
+
       def self.extend?(agent)
         agent.detect { |useragent| useragent.product == 'iHeartRadio' }
       end
@@ -39,7 +41,7 @@ class UserAgent
           OperatingSystems.normalize_os(app.comment[1])
         when 'Android'
           version = app.comment[0]
-          if version =~ /[Ss]dk (\d+)/
+          if version =~ SDK_REGEX
             "Android #{OperatingSystems::Android::SDK[$1]}"
           else
             OperatingSystems.normalize_os(app.comment[0])

@@ -6,9 +6,9 @@ class UserAgent
     # Alexa Mobile Voice/1.0.0 (Linux;Android 8.1.0) ExoPlayerLib/2.2.0
     class Alexa < Base
       ALEXA_MEDIA_PLAYER       = 'AlexaMediaPlayer'
-      ALEXA_MOBILE_VOICE_REGEX = /Alexa Mobile Voice/
-      ALEXA_REGEX              = /AlexaMediaPlayer/
-      ANDROID_REGEX            = /Android/
+      ALEXA_MOBILE_VOICE_REGEX = /Alexa Mobile Voice/.freeze
+      ALEXA_REGEX              = /AlexaMediaPlayer/.freeze
+      ANDROID_REGEX            = /Android/.freeze
 
       def self.extend?(agent)
         agent.detect { |useragent| ALEXA_REGEX.match?(useragent.product) } || ALEXA_MOBILE_VOICE_REGEX.match?(agent.to_s)

@@ -6,12 +6,12 @@ class UserAgent
     # AmazonMusic/1.0 x86_64 CFNetwork/1121.2.1 Darwin/19.6.0
     # AmazonMusic/16.17.1 Dalvik/2.1.0 (Linux; U; Android 7.0; LGL83BL Build/NRD90U)
     class AmazonMusic < Base
-      AMAZON_MUSIC_REGEX = /AmazonMusic/
-      ANDROID_REGEX      = /Android/
-      DARWIN_REGEX       = /Darwin/
+      AMAZON_MUSIC_REGEX = /AmazonMusic/.freeze
+      ANDROID_REGEX      = /Android/.freeze
+      DARWIN_REGEX       = /Darwin/.freeze
       IPAD_IPHONE        = %w[iPad iPhone].freeze
-      IPAD_REGEX         = /iPad/
-      IPHONE_REGEX       = /iPhone/
+      IPAD_REGEX         = /iPad/.freeze
+      IPHONE_REGEX       = /iPhone/.freeze
 
       def self.extend?(agent)
         agent.detect { |useragent| AMAZON_MUSIC_REGEX.match?(useragent.product) }

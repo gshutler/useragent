@@ -11,12 +11,14 @@ class UserAgent
     class PocketCasts < Base
       include DesktopClassifiable
 
-      ANDROID_REGEX            = /Android/
-      IOS_REGEX                = /iOS/
-      POCKETCASTS_REGEX        = /Pocket[Cc]asts?/
-      POCKET_CASTS_REGEX       = /Pocket Casts/
-      POCKET_CASTS_SLASH_REGEX = /Pocket Casts\//
-      WINDOWS_NT_REGEX         = /Windows NT/
+      ANDROID_REGEX            = /Android/.freeze
+      IOS_REGEX                = /iOS/.freeze
+      MACINTOSH_REGEX          = /Macintosh/.freeze
+      POCKETCASTS_REGEX        = /Pocket[Cc]asts?/.freeze
+      POCKET_CASTS_REGEX       = /Pocket Casts/.freeze
+      POCKET_CASTS_SLASH_REGEX = /Pocket Casts\//.freeze
+      WINDOWS_REGEX            = /Windows/.freeze
+      WINDOWS_NT_REGEX         = /Windows NT/.freeze
 
       def self.extend?(agent)
         agent.detect { |useragent| POCKETCASTS_REGEX.match?(useragent.product) } || POCKET_CASTS_REGEX.match?(agent.to_s)
@@ -56,9 +58,9 @@ class UserAgent
         app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
 
         if app
-          if /Windows/.match?(app.comment[0])
+          if WINDOWS_REGEX.match?(app.comment[0])
             return 'Windows'
-          elsif /Macintosh/.match?(app.comment[0])
+          elsif MACINTOSH_REGEX.match?(app.comment[0])
             return 'Macintosh'
           elsif app.comment.any? { |c| ANDROID_REGEX.match?(c) }
             return 'Android'

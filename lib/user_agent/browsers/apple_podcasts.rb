@@ -53,6 +53,7 @@ class UserAgent
         |播客|%E6%92%AD%E5%AE%A2
         )\/.+CFNetwork\/
       /x.freeze
+      X86_64_REGEX = /x86_64/.freeze
 
       def self.extend?(agent)
         APPLE_PODCASTS_REGEX.match?(agent.to_s)
@@ -77,7 +78,7 @@ class UserAgent
       # @return [String]
       #     Macintosh for x86_64, otherwise iOS
       def platform
-        if application && application.comment && application.comment.any? { |c| /x86_64/.match?(c) }
+        if application && application.comment && application.comment.any? { |c| X86_64_REGEX.match?(c) }
           'Macintosh'
         else
           'iOS'

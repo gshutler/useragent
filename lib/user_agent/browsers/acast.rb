@@ -5,10 +5,10 @@ class UserAgent
     # Acast/1.42.1 (phone; android 10; Google Pixel 3 XL)
     # Acast/1.26.0 (Linux;Android 9) ExoPlayerLib/2.2.0
     class Acast < Base
-      ACAST_REGEX   = /Acast/
-      ANDROID_REGEX = /[Aa]ndroid/
-      IOS_REGEX     = /iOS/
-      IPAD_REGEX    = /iPad/
+      ACAST_REGEX   = /Acast/.freeze
+      ANDROID_REGEX = /[Aa]ndroid/.freeze
+      IOS_REGEX     = /iOS/.freeze
+      IPAD_REGEX    = /iPad/.freeze
 
       def self.extend?(agent)
         agent.detect { |useragent| ACAST_REGEX.match?(useragent.product) }

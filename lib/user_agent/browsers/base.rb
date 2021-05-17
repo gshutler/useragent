@@ -3,6 +3,8 @@ class UserAgent
     class Base < Array
       include Comparable
 
+      ANDROID_IOS_REGEX = /(Android|iOS)/.freeze
+
       def <=>(other)
         if respond_to?(:browser) && other.respond_to?(:browser) &&
             browser == other.browser
@@ -55,7 +57,7 @@ class UserAgent
       def mobile?
         if detect_product('Mobile') || detect_comment('Mobile')
           true
-        elsif /(Android|iOS)/.match?(os)
+        elsif ANDROID_IOS_REGEX.match?(os)
           true
         elsif application && application.detect_comment { |c| c =~ /^IEMobile/ }
           true

@@ -7,8 +7,8 @@ class UserAgent
     # Overcast/857 CFNetwork/1209 Darwin/20.3.0
     # Overcast/1.0 Podcast Sync (+http://overcast.fm/)
     class Overcast < Base
-      APPLE_WATCH_REGEX  = /Apple Watch/
-      PODCAST_SYNC_REGEX = /Podcast Sync/
+      APPLE_WATCH_REGEX  = /Apple Watch/.freeze
+      PODCAST_SYNC_REGEX = /Podcast Sync/.freeze
 
       def self.extend?(agent)
         agent.detect { |useragent| useragent.product == 'Overcast' }

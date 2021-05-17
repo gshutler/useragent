@@ -9,6 +9,9 @@ class UserAgent
     # PodcastAddict/v2 - Mozilla/5.0 (Linux; U; Android 4.2.2; bg-bg; 6037Y Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.2 Mobile Safari/534.30
     # PodcastAddict/v2 - Dalvik/2.1.0 (Linux; U; Android 10; I4213 Build/53.1.A.2.2)
     class PodcastAddict < Base
+      PODCAST_ADDICT_REGEX   = /PodcastAddict/.freeze
+      PODCAST_ADDICT_V_REGEX = /PodcastAddict\/v(\d+)/.freeze
+
       def self.extend?(agent)
         ua = agent.to_s
         ua.start_with?('Podcast Addict') || /PodcastAddict/.match?(ua)
@@ -79,7 +82,7 @@ class UserAgent
       # @return [String]
       #     The app version if there is one
       def version
-        if /PodcastAddict\/v(\d+)/ =~ self.to_s
+        if PODCAST_ADDICT_V_REGEX =~ self.to_s
           $1
         end
       end
