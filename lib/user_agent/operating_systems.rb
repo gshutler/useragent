@@ -1,7 +1,7 @@
 class UserAgent
   module OperatingSystems
-    ANDROID_VERSION_REGEX = /[Aa]ndroid v?([\d\.]+)/
-    IOS_VERSION_REGEX     = /CPU (?:iPhone |iPod )?OS ([\d_]+) like Mac OS X/
+    ANDROID_VERSION_REGEX = /[Aa]ndroid v?(?<version>[\d\.]+)/.freeze
+    IOS_VERSION_REGEX     = /CPU (?:iPhone |iPod )?OS ([\d_]+) like Mac OS X/.freeze
 
     Windows = {
       "Windows NT 10.0" => "Windows 10",
@@ -25,11 +25,12 @@ class UserAgent
 
     private
       def self.normalize_android(os)
-        if os =~ ANDROID_VERSION_REGEX
-          if $1.nil?
+        # named captures to local var version
+        if matches = ANDROID_VERSION_REGEX.match(os)
+          if matches[:version].nil?
             "Android"
           else
-            "Android #{$1}"
+            "Android #{matches[:version]}"
           end
         end
       end
