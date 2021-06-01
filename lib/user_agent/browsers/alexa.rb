@@ -8,7 +8,6 @@ class UserAgent
       ALEXA                    = 'Alexa'
       ALEXA_MEDIA_PLAYER       = 'AlexaMediaPlayer'
       ALEXA_MOBILE_VOICE_REGEX = /Alexa Mobile Voice/.freeze
-      ALEXA_REGEX              = /AlexaMediaPlayer/.freeze
       VOICE                    = 'Voice'
 
       ##
@@ -17,7 +16,7 @@ class UserAgent
       # @return [Boolean]
       #     True if the useragent matches this browser
       def self.extend?(agent)
-        agent.detect { |useragent| ALEXA_REGEX.match?(useragent.product) } || ALEXA_MOBILE_VOICE_REGEX.match?(agent.to_s)
+        agent.detect { |useragent| useragent.product == ALEXA_MEDIA_PLAYER } || ALEXA_MOBILE_VOICE_REGEX.match?(agent.to_s)
       end
 
       ##
@@ -25,6 +24,15 @@ class UserAgent
       #     The browser name
       def browser
         ALEXA
+      end
+
+      ##
+      # @return [Boolean]
+      #     True, if this is a mobile device
+      def mobile?
+        return false if speaker?
+
+        super
       end
 
       # Gets the operating system
