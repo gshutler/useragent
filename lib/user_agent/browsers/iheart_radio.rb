@@ -12,7 +12,7 @@ class UserAgent
     # iHeartRadio/10.2.0 (Android 6.0.1; Nexus 7 Build/MMB30S)
     class IHeartRadio < Base
       IHEARTRADIO = 'iHeartRadio'
-      SDK_REGEX   = /[Ss]dk (\d+)/.freeze
+      SDK_REGEX   = /[Ss]dk (?<version>\d+)/.freeze
 
       ##
       # @param agent [Array]
@@ -40,18 +40,18 @@ class UserAgent
       # @return [String, nil]
       #     The operating system
       def os
-        app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        app = app_with_comments
 
         case platform
         when IOS
           version = OperatingSystems::Darwin::IOS[detect_product(DARWIN).version.to_s]
-          [IOS, version].compact.join(' ')
+          [IOS, version].compact.join(' ') unless version.nil?
         when IPHONE, IPAD, IPOD_TOUCH
           OperatingSystems.normalize_os(app.comment[1])
         when ANDROID
           version = app.comment[0]
-          if version =~ SDK_REGEX
-            "#{ANDROID} #{OperatingSystems::Android::SDK[$1]}"
+          if matches = SDK_REGEX.match(version)
+            [ANDROID, OperatingSystems::Android::SDK[matches[:version]]].compact.join(' ') unless matches[:version].nil?
           else
             OperatingSystems.normalize_os(app.comment[0])
           end
