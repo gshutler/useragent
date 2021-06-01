@@ -12,6 +12,9 @@ shared_examples_for 'PandoraRSSCrawler' do |version|
   it { expect(useragent.platform).to be nil }
   it { expect(useragent.os).to be nil }
   it { expect(useragent).to be_bot }
+  it { expect(useragent).not_to be_desktop }
+  it { expect(useragent).not_to be_mobile }
+  it { expect(useragent).not_to be_speaker }
 end
 
 describe "PandoraRSSCrawler/1.0 (podcastpartnerships@pandora.com)" do

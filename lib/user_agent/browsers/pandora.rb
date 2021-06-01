@@ -40,6 +40,12 @@ class UserAgent
       end
 
       ##
+      # @return [false] This is not a bot
+      def bot?
+        false
+      end
+
+      ##
       # @return [String, nil]
       #     Gets the operating system
       def os

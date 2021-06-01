@@ -19,11 +19,14 @@ shared_examples_for 'Pandora' do |version, platform, os, type|
 
   if type == :mobile
     it { expect(useragent).to be_mobile }
+    it { expect(useragent).not_to be_desktop }
   elsif type == :desktop
     it { expect(useragent).to be_desktop }
-  elsif type == :bot
-    it { expect(useragent).to be_bot }
+    it { expect(useragent).not_to be_mobile }
   end
+
+  it { expect(useragent).not_to be_speaker }
+  it { expect(useragent).not_to be_bot }
 end
 
 describe "Mozilla/5.0 (iPad; CPU OS 10_3_4 like Mac OS X) AppleWebKit/603.3.8 (KHTML, like Gecko) Mobile/14G61 Pandora/1812.1" do
