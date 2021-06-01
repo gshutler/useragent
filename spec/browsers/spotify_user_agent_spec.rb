@@ -19,9 +19,14 @@ shared_examples 'Spotify' do |version, platform, os, type|
 
   if type == :mobile
     it { expect(useragent).to be_mobile }
+    it { expect(useragent).not_to be_desktop }
   elsif type == :desktop
     it { expect(useragent).to be_desktop }
+    it { expect(useragent).not_to be_mobile }
   end
+
+  it { expect(useragent).not_to be_speaker }
+  it { expect(useragent).not_to be_bot }
 end
 
 describe "UserAgent: Spotify/0.1.118.48 Android/29 (Pixel 4 XL)" do

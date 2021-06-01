@@ -32,10 +32,10 @@ class UserAgent
       #     The operating system
       def os
         if app = detect_product(ANDROID)
-          "#{ANDROID} #{OperatingSystems::Android::SDK[app.version.to_s]}"
+          [ANDROID, OperatingSystems::Android::SDK[app.version.to_s]].compact.join(' ')
         elsif app = detect_product(IOS)
-          "#{IOS} #{app.version.to_s}"
-        elsif app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+          [IOS, app.version.to_s].compact.join(' ')
+        elsif app = app_with_comments
           if WINDOWS_NT_REGEX.match?(app.comment[0])
             OperatingSystems.normalize_os(application.comment[0])
           elsif !app.comment[1].nil?
@@ -48,7 +48,7 @@ class UserAgent
       # @return [String, nil]
       #     The platform
       def platform
-        app     = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        app     = app_with_comments
         comment = app.comment.join unless app.nil? || app.comment.nil?
 
         if detect_product(ANDROID)
