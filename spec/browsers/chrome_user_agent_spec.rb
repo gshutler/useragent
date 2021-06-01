@@ -20,13 +20,14 @@ shared_examples 'Chrome browser' do |version, platform, os, type|
   if type == :desktop
     it { expect(useragent).to be_desktop }
     it { expect(useragent).not_to be_mobile }
+    it { expect(useragent).not_to be_bot }
   elsif type == :mobile
     it { expect(useragent).to be_mobile }
     it { expect(useragent).not_to be_desktop }
+    it { expect(useragent).not_to be_bot }
   end
 
   it { expect(useragent).not_to be_speaker }
-  it { expect(useragent).not_to be_bot }
 end
 
 # http://www.useragentstring.com/Chrome30.0.1599.17_id_19721.php

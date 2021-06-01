@@ -17,12 +17,6 @@ class UserAgent
         ChromeBrowsers.detect { |browser| respond_to?(browser) } || 'Chrome'
       end
 
-      ##
-      # @return [false] This is not a bot
-      def bot?
-        false
-      end
-
       def build
         webkit.version
       end

@@ -24,6 +24,11 @@ class UserAgent
     end
 
     private
+      ##
+      # @param os [String]
+      #     The OS string
+      # @return [String]
+      #     An Android normalized OS string
       def self.normalize_android(os)
         # named captures to local var version
         if matches = ANDROID_VERSION_REGEX.match(os)
