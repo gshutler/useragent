@@ -1,6 +1,6 @@
 require 'user_agent'
 
-shared_examples_for 'Chrome browser' do |version, platform, os, type|
+shared_examples 'Chrome browser' do |version, platform, os, type|
   it "should return 'Chrome' as its browser" do
     expect(useragent.browser).to eq('Chrome')
   end
