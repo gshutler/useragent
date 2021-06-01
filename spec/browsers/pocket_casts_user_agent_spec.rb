@@ -17,7 +17,25 @@ shared_examples 'Pocket Casts' do |version, platform, os, type|
     expect(useragent.os).to eql(os)
   end
 
-  it { expect(useragent.desktop?).to eql(type == :desktop) }
+  if type == :desktop
+    it { expect(useragent).to be_desktop }
+    it { expect(useragent).not_to be_mobile }
+    it { expect(useragent).not_to be_bot }
+  elsif type == :mobile
+    it { expect(useragent).to be_mobile }
+    it { expect(useragent).not_to be_desktop }
+    it { expect(useragent).not_to be_bot }
+  elsif type == :bot
+    it { expect(useragent).to be_bot }
+    it { expect(useragent).not_to be_desktop }
+    it { expect(useragent).not_to be_mobile }
+  else
+    it { expect(useragent).not_to be_desktop }
+    it { expect(useragent).not_to be_mobile }
+    it { expect(useragent).not_to be_bot }
+  end
+
+  it { expect(useragent).not_to be_speaker }
 end
 
 describe "UserAgent: Pocket Casts BMID/E678F58F21" do
@@ -29,19 +47,19 @@ end
 describe "UserAgent: PocketCasts/1.0 (Pocket Casts Feed Parser; +http://pocketcasts.com/)" do
   let!(:useragent) { UserAgent.parse("PocketCasts/1.0 (Pocket Casts Feed Parser; +http://pocketcasts.com/)") }
 
-  it_behaves_like 'Pocket Casts', '1.0', nil, nil, nil
+  it_behaves_like 'Pocket Casts', '1.0', nil, nil, :bot
 end
 
 describe "UserAgent: Shifty Jelly Pocket Casts, Android v4.5.3" do
   let!(:useragent) { UserAgent.parse("Shifty Jelly Pocket Casts, Android v4.5.3") }
 
-  it_behaves_like 'Pocket Casts', '4.5.3', 'Android', nil, nil
+  it_behaves_like 'Pocket Casts', '4.5.3', 'Android', nil, :mobile
 end
 
 describe "UserAgent: Shifty Jelly Pocket Casts, iOS v4.3" do
   let!(:useragent) { UserAgent.parse("Shifty Jelly Pocket Casts, iOS v4.3") }
 
-  it_behaves_like 'Pocket Casts', '4.3', 'iOS', nil, nil
+  it_behaves_like 'Pocket Casts', '4.3', 'iOS', nil, :mobile
 end
 
 describe "UserAgent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Pocket Casts/1.1 Pocket Casts/1.1" do

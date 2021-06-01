@@ -12,6 +12,7 @@ class UserAgent
       include DesktopClassifiable
 
       CASTS                    = 'Casts'
+      FEED_PARSER_REGEX        = /Pocket Casts Feed Parser/.freeze
       POCKETCAST               = 'Pocketcast'
       POCKETCASTS              = 'PocketCasts'
       POCKETCASTS_REGEX        = /Pocket[Cc]asts?/.freeze
@@ -42,11 +43,27 @@ class UserAgent
         detect_product(POCKETCASTS) || detect_product(POCKETCAST)
       end
 
+      ##
+      # @return [Boolean]
+      #     True, if this is a bot
+      def bot?
+        FEED_PARSER_REGEX.match?(to_s)
+      end
+
+      ##
+      # @return [Boolean]
+      #     True, if this is a mobile app
+      def mobile?
+        return false if bot?
+
+        ANDROID_IOS_REGEX.match?(to_s)
+      end
+
       # Gets the operating system
       #
       # @return [String, nil] the os
       def os
-        app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        app = app_with_comments
         return if app.nil? || app.product == POCKETCASTS
 
         if WINDOWS_NT_REGEX.match?(app.comment[0])
@@ -64,7 +81,7 @@ class UserAgent
       #
       # @return [String, nil] the platform
       def platform
-        app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        app = app_with_comments
 
         if app
           if WINDOWS_REGEX.match?(app.comment[0])
