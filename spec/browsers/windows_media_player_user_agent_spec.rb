@@ -1,5 +1,19 @@
 require 'user_agent'
 
+shared_examples 'a desktop' do
+  it { expect(@useragent).to be_desktop }
+  it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).not_to be_speaker }
+  it { expect(@useragent).not_to be_bot }
+end
+
+shared_examples 'a mobile' do
+  it { expect(@useragent).to be_mobile }
+  it { expect(@useragent).not_to be_desktop }
+  it { expect(@useragent).not_to be_speaker }
+  it { expect(@useragent).not_to be_bot }
+end
+
 shared_examples "Windows Media Player" do
   it "should return 'Windows Media Player' as its browser" do
     expect(@useragent.browser).to eq("Windows Media Player")
@@ -13,11 +27,7 @@ shared_examples "Windows Media Player" do
     expect(@useragent.classic?).to eq(false)
   end
 
-  it "should be the desktop version" do
-    expect(@useragent.mobile?).to eq(false)
-  end
-
-  it { expect(@useragent).to be_desktop }
+  it_behaves_like 'a desktop'
 end
 
 shared_examples "Windows Media Player Mobile" do
@@ -33,11 +43,7 @@ shared_examples "Windows Media Player Mobile" do
     expect(@useragent.classic?).to eq(false)
   end
 
-  it "should be the desktop version" do
-    expect(@useragent.mobile?).to eq(true)
-  end
-
-  it { expect(@useragent).not_to be_desktop }
+  it_behaves_like 'a mobile'
 end
 
 shared_examples "Windows Media Player Classic" do
@@ -53,7 +59,7 @@ shared_examples "Windows Media Player Classic" do
     expect(@useragent.classic?).to eq(true)
   end
 
-  it { expect(@useragent).to be_desktop }
+  it_behaves_like 'a desktop'
 end
 
 shared_examples "Windows Media Player isn't using WMFSDK" do
