@@ -8,7 +8,7 @@ require 'user_agent/browsers/airr'
 require 'user_agent/browsers/alexa'
 require 'user_agent/browsers/amazon_music'
 require 'user_agent/browsers/apple_core_media'
-require 'user_agent/browsers/apple_homepod'
+require 'user_agent/browsers/apple_home_pod'
 require 'user_agent/browsers/apple_podcasts'
 require 'user_agent/browsers/apple_watch/base'
 require 'user_agent/browsers/apple_watch/atc'
@@ -80,7 +80,7 @@ class UserAgent
       Webkit,
       Gecko,
       WindowsMediaPlayer,
-      AppleHomepod,
+      AppleHomePod,
       AppleCoreMedia,
       Libavformat,
       OkHttp,
