@@ -33,6 +33,14 @@ class UserAgent
         super if webkit
       end
 
+      ##
+      # @return [false] This is not a bot
+      def bot?
+        false
+      end
+
+      ##
+      # @return [true] This is a desktop app
       def desktop?
         true
       end
