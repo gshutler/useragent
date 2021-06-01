@@ -48,7 +48,9 @@ class UserAgent
         when IOS
           darwin = detect_product(DARWIN)
           return if darwin.nil?
+          
           version = OperatingSystems::Darwin::IOS[darwin.version.to_s]
+          
           [IOS, version].compact.join(' ')
         # Improve when we have more samples
         # when 'Apple Watch'

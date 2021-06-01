@@ -23,7 +23,7 @@ class UserAgent
       end
 
       ##
-      # @return [True]
+      # @return [true]
       #     This is a bot
       def bot?
         true

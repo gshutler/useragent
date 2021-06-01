@@ -41,9 +41,7 @@ class UserAgent
       # @return [String] The operating system
       def os
         darwin  = detect_product(DARWIN)
-        version = if darwin
-                    UserAgent::OperatingSystems::Darwin::IOS[darwin.version.to_s]
-                  end
+        version = UserAgent::OperatingSystems::Darwin::IOS[darwin.version.to_s] if darwin
 
         [IOS, version].compact.join(' ')
       end
