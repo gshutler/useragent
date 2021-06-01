@@ -29,7 +29,13 @@ class UserAgent
       end
 
       ##
-      # @return [True] This is an mobile app
+      # @return [false] This is not a bot
+      def bot?
+        false
+      end
+
+      ##
+      # @return [true] This is a mobile app
       def mobile?
         true
       end
