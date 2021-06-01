@@ -5,10 +5,6 @@ shared_examples 'Airr' do |version, os|
     expect(useragent.browser).to eq('Airr')
   end
 
-  it 'returns mobile true' do
-    expect(useragent.mobile?).to be true
-  end
-
   it "returns '#{version}' as its version" do
     expect(useragent.version).to eq(version)
   end
@@ -20,6 +16,11 @@ shared_examples 'Airr' do |version, os|
   it "returns '#{os}' as its operating system" do
     expect(useragent.os).to eq(os)
   end
+
+  it { expect(useragent).to be_mobile }
+  it { expect(useragent).not_to be_desktop }
+  it { expect(useragent).not_to be_speaker }
+  it { expect(useragent).not_to be_bot }
 end
 
 describe "UserAgent: Airr/3916 CFNetwork/1202 Darwin/20.1.0" do
