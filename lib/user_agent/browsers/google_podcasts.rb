@@ -52,7 +52,7 @@ class UserAgent
           end
         else
           app = detect_product(IPHONE) || detect_product(IPAD) || detect_product(IPODTOUCH)
-          "#{IOS} #{app.version}" if app && app.version
+          [IOS, app.version].compact.join(' ') if app && app.version
         end
       end
 
