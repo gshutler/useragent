@@ -11,7 +11,7 @@ class UserAgent
       CASTBOX           = 'Castbox'
       CASTBOX_REGEX     = /Cast[Bb]ox/.freeze
       CAST_BOX          = 'CastBox'
-      IOS_VERSION_REGEX = /iOS ([\d\.]+)/.freeze
+      IOS_VERSION_REGEX = /iOS (?<version>[\d\.]+)/.freeze
       VERSION_REGEX     = /\d+\./.freeze
 
       ##
@@ -34,11 +34,17 @@ class UserAgent
       # @return [Array]
       #     Gets the right application
       def application
-        self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        app_with_comments
       end
 
       ##
-      # @return [True] This is a mobile app
+      # @return [false] This is not a bot
+      def bot?
+        false
+      end
+
+      ##
+      # @return [true] This is a mobile app
       def mobile?
         true
       end
@@ -49,8 +55,8 @@ class UserAgent
       def os
         if (application && os_string = application.comment.detect { |c| ANDROID_REGEX.match?(c) || IOS_REGEX.match?(c) })
           OperatingSystems.normalize_os(os_string)
-        elsif (self.to_s =~ IOS_VERSION_REGEX)
-          "#{IOS} #{$1}"
+        elsif matches = IOS_VERSION_REGEX.match(to_s)
+          [IOS, matches[:version]].compact.join(' ') unless matches[:version].nil?
         end
       end
 
