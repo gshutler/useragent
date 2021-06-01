@@ -18,6 +18,9 @@ shared_examples_for 'HomePod' do |version, os|
   end
 
   it { expect(useragent).to be_speaker }
+  it { expect(useragent).not_to be_desktop }
+  it { expect(useragent).not_to be_mobile }
+  it { expect(useragent).not_to be_bot }
 end
 
 describe "UserAgent: AppleCoreMedia/1.0.0.16A5288c (HomePod; U; CPU OS 12_0 like Mac OS X; en_us)" do
@@ -29,5 +32,5 @@ end
 describe "UserAgent: AppleCoreMedia/1.0.0.18L203 (HomePod; U; CPU OS 14_5 like Mac OS X; fr_fr)" do
   let!(:useragent) { UserAgent.parse("AppleCoreMedia/1.0.0.18L203 (HomePod; U; CPU OS 14_5 like Mac OS X; fr_fr)") }
 
-  it_should_behave_like 'HomePod', '1.0.0.18L203', 'iOS 14.5'
+  it_should_behave_like 'HomePod', '1.0.0.18L203', 'HomePod Software 14.5'
 end
