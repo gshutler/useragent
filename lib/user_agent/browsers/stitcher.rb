@@ -44,11 +44,11 @@ class UserAgent
         if app = detect_product(DARWIN)
           comment = app.comment.join unless app.comment.nil?
           if X86_64_REGEX.match?(comment)
-            "#{MAC_OS} #{OperatingSystems::Darwin::MAC_OS[app.version.to_s]}"
+            [MAC_OS, OperatingSystems::Darwin::MAC_OS[app.version.to_s]].compact.join(' ')
           else
-            "#{IOS} #{OperatingSystems::Darwin::IOS[app.version.to_s]}"
+            [IOS, OperatingSystems::Darwin::IOS[app.version.to_s]].compact.join(' ')
           end
-        elsif app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        elsif app = app_with_comments
           if MACINTOSH_REGEX.match?(app.comment[0])
             OperatingSystems.normalize_os(app.comment[1])
           elsif ANDROID_REGEX.match?(app.comment[0])

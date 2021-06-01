@@ -19,9 +19,14 @@ shared_examples 'Stitcher' do |version, platform, os, type|
 
   if type == :mobile
     it { expect(useragent).to be_mobile }
+    it { expect(useragent).not_to be_desktop }
   elsif type == :desktop
     it { expect(useragent).to be_desktop }
+    it { expect(useragent).not_to be_mobile }
   end
+
+  it { expect(useragent).not_to be_speaker }
+  it { expect(useragent).not_to be_bot }
 end
 
 describe "UserAgent: Stitcher/iOS BMID/E675DDB007" do
