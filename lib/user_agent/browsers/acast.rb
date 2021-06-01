@@ -5,8 +5,7 @@ class UserAgent
     # Acast/1.42.1 (phone; android 10; Google Pixel 3 XL)
     # Acast/1.26.0 (Linux;Android 9) ExoPlayerLib/2.2.0
     class Acast < Base
-      ACAST       = 'Acast'
-      ACAST_REGEX = /Acast/.freeze
+      ACAST = 'Acast'
 
       ##
       # @param agent [Array]
@@ -14,7 +13,7 @@ class UserAgent
       # @return [Boolean]
       #     True if the useragent matches this browser
       def self.extend?(agent)
-        agent.detect { |useragent| ACAST_REGEX.match?(useragent.product) }
+        agent.detect { |useragent| useragent.product == ACAST }
       end
 
       ##
@@ -41,7 +40,7 @@ class UserAgent
       #
       # @return [String, nil] the os
       def os
-        app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        app = app_with_comments
         return if app.nil?
 
         if (os_string = app.comment.detect { |c| ANDROID_REGEX.match?(c) || IOS_REGEX.match?(c) })
@@ -53,7 +52,7 @@ class UserAgent
       #
       # @return [String, nil] the platform
       def platform
-        app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        app = app_with_comments
         return if app.nil?
 
         if app.comment.any? { |c| IOS_REGEX.match?(c) }

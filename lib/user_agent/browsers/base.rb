@@ -59,6 +59,13 @@ class UserAgent
         first
       end
 
+      ##
+      # @return [Array, nil]
+      #     The first application that has comments
+      def app_with_comments
+        reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+      end
+
       def browser
         application && application.product
       end
