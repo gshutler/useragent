@@ -26,7 +26,19 @@ class UserAgent
       end
 
       ##
-      # @return [True] This is a speaker
+      # @return [false] This is not a desktop
+      def desktop?
+        false
+      end
+
+      ##
+      # @return [false] This is not a mobile
+      def mobile?
+        false
+      end
+
+      ##
+      # @return [true] This is a speaker
       def speaker?
         true
       end
