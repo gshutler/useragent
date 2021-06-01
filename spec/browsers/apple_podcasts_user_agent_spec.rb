@@ -20,9 +20,13 @@ shared_examples 'Apple Podcasts with details' do |version, platform, os|
   if platform == 'iOS'
     it { expect(useragent).to be_mobile }
     it { expect(useragent).not_to be_desktop }
+    it { expect(useragent).not_to be_speaker }
+    it { expect(useragent).not_to be_bot }
   else
-    it { expect(useragent).not_to be_mobile }
     it { expect(useragent).to be_desktop }
+    it { expect(useragent).not_to be_mobile }
+    it { expect(useragent).not_to be_speaker }
+    it { expect(useragent).not_to be_bot }
   end
 end
 
