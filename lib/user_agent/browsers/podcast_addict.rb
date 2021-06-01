@@ -11,7 +11,7 @@ class UserAgent
     class PodcastAddict < Base
       PODCAST_ADDICT         = 'Podcast Addict'
       PODCAST_ADDICT_REGEX   = /PodcastAddict/.freeze
-      PODCAST_ADDICT_V_REGEX = /PodcastAddict\/v(\d+)/.freeze
+      PODCAST_ADDICT_V_REGEX = /PodcastAddict\/v(?<version>\d+)/.freeze
 
       ##
       # @param agent [Array]
@@ -34,7 +34,7 @@ class UserAgent
       # @return [Array]
       #     Gets the right application
       def application
-        self.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        app_with_comments
       end
 
       # If we can figure out the device, return it.
@@ -93,8 +93,8 @@ class UserAgent
       # @return [String]
       #     The app version if there is one
       def version
-        if PODCAST_ADDICT_V_REGEX =~ self.to_s
-          $1
+        if matches = PODCAST_ADDICT_V_REGEX.match(to_s)
+          matches[:version] unless matches[:version].nil?
         end
       end
     end
