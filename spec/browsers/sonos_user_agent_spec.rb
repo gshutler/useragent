@@ -9,9 +9,15 @@ shared_examples 'Sonos' do |version|
     expect(useragent.version).to eq(version)
   end
 
-  it { expect(useragent.platform).to be_nil }
+  it "returns 'Sonos' as its platform" do
+    expect(useragent.platform).to eq('Sonos')
+  end
+
   it { expect(useragent.os).to be_nil }
   it { expect(useragent).to be_speaker }
+  it { expect(useragent).not_to be_desktop }
+  it { expect(useragent).not_to be_mobile }
+  it { expect(useragent).not_to be_bot }
 end
 
 describe "UserAgent: Linux UPnP/1.0 Sonos/44.2-53100-mainline_integ (ZPS120)" do

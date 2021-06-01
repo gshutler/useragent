@@ -26,6 +26,12 @@ class UserAgent
       end
 
       ##
+      # @return [String] The platform
+      def platform
+        SONOS
+      end
+
+      ##
       # @return [True] Sonos is a speaker
       def speaker?
         true
