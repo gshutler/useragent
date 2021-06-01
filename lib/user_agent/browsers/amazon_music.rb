@@ -6,9 +6,11 @@ class UserAgent
     # AmazonMusic/1.0 x86_64 CFNetwork/1121.2.1 Darwin/19.6.0
     # AmazonMusic/16.17.1 Dalvik/2.1.0 (Linux; U; Android 7.0; LGL83BL Build/NRD90U)
     class AmazonMusic < Base
-      AMAZON_MUSIC       = 'Amazon Music'
-      AMAZON_MUSIC_REGEX = /AmazonMusic/.freeze
-      IPAD_IPHONE        = %w[iPad iPhone].freeze
+      include DesktopClassifiable
+
+      AMAZONMUSIC  = 'AmazonMusic'
+      AMAZON_MUSIC = 'Amazon Music'
+      IPAD_IPHONE  = %w[iPad iPhone].freeze
 
       ##
       # @param agent [Array]
@@ -16,7 +18,7 @@ class UserAgent
       # @return [Boolean]
       #     True if the useragent matches this browser
       def self.extend?(agent)
-        agent.detect { |useragent| AMAZON_MUSIC_REGEX.match?(useragent.product) }
+        agent.detect { |useragent| useragent.product == AMAZONMUSIC }
       end
 
       ##
@@ -38,14 +40,12 @@ class UserAgent
       #
       # @return [String, nil] the os
       def os
-        if IPAD_IPHONE.include?(platform)
-          app = detect_product(DARWIN)
-          "#{IOS} #{UserAgent::OperatingSystems::Darwin::IOS[app.version.to_s]}" if app
-        elsif platform == MACINTOSH
-          app = detect_product(DARWIN)
-          "#{MAC_OS} #{UserAgent::OperatingSystems::Darwin::MAC_OS[app.version.to_s]}" if app
+        if IPAD_IPHONE.include?(platform) && app = detect_product(DARWIN)
+          [IOS, UserAgent::OperatingSystems::Darwin::IOS[app.version.to_s]].compact.join(' ')
+        elsif platform == MACINTOSH && app = detect_product(DARWIN)
+          [MAC_OS, UserAgent::OperatingSystems::Darwin::MAC_OS[app.version.to_s]].compact.join(' ')
         else
-          app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+          app = app_with_comments
           if (os_string = app.comment.detect { |c| ANDROID_REGEX.match?(c) })
             OperatingSystems.normalize_os(os_string)
           end
@@ -61,7 +61,7 @@ class UserAgent
         return IPHONE    if IPHONE_REGEX.match?(ua)
         return MACINTOSH if DARWIN_REGEX.match?(ua)
 
-        app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        app = app_with_comments
         ANDROID if app && app.comment.any? { |c| ANDROID_REGEX.match?(c) }
       end
     end

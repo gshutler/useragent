@@ -39,7 +39,7 @@ class UserAgent
       #
       # @return [String, nil] the os
       def os
-        app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        app = app_with_comments
         return if app.nil?
 
         if (os_string = app.comment.detect { |c| ANDROID_REGEX.match?(c) })
