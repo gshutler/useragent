@@ -1,6 +1,6 @@
 require 'user_agent'
 
-shared_examples_for "Internet Explorer browser" do
+shared_examples_for "Internet Explorer browser" do |type = :desktop|
   it "should return 'Internet Explorer' as its browser" do
     expect(@useragent.browser).to eq("Internet Explorer")
   end
@@ -9,7 +9,16 @@ shared_examples_for "Internet Explorer browser" do
     expect(@useragent.platform).to eq("Windows")
   end
 
-  it { expect(@useragent).to be_desktop }
+  if type == :desktop
+    it { expect(@useragent).to be_desktop }
+    it { expect(@useragent).not_to be_mobile }
+  else
+    it { expect(@useragent).not_to be_desktop }
+    it { expect(@useragent).to be_mobile }
+  end
+
+  it { expect(@useragent).not_to be_speaker }
+  it { expect(@useragent).not_to be_bot }
 end
 
 describe "UserAgent: Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko" do
@@ -165,8 +174,6 @@ describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Triden
     expect(@useragent.version).to be >
       UserAgent.parse('Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 6.2; ARM; Trident/6.0; Touch; .NET4.0E; .NET4.0C; Tablet PC 2.0)').version
   end
-
-  it { expect(@useragent).not_to be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.2; ARM; Trident/6.0; Touch; .NET4.0E; .NET4.0C; Tablet PC 2.0)'" do
@@ -185,7 +192,6 @@ describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.2; ARM; Tr
   end
 
   it { expect(@useragent).to be_compatibility_view }
-  it { expect(@useragent).not_to be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; ARM; Trident/6.0; Touch)'" do
@@ -204,7 +210,6 @@ describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; ARM; T
   end
 
   it { expect(@useragent).not_to be_compatibility_view }
-  it { expect(@useragent).not_to be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)'" do
@@ -221,8 +226,6 @@ describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident
   it "should return 'Windows 7' as its os" do
     expect(@useragent.os).to eq("Windows 7")
   end
-
-  it { expect(@useragent).not_to be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)'" do
@@ -241,7 +244,6 @@ describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident
   end
 
   it { expect(@useragent).not_to be_compatibility_view }
-  it { expect(@useragent).not_to be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C)' Compat View" do
@@ -260,7 +262,6 @@ describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; 
   end
 
   it { expect(@useragent).to be_compatibility_view }
-  it { expect(@useragent).not_to be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)'" do
@@ -348,7 +349,7 @@ describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.0; T
     @useragent = UserAgent.parse("Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.0; Trident/3.1; IEMobile/7.0; SAMSUNG; SGH-i917)")
   end
 
-  it_should_behave_like "Internet Explorer browser"
+  it_should_behave_like "Internet Explorer browser", :mobile
 
   it "should return '7.0' as its version" do
     expect(@useragent.version).to eq("7.0")
@@ -357,8 +358,6 @@ describe "UserAgent: 'Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.0; T
   it "should return 'Windows Phone OS 7.0' as its os" do
     expect(@useragent.os).to eq("Windows Phone OS 7.0")
   end
-
-  it { expect(@useragent).to be_mobile }
 end
 
 describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 625; Vodafone)'" do
@@ -366,7 +365,7 @@ describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Tri
     @useragent = UserAgent.parse("Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 625; Vodafone)")
   end
 
-  it_should_behave_like "Internet Explorer browser"
+  it_should_behave_like "Internet Explorer browser", :mobile
 
   it "should return '10.0' as its version" do
     expect(@useragent.version).to eq("10.0")
@@ -375,8 +374,6 @@ describe "UserAgent: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Tri
   it "should return 'Windows Phone 8.0' as its os" do
     expect(@useragent.os).to eq("Windows Phone 8.0")
   end
-
-  it { expect(@useragent).to be_mobile }
 end
 
 describe "Mozilla/5.0 (MSIE 8.0; Windows NT 6.0; Trident/7.0; rv:11.0) like Gecko" do
