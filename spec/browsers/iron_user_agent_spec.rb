@@ -10,6 +10,13 @@ shared_examples_for "Iron browser" do
   end
 end
 
+shared_examples 'a desktop' do
+  it { expect(@useragent).to be_desktop }
+  it { expect(@useragent).not_to be_mobile }
+  it { expect(@useragent).not_to be_speaker }
+  it { expect(@useragent).not_to be_bot }
+end
+
 # http://www.useragentstring.com/Iron22.0.2150.0_id_19368.php
 describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1250.0 Iron/22.0.2150.0 Safari/537.4'" do
   before do
@@ -17,6 +24,7 @@ describe "UserAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.4 (KHT
   end
 
   it_should_behave_like "Iron browser"
+  it_behaves_like 'a desktop'
 
   it "should return '22.0.1250.0' as its version" do
     expect(@useragent.version).to eq("22.0.1250.0")
@@ -38,6 +46,7 @@ describe "UserAgent: 'Mozilla/5.0 (X11; U; Linux amd64) Iron/21.0.1200.0 Chrome/
   end
 
   it_should_behave_like "Iron browser"
+  it_behaves_like 'a desktop'
 
   it "should return '21.0.1200.0' as its version" do
     expect(@useragent.version).to eq("21.0.1200.0")

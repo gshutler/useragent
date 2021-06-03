@@ -24,6 +24,9 @@ class UserAgent
     # Podcast/1 CFNetwork/901.1 Darwin/17.6.0
     # Podcast/22 CFNetwork/978.0.7 Darwin/18.6.0
     class ApplePodcasts < Webkit
+      include DesktopClassifiable
+
+      APPLE_PODCASTS       = 'Apple Podcasts'
       APPLE_PODCASTS_REGEX = /\A(
         # ca, da, de, el, en_AU, en_GB, en, es_419, es, fr, id, it, ja, ms, nl, pt_PT, vi, zh_HK, zh_TW
         Podcast(s?)
@@ -52,26 +55,59 @@ class UserAgent
         )\/.+CFNetwork\/
       /x.freeze
 
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
         APPLE_PODCASTS_REGEX.match?(agent.to_s)
       end
 
+      ##
+      # @return [Array]
+      #     Gets the right application
+      def application
+        detect_product(DARWIN)
+      end
+
+      ##
+      # @return [String]
+      #     The browser name
       def browser
-        'Apple Podcasts'
+        APPLE_PODCASTS
       end
 
-      # This is a mobile app, always return true.
-      #
-      # @return [true]
+      ##
+      # @return [Boolean]
+      #     This is a mobile app when platform is iOS
       def mobile?
-        true
+        platform == IOS
       end
 
-      # Return 'iOS' for the operating system
+      ##
+      # @return [String]
+      #     Macintosh for x86_64, otherwise iOS
+      def platform
+        if application && application.comment && application.comment.any? { |c| X86_64_REGEX.match?(c) }
+          MACINTOSH
+        else
+          IOS
+        end
+      end
+
+      ##
+      # The operating system is derived from the Darwin kernel version when present.
       #
-      # @return [String] iOS
+      # @return [String, nil] The operating system
       def os
-        'iOS'
+        return unless application
+
+        if platform == IOS
+          [IOS, UserAgent::OperatingSystems::Darwin::IOS[application.version.to_s]].compact.join(' ')
+        else
+          [MAC_OS, UserAgent::OperatingSystems::Darwin::MAC_OS[application.version.to_s]].compact.join(' ')
+        end
       end
 
       # Gets the application version

@@ -5,34 +5,66 @@ class UserAgent
     # Shifty Jelly Pocket Casts, Android v4.5.3
     # Shifty Jelly Pocket Casts, iOS v4.3
     # Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Pocket Casts/1.1 Pocket Casts/1.1
+    # Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Pocketcast/2.1.0 Chrome/58.0.3029.110 Molecule/2.1.0 Safari/537.36
+    # Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Pocketcasts/3.0.11 Chrome/58.0.3029.110 Molecule/3.0.11 Safari/537.36
+    # Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) PocketCasts/1.0.0 Chrome/59.0.3071.115 Electron/1.8.3 Safari/537.36
     class PocketCasts < Base
-      ANDROID_REGEX            = /Android/
-      IOS_REGEX                = /iOS/
-      POCKETCASTS_REGEX        = /PocketCasts/
-      POCKET_CASTS_REGEX       = /Pocket Casts/
-      POCKET_CASTS_SLASH_REGEX = /Pocket Casts\//
-      WINDOWS_REGEX            = /Windows/
-      WINDOWS_NT_REGEX         = /Windows NT/
+      include DesktopClassifiable
 
+      CASTS                    = 'Casts'
+      FEED_PARSER_REGEX        = /Pocket Casts Feed Parser/.freeze
+      POCKETCAST               = 'Pocketcast'
+      POCKETCASTS              = 'PocketCasts'
+      POCKETCASTS_REGEX        = /Pocket[Cc]asts?/.freeze
+      POCKET_CASTS             = 'Pocket Casts'
+      POCKET_CASTS_REGEX       = /Pocket Casts/.freeze
+      POCKET_CASTS_SLASH_REGEX = /Pocket Casts\//.freeze
+
+      ##
+      # @param agent [Array]
+      #     Array of useragent product
+      # @return [Boolean]
+      #     True if the useragent matches this browser
       def self.extend?(agent)
         agent.detect { |useragent| POCKETCASTS_REGEX.match?(useragent.product) } || POCKET_CASTS_REGEX.match?(agent.to_s)
       end
 
+      ##
+      # @return [String]
+      #     The browser name
       def browser
-        'Pocket Casts'
+        POCKET_CASTS
       end
 
-      # Gets the right application
+      ##
+      # @return [Array]
+      #     Gets the right application
       def application
-        detect_product('PocketCasts')
+        detect_product(POCKETCASTS) || detect_product(POCKETCAST)
+      end
+
+      ##
+      # @return [Boolean]
+      #     True, if this is a bot
+      def bot?
+        FEED_PARSER_REGEX.match?(to_s)
+      end
+
+      ##
+      # @return [Boolean]
+      #     True, if this is a mobile app
+      def mobile?
+        return false if bot?
+
+        ANDROID_IOS_REGEX.match?(to_s)
       end
 
       # Gets the operating system
       #
-      # @return [String] the os
+      # @return [String, nil] the os
       def os
-        app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
-        return if app.nil?
+        app = app_with_comments
+        return if app.nil? || app.product == POCKETCASTS
 
         if WINDOWS_NT_REGEX.match?(app.comment[0])
           OperatingSystems.normalize_os(app.comment[0])
@@ -47,21 +79,25 @@ class UserAgent
 
       # Gets the platform
       #
-      # @return [String] the platform
+      # @return [String, nil] the platform
       def platform
-        app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        app = app_with_comments
 
         if app
-          return 'Windows'    if WINDOWS_REGEX.match?(app.comment[0])
-          return 'BlackBerry' if app.comment[0] == 'BB10'
-          return 'Android'    if app.comment.any? { |c| ANDROID_REGEX.match?(c) }
+          if WINDOWS_REGEX.match?(app.comment[0])
+            return WINDOWS
+          elsif MACINTOSH_REGEX.match?(app.comment[0])
+            return MACINTOSH
+          elsif app.comment.any? { |c| ANDROID_REGEX.match?(c) }
+            return ANDROID
+          end
         end
 
         ua = self.to_s
         if ANDROID_REGEX.match?(ua)
-          'Android'
+          ANDROID
         elsif IOS_REGEX.match?(ua)
-          'iPhone'
+          IOS
         end
       end
 
@@ -80,7 +116,7 @@ class UserAgent
         elsif pos = ua =~ IOS_REGEX
           normalize_version(ua[pos..-1].split[1])
         elsif POCKET_CASTS_SLASH_REGEX.match?(ua)
-          normalize_version(detect_product('Casts').version)
+          normalize_version(detect_product(CASTS).version)
         end
       end
 

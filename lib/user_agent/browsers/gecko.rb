@@ -1,6 +1,8 @@
 class UserAgent
   module Browsers
     class Gecko < Base
+      include DesktopClassifiable
+
       def self.extend?(agent)
         agent.application && agent.application.product == "Mozilla"
       end
@@ -53,7 +55,7 @@ class UserAgent
               end
 
           return nil if i.nil?
-          
+
           OperatingSystems.normalize_os(comment[i])
         end
       end

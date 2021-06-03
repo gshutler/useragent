@@ -1,6 +1,8 @@
 class UserAgent
   module Browsers
     class Vivaldi < Base
+      include DesktopClassifiable
+
       def self.extend?(agent)
         agent.detect { |useragent| useragent.product == 'Vivaldi' }
       end

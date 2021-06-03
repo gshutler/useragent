@@ -2,10 +2,12 @@ class UserAgent
   module Browsers
     # The user agent used by Windows Media Player or applications which utilize the
     # Windows Media SDK.
-    # 
+    #
     # @note Both VLC and libavformat impersonate Windows Media Player when they think they
     #       are using MMS (Microsoft Media Services/Windows Media Server).
     class WindowsMediaPlayer < Base
+      include DesktopClassifiable
+
       def self.extend?(agent)
         agent.detect do |useragent|
           %w(NSPlayer Windows-Media-Player WMFSDK).include?(useragent.product) &&
@@ -16,14 +18,14 @@ class UserAgent
       end
 
       # The Windows Media Format SDK version
-      # 
+      #
       # @return [Version, nil] The WMFSDK version
       def wmfsdk_version
         (respond_to?("WMFSDK") && self.send("WMFSDK").version) || nil
       end
 
       # Check if the client supports the WMFSDK version passed in.
-      # 
+      #
       # @param [String] version
       #   The WMFSDK version to check for. For example, "9.0", "11.0", "12.0"
       # @return [true, false] Is this media player compatible with the passed WMFSDK version?
@@ -51,77 +53,77 @@ class UserAgent
       end
 
       # Check if our parsed OS is a mobile OS
-      # 
+      #
       # @return [true, false] Is this a mobile Windows Media Player?
       def mobile?
         ["Windows Phone 8", "Windows Phone 8.1"].include?(os)
       end
 
       # Parses the Windows Media Player version to figure out the host OS version
-      # 
+      #
       # User agents I have personally found:
-      # 
+      #
       # Windows 95 with Windows Media Player 6.4::
       #   NSPlayer/4.1.0.3857
-      # 
+      #
       # Windows 98 SE with Windows Media Player 6.01::
       #   NSPlayer/3.2.0.3564
-      # 
+      #
       # Womdpws 98 SE with Windows Media Player 6.4::
       #   NSPlayer/4.1.0.3857
       #   NSPlayer/4.1.0.3925
-      # 
+      #
       # Windows 98 SE with Windows Media Player 7.1::
       #   NSPlayer/7.1.0.3055
-      # 
+      #
       # Windows 98 SE with Windows Media Player 9.0::
       #   Windows-Media-Player/9.00.00.2980
       #   NSPlayer/9.0.0.2980 WMFSDK/9.0
-      # 
+      #
       # Windows 2000 with Windows Media Player 6.4::
       #   NSPlayer/4.1.0.3938
-      # 
+      #
       # Windows 2000 with Windows Media Player 7.1 (downgraded from WMP9)::
       #   NSPlayer/9.0.0.3268
       #   NSPlayer/9.0.0.3268 WMFSDK/9.0
       #   NSPlayer/9.0.0.3270 WMFSDK/9.0
       #   NSPlayer/9.0.0.2980
-      # 
+      #
       # Windows 2000 with Windows Media Player 9.0::
       #   NSPlayer/9.0.0.3270 WMFSDK/9.0
       #   Windows-Media-Player/9.00.00.3367
-      # 
-      # Windows XP with Windows Media Player 6.4:: 
+      #
+      # Windows XP with Windows Media Player 6.4::
       #   NSPlayer/4.1.0.3936
-      # 
+      #
       # Windows XP with Windows Media Player 9::
       #   NSPlayer/9.0.0.4503
       #   NSPlayer/9.0.0.4503 WMFSDK/9.0
       #   Windows-Media-Player/9.00.00.4503
-      # 
+      #
       # Windows XP with Windows Media Player 10::
       #   NSPlayer/10.0.0.3802
       #   NSPlayer/10.0.0.3802 WMFSDK/10.0
       #   Windows-Media-Player/10.00.00.3802
-      # 
+      #
       # Windows XP with Windows Media Player 11::
       #   NSPlayer/11.0.5721.5262
       #   NSPlayer/11.0.5721.5262 WMFSDK/11.0
       #   Windows-Media-Player/11.0.5721.5262
-      # 
+      #
       # Windows Vista with Windows Media Player 11::
       #   NSPlayer/11.00.6002.18392 WMFSDK/11.00.6002.18392
       #   NSPlayer/11.0.6002.18005
       #   NSPlayer/11.0.6002.18049 WMFSDK/11.0
       #   Windows-Media-Player/11.0.6002.18311
-      # 
+      #
       # Windows 8.1 with Windows Media Player 12::
       #   NSPlayer/12.00.9600.17031 WMFSDK/12.00.9600.17031
-      # 
+      #
       # Windows 10 with Windows Media Player 12::
       #   Windows-Media-Player/12.0.9841.0
       #   NSPlayer/12.00.9841.0000 WMFSDK/12.00.9841.0000
-      # 
+      #
       # Windows Phone 8.1 (Podcasts app)::
       #   NSPlayer/12.00.9651.0000 WMFSDK/12.00.9651.0000
       def os

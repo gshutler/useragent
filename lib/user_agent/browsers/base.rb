@@ -3,6 +3,38 @@ class UserAgent
     class Base < Array
       include Comparable
 
+      ANDROID           = 'Android'
+      APPLE_WATCH       = 'Apple Watch'
+      DALVIK            = 'Dalvik'
+      DARWIN            = 'Darwin'
+      HOME_POD_SOFTWARE = 'HomePod Software'
+      IOS               = 'iOS'
+      IPAD              = 'iPad'
+      IPHONE            = 'iPhone'
+      IPODTOUCH         = 'iPod_touch'
+      IPOD_TOUCH        = 'iPod touch'
+      LINUX             = 'Linux'
+      MACINTOSH         = 'Macintosh'
+      MAC_OS            = 'macOS'
+      MOZILLA           = 'Mozilla'
+      OSX               = 'OSX'
+      WINDOWS           = 'Windows'
+      X11               = 'X11'
+
+      ANDROID_IOS_REGEX = /(Android|iOS)/.freeze
+      ANDROID_REGEX     = /[Aa]ndroid/.freeze
+      APPLE_WATCH_REGEX = /Apple Watch/.freeze
+      DARWIN_REGEX      = /Darwin/.freeze
+      IOS_REGEX         = /iOS/.freeze
+      IPAD_REGEX        = /iPad/.freeze
+      IPHONE_REGEX      = /iPhone/.freeze
+      IPOD_REGEX        = /iPod/.freeze
+      MACINTOSH_REGEX   = /Macintosh/.freeze
+      WINDOWS_NT_REGEX  = /Windows NT/.freeze
+      WINDOWS_REGEX     = /Windows/.freeze
+      X11_REGEX         = /X11/.freeze
+      X86_64_REGEX      = /x86_64/.freeze
+
       def <=>(other)
         if respond_to?(:browser) && other.respond_to?(:browser) &&
             browser == other.browser
@@ -26,6 +58,13 @@ class UserAgent
 
       def application
         first
+      end
+
+      ##
+      # @return [Array, nil]
+      #     The first application that has comments
+      def app_with_comments
+        reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
       end
 
       def browser
@@ -55,7 +94,7 @@ class UserAgent
       def mobile?
         if detect_product('Mobile') || detect_comment('Mobile')
           true
-        elsif os =~ /Android/
+        elsif ANDROID_IOS_REGEX.match?(os)
           true
         elsif application && application.detect_comment { |c| c =~ /^IEMobile/ }
           true
@@ -85,15 +124,29 @@ class UserAgent
         end
       end
 
+      ##
+      # @return [Boolean] True if this UA is a desktop
+      def desktop?
+        false
+      end
+
+      ##
+      # @return [Boolean] True if this UA is a speaker
+      def speaker?
+        false
+      end
+
       def to_h
         return unless application
 
         hash = {
-          :browser => browser,
+          :browser  => browser,
           :platform => platform,
-          :os => os,
-          :mobile => mobile?,
-          :bot => bot?,
+          :os       => os,
+          :mobile   => mobile?,
+          :bot      => bot?,
+          :desktop  => desktop?,
+          :speaker  => speaker?,
         }
 
         if version

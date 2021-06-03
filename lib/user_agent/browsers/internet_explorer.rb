@@ -50,6 +50,13 @@ class UserAgent
         cf_comment ? UserAgent.new(*cf_comment.split('/', 2)) : nil
       end
 
+      ##
+      # @return [Boolean]
+      #     It's a desktop app if not mobile
+      def desktop?
+        !mobile?
+      end
+
       def platform
         "Windows"
       end

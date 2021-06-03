@@ -1,6 +1,8 @@
 require 'user_agent/comparable'
+require 'user_agent/desktop_classifiable'
 require 'user_agent/browsers'
 require 'user_agent/operating_systems'
+require 'user_agent/operating_systems/android'
 require 'user_agent/operating_systems/darwin'
 require 'user_agent/version'
 require 'user_agent/gem_version'
