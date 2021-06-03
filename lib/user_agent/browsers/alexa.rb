@@ -67,7 +67,7 @@ class UserAgent
       def version
         return application.version if application.product == ALEXA_MEDIA_PLAYER
 
-        detect_product(VOICE).version
+        detect_product(VOICE)&.version
       end
     end
   end

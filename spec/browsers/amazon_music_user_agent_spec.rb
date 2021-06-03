@@ -22,7 +22,7 @@ shared_examples 'Amazon Music' do |version, platform, os, type|
     it { expect(useragent).not_to be_desktop }
     it { expect(useragent).not_to be_speaker }
     it { expect(useragent).not_to be_bot }
-  else
+  elsif type == :desktop
     it { expect(useragent).to be_desktop }
     it { expect(useragent).not_to be_mobile }
     it { expect(useragent).not_to be_speaker }
@@ -51,11 +51,17 @@ end
 describe "UserAgent: AmazonMusic/1.0 x86_64 CFNetwork/1121.2.1 Darwin/19.6.0" do
   let!(:useragent) { UserAgent.parse("AmazonMusic/1.0 x86_64 CFNetwork/1121.2.1 Darwin/19.6.0") }
 
-  it_behaves_like 'Amazon Music', '1.0', 'Macintosh', 'macOS 10.15.6'
+  it_behaves_like 'Amazon Music', '1.0', 'Macintosh', 'macOS 10.15.6', :desktop
 end
 
 describe "UserAgent: AmazonMusic/16.17.1 Dalvik/2.1.0 (Linux; U; Android 7.0; LGL83BL Build/NRD90U)" do
   let!(:useragent) { UserAgent.parse("AmazonMusic/16.17.1 Dalvik/2.1.0 (Linux; U; Android 7.0; LGL83BL Build/NRD90U)") }
 
   it_behaves_like 'Amazon Music', '16.17.1', 'Android', 'Android 7.0', :mobile
+end
+
+describe "UserAgent: AmazonMusic" do
+  let!(:useragent) { UserAgent.parse("AmazonMusic") }
+
+  it_behaves_like 'Amazon Music', nil, nil, nil, nil
 end

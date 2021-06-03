@@ -13,7 +13,7 @@ class UserAgent
       end
 
       def application
-        reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        app_with_comments
       end
 
       def platform

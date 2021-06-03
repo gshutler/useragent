@@ -53,7 +53,7 @@ class UserAgent
         return os unless os.nil?
 
         if PANDORA_AUDIO_REGEX.match?(self.to_s) && app = detect_product(AUDIO)
-          OperatingSystems.normalize_os(app.comment[0]) unless app.comment[0].nil?
+          OperatingSystems.normalize_os(app.comment[0]) unless app.comment.nil? || app.comment[0].nil?
         elsif app = detect_product(ANDROID)
           [ANDROID, app.version].compact.join(' ')
         elsif app = detect_product(DARWIN)

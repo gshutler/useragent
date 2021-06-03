@@ -5,6 +5,7 @@ class UserAgent
     # AmazonMusic/10.2.0 iPhone11,6 CFNetwork/1237 Darwin/20.4.0
     # AmazonMusic/1.0 x86_64 CFNetwork/1121.2.1 Darwin/19.6.0
     # AmazonMusic/16.17.1 Dalvik/2.1.0 (Linux; U; Android 7.0; LGL83BL Build/NRD90U)
+    # AmazonMusic
     class AmazonMusic < Base
       include DesktopClassifiable
 
@@ -46,7 +47,7 @@ class UserAgent
           [MAC_OS, UserAgent::OperatingSystems::Darwin::MAC_OS[app.version.to_s]].compact.join(' ')
         else
           app = app_with_comments
-          if (os_string = app.comment.detect { |c| ANDROID_REGEX.match?(c) })
+          if (app && os_string = app.comment.detect { |c| ANDROID_REGEX.match?(c) })
             OperatingSystems.normalize_os(os_string)
           end
         end
