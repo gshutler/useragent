@@ -44,7 +44,9 @@ class UserAgent
 
         case platform
         when IOS
-          version = OperatingSystems::Darwin::IOS[detect_product(DARWIN).version.to_s]
+          darwin  = detect_product(DARWIN)
+          return if darwin.nil?
+          version = OperatingSystems::Darwin::IOS[darwin.version.to_s]
           [IOS, version].compact.join(' ') unless version.nil?
         when IPHONE, IPAD, IPOD_TOUCH
           OperatingSystems.normalize_os(app.comment[1])

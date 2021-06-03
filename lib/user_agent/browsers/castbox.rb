@@ -79,7 +79,8 @@ class UserAgent
         if application
           VERSION_REGEX.match(application.version) ? application.version : application.comment.join
         else
-          detect_product(CAST_BOX).version
+          product = detect_product(CAST_BOX)
+          product.version if product
         end
       end
     end

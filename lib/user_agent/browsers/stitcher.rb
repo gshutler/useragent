@@ -69,7 +69,7 @@ class UserAgent
         elsif app = detect_product(DARWIN)
           comment = app.comment.join unless app.comment.nil?
           X86_64_REGEX.match?(comment) ? MACINTOSH : IOS
-        elsif app = reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
+        elsif app = app_with_comments
           MACINTOSH if MACINTOSH_REGEX.match?(app.comment.join)
         end
       end

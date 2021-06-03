@@ -60,7 +60,7 @@ class UserAgent
       # @return [String, nil]
       #     The platform
       def platform
-        if application
+        if application && application.comment
           if application.comment.any? { |c| IPHONE_REGEX.match?(c) }
             IPHONE
           elsif application.comment.any? { |c| IPAD_REGEX.match?(c) }

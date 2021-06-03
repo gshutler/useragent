@@ -104,9 +104,9 @@ class UserAgent
         return unless application
 
         if platform == IOS
-          [IOS, UserAgent::OperatingSystems::Darwin::IOS[application.version.to_s]].compact.join(' ')
+          [IOS, UserAgent::OperatingSystems::Darwin::IOS[application.version.to_s]].compact.join(' ') if application.version
         else
-          [MAC_OS, UserAgent::OperatingSystems::Darwin::MAC_OS[application.version.to_s]].compact.join(' ')
+          [MAC_OS, UserAgent::OperatingSystems::Darwin::MAC_OS[application.version.to_s]].compact.join(' ') if application.version
         end
       end
 
