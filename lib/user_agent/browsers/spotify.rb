@@ -37,9 +37,9 @@ class UserAgent
           [IOS, app.version.to_s].compact.join(' ')
         elsif app = app_with_comments
           if WINDOWS_NT_REGEX.match?(app.comment[0])
-            OperatingSystems.normalize_os(application.comment[0])
+            OperatingSystems.normalize_os(app.comment[0])
           elsif !app.comment[1].nil?
-            OperatingSystems.normalize_os(application.comment[1])
+            OperatingSystems.normalize_os(app.comment[1])
           end
         end
       end
