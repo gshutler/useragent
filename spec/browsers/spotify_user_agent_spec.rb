@@ -95,6 +95,12 @@ describe "UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, 
   it_behaves_like 'Spotify', '1.1.10.546', 'X11', 'Linux x86_64', :desktop
 end
 
+describe "UserAgent: Spotify/114700684 Win32/Windows 10 (10.0.19042; x64)" do
+  let!(:useragent) { UserAgent.parse("Spotify/114700684 Win32/Windows 10 (10.0.19042; x64)") }
+
+  it_behaves_like 'Spotify', '114700684', 'Windows', 'x64', :desktop
+end
+
 describe "UserAgent: Spotify/1.0" do
   let!(:useragent) { UserAgent.parse("Spotify/1.0") }
 
