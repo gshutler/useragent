@@ -1,3 +1,7 @@
+# 1.1.3
+* Add browser support for general Android
+* Improve OkHttp
+
 # 1.1.0
 
 * Add `speaker?` and `desktop?`, and update existing browsers to support that
