@@ -7,6 +7,7 @@ require 'user_agent/browsers/acast'
 require 'user_agent/browsers/airr'
 require 'user_agent/browsers/alexa'
 require 'user_agent/browsers/amazon_music'
+require 'user_agent/browsers/android'
 require 'user_agent/browsers/apple_core_media'
 require 'user_agent/browsers/apple_home_pod'
 require 'user_agent/browsers/apple_podcasts'
@@ -86,7 +87,8 @@ class UserAgent
       OkHttp,
       AppleWatch::ATC,
       AppleWatch::Pod2Watch,
-      ApplePodcasts
+      ApplePodcasts,
+      Android
     ].freeze
 
     def self.all
