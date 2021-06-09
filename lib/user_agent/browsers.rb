@@ -14,6 +14,7 @@ require 'user_agent/browsers/apple_podcasts'
 require 'user_agent/browsers/apple_watch/base'
 require 'user_agent/browsers/apple_watch/atc'
 require 'user_agent/browsers/apple_watch/pod_2_watch'
+require 'user_agent/browsers/black_berry'
 require 'user_agent/browsers/castbox'
 require 'user_agent/browsers/chrome'
 require 'user_agent/browsers/edge'
@@ -78,6 +79,7 @@ class UserAgent
       Chrome,
       ITunes,
       PlayStation,
+      BlackBerry,
       Webkit,
       Gecko,
       WindowsMediaPlayer,

@@ -1,5 +1,5 @@
-# 1.1.3
-* Add browser support for general Android
+# 1.2.0
+* Add browsers support for general Android and BlackBerry
 * Improve OkHttp
 
 # 1.1.0
