@@ -1,5 +1,5 @@
 # 1.2.0
-* Add browsers support for Audible, BlackBerry, Podbean, Wondery, general Android
+* Add browsers support for Audible, BlackBerry, Podbean, ThePodcastApp, Wondery, general Android
 * Improve OkHttp
 
 # 1.1.0
