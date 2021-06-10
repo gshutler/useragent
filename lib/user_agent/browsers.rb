@@ -42,6 +42,7 @@ require 'user_agent/browsers/stitcher_bot'
 require 'user_agent/browsers/vivaldi'
 require 'user_agent/browsers/wechat_browser'
 require 'user_agent/browsers/windows_media_player'
+require 'user_agent/browsers/wondery'
 
 class UserAgent
   module Browsers
@@ -90,6 +91,7 @@ class UserAgent
       AppleWatch::ATC,
       AppleWatch::Pod2Watch,
       ApplePodcasts,
+      Wondery,
       Android
     ].freeze
 
