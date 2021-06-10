@@ -40,3 +40,15 @@ describe "UserAgent: com.audible.playersdk.player/3.6.0 (Linux;Android 10) ExoPl
 
   it_behaves_like 'Android', 'com.audible.playersdk.player', '3.6.0', 'Android 10'
 end
+
+describe "UserAgent: de.danoeh.antennapod/1.8.1 (Linux;Android 10) ExoPlayerLib/2.10.8" do
+  let(:useragent) { UserAgent.parse("de.danoeh.antennapod/1.8.1 (Linux;Android 10) ExoPlayerLib/2.10.8") }
+
+  it_behaves_like 'Android', 'de.danoeh.antennapod', '1.8.1', 'Android 10'
+end
+
+describe "UserAgent: radio.de/app-5.4.2.5 (Linux;Android 7.0) ExoPlayerLib/2.13.3" do
+  let(:useragent) { UserAgent.parse("radio.de/app-5.4.2.5 (Linux;Android 7.0) ExoPlayerLib/2.13.3") }
+
+  it_behaves_like 'Android', 'radio.de', 'app-5.4.2.5', 'Android 7.0'
+end
