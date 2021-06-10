@@ -35,12 +35,6 @@ describe "UserAgent: Dalvik/2.1.0 (Linux; U; Android 11; SM-G991N Build/RP1A.200
   it_behaves_like 'Android', 'Dalvik', '2.1.0', 'Android 11'
 end
 
-describe "UserAgent: com.audible.playersdk.player/3.6.0 (Linux;Android 10) ExoPlayerLib/2.12.1" do
-  let(:useragent) { UserAgent.parse("com.audible.playersdk.player/3.6.0 (Linux;Android 10) ExoPlayerLib/2.12.1") }
-
-  it_behaves_like 'Android', 'com.audible.playersdk.player', '3.6.0', 'Android 10'
-end
-
 describe "UserAgent: de.danoeh.antennapod/1.8.1 (Linux;Android 10) ExoPlayerLib/2.10.8" do
   let(:useragent) { UserAgent.parse("de.danoeh.antennapod/1.8.1 (Linux;Android 10) ExoPlayerLib/2.10.8") }
 
