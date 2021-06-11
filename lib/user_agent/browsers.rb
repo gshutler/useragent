@@ -42,6 +42,7 @@ require 'user_agent/browsers/stagefright'
 require 'user_agent/browsers/stitcher'
 require 'user_agent/browsers/stitcher_bot'
 require 'user_agent/browsers/the_podcast_app'
+require 'user_agent/browsers/tune_in'
 require 'user_agent/browsers/vivaldi'
 require 'user_agent/browsers/wechat_browser'
 require 'user_agent/browsers/windows_media_player'
@@ -81,6 +82,7 @@ class UserAgent
       Pandora,
       IHeartRadio,
       Overcast,
+      TuneIn,
       Chrome,
       ITunes,
       PlayStation,
