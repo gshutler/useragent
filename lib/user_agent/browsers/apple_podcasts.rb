@@ -23,7 +23,6 @@ class UserAgent
     # Podcasts/1.0.0.218659818 CFNetwork/974.2.1 Darwin/18.0.0
     # Podcast/1 CFNetwork/901.1 Darwin/17.6.0
     # Podcast/22 CFNetwork/978.0.7 Darwin/18.6.0
-    # iTMS
     class ApplePodcasts < Webkit
       include DesktopClassifiable
 
@@ -55,7 +54,6 @@ class UserAgent
         |播客|%E6%92%AD%E5%AE%A2
         )\/.+CFNetwork\/
       /x.freeze
-      ITMS = 'iTMS'
 
       ##
       # @param agent [Array]
@@ -63,7 +61,7 @@ class UserAgent
       # @return [Boolean]
       #     True if the useragent matches this browser
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product == ITMS } || APPLE_PODCASTS_REGEX.match?(agent.to_s)
+        APPLE_PODCASTS_REGEX.match?(agent.to_s)
       end
 
       ##
@@ -78,13 +76,6 @@ class UserAgent
       #     The browser name
       def browser
         APPLE_PODCASTS
-      end
-
-      ##
-      # @return [false]
-      #     This is not a bot
-      def bot?
-        false
       end
 
       ##
