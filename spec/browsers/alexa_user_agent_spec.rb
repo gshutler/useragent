@@ -30,9 +30,6 @@ shared_examples 'Alexa' do |version, os, type|
   end
 end
 
-shared_examples 'Alexa Speaker' do
-end
-
 describe "UserAgent: AlexaMediaPlayer/1.0.1560.0 (Linux;Android 10) ExoPlayerLib/1.5.9" do
   let!(:useragent) { UserAgent.parse("AlexaMediaPlayer/1.0.1560.0 (Linux;Android 10) ExoPlayerLib/1.5.9") }
 

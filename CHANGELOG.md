@@ -1,3 +1,7 @@
+# 1.2.0
+* Add browsers support for Audible, BlackBerry, Podbean, ThePodcastApp, TuneIn, Wondery, general Android
+* Improve OkHttp
+
 # 1.1.0
 
 * Add `speaker?` and `desktop?`, and update existing browsers to support that

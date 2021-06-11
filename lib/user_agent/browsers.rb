@@ -7,12 +7,15 @@ require 'user_agent/browsers/acast'
 require 'user_agent/browsers/airr'
 require 'user_agent/browsers/alexa'
 require 'user_agent/browsers/amazon_music'
+require 'user_agent/browsers/android'
 require 'user_agent/browsers/apple_core_media'
 require 'user_agent/browsers/apple_home_pod'
 require 'user_agent/browsers/apple_podcasts'
 require 'user_agent/browsers/apple_watch/base'
 require 'user_agent/browsers/apple_watch/atc'
 require 'user_agent/browsers/apple_watch/pod_2_watch'
+require 'user_agent/browsers/audible'
+require 'user_agent/browsers/black_berry'
 require 'user_agent/browsers/castbox'
 require 'user_agent/browsers/chrome'
 require 'user_agent/browsers/edge'
@@ -31,15 +34,19 @@ require 'user_agent/browsers/pandora'
 require 'user_agent/browsers/pandora_rss_crawler'
 require 'user_agent/browsers/playstation'
 require 'user_agent/browsers/pocket_casts'
+require 'user_agent/browsers/podbean'
 require 'user_agent/browsers/podcast_addict'
 require 'user_agent/browsers/sonos'
 require 'user_agent/browsers/spotify'
 require 'user_agent/browsers/stagefright'
 require 'user_agent/browsers/stitcher'
 require 'user_agent/browsers/stitcher_bot'
+require 'user_agent/browsers/the_podcast_app'
+require 'user_agent/browsers/tune_in'
 require 'user_agent/browsers/vivaldi'
 require 'user_agent/browsers/wechat_browser'
 require 'user_agent/browsers/windows_media_player'
+require 'user_agent/browsers/wondery'
 
 class UserAgent
   module Browsers
@@ -67,6 +74,7 @@ class UserAgent
       Alexa,
       AmazonMusic,
       PocketCasts,
+      Podbean,
       PodcastAddict,
       Spotify,
       Stagefright,
@@ -74,9 +82,12 @@ class UserAgent
       Pandora,
       IHeartRadio,
       Overcast,
+      TuneIn,
       Chrome,
       ITunes,
       PlayStation,
+      Audible,
+      BlackBerry,
       Webkit,
       Gecko,
       WindowsMediaPlayer,
@@ -86,7 +97,10 @@ class UserAgent
       OkHttp,
       AppleWatch::ATC,
       AppleWatch::Pod2Watch,
-      ApplePodcasts
+      ApplePodcasts,
+      ThePodcastApp,
+      Wondery,
+      Android
     ].freeze
 
     def self.all
