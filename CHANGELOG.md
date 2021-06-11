@@ -1,3 +1,6 @@
+# 1.3.0
+* Add browser support for Deezer
+
 # 1.2.0
 * Add browsers support for Audible, BlackBerry, Podbean, ThePodcastApp, TuneIn, Wondery, general Android
 * Improve OkHttp

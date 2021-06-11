@@ -18,6 +18,7 @@ require 'user_agent/browsers/audible'
 require 'user_agent/browsers/black_berry'
 require 'user_agent/browsers/castbox'
 require 'user_agent/browsers/chrome'
+require 'user_agent/browsers/deezer'
 require 'user_agent/browsers/edge'
 require 'user_agent/browsers/facebook'
 require 'user_agent/browsers/gecko'
@@ -73,6 +74,7 @@ class UserAgent
       Sonos,
       Alexa,
       AmazonMusic,
+      Deezer,
       PocketCasts,
       Podbean,
       PodcastAddict,
