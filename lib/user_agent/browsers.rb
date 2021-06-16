@@ -36,6 +36,7 @@ require 'user_agent/browsers/playstation'
 require 'user_agent/browsers/pocket_casts'
 require 'user_agent/browsers/podbean'
 require 'user_agent/browsers/podcast_addict'
+require 'user_agent/browsers/samsung'
 require 'user_agent/browsers/sonos'
 require 'user_agent/browsers/spotify'
 require 'user_agent/browsers/stagefright'
@@ -58,6 +59,7 @@ class UserAgent
 
     ALL = [
       Edge,
+      Samsung,
       StitcherBot,
       Stitcher,
       InternetExplorer,
