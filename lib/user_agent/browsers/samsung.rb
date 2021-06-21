@@ -1,15 +1,15 @@
 class UserAgent
   module Browsers
-    class Samsung < Base
+    class Samsung < Webkit
 
       SAMSUNG_BROWSER = 'SamsungBrowser'
 
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product == SAMSUNG_BROWSER}
+        agent.detect { |useragent| useragent.product == SAMSUNG_BROWSER }
       end
 
       def version
-        self.detect { |useragent| useragent.product == SAMSUNG_BROWSER}.version
+        self.detect { |useragent| useragent.product == SAMSUNG_BROWSER }.version
       end
 
       ##
@@ -20,15 +20,7 @@ class UserAgent
       end
 
       def browser
-        SAMSUNG_BROWSER
-      end
-
-      def platform
-        ANDROID
-      end
-
-      def os
-        ANDROID
+        'Samsung Internet Browser'
       end
     end
   end
