@@ -2,8 +2,9 @@ class UserAgent
   module Browsers
     # ExoPlayerWrapper/5.4.9 (Linux;Android 10) ExoPlayerLib/2.11.5
     # Dalvik/2.1.0 (Linux; U; Android 11; SM-G991N Build/RP1A.200720.012)
-    # de.danoeh.antennapod/1.8.1 (Linux;Android 10) ExoPlayerLib/2.10.8)
-    # radio.de/app-5.4.2.5 (Linux;Android 7.0) ExoPlayerLib/2.13.3)
+    # de.danoeh.antennapod/1.8.1 (Linux;Android 10) ExoPlayerLib/2.10.8
+    # radio.de/app-5.4.2.5 (Linux;Android 7.0) ExoPlayerLib/2.13.3
+    # NaverPlaybackLib/2.4.1 (Linux;Android 11) ExoPlayerLib/2.11.8
     class Android < Base
       EXO_PLAYER_LIB = 'ExoPlayerLib'
 
