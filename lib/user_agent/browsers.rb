@@ -38,6 +38,7 @@ require 'user_agent/browsers/playstation'
 require 'user_agent/browsers/pocket_casts'
 require 'user_agent/browsers/podbean'
 require 'user_agent/browsers/podcast_addict'
+require 'user_agent/browsers/podcast_republic'
 require 'user_agent/browsers/sonos'
 require 'user_agent/browsers/spotify'
 require 'user_agent/browsers/stagefright'
@@ -102,6 +103,7 @@ class UserAgent
       AppleWatch::ATC,
       AppleWatch::Pod2Watch,
       ApplePodcasts,
+      PodcastRepublic,
       ThePodcastApp,
       Wondery,
       Android
