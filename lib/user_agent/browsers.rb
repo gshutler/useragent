@@ -32,6 +32,7 @@ require 'user_agent/browsers/iheart_radio'
 require 'user_agent/browsers/internet_explorer'
 require 'user_agent/browsers/itunes'
 require 'user_agent/browsers/libavformat'
+require 'user_agent/browsers/luminary'
 require 'user_agent/browsers/ok_http'
 require 'user_agent/browsers/opera'
 require 'user_agent/browsers/overcast'
@@ -109,6 +110,7 @@ class UserAgent
       AndroidDownloadManager,
       AudioClip,
       Downcast,
+      Luminary,
       PodcastRepublic,
       ThePodcastApp,
       Wondery,
