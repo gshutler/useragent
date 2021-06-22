@@ -8,6 +8,7 @@ require 'user_agent/browsers/airr'
 require 'user_agent/browsers/alexa'
 require 'user_agent/browsers/amazon_music'
 require 'user_agent/browsers/android'
+require 'user_agent/browsers/android_download_manager'
 require 'user_agent/browsers/apple_core_media'
 require 'user_agent/browsers/apple_home_pod'
 require 'user_agent/browsers/apple_podcasts'
@@ -105,6 +106,7 @@ class UserAgent
       AppleWatch::ATC,
       AppleWatch::Pod2Watch,
       ApplePodcasts,
+      AndroidDownloadManager,
       AudioClip,
       Downcast,
       PodcastRepublic,
