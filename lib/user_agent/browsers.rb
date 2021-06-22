@@ -33,6 +33,7 @@ require 'user_agent/browsers/internet_explorer'
 require 'user_agent/browsers/itunes'
 require 'user_agent/browsers/libavformat'
 require 'user_agent/browsers/luminary'
+require 'user_agent/browsers/npr_one'
 require 'user_agent/browsers/ok_http'
 require 'user_agent/browsers/opera'
 require 'user_agent/browsers/overcast'
@@ -90,6 +91,7 @@ class UserAgent
       PandoraRSSCrawler,
       Pandora,
       IHeartRadio,
+      NPROne,
       Overcast,
       TuneIn,
       Chrome,

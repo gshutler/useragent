@@ -51,7 +51,7 @@ class UserAgent
       end
 
       ##
-      # @return [String] This is an Android app
+      # @return [String] The platform of the app
       def platform
         ua = to_s
         case ua
