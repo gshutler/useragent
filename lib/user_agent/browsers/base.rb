@@ -30,6 +30,7 @@ class UserAgent
       IPHONE_REGEX      = /iPhone/.freeze
       IPOD_REGEX        = /iPod/.freeze
       MACINTOSH_REGEX   = /Macintosh/.freeze
+      OS_X_REGEX        = /OS X/.freeze
       WINDOWS_NT_REGEX  = /Windows NT/.freeze
       WINDOWS_REGEX     = /Windows/.freeze
       X11_REGEX         = /X11/.freeze
