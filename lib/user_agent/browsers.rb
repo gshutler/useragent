@@ -47,6 +47,7 @@ require 'user_agent/browsers/pocket_casts'
 require 'user_agent/browsers/podbean'
 require 'user_agent/browsers/podcast_addict'
 require 'user_agent/browsers/podcast_republic'
+require 'user_agent/browsers/podimo'
 require 'user_agent/browsers/podkicker'
 require 'user_agent/browsers/radio_public'
 require 'user_agent/browsers/sonos'
@@ -123,6 +124,7 @@ class UserAgent
       Downcast,
       Luminary,
       PodcastRepublic,
+      Podimo,
       Podkicker,
       ThePodcastApp,
       Wondery,
