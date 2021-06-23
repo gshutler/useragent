@@ -1,5 +1,5 @@
 # 1.3.0
-* Add browser support for AndroidDownloadManager, AudioClip, BeyondPod, Breaker, Castro, Deezer, Downcast, Googlebot, Himalaya, Luminary, NPR One, PodMN, Podcast Republic, Podimo, Podkicker, RadioPublic, Spreaker
+* Add browser support for AndroidDownloadManager, AudioClip, BeyondPod, Breaker, Castro, Deezer, Downcast, Googlebot, Himalaya, Luminary, NPR One, PodMN, Podcast Republic, Podimo, Podkicker, RadioPublic, SoundOn, Spreaker
 
 # 1.2.0
 * Add browsers support for Audible, BlackBerry, Podbean, ThePodcastApp, TuneIn, Wondery, general Android
