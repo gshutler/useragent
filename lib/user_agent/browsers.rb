@@ -20,6 +20,7 @@ require 'user_agent/browsers/audio_clip'
 require 'user_agent/browsers/black_berry'
 require 'user_agent/browsers/breaker'
 require 'user_agent/browsers/castbox'
+require 'user_agent/browsers/castro'
 require 'user_agent/browsers/chrome'
 require 'user_agent/browsers/deezer'
 require 'user_agent/browsers/downcast'
@@ -85,6 +86,7 @@ class UserAgent
       Sonos,
       Alexa,
       AmazonMusic,
+      Castro,
       Deezer,
       Himalaya,
       PocketCasts,
