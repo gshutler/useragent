@@ -52,6 +52,7 @@ require 'user_agent/browsers/podkicker'
 require 'user_agent/browsers/radio_public'
 require 'user_agent/browsers/sonos'
 require 'user_agent/browsers/spotify'
+require 'user_agent/browsers/spreaker'
 require 'user_agent/browsers/stagefright'
 require 'user_agent/browsers/stitcher'
 require 'user_agent/browsers/stitcher_bot'
@@ -126,6 +127,7 @@ class UserAgent
       PodcastRepublic,
       Podimo,
       Podkicker,
+      Spreaker,
       ThePodcastApp,
       Wondery,
       Android
