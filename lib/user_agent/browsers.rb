@@ -17,6 +17,7 @@ require 'user_agent/browsers/apple_watch/atc'
 require 'user_agent/browsers/apple_watch/pod_2_watch'
 require 'user_agent/browsers/audible'
 require 'user_agent/browsers/audio_clip'
+require 'user_agent/browsers/beyond_pod'
 require 'user_agent/browsers/black_berry'
 require 'user_agent/browsers/breaker'
 require 'user_agent/browsers/castbox'
@@ -89,6 +90,7 @@ class UserAgent
       Sonos,
       Alexa,
       AmazonMusic,
+      BeyondPod,
       Castro,
       Deezer,
       Himalaya,
