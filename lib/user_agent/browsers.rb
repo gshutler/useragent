@@ -48,6 +48,7 @@ require 'user_agent/browsers/podbean'
 require 'user_agent/browsers/podcast_addict'
 require 'user_agent/browsers/podcast_republic'
 require 'user_agent/browsers/podkicker'
+require 'user_agent/browsers/radio_public'
 require 'user_agent/browsers/sonos'
 require 'user_agent/browsers/spotify'
 require 'user_agent/browsers/stagefright'
@@ -92,6 +93,7 @@ class UserAgent
       PocketCasts,
       Podbean,
       PodcastAddict,
+      RadioPublic,
       Spotify,
       Stagefright,
       PandoraRSSCrawler,
