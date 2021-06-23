@@ -32,6 +32,7 @@ require 'user_agent/browsers/google_home'
 require 'user_agent/browsers/google_podcasts'
 require 'user_agent/browsers/googlebot'
 require 'user_agent/browsers/himalaya'
+require 'user_agent/browsers/himalaya'
 require 'user_agent/browsers/iheart_radio'
 require 'user_agent/browsers/internet_explorer'
 require 'user_agent/browsers/itunes'
@@ -51,6 +52,7 @@ require 'user_agent/browsers/podcast_addict'
 require 'user_agent/browsers/podcast_republic'
 require 'user_agent/browsers/podimo'
 require 'user_agent/browsers/podkicker'
+require 'user_agent/browsers/podverse'
 require 'user_agent/browsers/radio_public'
 require 'user_agent/browsers/sonos'
 require 'user_agent/browsers/sound_on'
@@ -99,6 +101,7 @@ class UserAgent
       PocketCasts,
       Podbean,
       PodcastAddict,
+      Podverse,
       RadioPublic,
       Spotify,
       Stagefright,
