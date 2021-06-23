@@ -24,7 +24,9 @@ require 'user_agent/browsers/castbox'
 require 'user_agent/browsers/castro'
 require 'user_agent/browsers/chrome'
 require 'user_agent/browsers/deezer'
+require 'user_agent/browsers/deezer_crawler'
 require 'user_agent/browsers/downcast'
+require 'user_agent/browsers/downcast_crawler'
 require 'user_agent/browsers/edge'
 require 'user_agent/browsers/facebook'
 require 'user_agent/browsers/gecko'
@@ -54,6 +56,7 @@ require 'user_agent/browsers/podimo'
 require 'user_agent/browsers/podkicker'
 require 'user_agent/browsers/podverse'
 require 'user_agent/browsers/radio_public'
+require 'user_agent/browsers/radio_public_crawler'
 require 'user_agent/browsers/sonos'
 require 'user_agent/browsers/sound_on'
 require 'user_agent/browsers/spotify'
@@ -96,12 +99,14 @@ class UserAgent
       AmazonMusic,
       BeyondPod,
       Castro,
+      DeezerCrawler,
       Deezer,
       Himalaya,
       PocketCasts,
       Podbean,
       PodcastAddict,
       Podverse,
+      RadioPublicCrawler,
       RadioPublic,
       Spotify,
       Stagefright,
@@ -129,6 +134,7 @@ class UserAgent
       AndroidDownloadManager,
       AudioClip,
       Breaker,
+      DowncastCrawler,
       Downcast,
       ICatcher,
       Luminary,
