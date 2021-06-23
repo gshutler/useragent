@@ -45,6 +45,7 @@ require 'user_agent/browsers/pandora'
 require 'user_agent/browsers/pandora_rss_crawler'
 require 'user_agent/browsers/playstation'
 require 'user_agent/browsers/pocket_casts'
+require 'user_agent/browsers/pod_mn'
 require 'user_agent/browsers/podbean'
 require 'user_agent/browsers/podcast_addict'
 require 'user_agent/browsers/podcast_republic'
@@ -126,6 +127,7 @@ class UserAgent
       Breaker,
       Downcast,
       Luminary,
+      PodMN,
       PodcastRepublic,
       Podimo,
       Podkicker,
