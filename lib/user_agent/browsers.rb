@@ -32,7 +32,7 @@ require 'user_agent/browsers/google_home'
 require 'user_agent/browsers/google_podcasts'
 require 'user_agent/browsers/googlebot'
 require 'user_agent/browsers/himalaya'
-require 'user_agent/browsers/himalaya'
+require 'user_agent/browsers/icatcher'
 require 'user_agent/browsers/iheart_radio'
 require 'user_agent/browsers/internet_explorer'
 require 'user_agent/browsers/itunes'
@@ -130,6 +130,7 @@ class UserAgent
       AudioClip,
       Breaker,
       Downcast,
+      ICatcher,
       Luminary,
       PodMN,
       PodcastRepublic,
