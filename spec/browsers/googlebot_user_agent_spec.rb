@@ -78,3 +78,27 @@ describe "UserAgent: Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatib
 
   it_should_behave_like 'Googlebot'
 end
+
+describe "UserAgent: Googlebot-Audio" do
+  let!(:useragent) { UserAgent.parse("Googlebot-Audio") }
+
+  it_should_behave_like 'Googlebot'
+end
+
+describe "UserAgent: Googlebot-Image/1.0" do
+  let!(:useragent) { UserAgent.parse("Googlebot-Image/1.0") }
+
+  it_should_behave_like 'Googlebot'
+end
+
+describe "UserAgent: Googlebot-News" do
+  let!(:useragent) { UserAgent.parse("Googlebot-News") }
+
+  it_should_behave_like 'Googlebot'
+end
+
+describe "UserAgent: Googlebot-Video/1.0" do
+  let!(:useragent) { UserAgent.parse("Googlebot-Video/1.0") }
+
+  it_should_behave_like 'Googlebot'
+end

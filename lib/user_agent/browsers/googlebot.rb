@@ -11,9 +11,14 @@ class UserAgent
     # Mozilla/5.0 (compatible; Googlebot/2.1;  http://www.google.com/bot.html)
     # Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Safari/537.36
     # Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Chrome/91.0.4472.90 Safari/537.36
+    # Googlebot-Audio
+    # Googlebot-Image/1.0
+    # Googlebot-News
+    # Googlebot-Video/1.0
     class Googlebot < Base
-      GOOGLEBOT = 'Googlebot'
+      GOOGLEBOT       = 'Googlebot'
       GOOGLEBOT_REGEX = /Googlebot\//.freeze
+      PRODUCTS_REGEX  = /Googlebot(-(Audio|Image|News|Video))?/.freeze
 
       ##
       # @param agent [Array]
@@ -21,7 +26,7 @@ class UserAgent
       # @return [Boolean]
       #     True if the useragent matches this browser
       def self.extend?(agent)
-        return true if agent.detect { |useragent| useragent.product == GOOGLEBOT }
+        return true if agent.detect { |useragent| PRODUCTS_REGEX.match?(useragent.product) }
 
         app = agent.reject { |agent| agent.comment.nil? || agent.comment.empty? }.first
         return false unless app
