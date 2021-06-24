@@ -4,7 +4,6 @@ class UserAgent
   module Browsers
     # RadioPublic-Web/e0d2cd1
     class RadioPublicCrawler < Base
-      RADIO_PUBLIC     = 'RadioPublic'
       RADIO_PUBLIC_WEB = 'RadioPublic-Web'
 
       ##
@@ -20,7 +19,7 @@ class UserAgent
       # @return [String]
       #     The browser name
       def browser
-        RADIO_PUBLIC
+        UserAgent::Browsers::RadioPublic::RADIO_PUBLIC
       end
 
       ##

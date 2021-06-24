@@ -4,7 +4,6 @@ class UserAgent
   module Browsers
     # downcast feed consumer/0.0.177; (mode=dev; id=jQPkOYXFJT; downcast.fm)
     class DowncastCrawler < Base
-      DOWNCAST               = 'Downcast'
       DOWNCAST_CRAWLER_REGEX = /downcast feed consumer\//.freeze
 
       ##
@@ -20,7 +19,7 @@ class UserAgent
       # @return [String]
       #     The browser name
       def browser
-        DOWNCAST
+        UserAgent::Browsers::Downcast::DOWNCAST
       end
 
       ##

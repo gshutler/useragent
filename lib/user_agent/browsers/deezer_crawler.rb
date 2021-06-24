@@ -4,7 +4,6 @@ class UserAgent
   module Browsers
     # Deezer Podcasters/1.0
     class DeezerCrawler < Base
-      DEEZER               = 'Deezer'
       DEEZER_CRAWLER_REGEX = /Deezer Podcasters\//.freeze
 
       ##
@@ -20,7 +19,7 @@ class UserAgent
       # @return [String]
       #     The browser name
       def browser
-        DEEZER
+        UserAgent::Browsers::Deezer::DEEZER
       end
 
       ##
