@@ -16,6 +16,7 @@ class UserAgent
         )
       end
 
+      ##
       # Returns the name of the browser in use.
       #
       # @return [nil, String] the name of the browser
@@ -31,6 +32,7 @@ class UserAgent
         end
       end
 
+      ##
       # PS Vita is mobile, others are not.
       #
       # @return [true, false] is this a mobile browser?
@@ -38,6 +40,7 @@ class UserAgent
         platform == 'PlayStation Vita'
       end
 
+      ##
       # Returns the operating system in use.
       #
       # @return [String] the operating system in use
@@ -45,6 +48,7 @@ class UserAgent
         application.comment.join(' ')
       end
 
+      ##
       # Returns the platform in use.
       #
       # @return [nil, "PlayStation 3", "PlayStation 4", "PlayStation Vita"] the platform in use
@@ -60,6 +64,7 @@ class UserAgent
         end
       end
 
+      ##
       # Returns the browser version in use. If Silk, returns the version of Silk.
       # Otherwise, returns the PS3/PS4 firmware version.
       #
