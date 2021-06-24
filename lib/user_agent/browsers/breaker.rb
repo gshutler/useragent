@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # Breaker/Android/1.0.0.RC-GP-Free(72) (72)

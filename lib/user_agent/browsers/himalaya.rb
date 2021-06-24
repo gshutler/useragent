@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # Himalaya/2.4.82 Android/29 (EVR-L29)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # Podkicker Pro/3.1.19.RC-GP-Pro(2028)

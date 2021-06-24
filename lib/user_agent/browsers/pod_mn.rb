@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # PodMN/Android 1.3.1 (Android 11; SM-G970U Build/RP1A.200720.012)

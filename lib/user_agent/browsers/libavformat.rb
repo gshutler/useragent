@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # The user agent utilized by ffmpeg or other projects utilizing libavformat

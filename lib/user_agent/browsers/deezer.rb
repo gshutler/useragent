@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # Deezer/6.2.28.73 (Android; 11; Mobile; fr) samsung SM-G973F

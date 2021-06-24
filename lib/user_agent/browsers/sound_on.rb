@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # SoundOn/3.7.1 (Linux;Android)

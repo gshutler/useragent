@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # iCatcher!/6.7.5 (iPhone; iOS 14.5.1; Scale/2.0)

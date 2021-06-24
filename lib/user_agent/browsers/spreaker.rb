@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # Spreaker for Android 4.17.0 release:2021-05-05 device:phone (samsung SM-G965U; Android 10; en_US)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # ExoPlayerWrapper/5.4.9 (Linux;Android 10) ExoPlayerLib/2.11.5

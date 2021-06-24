@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # Acast/1.63.0 (Phone; iOS 11.2.6; iPad6,11)

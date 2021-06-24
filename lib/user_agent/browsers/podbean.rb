@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # Podbean/Android App 8.5.1 (http://podbean.com),a3d7ec202761774354efde899ad29a6a

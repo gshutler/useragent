@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # PodcastRepublic/18.0 (Linux; U; Android 11;blueline/RQ2A.210505.002)

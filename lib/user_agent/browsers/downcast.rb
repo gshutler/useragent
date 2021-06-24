@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # Downcast/2.10.3 (iPhone; iOS 14.6; Scale/3.00)

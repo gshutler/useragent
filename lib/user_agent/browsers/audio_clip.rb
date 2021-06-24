@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # AudioClip/125 CFNetwork/1240.0.4 Darwin/20.5.0

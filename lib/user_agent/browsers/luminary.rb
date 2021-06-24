@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # Luminary/33.0 (Android 9; SM-G950F; samsung dreamlte; en)
