@@ -11,7 +11,7 @@ class UserAgent
     class Spreaker < Base
       IPHONE_OS     = 'iPhone OS'
       SPREAKER      = 'Spreaker'
-      VERSION_REGEX = /Spreaker (for Android )?(?<version>[\d\.]+)/.freeze
+      VERSION_REGEX = /\ASpreaker (?:for Android )?(?<version>[\d\.]+)/.freeze
 
       ##
       # @param agent [Array]

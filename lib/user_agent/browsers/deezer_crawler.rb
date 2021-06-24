@@ -4,7 +4,7 @@ class UserAgent
   module Browsers
     # Deezer Podcasters/1.0
     class DeezerCrawler < Base
-      DEEZER_CRAWLER_REGEX = /Deezer Podcasters\//.freeze
+      DEEZER_CRAWLER_REGEX = /\ADeezer Podcasters\//.freeze
 
       ##
       # @param agent [Array]

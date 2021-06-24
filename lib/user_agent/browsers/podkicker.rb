@@ -8,7 +8,7 @@ class UserAgent
     class Podkicker < Base
       CLASSIC         = 'Classic'
       PODKICKER       = 'Podkicker'
-      PODKICKER_REGEX = /Podkicker (Pro|Classic)\//.freeze
+      PODKICKER_REGEX = /\APodkicker (Pro|Classic)\//.freeze
       PRO             = 'Pro'
 
       ##

@@ -20,7 +20,7 @@ shared_examples 'Deezer' do |version, platform, os, type|
   if type == :mobile
     it { expect(useragent).to be_mobile }
     it { expect(useragent).not_to be_desktop }
-  else
+  elsif type == :desktop
     it { expect(useragent).to be_desktop }
     it { expect(useragent).not_to be_mobile }
   end

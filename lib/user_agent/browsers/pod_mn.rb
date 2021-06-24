@@ -9,7 +9,7 @@ class UserAgent
     # PodMN/1 CFNetwork/1121.2.2 Darwin/19.3.0
     class PodMN < Base
       POD_MN        = 'PodMN'
-      VERSION_REGEX = /PodMN\/(iOS|Android) (?<version>[\d\.]+)/.freeze
+      VERSION_REGEX = /\APodMN\/(iOS|Android) (?<version>[\d\.]+)/.freeze
 
       ##
       # @param agent [Array]

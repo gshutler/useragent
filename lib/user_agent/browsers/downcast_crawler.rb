@@ -4,7 +4,7 @@ class UserAgent
   module Browsers
     # downcast feed consumer/0.0.177; (mode=dev; id=jQPkOYXFJT; downcast.fm)
     class DowncastCrawler < Base
-      DOWNCAST_CRAWLER_REGEX = /downcast feed consumer\//.freeze
+      DOWNCAST_CRAWLER_REGEX = /\Adowncast feed consumer\//.freeze
 
       ##
       # @param agent [Array]

@@ -14,7 +14,7 @@ class UserAgent
       ICATCHER       = 'iCatcher!'
       ICATCHER_LOWER = 'icatcher'
       IPHONE_OS      = 'iPhone OS'
-      VERSION_REGEX  = /iCatcher! (podcast app\/|Podcast Player\/)?(?<version>[\d\.]+)/.freeze
+      VERSION_REGEX  = /\AiCatcher! (podcast app\/|Podcast Player\/)?(?<version>[\d\.]+)/.freeze
 
       ##
       # @param agent [Array]

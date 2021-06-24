@@ -13,7 +13,7 @@ class UserAgent
       RADIO_PUBLIC      = 'RadioPublic'
       IOS_ANDROID_REGEX = /((iOS|android)-)?(?<version>[\d\.]+)/.freeze
       IOS_VERSION_REGEX = /iOS [\d\.]+/.freeze
-      VERSION_REGEX     = /RadioPublic (iOS|Android) (?<version>[\d\.]+)/.freeze
+      VERSION_REGEX     = /\ARadioPublic (iOS|Android) (?<version>[\d\.]+)/.freeze
 
       ##
       # @param agent [Array]

@@ -13,7 +13,7 @@ class UserAgent
     # Castro 2 2.2/647 Like iTunes
     class Castro < Base
       CASTRO        = 'Castro'
-      VERSION_REGEX = /Castro (?<version>[\d\.]+)/.freeze
+      VERSION_REGEX = /\ACastro (?<version>[\d\.]+)/.freeze
 
       ##
       # @param agent [Array]
