@@ -1,8 +1,8 @@
 require 'user_agent'
 
 shared_examples_for 'AndroidDownloadManager' do |version, os|
-  it "returns 'AndroidDownloadManager' as its browser" do
-    expect(useragent.browser).to eq('AndroidDownloadManager')
+  it "returns 'Android Download Manager' as its browser" do
+    expect(useragent.browser).to eq('Android Download Manager')
   end
 
   it "returns '#{version}' as its version" do
@@ -26,11 +26,11 @@ end
 describe "UserAgent: AndroidDownloadManager/10 (Linux; U; Android 10; HMA-AL00 Build/HUAWEIHMA-AL00)" do
   let(:useragent) { UserAgent.parse("AndroidDownloadManager/10 (Linux; U; Android 10; HMA-AL00 Build/HUAWEIHMA-AL00)") }
 
-  it_should_behave_like 'AndroidDownloadManager', '10', 'Android 10'
+  it_behaves_like 'AndroidDownloadManager', '10', 'Android 10'
 end
 
 describe "UserAgent: AndroidDownloadManager" do
   let(:useragent) { UserAgent.parse("AndroidDownloadManager") }
 
-  it_should_behave_like 'AndroidDownloadManager', nil, nil
+  it_behaves_like 'AndroidDownloadManager', nil, nil
 end

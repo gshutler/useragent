@@ -5,7 +5,8 @@ class UserAgent
     # AndroidDownloadManager/10 (Linux; U; Android 10; HMA-AL00 Build/HUAWEIHMA-AL00)
     # AndroidDownloadManager
     class AndroidDownloadManager < Base
-      ANDROID_DOWNLOAD_MANAGER = 'AndroidDownloadManager'
+      ANDROID_DOWNLOAD_MANAGER = 'Android Download Manager'
+      ANDROIDDOWNLOADMANAGER   = 'AndroidDownloadManager'
 
       ##
       # @param agent [Array]
@@ -13,7 +14,7 @@ class UserAgent
       # @return [Boolean]
       #     True if the useragent matches this browser
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product == ANDROID_DOWNLOAD_MANAGER }
+        agent.detect { |useragent| useragent.product == ANDROIDDOWNLOADMANAGER }
       end
 
       ##
