@@ -22,83 +22,83 @@ end
 describe "UserAgent: Googlebot/2.1" do
   let!(:useragent) { UserAgent.parse("Googlebot/2.1") }
 
-  it_should_behave_like 'Googlebot'
+  it_behaves_like 'Googlebot'
 end
 
 describe "UserAgent: Googlebot/2.1 (http://www.googlebot.com/bot.html)" do
   let!(:useragent) { UserAgent.parse("Googlebot/2.1 (http://www.googlebot.com/bot.html)") }
 
-  it_should_behave_like 'Googlebot'
+  it_behaves_like 'Googlebot'
 end
 
 describe "UserAgent: Googlebot/2.1 ( http://www.googlebot.com/bot.html)" do
   let!(:useragent) { UserAgent.parse("Googlebot/2.1 ( http://www.googlebot.com/bot.html)") }
 
-  it_should_behave_like 'Googlebot'
+  it_behaves_like 'Googlebot'
 end
 
 describe "UserAgent: Googlebot/2.1 (+http://www.googlebot.com/bot.html)" do
   let!(:useragent) { UserAgent.parse("Googlebot/2.1 (+http://www.googlebot.com/bot.html)") }
 
-  it_should_behave_like 'Googlebot'
+  it_behaves_like 'Googlebot'
 end
 
 describe "UserAgent: Googlebot/2.1 (+http://www.google.com/bot.html)" do
   let!(:useragent) { UserAgent.parse("Googlebot/2.1 (+http://www.google.com/bot.html)") }
 
-  it_should_behave_like 'Googlebot'
+  it_behaves_like 'Googlebot'
 end
 
 describe "UserAgent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" do
   let!(:useragent) { UserAgent.parse("Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)") }
 
-  it_should_behave_like 'Googlebot'
+  it_behaves_like 'Googlebot'
 end
 
 describe "UserAgent: Mozilla/5.0 (compatible; Googlebot/2.1;++http://www.google.com/bot.html)" do
   let!(:useragent) { UserAgent.parse("Mozilla/5.0 (compatible; Googlebot/2.1;++http://www.google.com/bot.html)") }
 
-  it_should_behave_like 'Googlebot'
+  it_behaves_like 'Googlebot'
 end
 
 describe "UserAgent: Mozilla/5.0 (compatible; Googlebot/2.1;  http://www.google.com/bot.html)" do
   let!(:useragent) { UserAgent.parse("Mozilla/5.0 (compatible; Googlebot/2.1;  http://www.google.com/bot.html)") }
 
-  it_should_behave_like 'Googlebot'
+  it_behaves_like 'Googlebot'
 end
 
 describe "UserAgent: Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Safari/537.36" do
   let!(:useragent) { UserAgent.parse("Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Safari/537.36") }
 
-  it_should_behave_like 'Googlebot'
+  it_behaves_like 'Googlebot'
 end
 
 describe "UserAgent: Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Chrome/91.0.4472.90 Safari/537.36" do
   let!(:useragent) { UserAgent.parse("Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Chrome/91.0.4472.90 Safari/537.36") }
 
-  it_should_behave_like 'Googlebot'
+  it_behaves_like 'Googlebot'
 end
 
 describe "UserAgent: Googlebot-Audio" do
   let!(:useragent) { UserAgent.parse("Googlebot-Audio") }
 
-  it_should_behave_like 'Googlebot'
+  it_behaves_like 'Googlebot'
 end
 
 describe "UserAgent: Googlebot-Image/1.0" do
   let!(:useragent) { UserAgent.parse("Googlebot-Image/1.0") }
 
-  it_should_behave_like 'Googlebot'
+  it_behaves_like 'Googlebot'
 end
 
 describe "UserAgent: Googlebot-News" do
   let!(:useragent) { UserAgent.parse("Googlebot-News") }
 
-  it_should_behave_like 'Googlebot'
+  it_behaves_like 'Googlebot'
 end
 
 describe "UserAgent: Googlebot-Video/1.0" do
   let!(:useragent) { UserAgent.parse("Googlebot-Video/1.0") }
 
-  it_should_behave_like 'Googlebot'
+  it_behaves_like 'Googlebot'
 end

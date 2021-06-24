@@ -26,29 +26,29 @@ end
 describe "UserAgent: Luminary/33.0 (Android 9; SM-G950F; samsung dreamlte; en)" do
   let(:useragent) { UserAgent.parse("Luminary/33.0 (Android 9; SM-G950F; samsung dreamlte; en)") }
 
-  it_should_behave_like 'Luminary', '33.0', 'Android', 'Android 9'
+  it_behaves_like 'Luminary', '33.0', 'Android', 'Android 9'
 end
 
 describe "UserAgent: Luminary/1.0.10 build 1377/Android SDK 28" do
   let(:useragent) { UserAgent.parse("Luminary/1.0.10 build 1377/Android SDK 28") }
 
-  it_should_behave_like 'Luminary', '1.0.10', 'Android', 'Android 9'
+  it_behaves_like 'Luminary', '1.0.10', 'Android', 'Android 9'
 end
 
 describe "UserAgent: Luminary/39.0 build 252/iOS 14.6" do
   let(:useragent) { UserAgent.parse("Luminary/39.0 build 252/iOS 14.6") }
 
-  it_should_behave_like 'Luminary', '39.0', 'iOS', 'iOS 14.6'
+  it_behaves_like 'Luminary', '39.0', 'iOS', 'iOS 14.6'
 end
 
 describe "UserAgent: Luminary/252 CFNetwork/1240.0.4 Darwin/20.5.0" do
   let(:useragent) { UserAgent.parse("Luminary/252 CFNetwork/1240.0.4 Darwin/20.5.0") }
 
-  it_should_behave_like 'Luminary', '252', 'iOS', 'iOS 14.6'
+  it_behaves_like 'Luminary', '252', 'iOS', 'iOS 14.6'
 end
 
 describe "UserAgent: Luminary/0.0.243 build 3319" do
   let(:useragent) { UserAgent.parse("Luminary/0.0.243 build 3319") }
 
-  it_should_behave_like 'Luminary', '0.0.243', nil, nil
+  it_behaves_like 'Luminary', '0.0.243', nil, nil
 end
