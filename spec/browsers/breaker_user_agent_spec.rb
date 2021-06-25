@@ -26,13 +26,13 @@ end
 describe "UserAgent: Breaker/Android/1.0.0.RC-GP-Free(72) (72)" do
   let(:useragent) { UserAgent.parse("Breaker/Android/1.0.0.RC-GP-Free(72) (72)") }
 
-  it_should_behave_like 'Breaker', '1.0.0.RC-GP-Free(72)', 'Android', nil
+  it_should_behave_like 'Breaker', '1.0.0.RC-GP-Free(72)', 'Android', 'Android'
 end
 
 describe "UserAgent: Breaker/Android (https://breaker.audio)" do
   let(:useragent) { UserAgent.parse("Breaker/Android (https://breaker.audio)") }
 
-  it_should_behave_like 'Breaker', nil, 'Android', nil
+  it_should_behave_like 'Breaker', nil, 'Android', 'Android'
 end
 
 describe "UserAgent: Breaker/0.8.0 (1059)" do
@@ -44,7 +44,7 @@ end
 describe "UserAgent: Breaker/iOS (https://breaker.audio)" do
   let(:useragent) { UserAgent.parse("Breaker/iOS (https://breaker.audio)") }
 
-  it_should_behave_like 'Breaker', nil, 'iOS', nil
+  it_should_behave_like 'Breaker', nil, 'iOS', 'iOS'
 end
 
 describe "UserAgent: Breaker/515 CFNetwork/893.10 Darwin/17.3.0" do
@@ -68,5 +68,5 @@ end
 describe "UserAgent: Breaker/iOS/0.8.1 (1076)" do
   let(:useragent) { UserAgent.parse("Breaker/iOS/0.8.1 (1076)") }
 
-  it_should_behave_like 'Breaker', '0.8.1', 'iOS', nil
+  it_should_behave_like 'Breaker', '0.8.1', 'iOS', 'iOS'
 end

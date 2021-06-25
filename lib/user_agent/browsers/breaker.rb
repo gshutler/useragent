@@ -45,7 +45,15 @@ class UserAgent
         return [IOS, OperatingSystems::Darwin::IOS[app.version.to_s]].compact.join(' ') if app
 
         app = app_with_comments
-        app.comment[1..2].detect { |c| IOS_VERSION_REGEX.match?(c) } if app
+        if app
+          version = app.comment[1..2].detect { |c| IOS_VERSION_REGEX.match?(c) }
+          return version if version
+        end
+
+        case platform
+        when ANDROID then ANDROID
+        when IOS     then IOS
+        end
       end
 
       ##
