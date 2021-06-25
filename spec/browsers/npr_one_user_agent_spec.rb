@@ -28,7 +28,7 @@ end
 describe "UserAgent: NPROneAndroid" do
   let(:useragent) { UserAgent.parse("NPROneAndroid") }
 
-  it_behaves_like 'NPR One', nil, 'Android', nil
+  it_behaves_like 'NPR One', nil, 'Android', 'Android'
 end
 
 describe "UserAgent: NPR%20One/316 CFNetwork/1240.0.4 Darwin/20.5.0" do

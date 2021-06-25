@@ -47,7 +47,12 @@ class UserAgent
         end
 
         app = detect_product(DARWIN)
-        [IOS, OperatingSystems::Darwin::IOS[app.version.to_s]].compact.join(' ') if app
+        return [IOS, OperatingSystems::Darwin::IOS[app.version.to_s]].compact.join(' ') if app
+
+        case platform
+        when ANDROID then ANDROID
+        when IOS     then IOS
+        end
       end
 
       ##
