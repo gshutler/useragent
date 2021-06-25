@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'user_agent'
 
 shared_examples_for 'Castro' do |version, platform, os|
