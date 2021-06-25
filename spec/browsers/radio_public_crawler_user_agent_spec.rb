@@ -5,6 +5,9 @@ shared_examples 'RadioPublicCrawler' do
     expect(useragent.browser).to eq('RadioPublic')
   end
 
+  it { expect(useragent.platform).to be_nil }
+  it { expect(useragent.os).to be_nil }
+
   it { expect(useragent).to be_bot }
   it { expect(useragent).not_to be_desktop }
   it { expect(useragent).not_to be_mobile }
