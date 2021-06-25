@@ -22,17 +22,17 @@ end
 describe "UserAgent: Podkicker Pro/3.1.19.RC-GP-Pro(2028)" do
   let(:useragent) { UserAgent.parse("Podkicker Pro/3.1.19.RC-GP-Pro(2028)") }
 
-  it_should_behave_like 'Podkicker', '3.1.19.RC-GP-Pro(2028)'
+  it_behaves_like 'Podkicker', '3.1.19.RC-GP-Pro(2028)'
 end
 
 describe "UserAgent: Podkicker/2.2.10" do
   let(:useragent) { UserAgent.parse("Podkicker/2.2.10") }
 
-  it_should_behave_like 'Podkicker', '2.2.10'
+  it_behaves_like 'Podkicker', '2.2.10'
 end
 
 describe "UserAgent: Podkicker Classic/1.2.9" do
   let(:useragent) { UserAgent.parse("Podkicker Classic/1.2.9") }
 
-  it_should_behave_like 'Podkicker', '1.2.9'
+  it_behaves_like 'Podkicker', '1.2.9'
 end

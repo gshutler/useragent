@@ -8,7 +8,7 @@ class UserAgent
     class Podkicker < Base
       CLASSIC         = 'Classic'
       PODKICKER       = 'Podkicker'
-      PODKICKER_REGEX = /\APodkicker (Pro|Classic)\//.freeze
+      PODKICKER_REGEX = /\APodkicker(?:\sPro|\sClassic)?\//.freeze
       PRO             = 'Pro'
 
       ##
@@ -17,7 +17,7 @@ class UserAgent
       # @return [Boolean]
       #     True if the useragent matches this browser
       def self.extend?(agent)
-        agent.detect { |useragent| useragent.product == PODKICKER } || PODKICKER_REGEX.match?(agent.to_s)
+        PODKICKER_REGEX.match?(agent.to_s)
       end
 
       ##
