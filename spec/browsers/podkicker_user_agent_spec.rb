@@ -15,6 +15,10 @@ shared_examples_for 'Podkicker' do |version|
     expect(useragent.platform).to eq('Android')
   end
 
+  it "returns 'Android' as its os" do
+    expect(useragent.os).to eq('Android')
+  end
+
   it { expect(useragent).to be_mobile }
   it { expect(useragent).not_to be_desktop }
   it { expect(useragent).not_to be_speaker }

@@ -34,6 +34,12 @@ class UserAgent
       end
 
       ##
+      # @return [String] The os of the app
+      def os
+        ANDROID
+      end
+
+      ##
       # @return [String] This is an Android app
       def platform
         ANDROID
