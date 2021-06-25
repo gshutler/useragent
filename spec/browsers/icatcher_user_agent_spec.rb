@@ -64,11 +64,11 @@ end
 describe "UserAgent: iCatcher! podcast app/2.2.5" do
   let(:useragent) { UserAgent.parse("iCatcher! podcast app/2.2.5") }
 
-  it_behaves_like 'iCatcher!', '2.2.5', 'iOS', nil
+  it_behaves_like 'iCatcher!', '2.2.5', 'iOS', 'iOS'
 end
 
 describe "UserAgent: iCatcher! Podcast Player/2.7.3" do
   let(:useragent) { UserAgent.parse("iCatcher! Podcast Player/2.7.3") }
 
-  it_behaves_like 'iCatcher!', '2.7.3', 'iOS', nil
+  it_behaves_like 'iCatcher!', '2.7.3', 'iOS', 'iOS'
 end

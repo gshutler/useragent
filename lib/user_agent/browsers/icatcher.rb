@@ -45,11 +45,13 @@ class UserAgent
         return [IOS, OperatingSystems::Darwin::IOS[app.version.to_s]].compact.join(' ') if app
 
         app = app_with_comments
-        return unless app && app.comment[1]
+        if app && app.comment[1]
+          os_string = app.comment[1]
+          return os_string if os_string.start_with?(IOS)
+          return os_string.sub(IPHONE_OS, IOS) if os_string.start_with?(IPHONE_OS)
+        end
 
-        os_string = app.comment[1]
-        return os_string if os_string.start_with?(IOS)
-        os_string.sub(IPHONE_OS, IOS) if os_string.start_with?(IPHONE_OS)
+        IOS
       end
 
       ##
