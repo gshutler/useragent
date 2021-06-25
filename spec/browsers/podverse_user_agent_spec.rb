@@ -28,7 +28,7 @@ end
 describe "UserAgent: Podverse/F-Droid Android Mobile App/" do
   let(:useragent) { UserAgent.parse("Podverse/F-Droid Android Mobile App/") }
 
-  it_should_behave_like 'Podverse', nil, 'Android', nil
+  it_should_behave_like 'Podverse', nil, 'Android', 'Android'
 end
 
 describe "UserAgent: Podverse/Android Mobile App/Mozilla/5.0 (Linux; Android 10; LYA-L29 Build/HUAWEILYA-L29; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/90.0.4430.91 Mobile Safari/537.36" do

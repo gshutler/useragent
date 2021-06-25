@@ -46,10 +46,11 @@ class UserAgent
 
         case platform
         when IOS, IPHONE, IPAD, IPOD_TOUCH
-          app.comment.detect { |c| IOS_VERSION_REGEX.match?(c) }
+          app.comment.detect { |c| IOS_VERSION_REGEX.match?(c) } || IOS
         when ANDROID
           matches = OperatingSystems::ANDROID_VERSION_REGEX.match(app.comment.join)
-          [ANDROID, matches[:version]].compact.join(' ') if matches && matches[:version]
+          return [ANDROID, matches[:version]].compact.join(' ') if matches && matches[:version]
+          ANDROID
         end
       end
 

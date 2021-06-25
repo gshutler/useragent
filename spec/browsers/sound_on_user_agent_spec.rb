@@ -28,7 +28,7 @@ end
 describe "UserAgent: SoundOn/3.7.1 (Linux;Android)" do
   let(:useragent) { UserAgent.parse("SoundOn/3.7.1 (Linux;Android)") }
 
-  it_should_behave_like 'SoundOn', '3.7.1', 'Android', nil
+  it_should_behave_like 'SoundOn', '3.7.1', 'Android', 'Android'
 end
 
 describe "UserAgent: SoundOn/1.9.11 (Linux;Android 10) ExoPlayerLib/2.9.4" do
@@ -52,7 +52,7 @@ end
 describe "UserAgent: SoundOn/2.4.1 (iOS)" do
   let(:useragent) { UserAgent.parse("SoundOn/2.4.1 (iOS)") }
 
-  it_should_behave_like 'SoundOn', '2.4.1', 'iOS', nil
+  it_should_behave_like 'SoundOn', '2.4.1', 'iOS', 'iOS'
 end
 
 describe "UserAgent: SoundOn/1 CFNetwork/1128.0.1 Darwin/19.6.0" do

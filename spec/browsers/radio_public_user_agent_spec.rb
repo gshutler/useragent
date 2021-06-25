@@ -28,7 +28,7 @@ end
 describe "UserAgent: RadioPublic/android-2.2" do
   let(:useragent) { UserAgent.parse("RadioPublic/android-2.2") }
 
-  it_should_behave_like 'RadioPublic', '2.2', 'Android', nil
+  it_should_behave_like 'RadioPublic', '2.2', 'Android', 'Android'
 end
 
 describe "UserAgent: RadioPublic/android-2.2 ,Mozilla/5.0 (Linux; Android 7.0; 5086D Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/56.0.2924.87 Mobile Safari/537.36" do
@@ -40,19 +40,19 @@ end
 describe "UserAgent: RadioPublic Android 1.0.26" do
   let(:useragent) { UserAgent.parse("RadioPublic Android 1.0.26") }
 
-  it_should_behave_like 'RadioPublic', '1.0.26', 'Android', nil
+  it_should_behave_like 'RadioPublic', '1.0.26', 'Android', 'Android'
 end
 
 describe "UserAgent: RadioPublic/iOS-2.0" do
   let(:useragent) { UserAgent.parse("RadioPublic/iOS-2.0") }
 
-  it_should_behave_like 'RadioPublic', '2.0', 'iOS', nil
+  it_should_behave_like 'RadioPublic', '2.0', 'iOS', 'iOS'
 end
 
 describe "UserAgent: RadioPublic iOS 2.0.0" do
   let(:useragent) { UserAgent.parse("RadioPublic iOS 2.0.0") }
 
-  it_should_behave_like 'RadioPublic', '2.0.0', 'iOS', nil
+  it_should_behave_like 'RadioPublic', '2.0.0', 'iOS', 'iOS'
 end
 
 describe "UserAgent: RadioPublic/1 CFNetwork/808.2.16 Darwin/16.3.0" do

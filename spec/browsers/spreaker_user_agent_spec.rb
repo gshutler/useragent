@@ -34,7 +34,7 @@ end
 describe "UserAgent: Spreaker Android" do
   let(:useragent) { UserAgent.parse("Spreaker Android") }
 
-  it_should_behave_like 'Spreaker', nil, 'Android', nil
+  it_should_behave_like 'Spreaker', nil, 'Android', 'Android'
 end
 
 describe "UserAgent: Spreaker 7.26.1 rv:1337 (iPhone10,3; iOS 14.4.2; en_US)" do

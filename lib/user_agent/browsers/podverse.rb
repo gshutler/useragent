@@ -41,7 +41,12 @@ class UserAgent
         return [IOS, OperatingSystems::Darwin::IOS[app.version.to_s]].compact.join(' ') if app
 
         app = app_with_comments
-        OperatingSystems.normalize_os(app.comment[1]) if app && app.comment[1]
+        return OperatingSystems.normalize_os(app.comment[1]) if app && app.comment[1]
+
+        case platform
+        when ANDROID then ANDROID
+        when IOS     then IOS
+        end
       end
 
       ##
