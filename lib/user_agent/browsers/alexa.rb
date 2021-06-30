@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # AlexaMediaPlayer/1.0.1560.0 (Linux;Android 10) ExoPlayerLib/1.5.9

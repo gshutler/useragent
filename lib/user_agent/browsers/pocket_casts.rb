@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # Pocket Casts BMID/E678F58F21

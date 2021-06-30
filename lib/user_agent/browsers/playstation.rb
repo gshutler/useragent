@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # Mozilla/5.0 (PLAYSTATION 3 4.75) AppleWebKit/531.22.8 (KHTML, like Gecko)
@@ -14,8 +16,9 @@ class UserAgent
         )
       end
 
+      ##
       # Returns the name of the browser in use.
-      # 
+      #
       # @return [nil, String] the name of the browser
       def browser
         if application.comment.first.include?('PLAYSTATION 3')
@@ -29,22 +32,25 @@ class UserAgent
         end
       end
 
+      ##
       # PS Vita is mobile, others are not.
-      # 
+      #
       # @return [true, false] is this a mobile browser?
       def mobile?
         platform == 'PlayStation Vita'
       end
 
+      ##
       # Returns the operating system in use.
-      # 
+      #
       # @return [String] the operating system in use
       def os
         application.comment.join(' ')
       end
 
+      ##
       # Returns the platform in use.
-      # 
+      #
       # @return [nil, "PlayStation 3", "PlayStation 4", "PlayStation Vita"] the platform in use
       def platform
         if os.include?('PLAYSTATION 3')
@@ -58,9 +64,10 @@ class UserAgent
         end
       end
 
+      ##
       # Returns the browser version in use. If Silk, returns the version of Silk.
       # Otherwise, returns the PS3/PS4 firmware version.
-      # 
+      #
       # @return [nil, Version] the version
       def version
         if browser == 'Silk'

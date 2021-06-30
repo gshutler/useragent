@@ -8,6 +8,7 @@ require 'user_agent/browsers/airr'
 require 'user_agent/browsers/alexa'
 require 'user_agent/browsers/amazon_music'
 require 'user_agent/browsers/android'
+require 'user_agent/browsers/android_download_manager'
 require 'user_agent/browsers/apple_core_media'
 require 'user_agent/browsers/apple_home_pod'
 require 'user_agent/browsers/apple_podcasts'
@@ -15,18 +16,31 @@ require 'user_agent/browsers/apple_watch/base'
 require 'user_agent/browsers/apple_watch/atc'
 require 'user_agent/browsers/apple_watch/pod_2_watch'
 require 'user_agent/browsers/audible'
+require 'user_agent/browsers/audio_clip'
+require 'user_agent/browsers/beyond_pod'
 require 'user_agent/browsers/black_berry'
+require 'user_agent/browsers/breaker'
 require 'user_agent/browsers/castbox'
+require 'user_agent/browsers/castro'
 require 'user_agent/browsers/chrome'
+require 'user_agent/browsers/deezer'
+require 'user_agent/browsers/deezer_crawler'
+require 'user_agent/browsers/downcast'
+require 'user_agent/browsers/downcast_crawler'
 require 'user_agent/browsers/edge'
 require 'user_agent/browsers/facebook'
 require 'user_agent/browsers/gecko'
 require 'user_agent/browsers/google_home'
 require 'user_agent/browsers/google_podcasts'
+require 'user_agent/browsers/googlebot'
+require 'user_agent/browsers/himalaya'
+require 'user_agent/browsers/icatcher'
 require 'user_agent/browsers/iheart_radio'
 require 'user_agent/browsers/internet_explorer'
 require 'user_agent/browsers/itunes'
 require 'user_agent/browsers/libavformat'
+require 'user_agent/browsers/luminary'
+require 'user_agent/browsers/npr_one'
 require 'user_agent/browsers/ok_http'
 require 'user_agent/browsers/opera'
 require 'user_agent/browsers/overcast'
@@ -34,11 +48,20 @@ require 'user_agent/browsers/pandora'
 require 'user_agent/browsers/pandora_rss_crawler'
 require 'user_agent/browsers/playstation'
 require 'user_agent/browsers/pocket_casts'
+require 'user_agent/browsers/pod_mn'
 require 'user_agent/browsers/podbean'
 require 'user_agent/browsers/podcast_addict'
+require 'user_agent/browsers/podcast_republic'
+require 'user_agent/browsers/podimo'
+require 'user_agent/browsers/podkicker'
+require 'user_agent/browsers/podverse'
+require 'user_agent/browsers/radio_public'
+require 'user_agent/browsers/radio_public_crawler'
 require 'user_agent/browsers/samsung'
 require 'user_agent/browsers/sonos'
+require 'user_agent/browsers/sound_on'
 require 'user_agent/browsers/spotify'
+require 'user_agent/browsers/spreaker'
 require 'user_agent/browsers/stagefright'
 require 'user_agent/browsers/stitcher'
 require 'user_agent/browsers/stitcher_bot'
@@ -67,6 +90,7 @@ class UserAgent
       WechatBrowser,
       Vivaldi,
       Facebook,
+      Googlebot,
       GooglePodcasts,
       GoogleHome,
       Acast,
@@ -75,14 +99,23 @@ class UserAgent
       Sonos,
       Alexa,
       AmazonMusic,
+      BeyondPod,
+      Castro,
+      DeezerCrawler,
+      Deezer,
+      Himalaya,
       PocketCasts,
       Podbean,
       PodcastAddict,
+      Podverse,
+      RadioPublicCrawler,
+      RadioPublic,
       Spotify,
       Stagefright,
       PandoraRSSCrawler,
       Pandora,
       IHeartRadio,
+      NPROne,
       Overcast,
       TuneIn,
       Chrome,
@@ -100,6 +133,19 @@ class UserAgent
       AppleWatch::ATC,
       AppleWatch::Pod2Watch,
       ApplePodcasts,
+      AndroidDownloadManager,
+      AudioClip,
+      Breaker,
+      DowncastCrawler,
+      Downcast,
+      ICatcher,
+      Luminary,
+      PodMN,
+      PodcastRepublic,
+      Podimo,
+      Podkicker,
+      SoundOn,
+      Spreaker,
       ThePodcastApp,
       Wondery,
       Android

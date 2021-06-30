@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'user_agent'
 
 describe "UserAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E238 MicroMessenger/6.3.16 NetType/WIFI Language/zh_CN'" do

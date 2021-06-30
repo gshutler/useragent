@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # Spotify/0.1.118.48 Android/29 (Pixel 4 XL)

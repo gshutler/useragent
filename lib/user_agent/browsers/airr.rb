@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # Airr/3916 CFNetwork/1202 Darwin/20.1.0

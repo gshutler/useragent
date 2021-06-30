@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # TuneIn Radio/26.8.1 (Linux;Android 8.0.0) ExoPlayerLib/2.12.2

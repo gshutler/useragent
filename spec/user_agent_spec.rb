@@ -407,18 +407,6 @@ describe UserAgent::Browsers::Base, "#to_h" do
     }
 
   it_behaves_like "Browser serializer",
-    "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
-    {
-      :browser => "Mozilla",
-      :version => [5, 0],
-      :platform => nil,
-      :os => "Googlebot/2.1",
-      :mobile => false,
-      :bot => true,
-      :comment => ["compatible", "Googlebot/2.1", "+http://www.google.com/bot.html"],
-    }
-
-  it_behaves_like "Browser serializer",
     "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) CriOS/28.0.1500.16 Mobile/10B329 Safari/8536.25",
     {
       :browser => "Chrome",
