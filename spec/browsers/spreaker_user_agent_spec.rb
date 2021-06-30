@@ -28,35 +28,41 @@ end
 describe "UserAgent: Spreaker for Android 4.17.0 release:2021-05-05 device:phone (samsung SM-G965U; Android 10; en_US)" do
   let(:useragent) { UserAgent.parse("Spreaker for Android 4.17.0 release:2021-05-05 device:phone (samsung SM-G965U; Android 10; en_US)") }
 
-  it_should_behave_like 'Spreaker', '4.17.0', 'Android', 'Android 10'
+  it_behaves_like 'Spreaker', '4.17.0', 'Android', 'Android 10'
 end
 
 describe "UserAgent: Spreaker Android" do
   let(:useragent) { UserAgent.parse("Spreaker Android") }
 
-  it_should_behave_like 'Spreaker', nil, 'Android', 'Android'
+  it_behaves_like 'Spreaker', nil, 'Android', 'Android'
 end
 
 describe "UserAgent: Spreaker 7.26.1 rv:1337 (iPhone10,3; iOS 14.4.2; en_US)" do
   let(:useragent) { UserAgent.parse("Spreaker 7.26.1 rv:1337 (iPhone10,3; iOS 14.4.2; en_US)") }
 
-  it_should_behave_like 'Spreaker', '7.26.1', 'iPhone', 'iOS 14.4.2'
+  it_behaves_like 'Spreaker', '7.26.1', 'iPhone', 'iOS 14.4.2'
 end
 
 describe "UserAgent: Spreaker 6.8.0 rv:1168 (iPad2,4; iPhone OS 9.3.5; en_GB) SPKAudioPlayer" do
   let(:useragent) { UserAgent.parse("Spreaker 6.8.0 rv:1168 (iPad2,4; iPhone OS 9.3.5; en_GB) SPKAudioPlayer") }
 
-  it_should_behave_like 'Spreaker', '6.8.0', 'iPad', 'iOS 9.3.5'
+  it_behaves_like 'Spreaker', '6.8.0', 'iPad', 'iOS 9.3.5'
 end
 
 describe "UserAgent: Spreaker 7.9.1 rv:1263 (iPod7,1; iOS 11.0.3; en_US) SPKAudioPlayer" do
   let(:useragent) { UserAgent.parse("Spreaker 7.9.1 rv:1263 (iPod7,1; iOS 11.0.3; en_US) SPKAudioPlayer") }
 
-  it_should_behave_like 'Spreaker', '7.9.1', 'iPod touch', 'iOS 11.0.3'
+  it_behaves_like 'Spreaker', '7.9.1', 'iPod touch', 'iOS 11.0.3'
+end
+
+describe "UserAgent: Spreaker 7.9.1 rv:1263 (iPod7,1) SPKAudioPlayer" do
+  let(:useragent) { UserAgent.parse("Spreaker 7.9.1 rv:1263 (iPod7,1) SPKAudioPlayer") }
+
+  it_behaves_like 'Spreaker', '7.9.1', 'iPod touch', 'iOS'
 end
 
 describe "UserAgent: Spreaker File Downloader" do
   let(:useragent) { UserAgent.parse("Spreaker File Downloader") }
 
-  it_should_behave_like 'Spreaker', nil, nil, nil
+  it_behaves_like 'Spreaker', nil, nil, nil
 end

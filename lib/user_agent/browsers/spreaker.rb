@@ -42,13 +42,15 @@ class UserAgent
         if app
           c = app.comment[1]
 
-          return c if c.start_with?(ANDROID) || c.start_with?(IOS)
-          return c.sub(IPHONE_OS, IOS) if c.start_with?(IPHONE_OS)
+          if c
+            return c if c.start_with?(ANDROID) || c.start_with?(IOS)
+            return c.sub(IPHONE_OS, IOS) if c.start_with?(IPHONE_OS)
+          end
         end
 
         case platform
         when ANDROID then ANDROID
-        when IOS     then IOS
+        when IOS, IPAD, IPHONE, IPOD_TOUCH then IOS
         end
       end
 
