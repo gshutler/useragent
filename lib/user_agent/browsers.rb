@@ -57,6 +57,7 @@ require 'user_agent/browsers/podkicker'
 require 'user_agent/browsers/podverse'
 require 'user_agent/browsers/radio_public'
 require 'user_agent/browsers/radio_public_crawler'
+require 'user_agent/browsers/samsung'
 require 'user_agent/browsers/sonos'
 require 'user_agent/browsers/sound_on'
 require 'user_agent/browsers/spotify'
@@ -81,6 +82,7 @@ class UserAgent
 
     ALL = [
       Edge,
+      Samsung,
       StitcherBot,
       Stitcher,
       InternetExplorer,
