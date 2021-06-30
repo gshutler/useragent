@@ -45,7 +45,7 @@ class UserAgent
 
         case platform
         when ANDROID then ANDROID
-        when IOS     then IOS
+        when IOS, IPAD, IPHONE, IPOD_TOUCH then IOS
         end
       end
 

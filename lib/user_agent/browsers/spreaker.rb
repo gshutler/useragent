@@ -39,13 +39,11 @@ class UserAgent
       # @return [String] The OS of the app
       def os
         app = app_with_comments
-        if app
+        if app && app.comment[1]
           c = app.comment[1]
 
-          if c
-            return c if c.start_with?(ANDROID) || c.start_with?(IOS)
-            return c.sub(IPHONE_OS, IOS) if c.start_with?(IPHONE_OS)
-          end
+          return c if c.start_with?(ANDROID) || c.start_with?(IOS)
+          return c.sub(IPHONE_OS, IOS) if c.start_with?(IPHONE_OS)
         end
 
         case platform
