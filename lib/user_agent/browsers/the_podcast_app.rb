@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # ThePodcastApp/5.6.1 (iPhone; iOS 14.6; ) player (build 4958; +https://podcast.app/)

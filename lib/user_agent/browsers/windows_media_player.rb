@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # The user agent used by Windows Media Player or applications which utilize the

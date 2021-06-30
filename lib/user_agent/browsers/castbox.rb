@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # CastBox/4.20 (fm.castbox.audiobook.radio.podcast; build:15; iOS 14.4.0)

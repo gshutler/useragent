@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'user_agent'
 
 shared_examples 'Android' do |browser, version, os|
@@ -45,4 +47,10 @@ describe "UserAgent: radio.de/app-5.4.2.5 (Linux;Android 7.0) ExoPlayerLib/2.13.
   let(:useragent) { UserAgent.parse("radio.de/app-5.4.2.5 (Linux;Android 7.0) ExoPlayerLib/2.13.3") }
 
   it_behaves_like 'Android', 'radio.de', 'app-5.4.2.5', 'Android 7.0'
+end
+
+describe "UserAgent: NaverPlaybackLib/2.4.1 (Linux;Android 11) ExoPlayerLib/2.11.8" do
+  let(:useragent) { UserAgent.parse("NaverPlaybackLib/2.4.1 (Linux;Android 11) ExoPlayerLib/2.11.8") }
+
+  it_behaves_like 'Android', 'NaverPlaybackLib', '2.4.1', 'Android 11'
 end

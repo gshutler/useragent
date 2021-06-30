@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAgent
   module Browsers
     # com.audible.playersdk.player/3.6.0 (Linux;Android 10) ExoPlayerLib/2.12.1
