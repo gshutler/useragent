@@ -3,8 +3,8 @@
 require 'user_agent'
 
 shared_examples 'Amazon Echo' do |version|
-  it "returns 'Echo' as its browser" do
-    expect(useragent.browser).to eq('Echo')
+  it "returns 'Amazon Echo' as its browser" do
+    expect(useragent.browser).to eq('Amazon Echo')
   end
 
   it "returns '#{version}' as its version" do
@@ -17,14 +17,14 @@ shared_examples 'Amazon Echo' do |version|
   it { expect(useragent).not_to be_bot }
 end
 
-describe "UserAgent: Echo/1.0(APNG)" do
-  let(:useragent) { UserAgent.parse("Echo/1.0(APNG)") }
+describe 'UserAgent: Echo/1.0(APNG)' do
+  let(:useragent) { UserAgent.parse('Echo/1.0(APNG)') }
 
-  it_behaves_like 'Amazon Echo', '1.0(APNG)'
+  it_behaves_like 'Amazon Echo', '1.0'
 end
 
-describe "UserAgent: Echo/1.0(MRM)" do
-  let(:useragent) { UserAgent.parse("Echo/1.0(MRM)") }
+describe 'UserAgent: Echo/1.0(MRM)' do
+  let(:useragent) { UserAgent.parse('Echo/1.0(MRM)') }
 
-  it_behaves_like 'Amazon Echo', '1.0(MRM)'
+  it_behaves_like 'Amazon Echo', '1.0'
 end

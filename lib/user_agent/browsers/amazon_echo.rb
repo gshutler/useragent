@@ -5,7 +5,14 @@ class UserAgent
     # Echo/1.0(APNG)
     # Echo/1.0(MRM)
     class AmazonEcho < Base
+      AMAZON_ECHO = 'Amazon Echo'
+      private_constant :AMAZON_ECHO
+
       ECHO = 'Echo'
+      private_constant :ECHO
+
+      VERSION_REGEX = /(?<version>[\d.]+)/.freeze
+      private_constant :VERSION_REGEX
 
       ##
       # @param agent [Array]
@@ -20,7 +27,7 @@ class UserAgent
       # @return [String]
       #     The browser name
       def browser
-        ECHO
+        AMAZON_ECHO
       end
 
       ##
@@ -33,6 +40,14 @@ class UserAgent
       # @return [true] This is a speaker
       def speaker?
         true
+      end
+
+      ##
+      # @return [String]
+      #     The app version
+      def version
+        v = super.to_s
+        VERSION_REGEX.match(v)[:version]
       end
     end
   end
