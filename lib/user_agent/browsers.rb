@@ -6,6 +6,7 @@ require 'user_agent/browsers/webkit'
 require 'user_agent/browsers/acast'
 require 'user_agent/browsers/airr'
 require 'user_agent/browsers/alexa'
+require 'user_agent/browsers/amazon_echo'
 require 'user_agent/browsers/amazon_music'
 require 'user_agent/browsers/android'
 require 'user_agent/browsers/android_download_manager'
@@ -98,6 +99,7 @@ class UserAgent
       Castbox,
       Sonos,
       Alexa,
+      AmazonEcho,
       AmazonMusic,
       BeyondPod,
       Castro,
