@@ -72,6 +72,7 @@ require 'user_agent/browsers/vivaldi'
 require 'user_agent/browsers/wechat_browser'
 require 'user_agent/browsers/windows_media_player'
 require 'user_agent/browsers/wondery'
+require 'user_agent/browsers/wondery_crawler'
 
 class UserAgent
   module Browsers
@@ -81,6 +82,8 @@ class UserAgent
       'I' => :weak
     }.freeze
 
+    ##
+    # Since we pick the first matching user agent, the listing order of these user agents are important!
     ALL = [
       Edge,
       Samsung,
@@ -149,6 +152,7 @@ class UserAgent
       SoundOn,
       Spreaker,
       ThePodcastApp,
+      WonderyCrawler,
       Wondery,
       Android
     ].freeze
