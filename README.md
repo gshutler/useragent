@@ -1,6 +1,6 @@
 # UserAgent
 
-[![Build Status](https://travis-ci.org/gshutler/useragent.svg?branch=master)](https://travis-ci.org/gshutler/useragent)
+[![Build Status](https://github.com/gshutler/useragent/actions/workflows/test.yml/badge.svg)](https://github.com/gshutler/useragent/actions/workflows/test.yml)
 [![Gem Version](https://badge.fury.io/rb/useragent.svg)](http://badge.fury.io/rb/useragent)
 
 UserAgent is a Ruby library that parses and compares HTTP User Agents.
