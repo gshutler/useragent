@@ -78,6 +78,10 @@ class UserAgent
         # list will be rejected.
         elsif detect_comment_match(/bot/i)
           true
+        # Google PageSpeed Insights adds "Chrome-Lighthouse" to the user agent
+        # https://stackoverflow.com/questions/16403295/what-is-the-name-of-the-google-pagespeed-user-agent
+        elsif detect_product("Chrome-Lighthouse")
+          true
         elsif product = application.product
           product.include?('bot')
         else
